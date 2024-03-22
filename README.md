@@ -8,21 +8,20 @@ Molim vas izmijenite ovaj dokument kako biste u njemu naveli naziv i kratak opis
 A sada, vrijeme je za prvi korak rada na vašem projektu. 🙂 Za upis/opis vašeg programskog proizvoda molimo vas koristite **predložak** koji je naveden u nastavku. Započnite tako da kliknete na *olovku* u desnom gornjem kutu ovoga dokumenta te izbrišite sve što je iznad _Naziva projekta_, kao i sve upute koje su navedene u zagradama u predlošku ispod.
 
 # Naziv projekta
-(U redak iznad navedite naziv projekta koji ste dobili za analizu!)
+Sustav za praćenje narudžbi u studentskom restoranu 
 
 ## Podaci o studentu
-(Ispod promijenite samo drugi redak tablice!)
 
 Ime i prezime | E-mail adresa (FOI) | JMBAG | Github korisničko ime
 ------------  | ------------------- | ----- | ---------------------
-Ime i prezime | mojaadresa@foi.hr | 000000000 | githubuser
+Ennio David Komljenović | ekomljeno22@foi.hr | 0016160450 | ekomljeno22
 
 
 ## Opis domene
-(Vlastitim riječima opišite domenu ili problem koji pokriva projekt vaše zadaće!)
+Izrada potpornog sustava koji će olakšati organizaciju i upravljanje uslugama i proizvodima koje varaždinska studentska menza nudi. Dakle, to su svi procesi koji uključuju odnos hrane i studenta koji uživa u toj hrani.
 
 ## Specifikacija projekta
-(Vlastitim riječima opišite zahtjeve za izradu ovog programskog proizvoda!)
+U dobivenim zahtjevima iznose se razne funkcionalnosti koje će omogućiti efikasnu organizaciju prehrambenih usluga. Usluge uključuju sposobnost narudžbe hrane putem aplikacije, praćenje statusa narudžbi, ocjenjivanje jela od strane studenata, sustav nagrađivanja poklon bonovima i kupcima te generiranje izvještaja o poslovanju i trendovima. Osim toga, proizvod mora osigurati sigurno okruženje za podatke korisnika i pridržavanje regulatornih zahtjeva poput GDPR-a. Korisničko sučelje treba biti formalno, intuitivno i estetski ugodno, a aplikacija mora podržavati različite korisničke uloge poput studenata i zaposlenika restorana. Važno je osigurati da aplikacija bude dostupna i prilagođena korisnicima s različitim razinama obrazovanja i tehničke pismenosti te da se lako integrira s postojećim sustavima, poput ISSP-a za provjeru stanja obroka studenata.
 
 ## Zadatak
 (U root repozitorija učitajte zadatak koji ste dobili i potom ovdje stavite link na njegovo otvaranje!)
