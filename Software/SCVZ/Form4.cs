@@ -66,6 +66,8 @@ namespace SCVZ
 
         private void Form4_Load(object sender, EventArgs e)
         {
+
+            label1.BringToFront();
             panel1.Dock = DockStyle.Bottom;
             panel3.Dock = DockStyle.Top;
             panel2.Dock = DockStyle.Top;
@@ -111,5 +113,14 @@ namespace SCVZ
         {
         }
 
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }
