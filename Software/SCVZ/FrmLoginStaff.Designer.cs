@@ -1,0 +1,285 @@
+﻿namespace SCVZ
+{
+    partial class FrmLoginStaff
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.pnlNav = new System.Windows.Forms.Panel();
+            this.imgHome = new System.Windows.Forms.PictureBox();
+            this.imgBack = new System.Windows.Forms.PictureBox();
+            this.pnlLogo = new System.Windows.Forms.Panel();
+            this.imgLogo = new System.Windows.Forms.PictureBox();
+            this.pnlFooter = new System.Windows.Forms.Panel();
+            this.pnlLogin = new System.Windows.Forms.Panel();
+            this.img2FAIcon = new System.Windows.Forms.PictureBox();
+            this.imgPasswordIcon = new System.Windows.Forms.PictureBox();
+            this.imgUserIcon = new System.Windows.Forms.PictureBox();
+            this.btnPrijaviSe = new System.Windows.Forms.Button();
+            this.txt2FA = new System.Windows.Forms.TextBox();
+            this.txtPassword = new System.Windows.Forms.TextBox();
+            this.txtUsername = new System.Windows.Forms.TextBox();
+            this.lblZaposlenici = new System.Windows.Forms.Label();
+            this.pnlNav.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.imgHome)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgBack)).BeginInit();
+            this.pnlLogo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.imgLogo)).BeginInit();
+            this.pnlLogin.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.img2FAIcon)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgPasswordIcon)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgUserIcon)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // pnlNav
+            // 
+            this.pnlNav.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.pnlNav.BackColor = System.Drawing.Color.Black;
+            this.pnlNav.Controls.Add(this.imgHome);
+            this.pnlNav.Controls.Add(this.imgBack);
+            this.pnlNav.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlNav.Location = new System.Drawing.Point(0, 85);
+            this.pnlNav.Name = "pnlNav";
+            this.pnlNav.Size = new System.Drawing.Size(1902, 80);
+            this.pnlNav.TabIndex = 6;
+            // 
+            // imgHome
+            // 
+            this.imgHome.Image = global::SCVZ.Properties.Resources.home;
+            this.imgHome.Location = new System.Drawing.Point(99, 11);
+            this.imgHome.Name = "imgHome";
+            this.imgHome.Size = new System.Drawing.Size(71, 66);
+            this.imgHome.TabIndex = 1;
+            this.imgHome.TabStop = false;
+            this.imgHome.Click += new System.EventHandler(this.imgHome_Click);
+            // 
+            // imgBack
+            // 
+            this.imgBack.Image = global::SCVZ.Properties.Resources.back;
+            this.imgBack.Location = new System.Drawing.Point(13, 11);
+            this.imgBack.Name = "imgBack";
+            this.imgBack.Size = new System.Drawing.Size(73, 66);
+            this.imgBack.TabIndex = 0;
+            this.imgBack.TabStop = false;
+            this.imgBack.Click += new System.EventHandler(this.imgBack_Click);
+            // 
+            // pnlLogo
+            // 
+            this.pnlLogo.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.pnlLogo.BackColor = System.Drawing.Color.Black;
+            this.pnlLogo.Controls.Add(this.imgLogo);
+            this.pnlLogo.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlLogo.Location = new System.Drawing.Point(0, 0);
+            this.pnlLogo.Name = "pnlLogo";
+            this.pnlLogo.Size = new System.Drawing.Size(1902, 85);
+            this.pnlLogo.TabIndex = 5;
+            this.pnlLogo.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlLogo_Paint);
+            // 
+            // imgLogo
+            // 
+            this.imgLogo.Image = global::SCVZ.Properties.Resources.scvz_logo;
+            this.imgLogo.Location = new System.Drawing.Point(0, -1);
+            this.imgLogo.Name = "imgLogo";
+            this.imgLogo.Size = new System.Drawing.Size(570, 82);
+            this.imgLogo.TabIndex = 0;
+            this.imgLogo.TabStop = false;
+            this.imgLogo.Click += new System.EventHandler(this.imgLogo_Click);
+            // 
+            // pnlFooter
+            // 
+            this.pnlFooter.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.pnlFooter.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.pnlFooter.BackColor = System.Drawing.Color.White;
+            this.pnlFooter.Location = new System.Drawing.Point(-299, 932);
+            this.pnlFooter.Name = "pnlFooter";
+            this.pnlFooter.Size = new System.Drawing.Size(2500, 90);
+            this.pnlFooter.TabIndex = 4;
+            this.pnlFooter.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlFooter_Paint);
+            // 
+            // pnlLogin
+            // 
+            this.pnlLogin.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlLogin.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.pnlLogin.BackColor = System.Drawing.Color.Silver;
+            this.pnlLogin.Controls.Add(this.img2FAIcon);
+            this.pnlLogin.Controls.Add(this.imgPasswordIcon);
+            this.pnlLogin.Controls.Add(this.imgUserIcon);
+            this.pnlLogin.Controls.Add(this.btnPrijaviSe);
+            this.pnlLogin.Controls.Add(this.txt2FA);
+            this.pnlLogin.Controls.Add(this.txtPassword);
+            this.pnlLogin.Controls.Add(this.txtUsername);
+            this.pnlLogin.ForeColor = System.Drawing.Color.Silver;
+            this.pnlLogin.Location = new System.Drawing.Point(721, 165);
+            this.pnlLogin.Name = "pnlLogin";
+            this.pnlLogin.Size = new System.Drawing.Size(429, 778);
+            this.pnlLogin.TabIndex = 7;
+            // 
+            // img2FAIcon
+            // 
+            this.img2FAIcon.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.img2FAIcon.BackColor = System.Drawing.Color.Transparent;
+            this.img2FAIcon.Image = global::SCVZ.Properties.Resources._2_FA;
+            this.img2FAIcon.Location = new System.Drawing.Point(333, 430);
+            this.img2FAIcon.Name = "img2FAIcon";
+            this.img2FAIcon.Size = new System.Drawing.Size(71, 38);
+            this.img2FAIcon.TabIndex = 6;
+            this.img2FAIcon.TabStop = false;
+            // 
+            // imgPasswordIcon
+            // 
+            this.imgPasswordIcon.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.imgPasswordIcon.BackColor = System.Drawing.Color.Transparent;
+            this.imgPasswordIcon.Image = global::SCVZ.Properties.Resources.image_5;
+            this.imgPasswordIcon.Location = new System.Drawing.Point(333, 306);
+            this.imgPasswordIcon.Name = "imgPasswordIcon";
+            this.imgPasswordIcon.Size = new System.Drawing.Size(71, 72);
+            this.imgPasswordIcon.TabIndex = 5;
+            this.imgPasswordIcon.TabStop = false;
+            // 
+            // imgUserIcon
+            // 
+            this.imgUserIcon.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.imgUserIcon.BackColor = System.Drawing.Color.Transparent;
+            this.imgUserIcon.Image = global::SCVZ.Properties.Resources.image_6;
+            this.imgUserIcon.Location = new System.Drawing.Point(333, 218);
+            this.imgUserIcon.Name = "imgUserIcon";
+            this.imgUserIcon.Size = new System.Drawing.Size(71, 72);
+            this.imgUserIcon.TabIndex = 4;
+            this.imgUserIcon.TabStop = false;
+            // 
+            // btnPrijaviSe
+            // 
+            this.btnPrijaviSe.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPrijaviSe.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPrijaviSe.ForeColor = System.Drawing.Color.Black;
+            this.btnPrijaviSe.Location = new System.Drawing.Point(128, 516);
+            this.btnPrijaviSe.Name = "btnPrijaviSe";
+            this.btnPrijaviSe.Size = new System.Drawing.Size(189, 43);
+            this.btnPrijaviSe.TabIndex = 3;
+            this.btnPrijaviSe.Text = "PRIJAVI SE";
+            this.btnPrijaviSe.UseVisualStyleBackColor = true;
+            // 
+            // txt2FA
+            // 
+            this.txt2FA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txt2FA.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F);
+            this.txt2FA.Location = new System.Drawing.Point(56, 415);
+            this.txt2FA.Margin = new System.Windows.Forms.Padding(8);
+            this.txt2FA.MaxLength = 6;
+            this.txt2FA.Name = "txt2FA";
+            this.txt2FA.Size = new System.Drawing.Size(261, 38);
+            this.txt2FA.TabIndex = 2;
+            this.txt2FA.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // txtPassword
+            // 
+            this.txtPassword.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPassword.Location = new System.Drawing.Point(56, 324);
+            this.txtPassword.Margin = new System.Windows.Forms.Padding(15);
+            this.txtPassword.MaxLength = 15;
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.PasswordChar = '*';
+            this.txtPassword.Size = new System.Drawing.Size(261, 38);
+            this.txtPassword.TabIndex = 1;
+            this.txtPassword.Text = "Lozinka";
+            this.txtPassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // txtUsername
+            // 
+            this.txtUsername.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F);
+            this.txtUsername.Location = new System.Drawing.Point(56, 236);
+            this.txtUsername.Margin = new System.Windows.Forms.Padding(15);
+            this.txtUsername.MaxLength = 15;
+            this.txtUsername.Name = "txtUsername";
+            this.txtUsername.Size = new System.Drawing.Size(261, 38);
+            this.txtUsername.TabIndex = 0;
+            this.txtUsername.Text = "Korisničko ime";
+            this.txtUsername.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // lblZaposlenici
+            // 
+            this.lblZaposlenici.AutoSize = true;
+            this.lblZaposlenici.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblZaposlenici.Location = new System.Drawing.Point(432, 177);
+            this.lblZaposlenici.Name = "lblZaposlenici";
+            this.lblZaposlenici.Size = new System.Drawing.Size(283, 46);
+            this.lblZaposlenici.TabIndex = 8;
+            this.lblZaposlenici.Text = "ZAPOSLENICI";
+            // 
+            // FrmLoginStaff
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ClientSize = new System.Drawing.Size(1902, 1033);
+            this.Controls.Add(this.lblZaposlenici);
+            this.Controls.Add(this.pnlLogin);
+            this.Controls.Add(this.pnlNav);
+            this.Controls.Add(this.pnlLogo);
+            this.Controls.Add(this.pnlFooter);
+            this.Name = "FrmLoginStaff";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "FrmLoginStaff";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.FrmLoginZaposlenici_Load);
+            this.pnlNav.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.imgHome)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgBack)).EndInit();
+            this.pnlLogo.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.imgLogo)).EndInit();
+            this.pnlLogin.ResumeLayout(false);
+            this.pnlLogin.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.img2FAIcon)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgPasswordIcon)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgUserIcon)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.Panel pnlNav;
+        private System.Windows.Forms.PictureBox imgHome;
+        private System.Windows.Forms.PictureBox imgBack;
+        private System.Windows.Forms.Panel pnlLogo;
+        private System.Windows.Forms.PictureBox imgLogo;
+        private System.Windows.Forms.Panel pnlFooter;
+        private System.Windows.Forms.Panel pnlLogin;
+        private System.Windows.Forms.TextBox txtUsername;
+        private System.Windows.Forms.TextBox txt2FA;
+        private System.Windows.Forms.TextBox txtPassword;
+        private System.Windows.Forms.Button btnPrijaviSe;
+        private System.Windows.Forms.PictureBox imgUserIcon;
+        private System.Windows.Forms.PictureBox imgPasswordIcon;
+        private System.Windows.Forms.PictureBox img2FAIcon;
+        private System.Windows.Forms.Label lblZaposlenici;
+    }
+}
