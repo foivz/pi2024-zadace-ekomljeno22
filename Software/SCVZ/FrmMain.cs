@@ -85,7 +85,12 @@ namespace SCVZ
 
         private void imgBack_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Application.Exit();
+        }
+
+        private void imgHome_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

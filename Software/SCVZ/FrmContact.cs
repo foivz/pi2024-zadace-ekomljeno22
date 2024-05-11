@@ -37,7 +37,6 @@ namespace SCVZ
             pnlFooter.Dock = DockStyle.Bottom;
             pnlNav.Dock = DockStyle.Top;
             pnlLogo.Dock = DockStyle.Top;
-
         }
 
         private void imgHome_Click(object sender, EventArgs e)

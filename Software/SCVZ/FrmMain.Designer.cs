@@ -101,6 +101,7 @@
             this.imgHome.Size = new System.Drawing.Size(71, 66);
             this.imgHome.TabIndex = 1;
             this.imgHome.TabStop = false;
+            this.imgHome.Click += new System.EventHandler(this.imgHome_Click);
             // 
             // ImgBack
             // 
