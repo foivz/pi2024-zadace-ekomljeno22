@@ -76,6 +76,9 @@
     <Compile Include="FrmLoginStudents.Designer.cs">
       <DependentUpon>FrmLoginStudents.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\Korisnik.cs" />
+    <Compile Include="Models\Student.cs" />
+    <Compile Include="Models\Zaposlenik.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FrmMain.resx">
@@ -143,5 +146,6 @@
   <ItemGroup>
     <None Include="Properties\Resources\2-FA.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -25,6 +25,10 @@ namespace SCVZ
             imgBack.MouseLeave += imgLogo_MouseLeave;
             imgHome.MouseEnter += imgLogo_MouseEnter;
             imgHome.MouseLeave += imgLogo_MouseLeave;
+            imgStaff.MouseEnter += imgLogo_MouseEnter;
+            imgStaff.MouseLeave += imgLogo_MouseLeave;
+            imgStudents.MouseEnter += imgLogo_MouseEnter;
+            imgStudents.MouseLeave += imgLogo_MouseLeave;
         }
 
         private void FrmOdaberiPogled_Load(object sender, EventArgs e)
