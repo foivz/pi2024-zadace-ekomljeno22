@@ -12,5 +12,10 @@ namespace SCVZ.Models
         public string Ime { get; set; }
         public string Prezime { get; set; }
         private string Lozinka { get; set; }
+
+        public override string ToString()
+        {
+            return Ime + " " + Prezime;
+        }
     }
 }
