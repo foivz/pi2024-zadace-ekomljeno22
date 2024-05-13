@@ -66,5 +66,10 @@ namespace SCVZ
             Color color = System.Drawing.ColorTranslator.FromHtml("#FCF24A");
             pnlFooter.BackColor = color;
         }
+
+        private void imgUserIcon_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
