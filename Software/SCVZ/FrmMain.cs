@@ -62,7 +62,7 @@ namespace SCVZ
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            FrmViews form3 = new FrmViews();
+            FrmLogin form3 = new FrmLogin();
             form3.Show();
             this.Hide();
         }

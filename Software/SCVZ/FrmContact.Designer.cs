@@ -69,7 +69,7 @@
             this.pnlNav.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlNav.Location = new System.Drawing.Point(0, 85);
             this.pnlNav.Name = "pnlNav";
-            this.pnlNav.Size = new System.Drawing.Size(1617, 80);
+            this.pnlNav.Size = new System.Drawing.Size(1902, 80);
             this.pnlNav.TabIndex = 6;
             this.pnlNav.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlLogo_Paint);
             // 
@@ -101,7 +101,7 @@
             this.pnlLogo.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlLogo.Location = new System.Drawing.Point(0, 0);
             this.pnlLogo.Name = "pnlLogo";
-            this.pnlLogo.Size = new System.Drawing.Size(1617, 85);
+            this.pnlLogo.Size = new System.Drawing.Size(1902, 85);
             this.pnlLogo.TabIndex = 5;
             this.pnlLogo.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlLogo_Paint);
             // 
@@ -110,9 +110,9 @@
             this.pnlFooter.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.pnlFooter.BackColor = System.Drawing.Color.White;
             this.pnlFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlFooter.Location = new System.Drawing.Point(0, 724);
+            this.pnlFooter.Location = new System.Drawing.Point(0, 943);
             this.pnlFooter.Name = "pnlFooter";
-            this.pnlFooter.Size = new System.Drawing.Size(1617, 90);
+            this.pnlFooter.Size = new System.Drawing.Size(1902, 90);
             this.pnlFooter.TabIndex = 4;
             this.pnlFooter.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlFooter_Paint);
             // 
@@ -160,7 +160,7 @@
             this.lblAuthorName.AutoSize = true;
             this.lblAuthorName.Location = new System.Drawing.Point(12, 416);
             this.lblAuthorName.Name = "lblAuthorName";
-            this.lblAuthorName.Size = new System.Drawing.Size(232, 16);
+            this.lblAuthorName.Size = new System.Drawing.Size(215, 15);
             this.lblAuthorName.TabIndex = 1;
             this.lblAuthorName.Text = "Ennio David Komljenović, FOI IPS2-21";
             // 
@@ -169,7 +169,7 @@
             this.lblAuthorProblems.AutoSize = true;
             this.lblAuthorProblems.Location = new System.Drawing.Point(12, 446);
             this.lblAuthorProblems.Name = "lblAuthorProblems";
-            this.lblAuthorProblems.Size = new System.Drawing.Size(382, 16);
+            this.lblAuthorProblems.Size = new System.Drawing.Size(354, 15);
             this.lblAuthorProblems.TabIndex = 9;
             this.lblAuthorProblems.Text = "Probleme s aplikacijom prijaviti na: ekomljeno22@student.foi.hr";
             // 
@@ -178,7 +178,7 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(12, 278);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(300, 16);
+            this.label5.Size = new System.Drawing.Size(281, 15);
             this.label5.TabIndex = 1;
             this.label5.Text = "Ulica kralja Petra Krešimira IV. 42, 42000 Varaždin";
             // 
@@ -187,7 +187,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(1617, 814);
+            this.ClientSize = new System.Drawing.Size(1902, 1033);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.lblAuthorProblems);
             this.Controls.Add(this.lblAuthorName);

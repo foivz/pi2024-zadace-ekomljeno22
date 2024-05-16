@@ -62,43 +62,37 @@
     <Compile Include="FrmContact.Designer.cs">
       <DependentUpon>FrmContact.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmViews.cs">
+    <Compile Include="FrmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmViews.Designer.cs">
-      <DependentUpon>FrmViews.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FrmLoginStaff.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FrmLoginStaff.Designer.cs">
-      <DependentUpon>FrmLoginStaff.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FrmLoginStudents.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FrmLoginStudents.Designer.cs">
-      <DependentUpon>FrmLoginStudents.cs</DependentUpon>
+    <Compile Include="FrmLogin.Designer.cs">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Korisnik.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Models\Zaposlenik.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StaffMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StaffMain.Designer.cs">
+      <DependentUpon>StaffMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StudentMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StudentMain.Designer.cs">
+      <DependentUpon>StudentMain.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmContact.resx">
       <DependentUpon>FrmContact.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmViews.resx">
-      <DependentUpon>FrmViews.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FrmLoginStaff.resx">
-      <DependentUpon>FrmLoginStaff.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FrmLoginStudents.resx">
-      <DependentUpon>FrmLoginStudents.cs</DependentUpon>
+    <EmbeddedResource Include="FrmLogin.resx">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -110,6 +104,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="StaffMain.resx">
+      <DependentUpon>StaffMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StudentMain.resx">
+      <DependentUpon>StudentMain.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

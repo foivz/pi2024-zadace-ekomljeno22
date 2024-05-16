@@ -1,6 +1,6 @@
 ﻿namespace SCVZ
 {
-    partial class FrmViews
+    partial class FrmStaffMain
     {
         /// <summary>
         /// Required designer variable.
@@ -34,21 +34,11 @@
             this.pnlLogo = new System.Windows.Forms.Panel();
             this.imgLogo = new System.Windows.Forms.PictureBox();
             this.pnlFooter = new System.Windows.Forms.Panel();
-            this.imgStudents = new System.Windows.Forms.PictureBox();
-            this.imgStaff = new System.Windows.Forms.PictureBox();
-            this.pnlStaff = new System.Windows.Forms.Panel();
-            this.lblStaff = new System.Windows.Forms.Label();
-            this.pnlStudents = new System.Windows.Forms.Panel();
-            this.lblStudents = new System.Windows.Forms.Label();
             this.pnlNav.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgHome)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgBack)).BeginInit();
             this.pnlLogo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgLogo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.imgStudents)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.imgStaff)).BeginInit();
-            this.pnlStaff.SuspendLayout();
-            this.pnlStudents.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlNav
@@ -116,115 +106,34 @@
             this.pnlFooter.TabIndex = 7;
             this.pnlFooter.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlFooter_Paint);
             // 
-            // imgStudents
-            // 
-            this.imgStudents.Dock = System.Windows.Forms.DockStyle.Right;
-            this.imgStudents.Image = global::SCVZ.Properties.Resources.students;
-            this.imgStudents.Location = new System.Drawing.Point(1202, 165);
-            this.imgStudents.Name = "imgStudents";
-            this.imgStudents.Size = new System.Drawing.Size(700, 778);
-            this.imgStudents.TabIndex = 11;
-            this.imgStudents.TabStop = false;
-            this.imgStudents.Click += new System.EventHandler(this.imgStudents_Click);
-            // 
-            // imgStaff
-            // 
-            this.imgStaff.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.imgStaff.Dock = System.Windows.Forms.DockStyle.Left;
-            this.imgStaff.Image = global::SCVZ.Properties.Resources.staff;
-            this.imgStaff.Location = new System.Drawing.Point(0, 165);
-            this.imgStaff.Name = "imgStaff";
-            this.imgStaff.Size = new System.Drawing.Size(700, 778);
-            this.imgStaff.TabIndex = 10;
-            this.imgStaff.TabStop = false;
-            this.imgStaff.Click += new System.EventHandler(this.imgStaff_Click);
-            // 
-            // pnlStaff
-            // 
-            this.pnlStaff.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.pnlStaff.Controls.Add(this.lblStaff);
-            this.pnlStaff.Location = new System.Drawing.Point(0, 166);
-            this.pnlStaff.Name = "pnlStaff";
-            this.pnlStaff.Size = new System.Drawing.Size(250, 100);
-            this.pnlStaff.TabIndex = 12;
-            this.pnlStaff.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlStaff_Paint);
-            // 
-            // lblStaff
-            // 
-            this.lblStaff.AutoSize = true;
-            this.lblStaff.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStaff.Location = new System.Drawing.Point(36, 13);
-            this.lblStaff.Name = "lblStaff";
-            this.lblStaff.Size = new System.Drawing.Size(167, 36);
-            this.lblStaff.TabIndex = 0;
-            this.lblStaff.Text = "Zaposlenici";
-            // 
-            // pnlStudents
-            // 
-            this.pnlStudents.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnlStudents.Controls.Add(this.lblStudents);
-            this.pnlStudents.Location = new System.Drawing.Point(1652, 164);
-            this.pnlStudents.Name = "pnlStudents";
-            this.pnlStudents.Size = new System.Drawing.Size(250, 100);
-            this.pnlStudents.TabIndex = 13;
-            this.pnlStudents.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlStudents_Paint);
-            // 
-            // lblStudents
-            // 
-            this.lblStudents.AutoSize = true;
-            this.lblStudents.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStudents.Location = new System.Drawing.Point(67, 15);
-            this.lblStudents.Name = "lblStudents";
-            this.lblStudents.Size = new System.Drawing.Size(125, 36);
-            this.lblStudents.TabIndex = 0;
-            this.lblStudents.Text = "Studenti";
-            // 
-            // FrmViews
+            // FrmStaffMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(1902, 1033);
-            this.Controls.Add(this.pnlStudents);
-            this.Controls.Add(this.pnlStaff);
-            this.Controls.Add(this.imgStudents);
-            this.Controls.Add(this.imgStaff);
             this.Controls.Add(this.pnlNav);
             this.Controls.Add(this.pnlLogo);
             this.Controls.Add(this.pnlFooter);
-            this.Name = "FrmViews";
+            this.Name = "FrmStaffMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FrmViews";
+            this.Text = "FrmStaffMain";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.pnlNav.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.imgHome)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgBack)).EndInit();
             this.pnlLogo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.imgLogo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.imgStudents)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.imgStaff)).EndInit();
-            this.pnlStaff.ResumeLayout(false);
-            this.pnlStaff.PerformLayout();
-            this.pnlStudents.ResumeLayout(false);
-            this.pnlStudents.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.PictureBox imgLogo;
-        private System.Windows.Forms.Panel pnlNav;
         private System.Windows.Forms.PictureBox imgHome;
         private System.Windows.Forms.PictureBox imgBack;
+        private System.Windows.Forms.Panel pnlNav;
         private System.Windows.Forms.Panel pnlLogo;
+        private System.Windows.Forms.PictureBox imgLogo;
         private System.Windows.Forms.Panel pnlFooter;
-        private System.Windows.Forms.PictureBox imgStaff;
-        private System.Windows.Forms.PictureBox imgStudents;
-        private System.Windows.Forms.Panel pnlStaff;
-        private System.Windows.Forms.Label lblStaff;
-        private System.Windows.Forms.Panel pnlStudents;
-        private System.Windows.Forms.Label lblStudents;
     }
 }
