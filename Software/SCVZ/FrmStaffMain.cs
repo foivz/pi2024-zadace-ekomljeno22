@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -10,9 +11,9 @@ using System.Windows.Forms;
 
 namespace SCVZ
 {
-    public partial class FrmStudentMain : Form
+    public partial class FrmStaffMain : Form
     {
-        public FrmStudentMain()
+        public FrmStaffMain()
         {
             InitializeComponent();
 
@@ -32,6 +33,18 @@ namespace SCVZ
         private void imgLogo_MouseLeave(object sender, EventArgs e)
         {
             Cursor = Cursors.Default;
+        }
+
+        private void pnlLogo_Paint(object sender, PaintEventArgs e)
+        {
+            Color color = System.Drawing.ColorTranslator.FromHtml("#D9D9D9");
+            pnlLogo.BackColor = color;
+        }
+
+        private void pnlFooter_Paint(object sender, PaintEventArgs e)
+        {
+            Color color = System.Drawing.ColorTranslator.FromHtml("#FCF24A");
+            pnlFooter.BackColor = color;
         }
 
         private void imgBack_Click(object sender, EventArgs e)
@@ -69,16 +82,40 @@ namespace SCVZ
             this.Close();
         }
 
-        private void pnlFooter_Paint(object sender, PaintEventArgs e)
+        private void imgHome_Click(object sender, EventArgs e)
         {
-            Color color = System.Drawing.ColorTranslator.FromHtml("#FCF24A");
-            pnlFooter.BackColor = color;
         }
 
-        private void pnlLogo_Paint(object sender, PaintEventArgs e)
+        private void imgLogo_Click(object sender, EventArgs e)
         {
-            Color color = System.Drawing.ColorTranslator.FromHtml("#D9D9D9");
-            pnlLogo.BackColor = color;
+            string url = "https://www.scvz.unizg.hr/";
+            Process.Start(url);
+        }
+
+        private void btnPreview_Click(object sender, EventArgs e)
+        {
+            FrmPreview form2 = new FrmPreview();
+            form2.Show();
+            this.Close();
+        }
+
+        private void btnStatistics_Click(object sender, EventArgs e)
+        {
+            FrmStatistics form3 = new FrmStatistics();
+            form3.Show();
+            this.Close();
+        }
+
+        private void btnNewOrder_Click(object sender, EventArgs e)
+        {
+            FrmNewOrder form4 = new FrmNewOrder();
+            form4.Show();
+        }
+
+        private void btnAddFrm_Click(object sender, EventArgs e)
+        {
+            FrmAddElement form4 = new FrmAddElement();
+            form4.Show();
         }
     }
 }

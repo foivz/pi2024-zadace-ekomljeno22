@@ -34,11 +34,18 @@
             this.pnlLogo = new System.Windows.Forms.Panel();
             this.imgLogo = new System.Windows.Forms.PictureBox();
             this.pnlFooter = new System.Windows.Forms.Panel();
+            this.pnlSidebar = new System.Windows.Forms.Panel();
+            this.btnPreview = new System.Windows.Forms.Button();
+            this.btnStatistics = new System.Windows.Forms.Button();
+            this.btnAddFrm = new System.Windows.Forms.Button();
+            this.btnNewOrder = new System.Windows.Forms.Button();
+            this.pnlCurrentOrders = new System.Windows.Forms.Panel();
             this.pnlNav.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgHome)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgBack)).BeginInit();
             this.pnlLogo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgLogo)).BeginInit();
+            this.pnlSidebar.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlNav
@@ -106,11 +113,80 @@
             this.pnlFooter.TabIndex = 7;
             this.pnlFooter.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlFooter_Paint);
             // 
+            // pnlSidebar
+            // 
+            this.pnlSidebar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.pnlSidebar.BackColor = System.Drawing.Color.White;
+            this.pnlSidebar.Controls.Add(this.btnPreview);
+            this.pnlSidebar.Controls.Add(this.btnStatistics);
+            this.pnlSidebar.Controls.Add(this.btnAddFrm);
+            this.pnlSidebar.Controls.Add(this.btnNewOrder);
+            this.pnlSidebar.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pnlSidebar.Location = new System.Drawing.Point(0, 165);
+            this.pnlSidebar.Name = "pnlSidebar";
+            this.pnlSidebar.Size = new System.Drawing.Size(395, 778);
+            this.pnlSidebar.TabIndex = 11;
+            // 
+            // btnPreview
+            // 
+            this.btnPreview.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPreview.Location = new System.Drawing.Point(70, 348);
+            this.btnPreview.Name = "btnPreview";
+            this.btnPreview.Size = new System.Drawing.Size(227, 67);
+            this.btnPreview.TabIndex = 3;
+            this.btnPreview.Text = "Pregled";
+            this.btnPreview.UseVisualStyleBackColor = true;
+            this.btnPreview.Click += new System.EventHandler(this.btnPreview_Click);
+            // 
+            // btnStatistics
+            // 
+            this.btnStatistics.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStatistics.Location = new System.Drawing.Point(70, 244);
+            this.btnStatistics.Name = "btnStatistics";
+            this.btnStatistics.Size = new System.Drawing.Size(227, 67);
+            this.btnStatistics.TabIndex = 2;
+            this.btnStatistics.Text = "Statistika";
+            this.btnStatistics.UseVisualStyleBackColor = true;
+            this.btnStatistics.Click += new System.EventHandler(this.btnStatistics_Click);
+            // 
+            // btnAddFrm
+            // 
+            this.btnAddFrm.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddFrm.Location = new System.Drawing.Point(70, 138);
+            this.btnAddFrm.Name = "btnAddFrm";
+            this.btnAddFrm.Size = new System.Drawing.Size(227, 67);
+            this.btnAddFrm.TabIndex = 1;
+            this.btnAddFrm.Text = "Dodaj...";
+            this.btnAddFrm.UseVisualStyleBackColor = true;
+            this.btnAddFrm.Click += new System.EventHandler(this.btnAddFrm_Click);
+            // 
+            // btnNewOrder
+            // 
+            this.btnNewOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNewOrder.Location = new System.Drawing.Point(70, 31);
+            this.btnNewOrder.Name = "btnNewOrder";
+            this.btnNewOrder.Size = new System.Drawing.Size(227, 67);
+            this.btnNewOrder.TabIndex = 0;
+            this.btnNewOrder.Text = "Nova narudžba";
+            this.btnNewOrder.UseVisualStyleBackColor = true;
+            this.btnNewOrder.Click += new System.EventHandler(this.btnNewOrder_Click);
+            // 
+            // pnlCurrentOrders
+            // 
+            this.pnlCurrentOrders.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.pnlCurrentOrders.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlCurrentOrders.Location = new System.Drawing.Point(395, 165);
+            this.pnlCurrentOrders.Name = "pnlCurrentOrders";
+            this.pnlCurrentOrders.Size = new System.Drawing.Size(1507, 778);
+            this.pnlCurrentOrders.TabIndex = 12;
+            // 
             // FrmStaffMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(1902, 1033);
+            this.Controls.Add(this.pnlCurrentOrders);
+            this.Controls.Add(this.pnlSidebar);
             this.Controls.Add(this.pnlNav);
             this.Controls.Add(this.pnlLogo);
             this.Controls.Add(this.pnlFooter);
@@ -123,6 +199,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.imgBack)).EndInit();
             this.pnlLogo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.imgLogo)).EndInit();
+            this.pnlSidebar.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -135,5 +212,11 @@
         private System.Windows.Forms.Panel pnlLogo;
         private System.Windows.Forms.PictureBox imgLogo;
         private System.Windows.Forms.Panel pnlFooter;
+        private System.Windows.Forms.Panel pnlSidebar;
+        private System.Windows.Forms.Panel pnlCurrentOrders;
+        private System.Windows.Forms.Button btnAddFrm;
+        private System.Windows.Forms.Button btnNewOrder;
+        private System.Windows.Forms.Button btnPreview;
+        private System.Windows.Forms.Button btnStatistics;
     }
 }

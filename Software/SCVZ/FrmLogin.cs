@@ -109,6 +109,5 @@ namespace SCVZ
                 MessageBox.Show("Neispravno korisničko ime.", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
     }
 }

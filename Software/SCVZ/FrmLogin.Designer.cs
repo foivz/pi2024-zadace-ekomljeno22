@@ -220,7 +220,7 @@
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(261, 38);
             this.txtUsername.TabIndex = 0;
-            this.txtUsername.Text = "Korisničko ime";
+            this.txtUsername.Text = "Username/JMBAG";
             this.txtUsername.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // FrmLogin
