@@ -29,35 +29,35 @@
         private void InitializeComponent()
         {
             this.pnlNav = new System.Windows.Forms.Panel();
+            this.imgHome = new System.Windows.Forms.PictureBox();
+            this.imgBack = new System.Windows.Forms.PictureBox();
             this.pnlLogo = new System.Windows.Forms.Panel();
+            this.imgLogo = new System.Windows.Forms.PictureBox();
             this.pnlFooter = new System.Windows.Forms.Panel();
             this.pnlSidebar = new System.Windows.Forms.Panel();
+            this.btnOrderHistory = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.btnOrderStudent = new System.Windows.Forms.Button();
+            this.lblCurrentOrder = new System.Windows.Forms.Label();
             this.pnlMenu = new System.Windows.Forms.Panel();
             this.pnlDinner = new System.Windows.Forms.Panel();
             this.lblDinner = new System.Windows.Forms.Label();
-            this.pnlLunch = new System.Windows.Forms.Panel();
-            this.lblLunch = new System.Windows.Forms.Label();
             this.pnlTitle = new System.Windows.Forms.Panel();
             this.lblTitle = new System.Windows.Forms.Label();
+            this.pnlLunch = new System.Windows.Forms.Panel();
+            this.lblLunch = new System.Windows.Forms.Label();
             this.pnlOrders = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.lblCurrentOrder = new System.Windows.Forms.Label();
-            this.btnOrderStudent = new System.Windows.Forms.Button();
-            this.btnOrderHistory = new System.Windows.Forms.Button();
-            this.imgHome = new System.Windows.Forms.PictureBox();
-            this.imgBack = new System.Windows.Forms.PictureBox();
-            this.imgLogo = new System.Windows.Forms.PictureBox();
             this.pnlNav.SuspendLayout();
-            this.pnlLogo.SuspendLayout();
-            this.pnlSidebar.SuspendLayout();
-            this.pnlMenu.SuspendLayout();
-            this.pnlDinner.SuspendLayout();
-            this.pnlLunch.SuspendLayout();
-            this.pnlTitle.SuspendLayout();
-            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgHome)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgBack)).BeginInit();
+            this.pnlLogo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgLogo)).BeginInit();
+            this.pnlSidebar.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.pnlMenu.SuspendLayout();
+            this.pnlDinner.SuspendLayout();
+            this.pnlTitle.SuspendLayout();
+            this.pnlLunch.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlNav
@@ -73,6 +73,26 @@
             this.pnlNav.TabIndex = 9;
             this.pnlNav.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlNav_Paint);
             // 
+            // imgHome
+            // 
+            this.imgHome.Image = global::SCVZ.Properties.Resources.home;
+            this.imgHome.Location = new System.Drawing.Point(99, 11);
+            this.imgHome.Name = "imgHome";
+            this.imgHome.Size = new System.Drawing.Size(71, 66);
+            this.imgHome.TabIndex = 1;
+            this.imgHome.TabStop = false;
+            this.imgHome.Click += new System.EventHandler(this.imgHome_Click);
+            // 
+            // imgBack
+            // 
+            this.imgBack.Image = global::SCVZ.Properties.Resources.back;
+            this.imgBack.Location = new System.Drawing.Point(13, 11);
+            this.imgBack.Name = "imgBack";
+            this.imgBack.Size = new System.Drawing.Size(73, 66);
+            this.imgBack.TabIndex = 0;
+            this.imgBack.TabStop = false;
+            this.imgBack.Click += new System.EventHandler(this.imgBack_Click);
+            // 
             // pnlLogo
             // 
             this.pnlLogo.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
@@ -84,6 +104,16 @@
             this.pnlLogo.Size = new System.Drawing.Size(1902, 85);
             this.pnlLogo.TabIndex = 8;
             this.pnlLogo.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlLogo_Paint);
+            // 
+            // imgLogo
+            // 
+            this.imgLogo.Image = global::SCVZ.Properties.Resources.scvz_logo;
+            this.imgLogo.Location = new System.Drawing.Point(0, -1);
+            this.imgLogo.Name = "imgLogo";
+            this.imgLogo.Size = new System.Drawing.Size(570, 82);
+            this.imgLogo.TabIndex = 0;
+            this.imgLogo.TabStop = false;
+            this.imgLogo.Click += new System.EventHandler(this.imgLogo_Click);
             // 
             // pnlFooter
             // 
@@ -107,6 +137,49 @@
             this.pnlSidebar.Name = "pnlSidebar";
             this.pnlSidebar.Size = new System.Drawing.Size(395, 778);
             this.pnlSidebar.TabIndex = 10;
+            // 
+            // btnOrderHistory
+            // 
+            this.btnOrderHistory.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOrderHistory.Location = new System.Drawing.Point(34, 83);
+            this.btnOrderHistory.Name = "btnOrderHistory";
+            this.btnOrderHistory.Size = new System.Drawing.Size(211, 54);
+            this.btnOrderHistory.TabIndex = 1;
+            this.btnOrderHistory.Text = "Povijest naručivanja";
+            this.btnOrderHistory.UseVisualStyleBackColor = true;
+            this.btnOrderHistory.Click += new System.EventHandler(this.btnOrderHistory_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel1.Controls.Add(this.btnOrderStudent);
+            this.panel1.Controls.Add(this.lblCurrentOrder);
+            this.panel1.Location = new System.Drawing.Point(34, 453);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(323, 288);
+            this.panel1.TabIndex = 0;
+            // 
+            // btnOrderStudent
+            // 
+            this.btnOrderStudent.BackColor = System.Drawing.Color.White;
+            this.btnOrderStudent.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOrderStudent.Location = new System.Drawing.Point(152, 243);
+            this.btnOrderStudent.Name = "btnOrderStudent";
+            this.btnOrderStudent.Size = new System.Drawing.Size(168, 42);
+            this.btnOrderStudent.TabIndex = 1;
+            this.btnOrderStudent.Text = "Nova narudžba";
+            this.btnOrderStudent.UseVisualStyleBackColor = false;
+            this.btnOrderStudent.Click += new System.EventHandler(this.btnOrderStudent_Click);
+            // 
+            // lblCurrentOrder
+            // 
+            this.lblCurrentOrder.AutoSize = true;
+            this.lblCurrentOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCurrentOrder.Location = new System.Drawing.Point(60, 21);
+            this.lblCurrentOrder.Name = "lblCurrentOrder";
+            this.lblCurrentOrder.Size = new System.Drawing.Size(178, 25);
+            this.lblCurrentOrder.TabIndex = 0;
+            this.lblCurrentOrder.Text = "Trenutna narudžba";
             // 
             // pnlMenu
             // 
@@ -139,25 +212,6 @@
             this.lblDinner.TabIndex = 0;
             this.lblDinner.Text = "Večera";
             // 
-            // pnlLunch
-            // 
-            this.pnlLunch.Controls.Add(this.lblLunch);
-            this.pnlLunch.Location = new System.Drawing.Point(139, 142);
-            this.pnlLunch.Name = "pnlLunch";
-            this.pnlLunch.Size = new System.Drawing.Size(241, 56);
-            this.pnlLunch.TabIndex = 1;
-            this.pnlLunch.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlLunch_Paint);
-            // 
-            // lblLunch
-            // 
-            this.lblLunch.AutoSize = true;
-            this.lblLunch.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLunch.Location = new System.Drawing.Point(18, 14);
-            this.lblLunch.Name = "lblLunch";
-            this.lblLunch.Size = new System.Drawing.Size(94, 32);
-            this.lblLunch.TabIndex = 0;
-            this.lblLunch.Text = "Ručak";
-            // 
             // pnlTitle
             // 
             this.pnlTitle.Controls.Add(this.lblTitle);
@@ -177,6 +231,25 @@
             this.lblTitle.TabIndex = 0;
             this.lblTitle.Text = "Studentski jelovnik";
             // 
+            // pnlLunch
+            // 
+            this.pnlLunch.Controls.Add(this.lblLunch);
+            this.pnlLunch.Location = new System.Drawing.Point(139, 142);
+            this.pnlLunch.Name = "pnlLunch";
+            this.pnlLunch.Size = new System.Drawing.Size(241, 56);
+            this.pnlLunch.TabIndex = 1;
+            this.pnlLunch.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlLunch_Paint);
+            // 
+            // lblLunch
+            // 
+            this.lblLunch.AutoSize = true;
+            this.lblLunch.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLunch.Location = new System.Drawing.Point(18, 14);
+            this.lblLunch.Name = "lblLunch";
+            this.lblLunch.Size = new System.Drawing.Size(94, 32);
+            this.lblLunch.TabIndex = 0;
+            this.lblLunch.Text = "Ručak";
+            // 
             // pnlOrders
             // 
             this.pnlOrders.Dock = System.Windows.Forms.DockStyle.Right;
@@ -185,77 +258,6 @@
             this.pnlOrders.Size = new System.Drawing.Size(323, 778);
             this.pnlOrders.TabIndex = 12;
             this.pnlOrders.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlOrders_Paint);
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.Gainsboro;
-            this.panel1.Controls.Add(this.btnOrderStudent);
-            this.panel1.Controls.Add(this.lblCurrentOrder);
-            this.panel1.Location = new System.Drawing.Point(34, 453);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(323, 288);
-            this.panel1.TabIndex = 0;
-            // 
-            // lblCurrentOrder
-            // 
-            this.lblCurrentOrder.AutoSize = true;
-            this.lblCurrentOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCurrentOrder.Location = new System.Drawing.Point(60, 21);
-            this.lblCurrentOrder.Name = "lblCurrentOrder";
-            this.lblCurrentOrder.Size = new System.Drawing.Size(178, 25);
-            this.lblCurrentOrder.TabIndex = 0;
-            this.lblCurrentOrder.Text = "Trenutna narudžba";
-            // 
-            // btnOrderStudent
-            // 
-            this.btnOrderStudent.BackColor = System.Drawing.Color.White;
-            this.btnOrderStudent.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOrderStudent.Location = new System.Drawing.Point(152, 243);
-            this.btnOrderStudent.Name = "btnOrderStudent";
-            this.btnOrderStudent.Size = new System.Drawing.Size(168, 42);
-            this.btnOrderStudent.TabIndex = 1;
-            this.btnOrderStudent.Text = "Nova narudžba";
-            this.btnOrderStudent.UseVisualStyleBackColor = false;
-            // 
-            // btnOrderHistory
-            // 
-            this.btnOrderHistory.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOrderHistory.Location = new System.Drawing.Point(34, 83);
-            this.btnOrderHistory.Name = "btnOrderHistory";
-            this.btnOrderHistory.Size = new System.Drawing.Size(211, 54);
-            this.btnOrderHistory.TabIndex = 1;
-            this.btnOrderHistory.Text = "Povijest naručivanja";
-            this.btnOrderHistory.UseVisualStyleBackColor = true;
-            // 
-            // imgHome
-            // 
-            this.imgHome.Image = global::SCVZ.Properties.Resources.home;
-            this.imgHome.Location = new System.Drawing.Point(99, 11);
-            this.imgHome.Name = "imgHome";
-            this.imgHome.Size = new System.Drawing.Size(71, 66);
-            this.imgHome.TabIndex = 1;
-            this.imgHome.TabStop = false;
-            this.imgHome.Click += new System.EventHandler(this.imgHome_Click);
-            // 
-            // imgBack
-            // 
-            this.imgBack.Image = global::SCVZ.Properties.Resources.back;
-            this.imgBack.Location = new System.Drawing.Point(13, 11);
-            this.imgBack.Name = "imgBack";
-            this.imgBack.Size = new System.Drawing.Size(73, 66);
-            this.imgBack.TabIndex = 0;
-            this.imgBack.TabStop = false;
-            this.imgBack.Click += new System.EventHandler(this.imgBack_Click);
-            // 
-            // imgLogo
-            // 
-            this.imgLogo.Image = global::SCVZ.Properties.Resources.scvz_logo;
-            this.imgLogo.Location = new System.Drawing.Point(0, -1);
-            this.imgLogo.Name = "imgLogo";
-            this.imgLogo.Size = new System.Drawing.Size(570, 82);
-            this.imgLogo.TabIndex = 0;
-            this.imgLogo.TabStop = false;
-            this.imgLogo.Click += new System.EventHandler(this.imgLogo_Click);
             // 
             // FrmStudentMain
             // 
@@ -274,20 +276,20 @@
             this.Text = "FrmStudentMain";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.pnlNav.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.imgHome)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgBack)).EndInit();
             this.pnlLogo.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.imgLogo)).EndInit();
             this.pnlSidebar.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.pnlMenu.ResumeLayout(false);
             this.pnlDinner.ResumeLayout(false);
             this.pnlDinner.PerformLayout();
-            this.pnlLunch.ResumeLayout(false);
-            this.pnlLunch.PerformLayout();
             this.pnlTitle.ResumeLayout(false);
             this.pnlTitle.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.imgHome)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.imgBack)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.imgLogo)).EndInit();
+            this.pnlLunch.ResumeLayout(false);
+            this.pnlLunch.PerformLayout();
             this.ResumeLayout(false);
 
         }

@@ -40,6 +40,7 @@
             this.btnAddFrm = new System.Windows.Forms.Button();
             this.btnNewOrder = new System.Windows.Forms.Button();
             this.pnlCurrentOrders = new System.Windows.Forms.Panel();
+            this.btnStatus = new System.Windows.Forms.Button();
             this.pnlNav.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgHome)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgBack)).BeginInit();
@@ -117,6 +118,7 @@
             // 
             this.pnlSidebar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.pnlSidebar.BackColor = System.Drawing.Color.White;
+            this.pnlSidebar.Controls.Add(this.btnStatus);
             this.pnlSidebar.Controls.Add(this.btnPreview);
             this.pnlSidebar.Controls.Add(this.btnStatistics);
             this.pnlSidebar.Controls.Add(this.btnAddFrm);
@@ -180,6 +182,16 @@
             this.pnlCurrentOrders.Size = new System.Drawing.Size(1507, 778);
             this.pnlCurrentOrders.TabIndex = 12;
             // 
+            // btnStatus
+            // 
+            this.btnStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStatus.Location = new System.Drawing.Point(70, 583);
+            this.btnStatus.Name = "btnStatus";
+            this.btnStatus.Size = new System.Drawing.Size(227, 67);
+            this.btnStatus.TabIndex = 4;
+            this.btnStatus.Text = "Status menze";
+            this.btnStatus.UseVisualStyleBackColor = true;
+            // 
             // FrmStaffMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -218,5 +230,6 @@
         private System.Windows.Forms.Button btnNewOrder;
         private System.Windows.Forms.Button btnPreview;
         private System.Windows.Forms.Button btnStatistics;
+        private System.Windows.Forms.Button btnStatus;
     }
 }

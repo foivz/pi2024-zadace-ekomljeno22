@@ -56,6 +56,24 @@
     <Compile Include="FrmAddElement.Designer.cs">
       <DependentUpon>FrmAddElement.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmAddMeal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmAddMeal.Designer.cs">
+      <DependentUpon>FrmAddMeal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmAddMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmAddMenu.Designer.cs">
+      <DependentUpon>FrmAddMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmAddStaff.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmAddStaff.Designer.cs">
+      <DependentUpon>FrmAddStaff.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -117,6 +135,15 @@
     </Compile>
     <EmbeddedResource Include="FrmAddElement.resx">
       <DependentUpon>FrmAddElement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmAddMeal.resx">
+      <DependentUpon>FrmAddMeal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmAddMenu.resx">
+      <DependentUpon>FrmAddMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmAddStaff.resx">
+      <DependentUpon>FrmAddStaff.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>

@@ -127,5 +127,18 @@ namespace SCVZ
             string url = "https://www.scvz.unizg.hr/";
             Process.Start(url);
         }
+
+        private void btnOrderStudent_Click(object sender, EventArgs e)
+        {
+            FrmNewOrder form2 = new FrmNewOrder();
+            form2.Show();
+        }
+
+        private void btnOrderHistory_Click(object sender, EventArgs e)
+        {
+            FrmOrderHistory form3 = new FrmOrderHistory();
+            form3.Show();
+            this.Close();
+        }
     }
 }

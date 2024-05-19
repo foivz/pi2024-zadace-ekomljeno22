@@ -80,6 +80,7 @@
             this.btnAddMeal.TabIndex = 23;
             this.btnAddMeal.Text = "Jelo";
             this.btnAddMeal.UseVisualStyleBackColor = true;
+            this.btnAddMeal.Click += new System.EventHandler(this.btnAddMeal_Click);
             // 
             // btnAddMenus
             // 
@@ -90,6 +91,7 @@
             this.btnAddMenus.TabIndex = 24;
             this.btnAddMenus.Text = "Meni";
             this.btnAddMenus.UseVisualStyleBackColor = true;
+            this.btnAddMenus.Click += new System.EventHandler(this.btnAddMenus_Click);
             // 
             // btnAddStaff
             // 
@@ -100,6 +102,7 @@
             this.btnAddStaff.TabIndex = 25;
             this.btnAddStaff.Text = "Osoblje";
             this.btnAddStaff.UseVisualStyleBackColor = true;
+            this.btnAddStaff.Click += new System.EventHandler(this.btnAddStaff_Click);
             // 
             // btnAddMoreMeals
             // 
@@ -110,6 +113,7 @@
             this.btnAddMoreMeals.TabIndex = 26;
             this.btnAddMoreMeals.Text = "Više jela";
             this.btnAddMoreMeals.UseVisualStyleBackColor = true;
+            this.btnAddMoreMeals.Click += new System.EventHandler(this.btnAddMoreMeals_Click);
             // 
             // FrmAddElement
             // 
