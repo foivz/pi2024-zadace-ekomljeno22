@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DBLayer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -17,6 +18,8 @@ namespace SCVZ
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new FrmMain());
+
+            DB.SetConfiguration("PI2324_ekomljeno22_DB", "PI2324_ekomljeno22_User", "U|AYXxtV");
         }
     }
 }

@@ -103,18 +103,13 @@ namespace SCVZ
         private void pnlDinner_Paint(object sender, PaintEventArgs e)
         {
             Color color = System.Drawing.ColorTranslator.FromHtml("#FCF24A");
-            pnlFooter.BackColor = color;
+            pnlDinner.BackColor = color;
         }
 
         private void pnlLunch_Paint(object sender, PaintEventArgs e)
         {
             Color color = System.Drawing.ColorTranslator.FromHtml("#FCF24A");
-            pnlFooter.BackColor = color;
-        }
-
-        private void pnlNav_Paint(object sender, PaintEventArgs e)
-        {
-
+            pnlLunch.BackColor = color;
         }
 
         private void imgHome_Click(object sender, EventArgs e)
@@ -139,6 +134,12 @@ namespace SCVZ
             FrmOrderHistory form3 = new FrmOrderHistory();
             form3.Show();
             this.Close();
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+            Color color = System.Drawing.ColorTranslator.FromHtml("#FCF24A");
+            pnlMenuTitle.BackColor = color;
         }
     }
 }

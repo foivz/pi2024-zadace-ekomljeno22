@@ -41,12 +41,12 @@
             this.lblCurrentOrder = new System.Windows.Forms.Label();
             this.pnlMenu = new System.Windows.Forms.Panel();
             this.pnlDinner = new System.Windows.Forms.Panel();
-            this.lblDinner = new System.Windows.Forms.Label();
-            this.pnlTitle = new System.Windows.Forms.Panel();
-            this.lblTitle = new System.Windows.Forms.Label();
             this.pnlLunch = new System.Windows.Forms.Panel();
-            this.lblLunch = new System.Windows.Forms.Label();
+            this.pnlMenuTitle = new System.Windows.Forms.Panel();
+            this.lblMenuTitle = new System.Windows.Forms.Label();
             this.pnlOrders = new System.Windows.Forms.Panel();
+            this.lblLunch = new System.Windows.Forms.Label();
+            this.lblDinner = new System.Windows.Forms.Label();
             this.pnlNav.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgHome)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgBack)).BeginInit();
@@ -56,8 +56,8 @@
             this.panel1.SuspendLayout();
             this.pnlMenu.SuspendLayout();
             this.pnlDinner.SuspendLayout();
-            this.pnlTitle.SuspendLayout();
             this.pnlLunch.SuspendLayout();
+            this.pnlMenuTitle.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlNav
@@ -71,7 +71,6 @@
             this.pnlNav.Name = "pnlNav";
             this.pnlNav.Size = new System.Drawing.Size(1902, 80);
             this.pnlNav.TabIndex = 9;
-            this.pnlNav.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlNav_Paint);
             // 
             // imgHome
             // 
@@ -184,8 +183,8 @@
             // pnlMenu
             // 
             this.pnlMenu.Controls.Add(this.pnlDinner);
-            this.pnlMenu.Controls.Add(this.pnlTitle);
             this.pnlMenu.Controls.Add(this.pnlLunch);
+            this.pnlMenu.Controls.Add(this.pnlMenuTitle);
             this.pnlMenu.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlMenu.Location = new System.Drawing.Point(395, 165);
             this.pnlMenu.Name = "pnlMenu";
@@ -196,59 +195,42 @@
             // pnlDinner
             // 
             this.pnlDinner.Controls.Add(this.lblDinner);
-            this.pnlDinner.Location = new System.Drawing.Point(139, 416);
+            this.pnlDinner.Location = new System.Drawing.Point(26, 425);
             this.pnlDinner.Name = "pnlDinner";
-            this.pnlDinner.Size = new System.Drawing.Size(241, 56);
+            this.pnlDinner.Size = new System.Drawing.Size(200, 56);
             this.pnlDinner.TabIndex = 2;
             this.pnlDinner.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlDinner_Paint);
-            // 
-            // lblDinner
-            // 
-            this.lblDinner.AutoSize = true;
-            this.lblDinner.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDinner.Location = new System.Drawing.Point(18, 10);
-            this.lblDinner.Name = "lblDinner";
-            this.lblDinner.Size = new System.Drawing.Size(104, 32);
-            this.lblDinner.TabIndex = 0;
-            this.lblDinner.Text = "Večera";
-            // 
-            // pnlTitle
-            // 
-            this.pnlTitle.Controls.Add(this.lblTitle);
-            this.pnlTitle.Location = new System.Drawing.Point(139, 26);
-            this.pnlTitle.Name = "pnlTitle";
-            this.pnlTitle.Size = new System.Drawing.Size(919, 80);
-            this.pnlTitle.TabIndex = 0;
-            this.pnlTitle.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlTitle_Paint);
-            // 
-            // lblTitle
-            // 
-            this.lblTitle.AutoSize = true;
-            this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.Location = new System.Drawing.Point(301, 17);
-            this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(288, 38);
-            this.lblTitle.TabIndex = 0;
-            this.lblTitle.Text = "Studentski jelovnik";
             // 
             // pnlLunch
             // 
             this.pnlLunch.Controls.Add(this.lblLunch);
-            this.pnlLunch.Location = new System.Drawing.Point(139, 142);
+            this.pnlLunch.Location = new System.Drawing.Point(26, 125);
             this.pnlLunch.Name = "pnlLunch";
-            this.pnlLunch.Size = new System.Drawing.Size(241, 56);
+            this.pnlLunch.Size = new System.Drawing.Size(200, 56);
             this.pnlLunch.TabIndex = 1;
             this.pnlLunch.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlLunch_Paint);
             // 
-            // lblLunch
+            // pnlMenuTitle
             // 
-            this.lblLunch.AutoSize = true;
-            this.lblLunch.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLunch.Location = new System.Drawing.Point(18, 14);
-            this.lblLunch.Name = "lblLunch";
-            this.lblLunch.Size = new System.Drawing.Size(94, 32);
-            this.lblLunch.TabIndex = 0;
-            this.lblLunch.Text = "Ručak";
+            this.pnlMenuTitle.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.pnlMenuTitle.BackColor = System.Drawing.Color.White;
+            this.pnlMenuTitle.Controls.Add(this.lblMenuTitle);
+            this.pnlMenuTitle.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlMenuTitle.Location = new System.Drawing.Point(0, 0);
+            this.pnlMenuTitle.Name = "pnlMenuTitle";
+            this.pnlMenuTitle.Size = new System.Drawing.Size(1507, 100);
+            this.pnlMenuTitle.TabIndex = 0;
+            this.pnlMenuTitle.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
+            // 
+            // lblMenuTitle
+            // 
+            this.lblMenuTitle.AutoSize = true;
+            this.lblMenuTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMenuTitle.Location = new System.Drawing.Point(455, 30);
+            this.lblMenuTitle.Name = "lblMenuTitle";
+            this.lblMenuTitle.Size = new System.Drawing.Size(328, 42);
+            this.lblMenuTitle.TabIndex = 0;
+            this.lblMenuTitle.Text = "Studentski jelovnik";
             // 
             // pnlOrders
             // 
@@ -258,6 +240,26 @@
             this.pnlOrders.Size = new System.Drawing.Size(323, 778);
             this.pnlOrders.TabIndex = 12;
             this.pnlOrders.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlOrders_Paint);
+            // 
+            // lblLunch
+            // 
+            this.lblLunch.AutoSize = true;
+            this.lblLunch.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLunch.Location = new System.Drawing.Point(24, 15);
+            this.lblLunch.Name = "lblLunch";
+            this.lblLunch.Size = new System.Drawing.Size(80, 29);
+            this.lblLunch.TabIndex = 0;
+            this.lblLunch.Text = "Ručak";
+            // 
+            // lblDinner
+            // 
+            this.lblDinner.AutoSize = true;
+            this.lblDinner.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDinner.Location = new System.Drawing.Point(24, 14);
+            this.lblDinner.Name = "lblDinner";
+            this.lblDinner.Size = new System.Drawing.Size(89, 29);
+            this.lblDinner.TabIndex = 0;
+            this.lblDinner.Text = "Večera";
             // 
             // FrmStudentMain
             // 
@@ -286,10 +288,10 @@
             this.pnlMenu.ResumeLayout(false);
             this.pnlDinner.ResumeLayout(false);
             this.pnlDinner.PerformLayout();
-            this.pnlTitle.ResumeLayout(false);
-            this.pnlTitle.PerformLayout();
             this.pnlLunch.ResumeLayout(false);
             this.pnlLunch.PerformLayout();
+            this.pnlMenuTitle.ResumeLayout(false);
+            this.pnlMenuTitle.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -305,15 +307,15 @@
         private System.Windows.Forms.Panel pnlSidebar;
         private System.Windows.Forms.Panel pnlMenu;
         private System.Windows.Forms.Panel pnlOrders;
-        private System.Windows.Forms.Panel pnlTitle;
-        private System.Windows.Forms.Panel pnlLunch;
-        private System.Windows.Forms.Label lblTitle;
-        private System.Windows.Forms.Panel pnlDinner;
-        private System.Windows.Forms.Label lblDinner;
-        private System.Windows.Forms.Label lblLunch;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lblCurrentOrder;
         private System.Windows.Forms.Button btnOrderStudent;
         private System.Windows.Forms.Button btnOrderHistory;
+        private System.Windows.Forms.Panel pnlMenuTitle;
+        private System.Windows.Forms.Label lblMenuTitle;
+        private System.Windows.Forms.Panel pnlDinner;
+        private System.Windows.Forms.Panel pnlLunch;
+        private System.Windows.Forms.Label lblDinner;
+        private System.Windows.Forms.Label lblLunch;
     }
 }
