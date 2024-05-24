@@ -8,6 +8,6 @@ namespace SCVZ.Models
 {
     public class Zaposlenik : Korisnik
     {
-        public string Polozaj {  get; set; }
+        public string Pozicija {  get; set; }
     }
 }

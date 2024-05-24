@@ -111,11 +111,5 @@ namespace SCVZ
             FrmNewOrder form4 = new FrmNewOrder();
             form4.Show();
         }
-
-        private void btnAddFrm_Click(object sender, EventArgs e)
-        {
-            FrmAddElement form4 = new FrmAddElement();
-            form4.Show();
-        }
     }
 }

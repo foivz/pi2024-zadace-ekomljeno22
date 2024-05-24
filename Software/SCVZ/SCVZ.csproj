@@ -50,12 +50,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FrmAddElement.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FrmAddElement.Designer.cs">
-      <DependentUpon>FrmAddElement.cs</DependentUpon>
-    </Compile>
     <Compile Include="FrmAddMeal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -117,6 +111,7 @@
       <DependentUpon>FrmStatistics.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Korisnik.cs" />
+    <Compile Include="Models\Jelo.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Models\Zaposlenik.cs" />
     <Compile Include="Program.cs" />
@@ -133,9 +128,9 @@
     <Compile Include="FrmStudentMain.Designer.cs">
       <DependentUpon>FrmStudentMain.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="FrmAddElement.resx">
-      <DependentUpon>FrmAddElement.cs</DependentUpon>
-    </EmbeddedResource>
+    <Compile Include="Repositories\MealRepository.cs" />
+    <Compile Include="Repositories\StaffRepository.cs" />
+    <Compile Include="Repositories\StudentRepository.cs" />
     <EmbeddedResource Include="FrmAddMeal.resx">
       <DependentUpon>FrmAddMeal.cs</DependentUpon>
     </EmbeddedResource>

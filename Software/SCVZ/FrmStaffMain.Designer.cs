@@ -151,17 +151,6 @@
             this.btnStatistics.UseVisualStyleBackColor = true;
             this.btnStatistics.Click += new System.EventHandler(this.btnStatistics_Click);
             // 
-            // btnAddFrm
-            // 
-            this.btnAddFrm.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddFrm.Location = new System.Drawing.Point(70, 138);
-            this.btnAddFrm.Name = "btnAddFrm";
-            this.btnAddFrm.Size = new System.Drawing.Size(227, 67);
-            this.btnAddFrm.TabIndex = 1;
-            this.btnAddFrm.Text = "Dodaj...";
-            this.btnAddFrm.UseVisualStyleBackColor = true;
-            this.btnAddFrm.Click += new System.EventHandler(this.btnAddFrm_Click);
-            // 
             // btnNewOrder
             // 
             this.btnNewOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

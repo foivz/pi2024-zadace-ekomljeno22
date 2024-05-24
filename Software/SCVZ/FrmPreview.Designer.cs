@@ -29,11 +29,16 @@
         private void InitializeComponent()
         {
             this.pnlNav = new System.Windows.Forms.Panel();
+            this.imgHome = new System.Windows.Forms.PictureBox();
+            this.imgBack = new System.Windows.Forms.PictureBox();
             this.pnlLogo = new System.Windows.Forms.Panel();
+            this.imgLogo = new System.Windows.Forms.PictureBox();
             this.pnlFooter = new System.Windows.Forms.Panel();
             this.pnlSidebar = new System.Windows.Forms.Panel();
             this.pnlOverview = new System.Windows.Forms.Panel();
+            this.dgvPreview = new System.Windows.Forms.DataGridView();
             this.pnlFilters = new System.Windows.Forms.Panel();
+            this.btnStaff = new System.Windows.Forms.Button();
             this.btnAllMenus = new System.Windows.Forms.Button();
             this.btnAllMeals = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -41,17 +46,20 @@
             this.rboSideDish = new System.Windows.Forms.RadioButton();
             this.rboAppetizer = new System.Windows.Forms.RadioButton();
             this.lblFilter = new System.Windows.Forms.Label();
-            this.imgHome = new System.Windows.Forms.PictureBox();
-            this.imgBack = new System.Windows.Forms.PictureBox();
-            this.imgLogo = new System.Windows.Forms.PictureBox();
+            this.btnAddMoreMeals = new System.Windows.Forms.Button();
+            this.btnAddStaff = new System.Windows.Forms.Button();
+            this.btnAddMenus = new System.Windows.Forms.Button();
+            this.btnAddMeal = new System.Windows.Forms.Button();
             this.pnlNav.SuspendLayout();
-            this.pnlLogo.SuspendLayout();
-            this.pnlOverview.SuspendLayout();
-            this.pnlFilters.SuspendLayout();
-            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgHome)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgBack)).BeginInit();
+            this.pnlLogo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgLogo)).BeginInit();
+            this.pnlSidebar.SuspendLayout();
+            this.pnlOverview.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPreview)).BeginInit();
+            this.pnlFilters.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlNav
@@ -66,6 +74,26 @@
             this.pnlNav.Size = new System.Drawing.Size(1902, 80);
             this.pnlNav.TabIndex = 12;
             // 
+            // imgHome
+            // 
+            this.imgHome.Image = global::SCVZ.Properties.Resources.home;
+            this.imgHome.Location = new System.Drawing.Point(99, 11);
+            this.imgHome.Name = "imgHome";
+            this.imgHome.Size = new System.Drawing.Size(71, 66);
+            this.imgHome.TabIndex = 1;
+            this.imgHome.TabStop = false;
+            this.imgHome.Click += new System.EventHandler(this.imgHome_Click);
+            // 
+            // imgBack
+            // 
+            this.imgBack.Image = global::SCVZ.Properties.Resources.back;
+            this.imgBack.Location = new System.Drawing.Point(13, 11);
+            this.imgBack.Name = "imgBack";
+            this.imgBack.Size = new System.Drawing.Size(73, 66);
+            this.imgBack.TabIndex = 0;
+            this.imgBack.TabStop = false;
+            this.imgBack.Click += new System.EventHandler(this.imgBack_Click);
+            // 
             // pnlLogo
             // 
             this.pnlLogo.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
@@ -77,6 +105,16 @@
             this.pnlLogo.Size = new System.Drawing.Size(1902, 85);
             this.pnlLogo.TabIndex = 11;
             this.pnlLogo.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlLogo_Paint);
+            // 
+            // imgLogo
+            // 
+            this.imgLogo.Image = global::SCVZ.Properties.Resources.scvz_logo;
+            this.imgLogo.Location = new System.Drawing.Point(0, -1);
+            this.imgLogo.Name = "imgLogo";
+            this.imgLogo.Size = new System.Drawing.Size(570, 82);
+            this.imgLogo.TabIndex = 0;
+            this.imgLogo.TabStop = false;
+            this.imgLogo.Click += new System.EventHandler(this.imgLogo_Click);
             // 
             // pnlFooter
             // 
@@ -93,6 +131,10 @@
             // 
             this.pnlSidebar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.pnlSidebar.BackColor = System.Drawing.Color.White;
+            this.pnlSidebar.Controls.Add(this.btnAddMoreMeals);
+            this.pnlSidebar.Controls.Add(this.btnAddStaff);
+            this.pnlSidebar.Controls.Add(this.btnAddMenus);
+            this.pnlSidebar.Controls.Add(this.btnAddMeal);
             this.pnlSidebar.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlSidebar.Location = new System.Drawing.Point(0, 165);
             this.pnlSidebar.Name = "pnlSidebar";
@@ -102,6 +144,7 @@
             // pnlOverview
             // 
             this.pnlOverview.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.pnlOverview.Controls.Add(this.dgvPreview);
             this.pnlOverview.Controls.Add(this.pnlFilters);
             this.pnlOverview.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlOverview.Location = new System.Drawing.Point(395, 165);
@@ -109,8 +152,19 @@
             this.pnlOverview.Size = new System.Drawing.Size(1507, 778);
             this.pnlOverview.TabIndex = 14;
             // 
+            // dgvPreview
+            // 
+            this.dgvPreview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPreview.Location = new System.Drawing.Point(6, 6);
+            this.dgvPreview.Name = "dgvPreview";
+            this.dgvPreview.RowHeadersWidth = 51;
+            this.dgvPreview.RowTemplate.Height = 24;
+            this.dgvPreview.Size = new System.Drawing.Size(1172, 766);
+            this.dgvPreview.TabIndex = 14;
+            // 
             // pnlFilters
             // 
+            this.pnlFilters.Controls.Add(this.btnStaff);
             this.pnlFilters.Controls.Add(this.btnAllMenus);
             this.pnlFilters.Controls.Add(this.btnAllMeals);
             this.pnlFilters.Controls.Add(this.panel1);
@@ -121,6 +175,17 @@
             this.pnlFilters.Size = new System.Drawing.Size(323, 778);
             this.pnlFilters.TabIndex = 13;
             this.pnlFilters.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlFilters_Paint);
+            // 
+            // btnStaff
+            // 
+            this.btnStaff.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStaff.Location = new System.Drawing.Point(44, 470);
+            this.btnStaff.Name = "btnStaff";
+            this.btnStaff.Size = new System.Drawing.Size(244, 42);
+            this.btnStaff.TabIndex = 4;
+            this.btnStaff.Text = "Zaposlenici";
+            this.btnStaff.UseVisualStyleBackColor = true;
+            this.btnStaff.Click += new System.EventHandler(this.btnStaff_Click);
             // 
             // btnAllMenus
             // 
@@ -141,6 +206,7 @@
             this.btnAllMeals.TabIndex = 2;
             this.btnAllMeals.Text = "Jela";
             this.btnAllMeals.UseVisualStyleBackColor = true;
+            this.btnAllMeals.Click += new System.EventHandler(this.btnAllMeals_Click);
             // 
             // panel1
             // 
@@ -188,6 +254,7 @@
             this.rboAppetizer.TabStop = true;
             this.rboAppetizer.Text = "predjelu";
             this.rboAppetizer.UseVisualStyleBackColor = true;
+            this.rboAppetizer.CheckedChanged += new System.EventHandler(this.rboAppetizer_CheckedChanged);
             // 
             // lblFilter
             // 
@@ -199,35 +266,48 @@
             this.lblFilter.TabIndex = 0;
             this.lblFilter.Text = "Filtriraj prema:";
             // 
-            // imgHome
+            // btnAddMoreMeals
             // 
-            this.imgHome.Image = global::SCVZ.Properties.Resources.home;
-            this.imgHome.Location = new System.Drawing.Point(99, 11);
-            this.imgHome.Name = "imgHome";
-            this.imgHome.Size = new System.Drawing.Size(71, 66);
-            this.imgHome.TabIndex = 1;
-            this.imgHome.TabStop = false;
-            this.imgHome.Click += new System.EventHandler(this.imgHome_Click);
+            this.btnAddMoreMeals.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddMoreMeals.Location = new System.Drawing.Point(43, 298);
+            this.btnAddMoreMeals.Name = "btnAddMoreMeals";
+            this.btnAddMoreMeals.Size = new System.Drawing.Size(304, 41);
+            this.btnAddMoreMeals.TabIndex = 30;
+            this.btnAddMoreMeals.Text = "Više jela";
+            this.btnAddMoreMeals.UseVisualStyleBackColor = true;
+            this.btnAddMoreMeals.Click += new System.EventHandler(this.btnAddMoreMeals_Click);
             // 
-            // imgBack
+            // btnAddStaff
             // 
-            this.imgBack.Image = global::SCVZ.Properties.Resources.back;
-            this.imgBack.Location = new System.Drawing.Point(13, 11);
-            this.imgBack.Name = "imgBack";
-            this.imgBack.Size = new System.Drawing.Size(73, 66);
-            this.imgBack.TabIndex = 0;
-            this.imgBack.TabStop = false;
-            this.imgBack.Click += new System.EventHandler(this.imgBack_Click);
+            this.btnAddStaff.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddStaff.Location = new System.Drawing.Point(43, 172);
+            this.btnAddStaff.Name = "btnAddStaff";
+            this.btnAddStaff.Size = new System.Drawing.Size(304, 41);
+            this.btnAddStaff.TabIndex = 29;
+            this.btnAddStaff.Text = "Osoblje";
+            this.btnAddStaff.UseVisualStyleBackColor = true;
             // 
-            // imgLogo
+            // btnAddMenus
             // 
-            this.imgLogo.Image = global::SCVZ.Properties.Resources.scvz_logo;
-            this.imgLogo.Location = new System.Drawing.Point(0, -1);
-            this.imgLogo.Name = "imgLogo";
-            this.imgLogo.Size = new System.Drawing.Size(570, 82);
-            this.imgLogo.TabIndex = 0;
-            this.imgLogo.TabStop = false;
-            this.imgLogo.Click += new System.EventHandler(this.imgLogo_Click);
+            this.btnAddMenus.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddMenus.Location = new System.Drawing.Point(43, 108);
+            this.btnAddMenus.Name = "btnAddMenus";
+            this.btnAddMenus.Size = new System.Drawing.Size(304, 41);
+            this.btnAddMenus.TabIndex = 28;
+            this.btnAddMenus.Text = "Meni";
+            this.btnAddMenus.UseVisualStyleBackColor = true;
+            this.btnAddMenus.Click += new System.EventHandler(this.btnAddMenus_Click);
+            // 
+            // btnAddMeal
+            // 
+            this.btnAddMeal.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddMeal.Location = new System.Drawing.Point(43, 45);
+            this.btnAddMeal.Name = "btnAddMeal";
+            this.btnAddMeal.Size = new System.Drawing.Size(304, 41);
+            this.btnAddMeal.TabIndex = 27;
+            this.btnAddMeal.Text = "Jelo";
+            this.btnAddMeal.UseVisualStyleBackColor = true;
+            this.btnAddMeal.Click += new System.EventHandler(this.btnAddMeal_Click);
             // 
             // FrmPreview
             // 
@@ -245,15 +325,17 @@
             this.Text = "FrmPreview";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.pnlNav.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.imgHome)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgBack)).EndInit();
             this.pnlLogo.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.imgLogo)).EndInit();
+            this.pnlSidebar.ResumeLayout(false);
             this.pnlOverview.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPreview)).EndInit();
             this.pnlFilters.ResumeLayout(false);
             this.pnlFilters.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.imgHome)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.imgBack)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.imgLogo)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -276,5 +358,11 @@
         private System.Windows.Forms.Button btnAllMenus;
         private System.Windows.Forms.Button btnAllMeals;
         private System.Windows.Forms.RadioButton rboMainDish;
+        private System.Windows.Forms.Button btnStaff;
+        private System.Windows.Forms.DataGridView dgvPreview;
+        private System.Windows.Forms.Button btnAddMoreMeals;
+        private System.Windows.Forms.Button btnAddStaff;
+        private System.Windows.Forms.Button btnAddMenus;
+        private System.Windows.Forms.Button btnAddMeal;
     }
 }

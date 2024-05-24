@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DBLayer;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -37,6 +38,8 @@ namespace SCVZ
             pnlFooter.Dock = DockStyle.Bottom;
             pnlNav.Dock = DockStyle.Top;
             pnlLogo.Dock = DockStyle.Top;
+
+            DB.SetConfiguration("PI2324_ekomljeno22_DB", "PI2324_ekomljeno22_User", "U|AYXxtV");
 
         }
 

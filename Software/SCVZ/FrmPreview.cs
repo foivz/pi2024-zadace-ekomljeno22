@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SCVZ.Repositories;
+using SCVZ.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace SCVZ
 {
@@ -77,6 +80,82 @@ namespace SCVZ
             FrmStatistics form2 = new FrmStatistics();
             form2.Show();
             this.Close();
+        }
+
+        private void btnStaff_Click(object sender, EventArgs e)
+        {
+            dgvPreview.DataSource = null;
+            PokaziZaposlenike();
+        }
+
+        private void PokaziZaposlenike()
+        {
+            var zaposlenici = StaffRepository.DajZaposlenike();
+            dgvPreview.DataSource = zaposlenici;
+
+            dgvPreview.Columns["IdKorisnik"].DisplayIndex = 0;
+            dgvPreview.Columns["Ime"].DisplayIndex = 1;
+            dgvPreview.Columns["Prezime"].DisplayIndex = 2;
+            dgvPreview.Columns["Pozicija"].DisplayIndex = 3;
+
+            dgvPreview.Columns["Lozinka"].Visible = false;
+        }
+
+        private void btnAllMeals_Click(object sender, EventArgs e)
+        {
+            dgvPreview.DataSource = null;
+            PokaziJela();
+        }
+
+        private void PokaziJela()
+        {
+            var jela = MealRepository.DajJela();
+            dgvPreview.DataSource = jela;
+
+            dgvPreview.Columns["IdJelo"].DisplayIndex = 0;
+            dgvPreview.Columns["NazivJela"].DisplayIndex = 1;
+            dgvPreview.Columns["OpisJela"].DisplayIndex = 2;
+            dgvPreview.Columns["IdVrstaJela"].DisplayIndex = 3;
+        }
+
+        private void rboAppetizer_CheckedChanged(object sender, EventArgs e)
+        {
+
+            string sql = "SELECT J.* FROM Jelo J INNER JOIN VrstaJela V ON J.IdVrstaJela = V.IdVrstaJela WHERE V.IdVrstaJela = 1";
+
+            MealRepository.FiltrirajPremaPredjelima(sql);
+        }
+
+        private void btnAddMeal_Click(object sender, EventArgs e)
+        {
+            FrmAddMeal form1 = new FrmAddMeal();
+            form1.Show();
+        }
+
+        private void btnAddMenus_Click(object sender, EventArgs e)
+        {
+            FrmAddMenu form2 = new FrmAddMenu();
+            form2.Show();
+        }
+
+        private void btnAddMoreMeals_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Filter = "CSV files (*.csv)|*.csv|All files (*.*)|*.*";
+                openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string csvFilePath = openFileDialog.FileName;
+                    UnosCSV(csvFilePath);
+                }
+            }
+        }
+
+        private void UnosCSV(string csvFilePath)
+        {
+            throw new NotImplementedException();
         }
     }
 }
