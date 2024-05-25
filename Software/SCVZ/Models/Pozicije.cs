@@ -6,16 +6,14 @@ using System.Threading.Tasks;
 
 namespace SCVZ.Models
 {
-    public class Jelo
+    public class Pozicije
     {
-        public int IdJelo { get; set; }
-        public string NazivJela {  get; set; }
-
-        public int IdVrstaJela { get; set; }
+        public int IdPozicija { get; set; }
+        public string Pozicija { get; set; }
 
         public override string ToString()
         {
-            return NazivJela;
+            return Pozicija;
         }
     }
 }

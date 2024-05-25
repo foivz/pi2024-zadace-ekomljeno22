@@ -30,10 +30,8 @@
         {
             this.pnlNav = new System.Windows.Forms.Panel();
             this.lblAddMeal = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtMealId = new System.Windows.Forms.TextBox();
             this.txtMealName = new System.Windows.Forms.TextBox();
-            this.txtMealPrice = new System.Windows.Forms.TextBox();
-            this.txtMealGiftPointsCount = new System.Windows.Forms.TextBox();
             this.cboMealType = new System.Windows.Forms.ComboBox();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnAddToDatabase = new System.Windows.Forms.Button();
@@ -62,14 +60,15 @@
             this.lblAddMeal.TabIndex = 0;
             this.lblAddMeal.Text = "Jelo";
             // 
-            // textBox1
+            // txtMealId
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(136, 178);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(227, 34);
-            this.textBox1.TabIndex = 23;
+            this.txtMealId.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMealId.Location = new System.Drawing.Point(136, 178);
+            this.txtMealId.Name = "txtMealId";
+            this.txtMealId.ReadOnly = true;
+            this.txtMealId.Size = new System.Drawing.Size(227, 34);
+            this.txtMealId.TabIndex = 23;
+            this.txtMealId.TextChanged += new System.EventHandler(this.txtMealId_TextChanged);
             // 
             // txtMealName
             // 
@@ -79,25 +78,6 @@
             this.txtMealName.Size = new System.Drawing.Size(227, 34);
             this.txtMealName.TabIndex = 24;
             this.txtMealName.Text = "Naziv jela";
-            // 
-            // txtMealPrice
-            // 
-            this.txtMealPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMealPrice.Location = new System.Drawing.Point(136, 334);
-            this.txtMealPrice.Name = "txtMealPrice";
-            this.txtMealPrice.Size = new System.Drawing.Size(227, 34);
-            this.txtMealPrice.TabIndex = 26;
-            this.txtMealPrice.Text = "Cijena";
-            this.txtMealPrice.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
-            // 
-            // txtMealGiftPointsCount
-            // 
-            this.txtMealGiftPointsCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMealGiftPointsCount.Location = new System.Drawing.Point(136, 386);
-            this.txtMealGiftPointsCount.Name = "txtMealGiftPointsCount";
-            this.txtMealGiftPointsCount.Size = new System.Drawing.Size(227, 34);
-            this.txtMealGiftPointsCount.TabIndex = 27;
-            this.txtMealGiftPointsCount.Text = "Broj poklon bodova";
             // 
             // cboMealType
             // 
@@ -129,6 +109,7 @@
             this.btnAddToDatabase.TabIndex = 30;
             this.btnAddToDatabase.Text = "Dodaj u bazu";
             this.btnAddToDatabase.UseVisualStyleBackColor = true;
+            this.btnAddToDatabase.Click += new System.EventHandler(this.btnAddToDatabase_Click);
             // 
             // FrmAddMeal
             // 
@@ -138,10 +119,8 @@
             this.Controls.Add(this.btnAddToDatabase);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.cboMealType);
-            this.Controls.Add(this.txtMealGiftPointsCount);
-            this.Controls.Add(this.txtMealPrice);
             this.Controls.Add(this.txtMealName);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtMealId);
             this.Controls.Add(this.pnlNav);
             this.Name = "FrmAddMeal";
             this.Text = "FrmAddMeal";
@@ -156,10 +135,8 @@
 
         private System.Windows.Forms.Panel pnlNav;
         private System.Windows.Forms.Label lblAddMeal;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtMealId;
         private System.Windows.Forms.TextBox txtMealName;
-        private System.Windows.Forms.TextBox txtMealPrice;
-        private System.Windows.Forms.TextBox txtMealGiftPointsCount;
         private System.Windows.Forms.ComboBox cboMealType;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnAddToDatabase;

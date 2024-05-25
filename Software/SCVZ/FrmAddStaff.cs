@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SCVZ.Models;
+using SCVZ.Repositories;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,6 +22,10 @@ namespace SCVZ
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnAddToDatabase_Click(object sender, EventArgs e)
+        {
         }
     }
 }

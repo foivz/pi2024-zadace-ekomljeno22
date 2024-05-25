@@ -35,6 +35,10 @@
             this.imgLogo = new System.Windows.Forms.PictureBox();
             this.pnlFooter = new System.Windows.Forms.Panel();
             this.pnlSidebar = new System.Windows.Forms.Panel();
+            this.btnAddMoreMeals = new System.Windows.Forms.Button();
+            this.btnAddStaff = new System.Windows.Forms.Button();
+            this.btnAddMenus = new System.Windows.Forms.Button();
+            this.btnAddMeal = new System.Windows.Forms.Button();
             this.pnlOverview = new System.Windows.Forms.Panel();
             this.dgvPreview = new System.Windows.Forms.DataGridView();
             this.pnlFilters = new System.Windows.Forms.Panel();
@@ -46,10 +50,6 @@
             this.rboSideDish = new System.Windows.Forms.RadioButton();
             this.rboAppetizer = new System.Windows.Forms.RadioButton();
             this.lblFilter = new System.Windows.Forms.Label();
-            this.btnAddMoreMeals = new System.Windows.Forms.Button();
-            this.btnAddStaff = new System.Windows.Forms.Button();
-            this.btnAddMenus = new System.Windows.Forms.Button();
-            this.btnAddMeal = new System.Windows.Forms.Button();
             this.pnlNav.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgHome)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgBack)).BeginInit();
@@ -140,6 +140,50 @@
             this.pnlSidebar.Name = "pnlSidebar";
             this.pnlSidebar.Size = new System.Drawing.Size(395, 778);
             this.pnlSidebar.TabIndex = 13;
+            // 
+            // btnAddMoreMeals
+            // 
+            this.btnAddMoreMeals.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddMoreMeals.Location = new System.Drawing.Point(43, 298);
+            this.btnAddMoreMeals.Name = "btnAddMoreMeals";
+            this.btnAddMoreMeals.Size = new System.Drawing.Size(304, 41);
+            this.btnAddMoreMeals.TabIndex = 30;
+            this.btnAddMoreMeals.Text = "Više jela";
+            this.btnAddMoreMeals.UseVisualStyleBackColor = true;
+            this.btnAddMoreMeals.Click += new System.EventHandler(this.btnAddMoreMeals_Click);
+            // 
+            // btnAddStaff
+            // 
+            this.btnAddStaff.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddStaff.Location = new System.Drawing.Point(43, 172);
+            this.btnAddStaff.Name = "btnAddStaff";
+            this.btnAddStaff.Size = new System.Drawing.Size(304, 41);
+            this.btnAddStaff.TabIndex = 29;
+            this.btnAddStaff.Text = "Osoblje";
+            this.btnAddStaff.UseVisualStyleBackColor = true;
+            this.btnAddStaff.Click += new System.EventHandler(this.btnAddStaff_Click);
+            // 
+            // btnAddMenus
+            // 
+            this.btnAddMenus.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddMenus.Location = new System.Drawing.Point(43, 108);
+            this.btnAddMenus.Name = "btnAddMenus";
+            this.btnAddMenus.Size = new System.Drawing.Size(304, 41);
+            this.btnAddMenus.TabIndex = 28;
+            this.btnAddMenus.Text = "Meni";
+            this.btnAddMenus.UseVisualStyleBackColor = true;
+            this.btnAddMenus.Click += new System.EventHandler(this.btnAddMenus_Click);
+            // 
+            // btnAddMeal
+            // 
+            this.btnAddMeal.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddMeal.Location = new System.Drawing.Point(43, 45);
+            this.btnAddMeal.Name = "btnAddMeal";
+            this.btnAddMeal.Size = new System.Drawing.Size(304, 41);
+            this.btnAddMeal.TabIndex = 27;
+            this.btnAddMeal.Text = "Jelo";
+            this.btnAddMeal.UseVisualStyleBackColor = true;
+            this.btnAddMeal.Click += new System.EventHandler(this.btnAddMeal_Click);
             // 
             // pnlOverview
             // 
@@ -265,49 +309,6 @@
             this.lblFilter.Size = new System.Drawing.Size(118, 20);
             this.lblFilter.TabIndex = 0;
             this.lblFilter.Text = "Filtriraj prema:";
-            // 
-            // btnAddMoreMeals
-            // 
-            this.btnAddMoreMeals.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddMoreMeals.Location = new System.Drawing.Point(43, 298);
-            this.btnAddMoreMeals.Name = "btnAddMoreMeals";
-            this.btnAddMoreMeals.Size = new System.Drawing.Size(304, 41);
-            this.btnAddMoreMeals.TabIndex = 30;
-            this.btnAddMoreMeals.Text = "Više jela";
-            this.btnAddMoreMeals.UseVisualStyleBackColor = true;
-            this.btnAddMoreMeals.Click += new System.EventHandler(this.btnAddMoreMeals_Click);
-            // 
-            // btnAddStaff
-            // 
-            this.btnAddStaff.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddStaff.Location = new System.Drawing.Point(43, 172);
-            this.btnAddStaff.Name = "btnAddStaff";
-            this.btnAddStaff.Size = new System.Drawing.Size(304, 41);
-            this.btnAddStaff.TabIndex = 29;
-            this.btnAddStaff.Text = "Osoblje";
-            this.btnAddStaff.UseVisualStyleBackColor = true;
-            // 
-            // btnAddMenus
-            // 
-            this.btnAddMenus.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddMenus.Location = new System.Drawing.Point(43, 108);
-            this.btnAddMenus.Name = "btnAddMenus";
-            this.btnAddMenus.Size = new System.Drawing.Size(304, 41);
-            this.btnAddMenus.TabIndex = 28;
-            this.btnAddMenus.Text = "Meni";
-            this.btnAddMenus.UseVisualStyleBackColor = true;
-            this.btnAddMenus.Click += new System.EventHandler(this.btnAddMenus_Click);
-            // 
-            // btnAddMeal
-            // 
-            this.btnAddMeal.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddMeal.Location = new System.Drawing.Point(43, 45);
-            this.btnAddMeal.Name = "btnAddMeal";
-            this.btnAddMeal.Size = new System.Drawing.Size(304, 41);
-            this.btnAddMeal.TabIndex = 27;
-            this.btnAddMeal.Text = "Jelo";
-            this.btnAddMeal.UseVisualStyleBackColor = true;
-            this.btnAddMeal.Click += new System.EventHandler(this.btnAddMeal_Click);
             // 
             // FrmPreview
             // 

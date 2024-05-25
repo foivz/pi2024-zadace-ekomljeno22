@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
+using System.IO;
 
 namespace SCVZ
 {
@@ -114,14 +115,13 @@ namespace SCVZ
 
             dgvPreview.Columns["IdJelo"].DisplayIndex = 0;
             dgvPreview.Columns["NazivJela"].DisplayIndex = 1;
-            dgvPreview.Columns["OpisJela"].DisplayIndex = 2;
-            dgvPreview.Columns["IdVrstaJela"].DisplayIndex = 3;
+            dgvPreview.Columns["IdVrstaJela"].DisplayIndex = 2;
         }
 
         private void rboAppetizer_CheckedChanged(object sender, EventArgs e)
         {
 
-            string sql = "SELECT J.* FROM Jelo J INNER JOIN VrstaJela V ON J.IdVrstaJela = V.IdVrstaJela WHERE V.IdVrstaJela = 1";
+            string sql = "SELECT J.* FROM Jelo J INNER JOIN VrsteJela V ON J.IdVrstaJela = V.IdVrstaJela WHERE V.IdVrstaJela = 1";
 
             MealRepository.FiltrirajPremaPredjelima(sql);
         }
@@ -153,9 +153,38 @@ namespace SCVZ
             }
         }
 
-        private void UnosCSV(string csvFilePath)
+        public static void UnosCSV(string csvFilePath)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (var reader = new StreamReader(csvFilePath))
+                {
+                    while (!reader.EndOfStream)
+                    {
+                        var line = reader.ReadLine();
+                        var values = line.Split('#');
+
+                        var jelo = new Jelo
+                        {
+                            IdJelo = int.Parse(values[0]),
+                            NazivJela = values[1],
+                            IdVrstaJela = int.Parse(values[2])
+                        };
+
+                        MealRepository.DodajJela(jelo);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred while importing CSV: {ex.Message}");
+            }
+        }
+
+        private void btnAddStaff_Click(object sender, EventArgs e)
+        {
+            FrmAddStaff form3 = new FrmAddStaff();
+            form3.Show();
         }
     }
 }

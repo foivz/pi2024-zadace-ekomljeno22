@@ -32,6 +32,11 @@
             this.lblAddStaff = new System.Windows.Forms.Label();
             this.btnAddToDatabase = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.cboStaffPosition = new System.Windows.Forms.ComboBox();
+            this.txtStaffFirstName = new System.Windows.Forms.TextBox();
+            this.txtStaffId = new System.Windows.Forms.TextBox();
+            this.txtStaffLastName = new System.Windows.Forms.TextBox();
+            this.txtStaffPassword = new System.Windows.Forms.TextBox();
             this.pnlNav.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -66,6 +71,7 @@
             this.btnAddToDatabase.TabIndex = 32;
             this.btnAddToDatabase.Text = "Dodaj u bazu";
             this.btnAddToDatabase.UseVisualStyleBackColor = true;
+            this.btnAddToDatabase.Click += new System.EventHandler(this.btnAddToDatabase_Click);
             // 
             // btnCancel
             // 
@@ -78,11 +84,63 @@
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // cboStaffPosition
+            // 
+            this.cboStaffPosition.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboStaffPosition.FormattingEnabled = true;
+            this.cboStaffPosition.Location = new System.Drawing.Point(141, 354);
+            this.cboStaffPosition.Name = "cboStaffPosition";
+            this.cboStaffPosition.Size = new System.Drawing.Size(227, 37);
+            this.cboStaffPosition.TabIndex = 35;
+            this.cboStaffPosition.Text = "Pozicija";
+            // 
+            // txtStaffFirstName
+            // 
+            this.txtStaffFirstName.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtStaffFirstName.Location = new System.Drawing.Point(141, 198);
+            this.txtStaffFirstName.Name = "txtStaffFirstName";
+            this.txtStaffFirstName.Size = new System.Drawing.Size(227, 34);
+            this.txtStaffFirstName.TabIndex = 34;
+            this.txtStaffFirstName.Text = "Ime";
+            // 
+            // txtStaffId
+            // 
+            this.txtStaffId.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtStaffId.Location = new System.Drawing.Point(141, 148);
+            this.txtStaffId.Name = "txtStaffId";
+            this.txtStaffId.ReadOnly = true;
+            this.txtStaffId.Size = new System.Drawing.Size(227, 34);
+            this.txtStaffId.TabIndex = 33;
+            // 
+            // txtStaffLastName
+            // 
+            this.txtStaffLastName.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtStaffLastName.Location = new System.Drawing.Point(141, 249);
+            this.txtStaffLastName.Name = "txtStaffLastName";
+            this.txtStaffLastName.Size = new System.Drawing.Size(227, 34);
+            this.txtStaffLastName.TabIndex = 36;
+            this.txtStaffLastName.Text = "Prezime";
+            // 
+            // txtStaffPassword
+            // 
+            this.txtStaffPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtStaffPassword.Location = new System.Drawing.Point(141, 303);
+            this.txtStaffPassword.Name = "txtStaffPassword";
+            this.txtStaffPassword.PasswordChar = '*';
+            this.txtStaffPassword.Size = new System.Drawing.Size(227, 34);
+            this.txtStaffPassword.TabIndex = 37;
+            this.txtStaffPassword.Text = "Lozinka";
+            // 
             // FrmAddStaff
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(512, 553);
+            this.Controls.Add(this.txtStaffPassword);
+            this.Controls.Add(this.txtStaffLastName);
+            this.Controls.Add(this.cboStaffPosition);
+            this.Controls.Add(this.txtStaffFirstName);
+            this.Controls.Add(this.txtStaffId);
             this.Controls.Add(this.btnAddToDatabase);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.pnlNav);
@@ -91,6 +149,7 @@
             this.pnlNav.ResumeLayout(false);
             this.pnlNav.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -100,5 +159,10 @@
         private System.Windows.Forms.Label lblAddStaff;
         private System.Windows.Forms.Button btnAddToDatabase;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.ComboBox cboStaffPosition;
+        private System.Windows.Forms.TextBox txtStaffFirstName;
+        private System.Windows.Forms.TextBox txtStaffId;
+        private System.Windows.Forms.TextBox txtStaffLastName;
+        private System.Windows.Forms.TextBox txtStaffPassword;
     }
 }

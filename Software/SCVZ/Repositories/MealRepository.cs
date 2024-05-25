@@ -34,7 +34,7 @@ namespace SCVZ.Repositories
         {
             var jela = new List<Jelo>();
 
-            string sql = "SELECT J.*, V.VrstaJela FROM Jelo J INNER JOIN VrstaJela V ON J.IdVrstaJela = V.IdVrstaJela;";
+            string sql = "SELECT J.*, V.NazivVrsteJela FROM Jelo J INNER JOIN VrsteJela V ON J.IdVrstaJela = V.IdVrstaJela;";
             DB.OpenConnection();
             var reader = DB.GetDataReader(sql);
             while (reader.Read())
@@ -53,14 +53,12 @@ namespace SCVZ.Repositories
         {
             int idJelo = int.Parse(reader["IdJelo"].ToString());
             string nazivJela = reader["NazivJela"].ToString();
-            string opisJela = reader["OpisJela"].ToString();
-            string idVrstaJela = reader["IdVrstaJela"].ToString();
+            int idVrstaJela = int.Parse(reader["IdVrstaJela"].ToString());
 
             var jelo = new Jelo
             {
                 IdJelo = idJelo,
                 NazivJela = nazivJela,
-                OpisJela = opisJela,
                 IdVrstaJela = idVrstaJela
             };
 
@@ -86,5 +84,49 @@ namespace SCVZ.Repositories
             return jela;
         }
 
+        public static int DajSljedeceg()
+        {
+            string sql = "SELECT ISNULL(MAX(IdJelo), 0) + 1 FROM Jelo";
+
+            int nextId = -1;
+
+            try
+            {
+                DB.OpenConnection();
+
+                object result = DB.GetScalar(sql);
+                if (result != null && result != DBNull.Value)
+                {
+                    nextId = Convert.ToInt32(result);
+                    Console.WriteLine($"Next available ID: {nextId}");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred while retrieving the next available ID: {ex.Message}");
+            }
+            finally
+            {
+                DB.CloseConnection();
+            }
+
+            return nextId;
+        }
+
+
+
+        public static void DodajJelo(Jelo jelo, VrsteJela vrstaJela)
+        {
+            string sql = $"INSERT INTO Jelo (NazivJela, IdVrstaJela) " +
+             $"VALUES ('{jelo.NazivJela}', '{vrstaJela.IdVrstaJela}')";
+            DB.OpenConnection();
+            DB.ExecuteCommand(sql);
+            DB.CloseConnection();
+        }
+
+        internal static void DodajJela(Jelo jelo)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
