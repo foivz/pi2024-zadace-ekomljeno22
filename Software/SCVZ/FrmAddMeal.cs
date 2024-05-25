@@ -74,7 +74,7 @@ namespace SCVZ
                     IdVrstaJela = (int)cboMealType.SelectedValue
                 };
 
-                MealRepository.DodajJelo(jelo, vrstaJela);
+                MealRepository.DodajJelo(jelo);
 
                 MessageBox.Show("Meal added successfully!");
 

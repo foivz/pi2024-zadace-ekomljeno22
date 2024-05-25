@@ -113,18 +113,13 @@ namespace SCVZ.Repositories
             return nextId;
         }
 
-        public static void DodajJelo(Jelo jelo, VrsteJela vrstaJela)
+        public static void DodajJelo(Jelo jelo)
         {
             string sql = $"INSERT INTO Jelo (NazivJela, IdVrstaJela) " +
-             $"VALUES ('{jelo.NazivJela}', '{vrstaJela.IdVrstaJela}')";
+             $"VALUES ('{jelo.NazivJela}', '{jelo.IdVrstaJela}')";
             DB.OpenConnection();
             DB.ExecuteCommand(sql);
             DB.CloseConnection();
-        }
-
-        internal static void DodajJela(Jelo jelo)
-        {
-            throw new NotImplementedException();
         }
     }
 }

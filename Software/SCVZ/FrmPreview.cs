@@ -162,16 +162,18 @@ namespace SCVZ
                     while (!reader.EndOfStream)
                     {
                         var line = reader.ReadLine();
-                        var values = line.Split('#');
+                        var values = line.Split(',');
+
+                        var nazivJela = values[0];
+                        var idVrstaJela = int.Parse(values[1]);
 
                         var jelo = new Jelo
                         {
-                            IdJelo = int.Parse(values[0]),
-                            NazivJela = values[1],
-                            IdVrstaJela = int.Parse(values[2])
+                            NazivJela = nazivJela,
+                            IdVrstaJela = idVrstaJela
                         };
 
-                        MealRepository.DodajJela(jelo);
+                        MealRepository.DodajJelo(jelo);
                     }
                 }
             }
