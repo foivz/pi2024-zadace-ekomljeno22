@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 
 namespace SCVZ.Repositories
 {
-    public class UserRepository
+    public class StaffRepository
     {
-        public static Korisnik DajKorisnika(int idKorisnik)
+        public static Zaposlenik DajZaposlenika(int idZaposlenik)
         {
-            Korisnik korisnik = null;
+            Zaposlenik zaposlenik = null;
 
-            string sql = $"SELECT * FROM Korisnik WHERE IdKorisnik = {idKorisnik}";
+            string sql = $"SELECT * FROM Zaposlenik WHERE IdZaposlenik = {idZaposlenik}";
             DB.OpenConnection();
 
             var reader = DB.GetDataReader(sql);
@@ -23,86 +23,55 @@ namespace SCVZ.Repositories
             if (reader.HasRows)
             {
                 reader.Read();
-                korisnik = CreateObject(reader);
+                zaposlenik = CreateObject(reader);
                 reader.Close();
             }
             DB.CloseConnection();
-            return korisnik;
+            return zaposlenik;
         }
 
-        public static List<Korisnik> DajKorisnike()
+        public static List<Zaposlenik> DajZaposlenike()
         {
-            var korisnici = new List<Korisnik>();
+            var zaposlenici = new List<Zaposlenik>();
 
-            string sql = "SELECT * FROM Korisnik";
+            string sql = @"SELECT z.*, k.Ime, k.Prezime, k.Lozinka, p.Pozicija
+                   FROM Zaposlenik z
+                   JOIN Korisnik k ON z.IdKorisnik = k.IdKorisnik
+                   JOIN Pozicije p ON z.IdPozicija = p.IdPozicija";
+
             DB.OpenConnection();
             var reader = DB.GetDataReader(sql);
             while (reader.Read())
             {
-                Korisnik korisnik = CreateObject(reader);
-                korisnici.Add(korisnik);
+                Zaposlenik zaposlenik = CreateObject(reader);
+                zaposlenici.Add(zaposlenik);
             }
 
             reader.Close();
             DB.CloseConnection();
 
-            return korisnici;
+            return zaposlenici;
         }
 
-        private static Korisnik CreateObject(SqlDataReader reader)
+        private static Zaposlenik CreateObject(SqlDataReader reader)
         {
-            int idKorisnik = int.Parse(reader["IdKorisnik"].ToString());
+            int idZaposlenik = int.Parse(reader["IdZaposlenik"].ToString());
             string ime = reader["Ime"].ToString();
             string prezime = reader["Prezime"].ToString();
             string lozinka = reader["Lozinka"].ToString();
+            string pozicija = reader["Pozicija"].ToString();
 
-            var korisnik = new Korisnik
+            var zaposlenik = new Zaposlenik
             {
-                IdKorisnik = idKorisnik,
+                IdZaposlenik = idZaposlenik,
                 Ime = ime,
                 Prezime = prezime,
-                Lozinka = lozinka
+                Lozinka = lozinka,
+                Pozicija = pozicija
             };
 
-            return korisnik;
+            return zaposlenik;
         }
 
-        public static void DodajKorisnika(Korisnik korisnik)
-        {
-            string sql = $"INSERT INTO Korisnik (IdKorisnik, Ime, Prezime, Lozinka) " +
-                         $"VALUES ({korisnik.IdKorisnik}, '{korisnik.Ime}', '{korisnik.Prezime}', '{korisnik.Lozinka}')";
-            DB.OpenConnection();
-            DB.ExecuteCommand(sql);
-            DB.CloseConnection();
-        }
-
-        public static int DajSljedeceg()
-        {
-            string sql = "SELECT ISNULL(MAX(IdKorisnik), 0) + 1 FROM Korisnik";
-
-            int nextId = -1;
-
-            try
-            {
-                DB.OpenConnection();
-
-                object result = DB.GetScalar(sql);
-                if (result != null && result != DBNull.Value)
-                {
-                    nextId = Convert.ToInt32(result);
-                    Console.WriteLine($"Next available ID: {nextId}");
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"An error occurred while retrieving the next available ID: {ex.Message}");
-            }
-            finally
-            {
-                DB.CloseConnection();
-            }
-
-            return nextId;
-        }
     }
 }

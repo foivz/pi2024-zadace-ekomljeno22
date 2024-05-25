@@ -99,7 +99,7 @@ namespace SCVZ
             dgvPreview.Columns["Prezime"].DisplayIndex = 2;
             dgvPreview.Columns["Pozicija"].DisplayIndex = 3;
 
-            dgvPreview.Columns["Lozinka"].Visible = false;
+            dgvPreview.Columns["Lozinka"].Visible = true;
         }
 
         private void btnAllMeals_Click(object sender, EventArgs e)

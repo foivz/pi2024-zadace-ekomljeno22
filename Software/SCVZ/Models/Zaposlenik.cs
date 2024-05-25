@@ -8,6 +8,7 @@ namespace SCVZ.Models
 {
     public class Zaposlenik : Korisnik
     {
+        public int IdZaposlenik {  get; set; }
         public string Pozicija {  get; set; }
     }
 }

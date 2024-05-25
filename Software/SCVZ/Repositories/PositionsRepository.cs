@@ -11,7 +11,7 @@ namespace SCVZ.Repositories
 {
     public class PositionsRepository
     {
-        public static Pozicije DajPozicije(int idPozicija)
+        public static Pozicije DajPoziciju(int idPozicija)
         {
             Pozicije pozicije = null;
 

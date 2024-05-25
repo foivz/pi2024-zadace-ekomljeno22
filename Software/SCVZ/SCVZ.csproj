@@ -133,9 +133,9 @@
     <Compile Include="Repositories\MealRepository.cs" />
     <Compile Include="Repositories\PositionsRepository.cs" />
     <Compile Include="Repositories\StaffRepository.cs" />
+    <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Repositories\StudentRepository.cs" />
     <Compile Include="Repositories\MealTypeRepository.cs" />
-    <Compile Include="Repositories\UserRepository.cs" />
     <EmbeddedResource Include="FrmAddMeal.resx">
       <DependentUpon>FrmAddMeal.cs</DependentUpon>
     </EmbeddedResource>

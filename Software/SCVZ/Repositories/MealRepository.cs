@@ -113,8 +113,6 @@ namespace SCVZ.Repositories
             return nextId;
         }
 
-
-
         public static void DodajJelo(Jelo jelo, VrsteJela vrstaJela)
         {
             string sql = $"INSERT INTO Jelo (NazivJela, IdVrstaJela) " +
