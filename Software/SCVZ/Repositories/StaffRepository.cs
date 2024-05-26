@@ -30,7 +30,28 @@ namespace SCVZ.Repositories
             return zaposlenik;
         }
 
-        public static List<Zaposlenik> DajZaposlenike()
+            public static Zaposlenik DajZaposlenikaByUsername(string korisnickoIme)
+            {
+                Zaposlenik zaposlenik = null;
+
+            string sql = $"SELECT z.*, k.Ime, k.Prezime, k.Lozinka, p.Pozicija FROM Zaposlenik z JOIN Korisnik k ON z.IdKorisnik = k.IdKorisnik JOIN Pozicije p ON z.IdPozicija = p.IdPozicija WHERE KorisnickoIme = '{korisnickoIme}'";
+
+
+            DB.OpenConnection();
+
+                var reader = DB.GetDataReader(sql);
+
+                if (reader.HasRows)
+                {
+                    reader.Read();
+                    zaposlenik = CreateObject(reader);
+                    reader.Close();
+                }
+                DB.CloseConnection();
+                return zaposlenik;
+            }
+
+            public static List<Zaposlenik> DajZaposlenike()
         {
             var zaposlenici = new List<Zaposlenik>();
 
@@ -60,6 +81,7 @@ namespace SCVZ.Repositories
             string prezime = reader["Prezime"].ToString();
             string lozinka = reader["Lozinka"].ToString();
             string pozicija = reader["Pozicija"].ToString();
+            string korisnickoIme = reader["KorisnickoIme"].ToString();
 
             var zaposlenik = new Zaposlenik
             {
@@ -67,7 +89,8 @@ namespace SCVZ.Repositories
                 Ime = ime,
                 Prezime = prezime,
                 Lozinka = lozinka,
-                Pozicija = pozicija
+                Pozicija = pozicija,
+                KorisnickoIme = korisnickoIme
             };
 
             return zaposlenik;

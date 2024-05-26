@@ -17,19 +17,15 @@ namespace SCVZ.Repositories
             {
                 DB.OpenConnection();
 
-                // Insert into Korisnik table without specifying IdKorisnik
                 string korisnikSql = $"INSERT INTO Korisnik (Ime, Prezime, Lozinka) " +
                                      $"VALUES ('{zaposlenik.Ime}', '{zaposlenik.Prezime}', '{zaposlenik.Lozinka}')";
                 DB.ExecuteCommand(korisnikSql);
 
-                // Retrieve the generated IdKorisnik
                 string getIdSql = "SELECT SCOPE_IDENTITY()";
                 int idKorisnik = Convert.ToInt32(DB.GetScalar(getIdSql));
 
-                // Fetch IdPozicija based on the selected position
                 int idPozicija = DajIdPozicije(zaposlenik.Pozicija);
 
-                // Insert into Zaposlenik table using the generated IdKorisnik and fetched IdPozicija
                 string zaposlenikSql = $"INSERT INTO Zaposlenik (IdKorisnik, IdPozicija) " +
                                        $"VALUES ({idKorisnik}, {idPozicija})";
                 DB.ExecuteCommand(zaposlenikSql);
@@ -48,7 +44,6 @@ namespace SCVZ.Repositories
 
         private static int DajIdPozicije(string pozicija)
         {
-            // Fetch IdPozicija based on the selected position from the Pozicije table
             string getIdPozicijaSql = $"SELECT IdPozicija FROM Pozicije WHERE Pozicija = '{pozicija}'";
             return Convert.ToInt32(DB.GetScalar(getIdPozicijaSql));
         }

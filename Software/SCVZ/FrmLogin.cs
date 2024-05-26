@@ -25,6 +25,10 @@ namespace SCVZ
             imgBack.MouseLeave += imgLogo_MouseLeave;
             imgHome.MouseEnter += imgLogo_MouseEnter;
             imgHome.MouseLeave += imgLogo_MouseLeave;
+            pboStaff.MouseEnter += imgLogo_MouseEnter;
+            pboStaff.MouseLeave += imgLogo_MouseLeave;
+            pboStudent.MouseEnter += imgLogo_MouseEnter;
+            pboStudent.MouseLeave += imgLogo_MouseLeave;
         }
 
         private void FrmLoginZaposlenici_Load(object sender, EventArgs e)
@@ -82,32 +86,30 @@ namespace SCVZ
             pnlLogo.BackColor = color;
         }
 
-        private void btnPrijaviSe_Click(object sender, EventArgs e)
+        private void pboStaff_Click(object sender, EventArgs e)
         {
-            string enteredUsername = txtUsername.Text.Trim();
+            FrmLoginStaff form3 = new FrmLoginStaff();
+            form3.Show();
+            this.Close();
+        }
 
-            if (string.IsNullOrEmpty(enteredUsername))
-            {
-                MessageBox.Show("Molimo unesite korisničko ime.", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+        private void pboStudent_Click(object sender, EventArgs e)
+        {
+            FrmLoginStudent form4 = new FrmLoginStudent();
+            form4.Show();
+            this.Close();
+        }
 
-            if (enteredUsername.Equals("username1", StringComparison.OrdinalIgnoreCase))
-            {
-                FrmStaffMain form4 = new FrmStaffMain();
-                form4.Show();
-                this.Close();
-            }
-            else if (enteredUsername.Equals("username2", StringComparison.OrdinalIgnoreCase))
-            {
-                FrmStudentMain form5 = new FrmStudentMain();
-                form5.Show();
-                this.Close();
-            }
-            else
-            {
-                MessageBox.Show("Neispravno korisničko ime.", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+        private void pnlStaff_Paint(object sender, PaintEventArgs e)
+        {
+            Color color = System.Drawing.ColorTranslator.FromHtml("#FCF24A");
+            pnlStaff.BackColor = color;
+        }
+
+        private void pnlStudent_Paint(object sender, PaintEventArgs e)
+        {
+            Color color = System.Drawing.ColorTranslator.FromHtml("#FCF24A");
+            pnlStudent.BackColor = color;
         }
     }
 }

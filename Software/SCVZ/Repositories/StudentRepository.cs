@@ -31,6 +31,25 @@ namespace SCVZ.Repositories
             return student;
         }
 
+        public static Student DajStudentaByJMBAG(string jmbag)
+        {
+            Student student = null;
+
+            string sql = $"SELECT s.*, k.Ime, k.Prezime, k.Lozinka FROM Student s JOIN Korisnik k ON s.IdKorisnik = k.IdKorisnik WHERE s.JMBAG = '{jmbag}'";
+            DB.OpenConnection();
+
+            var reader = DB.GetDataReader(sql);
+
+            if (reader.HasRows)
+            {
+                reader.Read();
+                student = CreateObject(reader);
+                reader.Close();
+            }
+            DB.CloseConnection();
+            return student;
+        }
+
         public static List<Student> DajStudente()
         {
             var studenti = new List<Student>();
@@ -52,24 +71,24 @@ namespace SCVZ.Repositories
 
         private static Student CreateObject(SqlDataReader reader)
         {
-            int idKorisnik = int.Parse(reader["IdKorisnik"].ToString());
-            string korisnickoIme = reader["KorisnickoIme"].ToString();
+            int idStudent = int.Parse(reader["IdStudent"].ToString());
             string ime = reader["Ime"].ToString();
             string prezime = reader["Prezime"].ToString();
             string lozinka = reader["Lozinka"].ToString();
-            string pozicija = reader["Pozicija"].ToString();
+            string jmbag = reader["JMBAG"].ToString();
             int brojPoklonBodova = int.Parse(reader["BrojPoklonBodova"].ToString());
             int brojKupona = int.Parse(reader["BrojKupona"].ToString());
 
             var student = new Student
             {
-                IdKorisnik = idKorisnik,
+                IdStudent = idStudent,
                 Ime = ime,
                 Prezime = prezime,
                 Lozinka = lozinka,
+                JMBAG = jmbag,
                 BrojPoklonBodova = brojPoklonBodova,
-                BrojKupona = brojKupona
-    };
+                BrojKupona = brojKupona,
+            };
 
             return student;
         }

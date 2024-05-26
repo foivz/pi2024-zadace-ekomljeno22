@@ -8,6 +8,8 @@ namespace SCVZ.Models
 {
     public class Student : Korisnik
     {
+        public int IdStudent { get; set; }
+        public string JMBAG { get; set; }
         public int BrojPoklonBodova { get; set; }
         public int BrojKupona { get; set; }
     }

@@ -18,5 +18,11 @@ namespace SCVZ.Models
         {
             return Ime + " " + Prezime;
         }
+
+        public bool CheckPassword(string lozinka)
+        {
+            return Lozinka == lozinka;
+        }
+
     }
 }
