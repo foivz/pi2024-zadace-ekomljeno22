@@ -52,15 +52,15 @@ namespace SCVZ
 
         private void imgHome_Click(object sender, EventArgs e)
         {
-            FrmStudentMain form1 = new FrmStudentMain();
-            form1.Show();
+            FrmStudentMain frmStudentMain = new FrmStudentMain();
+            frmStudentMain.Show();
             this.Close();
         }
 
         private void imgBack_Click(object sender, EventArgs e)
         {
-            FrmStudentMain form1 = new FrmStudentMain();
-            form1.Show();
+            FrmStudentMain frmStudentMain = new FrmStudentMain();
+            frmStudentMain.Show();
             this.Close();
         }
     }

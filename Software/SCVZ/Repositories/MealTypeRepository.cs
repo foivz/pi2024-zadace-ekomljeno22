@@ -26,7 +26,7 @@ namespace SCVZ.Repositories
             return vrsteJela;
         }
 
-        public static List<VrsteJela> DajVrstaJela()
+        public static List<VrsteJela> DajVrsteJela()
         {
             var vrsteJelaList = new List<VrsteJela>();
 

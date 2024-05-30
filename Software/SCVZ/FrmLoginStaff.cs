@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Drawing;
-using System.Net;
-using System.Net.Mail;
 using System.Windows.Forms;
 using SCVZ.Models;
 using SCVZ.Repositories;
@@ -84,7 +82,7 @@ namespace SCVZ
                     loggedInStaff = staff;
 
                     // Proceed to main application form
-                    FrmStaffMain form1 = new FrmStaffMain();
+                    FrmStaffMain form1 = new FrmStaffMain(enteredUsername); // Pass the enteredUsername
                     form1.Show();
                     this.Close();
                     return; // Exit the method early since login was successful
@@ -94,6 +92,6 @@ namespace SCVZ
             // If no match is found in the Zaposlenik table or the password is incorrect
             MessageBox.Show("Incorrect username or password. Please try again.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
-
     }
 }
+

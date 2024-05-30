@@ -96,5 +96,14 @@ namespace SCVZ.Repositories
             return zaposlenik;
         }
 
+        public static Zaposlenik GetRandomEmployee()
+        {
+            List<Zaposlenik> employees = DajZaposlenike();
+            Random rand = new Random();
+            int index = rand.Next(employees.Count);
+            return employees[index];
+        }
+
+
     }
 }

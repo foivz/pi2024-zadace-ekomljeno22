@@ -17,8 +17,6 @@ namespace SCVZ
 {
     public partial class FrmLoginStudent : Form
     {
-        private Student loggedInStudent;
-
         public FrmLoginStudent()
         {
             InitializeComponent();
@@ -84,7 +82,6 @@ namespace SCVZ
             {
                 if (student.CheckPassword(enteredPassword))
                 {
-                    loggedInStudent = student;
 
                     FrmStudentMain form1 = new FrmStudentMain();
                     form1.Show();
@@ -94,8 +91,7 @@ namespace SCVZ
             }
 
             MessageBox.Show("Incorrect JMBAG or password. Please try again.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
         }
     }
-
 }
-

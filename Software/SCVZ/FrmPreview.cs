@@ -1,25 +1,21 @@
 ﻿using SCVZ.Repositories;
 using SCVZ.Models;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 using System.IO;
+using System.Windows.Forms;
 
 namespace SCVZ
 {
     public partial class FrmPreview : Form
     {
-        public FrmPreview()
+        private string enteredUsername;
+
+        public FrmPreview(string enteredUsername)
         {
             InitializeComponent();
+            this.enteredUsername = enteredUsername;
 
             imgLogo.MouseEnter += cursorState_MouseEnter;
             imgLogo.MouseLeave += cursorState_MouseLeave;
@@ -28,6 +24,7 @@ namespace SCVZ
             imgHome.MouseEnter += cursorState_MouseEnter;
             imgHome.MouseLeave += cursorState_MouseLeave;
         }
+
         private void cursorState_MouseEnter(object sender, EventArgs e)
         {
             Cursor = Cursors.Hand;
@@ -46,39 +43,39 @@ namespace SCVZ
 
         private void pnlLogo_Paint(object sender, PaintEventArgs e)
         {
-            Color color = System.Drawing.ColorTranslator.FromHtml("#D9D9D9");
+            Color color = ColorTranslator.FromHtml("#D9D9D9");
             pnlLogo.BackColor = color;
         }
 
         private void pnlFooter_Paint(object sender, PaintEventArgs e)
         {
-            Color color = System.Drawing.ColorTranslator.FromHtml("#FCF24A");
+            Color color = ColorTranslator.FromHtml("#FCF24A");
             pnlFooter.BackColor = color;
         }
 
         private void imgBack_Click(object sender, EventArgs e)
         {
-            FrmStaffMain form1 = new FrmStaffMain();
+            FrmStaffMain form1 = new FrmStaffMain(enteredUsername);
             form1.Show();
             this.Close();
         }
 
         private void imgHome_Click(object sender, EventArgs e)
         {
-            FrmStaffMain form1 = new FrmStaffMain();
+            FrmStaffMain form1 = new FrmStaffMain(enteredUsername);
             form1.Show();
             this.Close();
         }
 
         private void pnlFilters_Paint(object sender, PaintEventArgs e)
         {
-            Color color = System.Drawing.ColorTranslator.FromHtml("#D9D9D9");
+            Color color = ColorTranslator.FromHtml("#D9D9D9");
             pnlLogo.BackColor = color;
         }
 
         private void btnStatistics_Click(object sender, EventArgs e)
         {
-            FrmStatistics form2 = new FrmStatistics();
+            FrmStatistics form2 = new FrmStatistics(enteredUsername);
             form2.Show();
             this.Close();
         }
@@ -86,6 +83,7 @@ namespace SCVZ
         private void btnStaff_Click(object sender, EventArgs e)
         {
             dgvPreview.DataSource = null;
+            OcistiDrugiDGV();
             PokaziZaposlenike();
         }
 
@@ -105,7 +103,13 @@ namespace SCVZ
         private void btnAllMeals_Click(object sender, EventArgs e)
         {
             dgvPreview.DataSource = null;
+            OcistiDrugiDGV();
             PokaziJela();
+        }
+
+        private void OcistiDrugiDGV()
+        {
+            dgvDetails.DataSource = null;
         }
 
         private void PokaziJela()
@@ -120,9 +124,7 @@ namespace SCVZ
 
         private void rboAppetizer_CheckedChanged(object sender, EventArgs e)
         {
-
             string sql = "SELECT J.* FROM Jelo J INNER JOIN VrsteJela V ON J.IdVrstaJela = V.IdVrstaJela WHERE V.IdVrstaJela = 1";
-
             MealRepository.FiltrirajPremaPredjelima(sql);
         }
 
@@ -187,6 +189,35 @@ namespace SCVZ
         {
             FrmAddStaff form3 = new FrmAddStaff();
             form3.Show();
+        }
+
+        private void btnAllMenus_Click(object sender, EventArgs e)
+        {
+            dgvPreview.DataSource = null;
+            PokaziMenije();
+        }
+
+        private void PokaziMenije()
+        {
+            var meni = MenuRepository.DajMenije();
+            dgvPreview.DataSource = meni;
+
+            dgvPreview.Columns["IdMeni"].DisplayIndex = 0;
+            dgvPreview.Columns["CijenaMenija"].DisplayIndex = 1;
+            dgvPreview.Columns["IdVrstaMenija"].DisplayIndex = 2;
+            dgvPreview.Columns["VrijednostPoklonBodova"].DisplayIndex = 3;
+
+            foreach (DataGridViewRow row in dgvPreview.Rows)
+            {
+                int idMeni = (int)row.Cells["IdMeni"].Value;
+                Console.WriteLine($"Processing IdMeni: {idMeni}");
+            }
+        }
+
+        private void dgvPreview_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            Meni meni = (Meni)dgvPreview.CurrentRow.DataBoundItem;
+            dgvDetails.DataSource = meni.stavkeMenija;
         }
     }
 }

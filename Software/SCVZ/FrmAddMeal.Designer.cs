@@ -68,7 +68,6 @@
             this.txtMealId.ReadOnly = true;
             this.txtMealId.Size = new System.Drawing.Size(227, 34);
             this.txtMealId.TabIndex = 23;
-            this.txtMealId.TextChanged += new System.EventHandler(this.txtMealId_TextChanged);
             // 
             // txtMealName
             // 

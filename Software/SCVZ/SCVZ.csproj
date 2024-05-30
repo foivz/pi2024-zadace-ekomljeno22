@@ -62,6 +62,12 @@
     <Compile Include="FrmAddMenu.Designer.cs">
       <DependentUpon>FrmAddMenu.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmAddMenuToOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmAddMenuToOrder.Designer.cs">
+      <DependentUpon>FrmAddMenuToOrder.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmAddStaff.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -86,11 +92,11 @@
     <Compile Include="FrmLogin.Designer.cs">
       <DependentUpon>FrmLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmNewOrder.cs">
+    <Compile Include="FrmAddOrder.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmNewOrder.Designer.cs">
-      <DependentUpon>FrmNewOrder.cs</DependentUpon>
+    <Compile Include="FrmAddOrder.Designer.cs">
+      <DependentUpon>FrmAddOrder.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmOrderHistory.cs">
       <SubType>Form</SubType>
@@ -124,9 +130,12 @@
     </Compile>
     <Compile Include="Models\Korisnik.cs" />
     <Compile Include="Models\Jelo.cs" />
+    <Compile Include="Models\Meni.cs" />
+    <Compile Include="Models\Narudzba.cs" />
     <Compile Include="Models\Pozicije.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Models\VrsteJela.cs" />
+    <Compile Include="Models\VrstaMenija.cs" />
     <Compile Include="Models\Zaposlenik.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -143,6 +152,9 @@
       <DependentUpon>FrmStudentMain.cs</DependentUpon>
     </Compile>
     <Compile Include="Repositories\MealRepository.cs" />
+    <Compile Include="Repositories\MenuRepository.cs" />
+    <Compile Include="Repositories\MenuTypeRepository.cs" />
+    <Compile Include="Repositories\OrderRepository.cs" />
     <Compile Include="Repositories\PositionsRepository.cs" />
     <Compile Include="Repositories\StaffRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
@@ -153,6 +165,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmAddMenu.resx">
       <DependentUpon>FrmAddMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmAddMenuToOrder.resx">
+      <DependentUpon>FrmAddMenuToOrder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmAddStaff.resx">
       <DependentUpon>FrmAddStaff.cs</DependentUpon>
@@ -172,8 +187,8 @@
     <EmbeddedResource Include="FrmLogin.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmNewOrder.resx">
-      <DependentUpon>FrmNewOrder.cs</DependentUpon>
+    <EmbeddedResource Include="FrmAddOrder.resx">
+      <DependentUpon>FrmAddOrder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmOrderHistory.resx">
       <DependentUpon>FrmOrderHistory.cs</DependentUpon>

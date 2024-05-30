@@ -30,12 +30,15 @@
         {
             this.pnlNav = new System.Windows.Forms.Panel();
             this.lblAddMenu = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.txtMenuId = new System.Windows.Forms.TextBox();
+            this.cboMeal01 = new System.Windows.Forms.ComboBox();
+            this.cboMeal02 = new System.Windows.Forms.ComboBox();
+            this.cboMeal03 = new System.Windows.Forms.ComboBox();
             this.btnAddToDatabase = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.cboMenuType = new System.Windows.Forms.ComboBox();
+            this.txtMenuGiftPoints = new System.Windows.Forms.TextBox();
+            this.txtMenuPrice = new System.Windows.Forms.TextBox();
             this.pnlNav.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -61,41 +64,44 @@
             this.lblAddMenu.TabIndex = 0;
             this.lblAddMenu.Text = "Meni";
             // 
-            // textBox1
+            // txtMenuId
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(143, 155);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(227, 34);
-            this.textBox1.TabIndex = 29;
+            this.txtMenuId.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMenuId.Location = new System.Drawing.Point(142, 98);
+            this.txtMenuId.Name = "txtMenuId";
+            this.txtMenuId.ReadOnly = true;
+            this.txtMenuId.Size = new System.Drawing.Size(227, 30);
+            this.txtMenuId.TabIndex = 29;
             // 
-            // comboBox1
+            // cboMeal01
             // 
-            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(143, 213);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(227, 37);
-            this.comboBox1.TabIndex = 30;
+            this.cboMeal01.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboMeal01.FormattingEnabled = true;
+            this.cboMeal01.Location = new System.Drawing.Point(142, 145);
+            this.cboMeal01.Name = "cboMeal01";
+            this.cboMeal01.Size = new System.Drawing.Size(227, 33);
+            this.cboMeal01.TabIndex = 30;
+            this.cboMeal01.Text = "Prvo jelo";
             // 
-            // comboBox2
+            // cboMeal02
             // 
-            this.comboBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(143, 275);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(227, 37);
-            this.comboBox2.TabIndex = 31;
+            this.cboMeal02.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboMeal02.FormattingEnabled = true;
+            this.cboMeal02.Location = new System.Drawing.Point(142, 196);
+            this.cboMeal02.Name = "cboMeal02";
+            this.cboMeal02.Size = new System.Drawing.Size(227, 33);
+            this.cboMeal02.TabIndex = 31;
+            this.cboMeal02.Text = "Drugo jelo";
             // 
-            // comboBox3
+            // cboMeal03
             // 
-            this.comboBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(143, 342);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(227, 37);
-            this.comboBox3.TabIndex = 32;
+            this.cboMeal03.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboMeal03.FormattingEnabled = true;
+            this.cboMeal03.Location = new System.Drawing.Point(142, 248);
+            this.cboMeal03.Name = "cboMeal03";
+            this.cboMeal03.Size = new System.Drawing.Size(227, 33);
+            this.cboMeal03.TabIndex = 32;
+            this.cboMeal03.Text = "Treće jelo";
             // 
             // btnAddToDatabase
             // 
@@ -106,6 +112,7 @@
             this.btnAddToDatabase.TabIndex = 34;
             this.btnAddToDatabase.Text = "Dodaj u bazu";
             this.btnAddToDatabase.UseVisualStyleBackColor = true;
+            this.btnAddToDatabase.Click += new System.EventHandler(this.btnAddToDatabase_Click);
             // 
             // btnCancel
             // 
@@ -118,17 +125,48 @@
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // cboMenuType
+            // 
+            this.cboMenuType.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboMenuType.FormattingEnabled = true;
+            this.cboMenuType.Location = new System.Drawing.Point(142, 300);
+            this.cboMenuType.Name = "cboMenuType";
+            this.cboMenuType.Size = new System.Drawing.Size(227, 33);
+            this.cboMenuType.TabIndex = 35;
+            this.cboMenuType.Text = "Vrsta menija";
+            // 
+            // txtMenuGiftPoints
+            // 
+            this.txtMenuGiftPoints.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMenuGiftPoints.Location = new System.Drawing.Point(142, 352);
+            this.txtMenuGiftPoints.Name = "txtMenuGiftPoints";
+            this.txtMenuGiftPoints.Size = new System.Drawing.Size(227, 30);
+            this.txtMenuGiftPoints.TabIndex = 36;
+            this.txtMenuGiftPoints.Text = "Iznos poklon bodova";
+            // 
+            // txtMenuPrice
+            // 
+            this.txtMenuPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMenuPrice.Location = new System.Drawing.Point(142, 401);
+            this.txtMenuPrice.Name = "txtMenuPrice";
+            this.txtMenuPrice.Size = new System.Drawing.Size(227, 30);
+            this.txtMenuPrice.TabIndex = 37;
+            this.txtMenuPrice.Text = "Cijena menija";
+            // 
             // FrmAddMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(512, 553);
+            this.Controls.Add(this.txtMenuPrice);
+            this.Controls.Add(this.txtMenuGiftPoints);
+            this.Controls.Add(this.cboMenuType);
             this.Controls.Add(this.btnAddToDatabase);
             this.Controls.Add(this.btnCancel);
-            this.Controls.Add(this.comboBox3);
-            this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.cboMeal03);
+            this.Controls.Add(this.cboMeal02);
+            this.Controls.Add(this.cboMeal01);
+            this.Controls.Add(this.txtMenuId);
             this.Controls.Add(this.pnlNav);
             this.Name = "FrmAddMenu";
             this.Text = "FrmAddMenu";
@@ -143,11 +181,14 @@
 
         private System.Windows.Forms.Panel pnlNav;
         private System.Windows.Forms.Label lblAddMenu;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.TextBox txtMenuId;
+        private System.Windows.Forms.ComboBox cboMeal01;
+        private System.Windows.Forms.ComboBox cboMeal02;
+        private System.Windows.Forms.ComboBox cboMeal03;
         private System.Windows.Forms.Button btnAddToDatabase;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.ComboBox cboMenuType;
+        private System.Windows.Forms.TextBox txtMenuGiftPoints;
+        private System.Windows.Forms.TextBox txtMenuPrice;
     }
 }

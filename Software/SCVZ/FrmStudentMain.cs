@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SCVZ.Models;
+using SCVZ.Repositories;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -125,9 +127,10 @@ namespace SCVZ
 
         private void btnOrderStudent_Click(object sender, EventArgs e)
         {
-            FrmNewOrder form2 = new FrmNewOrder();
+            FrmAddOrder form2 = new FrmAddOrder();
             form2.Show();
         }
+
 
         private void btnOrderHistory_Click(object sender, EventArgs e)
         {

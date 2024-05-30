@@ -26,7 +26,7 @@ namespace SCVZ
         {
             try
             {
-                var vrstaJelaList = MealTypeRepository.DajVrstaJela();
+                var vrstaJelaList = MealTypeRepository.DajVrsteJela();
                 cboMealType.DataSource = vrstaJelaList;
                 cboMealType.DisplayMember = "NazivVrsteJela";
                 cboMealType.ValueMember = "IdVrstaJela";
@@ -93,10 +93,6 @@ namespace SCVZ
             txtMealName.Text = string.Empty;
             cboMealType.SelectedIndex = -1;
             PrikaziSljedecegId();
-        }
-
-        private void txtMealId_TextChanged(object sender, EventArgs e)
-        {
         }
     }
 }

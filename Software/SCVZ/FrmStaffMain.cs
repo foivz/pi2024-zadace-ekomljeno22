@@ -11,9 +11,11 @@ using System.Windows.Forms;
 
 namespace SCVZ
 {
+
     public partial class FrmStaffMain : Form
     {
-        public FrmStaffMain()
+        private string enteredUsername;
+        public FrmStaffMain(string enteredUsername)
         {
             InitializeComponent();
 
@@ -23,6 +25,9 @@ namespace SCVZ
             imgBack.MouseLeave += imgLogo_MouseLeave;
             imgHome.MouseEnter += imgLogo_MouseEnter;
             imgHome.MouseLeave += imgLogo_MouseLeave;
+
+            this.enteredUsername = enteredUsername;
+
         }
 
         private void imgLogo_MouseEnter(object sender, EventArgs e)
@@ -94,21 +99,21 @@ namespace SCVZ
 
         private void btnPreview_Click(object sender, EventArgs e)
         {
-            FrmPreview form2 = new FrmPreview();
+            FrmPreview form2 = new FrmPreview(enteredUsername);
             form2.Show();
             this.Close();
         }
 
         private void btnStatistics_Click(object sender, EventArgs e)
         {
-            FrmStatistics form3 = new FrmStatistics();
+            FrmStatistics form3 = new FrmStatistics(enteredUsername);
             form3.Show();
             this.Close();
         }
 
         private void btnNewOrder_Click(object sender, EventArgs e)
         {
-            FrmNewOrder form4 = new FrmNewOrder();
+            FrmAddOrder form4 = new FrmAddOrder();
             form4.Show();
         }
     }

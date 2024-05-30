@@ -15,7 +15,7 @@ namespace SCVZ.Repositories
         {
             Jelo jelo = null;
 
-            string sql = "SELECT * FROM Jelo WHERE IdJelo = {IdJelo}";
+            string sql = $"SELECT * FROM Jelo WHERE IdJelo = {IdJelo}";
             DB.OpenConnection();
 
             var reader = DB.GetDataReader(sql);

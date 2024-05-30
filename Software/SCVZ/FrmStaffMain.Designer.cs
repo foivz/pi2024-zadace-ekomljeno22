@@ -35,12 +35,11 @@
             this.imgLogo = new System.Windows.Forms.PictureBox();
             this.pnlFooter = new System.Windows.Forms.Panel();
             this.pnlSidebar = new System.Windows.Forms.Panel();
+            this.btnStatus = new System.Windows.Forms.Button();
             this.btnPreview = new System.Windows.Forms.Button();
             this.btnStatistics = new System.Windows.Forms.Button();
-            this.btnAddFrm = new System.Windows.Forms.Button();
             this.btnNewOrder = new System.Windows.Forms.Button();
             this.pnlCurrentOrders = new System.Windows.Forms.Panel();
-            this.btnStatus = new System.Windows.Forms.Button();
             this.pnlNav.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgHome)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgBack)).BeginInit();
@@ -121,13 +120,22 @@
             this.pnlSidebar.Controls.Add(this.btnStatus);
             this.pnlSidebar.Controls.Add(this.btnPreview);
             this.pnlSidebar.Controls.Add(this.btnStatistics);
-            this.pnlSidebar.Controls.Add(this.btnAddFrm);
             this.pnlSidebar.Controls.Add(this.btnNewOrder);
             this.pnlSidebar.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlSidebar.Location = new System.Drawing.Point(0, 165);
             this.pnlSidebar.Name = "pnlSidebar";
             this.pnlSidebar.Size = new System.Drawing.Size(395, 778);
             this.pnlSidebar.TabIndex = 11;
+            // 
+            // btnStatus
+            // 
+            this.btnStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStatus.Location = new System.Drawing.Point(70, 583);
+            this.btnStatus.Name = "btnStatus";
+            this.btnStatus.Size = new System.Drawing.Size(227, 67);
+            this.btnStatus.TabIndex = 4;
+            this.btnStatus.Text = "Status menze";
+            this.btnStatus.UseVisualStyleBackColor = true;
             // 
             // btnPreview
             // 
@@ -171,16 +179,6 @@
             this.pnlCurrentOrders.Size = new System.Drawing.Size(1507, 778);
             this.pnlCurrentOrders.TabIndex = 12;
             // 
-            // btnStatus
-            // 
-            this.btnStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStatus.Location = new System.Drawing.Point(70, 583);
-            this.btnStatus.Name = "btnStatus";
-            this.btnStatus.Size = new System.Drawing.Size(227, 67);
-            this.btnStatus.TabIndex = 4;
-            this.btnStatus.Text = "Status menze";
-            this.btnStatus.UseVisualStyleBackColor = true;
-            // 
             // FrmStaffMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -215,7 +213,6 @@
         private System.Windows.Forms.Panel pnlFooter;
         private System.Windows.Forms.Panel pnlSidebar;
         private System.Windows.Forms.Panel pnlCurrentOrders;
-        private System.Windows.Forms.Button btnAddFrm;
         private System.Windows.Forms.Button btnNewOrder;
         private System.Windows.Forms.Button btnPreview;
         private System.Windows.Forms.Button btnStatistics;
