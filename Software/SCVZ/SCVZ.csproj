@@ -68,6 +68,12 @@
     <Compile Include="FrmAddMenuToOrder.Designer.cs">
       <DependentUpon>FrmAddMenuToOrder.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmAddOrderStudent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmAddOrderStudent.Designer.cs">
+      <DependentUpon>FrmAddOrderStudent.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmAddStaff.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -133,6 +139,7 @@
     <Compile Include="Models\Meni.cs" />
     <Compile Include="Models\Narudzba.cs" />
     <Compile Include="Models\Pozicije.cs" />
+    <Compile Include="Models\SkupNarudzbiStudenta.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Models\VrsteJela.cs" />
     <Compile Include="Models\VrstaMenija.cs" />
@@ -168,6 +175,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmAddMenuToOrder.resx">
       <DependentUpon>FrmAddMenuToOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmAddOrderStudent.resx">
+      <DependentUpon>FrmAddOrderStudent.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmAddStaff.resx">
       <DependentUpon>FrmAddStaff.cs</DependentUpon>

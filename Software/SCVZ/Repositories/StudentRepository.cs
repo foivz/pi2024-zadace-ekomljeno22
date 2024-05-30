@@ -50,6 +50,26 @@ namespace SCVZ.Repositories
             return student;
         }
 
+        private int GetStudentIdByJMBAG(string jmbag)
+        {
+            int studentId = 0;
+            try
+            {
+                // Fetch student details by JMBAG
+                Student student = StudentRepository.DajStudentaByJMBAG(jmbag);
+                if (student != null)
+                {
+                    studentId = student.IdStudent;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle exception, log error, etc.
+                Console.WriteLine($"An error occurred while retrieving student details: {ex.Message}");
+            }
+            return studentId;
+        }
+
         public static List<Student> DajStudente()
         {
             var studenti = new List<Student>();
@@ -91,6 +111,38 @@ namespace SCVZ.Repositories
             };
 
             return student;
+        }
+
+        public static List<string> GetAllJMBAGs()
+        {
+            var jmbags = new List<string>();
+
+            string sql = "SELECT JMBAG FROM Student";
+            DB.OpenConnection();
+            var reader = DB.GetDataReader(sql);
+            while (reader.Read())
+            {
+                jmbags.Add(reader["JMBAG"].ToString());
+            }
+
+            reader.Close();
+            DB.CloseConnection();
+
+            return jmbags;
+        }
+
+        public static Student GetRandomStudent()
+        {
+            var jmbags = GetAllJMBAGs();
+            if (jmbags.Count == 0)
+            {
+                return null; // or throw an exception if no students are found
+            }
+
+            var random = new Random();
+            string randomJMBAG = jmbags[random.Next(jmbags.Count)];
+
+            return DajStudentaByJMBAG(randomJMBAG);
         }
     }
 }

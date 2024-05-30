@@ -12,9 +12,9 @@ namespace SCVZ.Repositories
 {
     public class OrderRepository
     {
-        public static Narudzba DajNarudzbu(string idNarudzba)
+        public static Narudzbe DajNarudzbu(string idNarudzba)
         {
-            Narudzba narudzba = null;
+            Narudzbe narudzba = null;
 
             string sql = $"SELECT * FROM Narudzbe WHERE IdNarudzba = {idNarudzba}";
             DB.OpenConnection();
@@ -31,9 +31,9 @@ namespace SCVZ.Repositories
             return narudzba;
         }
 
-        public static List<Narudzba> DajNarudzbe()
+        public static List<Narudzbe> DajNarudzbe()
         {
-            var narudzbe = new List<Narudzba>();
+            var narudzbe = new List<Narudzbe>();
 
             string sql = "SELECT * FROM Narudzbe";
             DB.OpenConnection();
@@ -42,7 +42,7 @@ namespace SCVZ.Repositories
 
             while (reader.Read())
             {
-                Narudzba narudzba = CreateObject(reader);
+                Narudzbe narudzba = CreateObject(reader);
                 narudzbe.Add(narudzba);
             }
 
@@ -52,14 +52,14 @@ namespace SCVZ.Repositories
             return narudzbe;
         }
 
-        private static Narudzba CreateObject(SqlDataReader reader)
+        private static Narudzbe CreateObject(SqlDataReader reader)
         {
             int idNarudzba = int.Parse(reader["IdNarudzba"].ToString());
             DateTime datumNarudzbe = DateTime.Parse(reader["DatumNarudzbe"].ToString());
             int idMeni = int.Parse(reader["IdMeni"].ToString());
             int idZaposlenik = int.Parse(reader["IdZaposlenik"].ToString());
 
-            Narudzba narudzba = new Narudzba
+            Narudzbe narudzba = new Narudzbe
             {
                 IdNarudzba = idNarudzba,
                 DatumNarudzbe = datumNarudzbe,
@@ -133,5 +133,52 @@ namespace SCVZ.Repositories
 
             return newMenuId;
         }
+        public static int InsertOrder(Narudzbe order, int studentId)
+        {
+            string formattedDate = order.DatumNarudzbe.ToString("yyyy-MM-dd HH:mm:ss");
+
+            string insertOrderSql = $"INSERT INTO Narudzbe (DatumNarudzbe, IdMeni, IdZaposlenik) " +
+                                    $"VALUES ('{formattedDate}', '{order.IdMeni}', '{order.IdZaposlenik}');" +
+                                    "SELECT CAST(SCOPE_IDENTITY() AS INT);";
+
+            int newOrderId = -1;
+            try
+            {
+                DB.OpenConnection();
+                object result = DB.GetScalar(insertOrderSql);
+                if (result != null && int.TryParse(result.ToString(), out newOrderId))
+                {
+                    if (newOrderId != -1 && studentId != -1)
+                    {
+                        InsertOrderStudentGroup(newOrderId, studentId);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred while inserting order: {ex.Message}");
+            }
+            finally
+            {
+                DB.CloseConnection();
+            }
+
+            return newOrderId;
+        }
+
+        private static void InsertOrderStudentGroup(int orderId, int studentId)
+        {
+            try
+            {
+                string insertAssociationSql = $"INSERT INTO SkupNarudzbiStudenta (IdNarudzba, IdStudent) " +
+                                             $"VALUES ('{orderId}', '{studentId}');";
+                DB.ExecuteCommand(insertAssociationSql);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred while inserting order-student association: {ex.Message}");
+            }
+        }
+
     }
 }

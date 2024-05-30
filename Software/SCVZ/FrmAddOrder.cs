@@ -9,37 +9,78 @@ namespace SCVZ
     {
         private string enteredUsername;
         private int nextIdOrder;
+        private Student randomStudent;
 
-        public FrmAddOrder()
+        public FrmAddOrder(string enteredUsername)
         {
             InitializeComponent();
+            this.enteredUsername = enteredUsername;
+            txtOrderServer.Text = this.enteredUsername;
             PrikaziSljedecegId();
+
+            randomStudent = StudentRepository.GetRandomStudent();
+            if (randomStudent != null)
+            {
+                txtStudentId.Text = $"{randomStudent.Ime} {randomStudent.Prezime}";
+            }
+            else
+            {
+                txtStudentId.Text = "No student found";
+            }
         }
 
-        private void btnCancel_Click(object sender, EventArgs e)
+            private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
         private void btnOrder_Click(object sender, EventArgs e)
         {
-            this.Close();
+            try
+            {
+                Narudzbe newOrder = new Narudzbe
+                {
+                    DatumNarudzbe = DateTime.Now,
+                    IdMeni = int.Parse(txtIdMenu.Text),
+                    IdZaposlenik = GetEmployeeIdByUsername(enteredUsername)
+                };
+
+                int newOrderId = OrderRepository.InsertOrder(newOrder, randomStudent != null ? randomStudent.IdStudent : -1);
+
+                if (newOrderId != -1)
+                {
+                    if (randomStudent != null)
+                    {
+                        MessageBox.Show($"Order created successfully and assigned to student with JMBAG: {randomStudent.JMBAG}");
+                    }
+                    else
+                    {
+                        MessageBox.Show("No students found to assign the order.");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Failed to create the order.");
+                }
+
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while creating the order: {ex.Message}");
+            }
         }
 
-        private void txtOrderId_TextChanged(object sender, EventArgs e)
+        private int GetEmployeeIdByUsername(string username)
         {
+            Zaposlenik employee = StaffRepository.DajZaposlenikaByUsername(username);
+            return (employee != null) ? employee.IdZaposlenik : 0;
         }
 
-        private void cboOrderMenus_SelectedIndexChanged(object sender, EventArgs e)
+        private int GetStudentIdByUsername(string JMBAG)
         {
-        }
-
-        private void txtOrderPrice_TextChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void txtOrderServer_TextChanged(object sender, EventArgs e)
-        {
+            Student student = StudentRepository.DajStudentaByJMBAG(JMBAG);
+            return (student != null) ? student.IdStudent : 0;
         }
 
         private void PrikaziSljedecegId()
@@ -55,7 +96,7 @@ namespace SCVZ
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnChooseMenu_Click(object sender, EventArgs e)
         {
             FrmAddMenuToOrder form1 = new FrmAddMenuToOrder();
             form1.ParentForm = this;
@@ -67,6 +108,7 @@ namespace SCVZ
             Meni selectedMenu = MenuRepository.DajMeni(menuId);
             txtIdMenu.Text = menuId.ToString();
             txtOrderPrice.Text = selectedMenu.CijenaMenija.ToString();
+            txtOrderServer.Text = enteredUsername;
         }
     }
 }

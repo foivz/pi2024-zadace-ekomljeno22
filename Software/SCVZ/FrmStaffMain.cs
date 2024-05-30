@@ -113,7 +113,7 @@ namespace SCVZ
 
         private void btnNewOrder_Click(object sender, EventArgs e)
         {
-            FrmAddOrder form4 = new FrmAddOrder();
+            FrmAddOrder form4 = new FrmAddOrder(enteredUsername);
             form4.Show();
         }
     }

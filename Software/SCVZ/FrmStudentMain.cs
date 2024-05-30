@@ -127,7 +127,7 @@ namespace SCVZ
 
         private void btnOrderStudent_Click(object sender, EventArgs e)
         {
-            FrmAddOrder form2 = new FrmAddOrder();
+            FrmAddOrderStudent form2 = new FrmAddOrderStudent();
             form2.Show();
         }
 

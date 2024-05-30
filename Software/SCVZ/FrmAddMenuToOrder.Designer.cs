@@ -44,7 +44,7 @@
             this.dgvPreview.Size = new System.Drawing.Size(668, 597);
             this.dgvPreview.TabIndex = 0;
             this.dgvPreview.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPreview_CellClick);
-            this.dgvPreview.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPreview_CellDoubleClick);
+            this.dgvPreview.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPreview_CellDoubleClick);
             // 
             // dgvDetails
             // 
