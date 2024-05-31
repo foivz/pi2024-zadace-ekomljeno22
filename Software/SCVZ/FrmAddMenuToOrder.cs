@@ -46,7 +46,6 @@ namespace SCVZ
 
         private void dgvPreview_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Debugging statement
             Console.WriteLine($"Double-clicked cell at row index: {e.RowIndex}");
 
             if (e.RowIndex >= 0 && e.RowIndex < dgvPreview.Rows.Count)
@@ -54,7 +53,6 @@ namespace SCVZ
                 DataGridViewRow selectedRow = dgvPreview.Rows[e.RowIndex];
                 int selectedIdMeni = Convert.ToInt32(selectedRow.Cells["IdMeni"].Value);
 
-                // Debugging statement
                 Console.WriteLine($"Selected Menu ID: {selectedIdMeni}");
 
                 ParentForm?.SetSelectedMenu(selectedIdMeni);
@@ -70,16 +68,12 @@ namespace SCVZ
                 Meni meni = dgvPreview.Rows[e.RowIndex].DataBoundItem as Meni;
                 if (meni != null)
                 {
-                    // Debugging statement
                     Console.WriteLine($"Displaying details for Menu ID: {meni.IdMeni}");
-
                     dgvDetails.DataSource = meni.stavkeMenija;
                 }
                 else
                 {
-                    // Debugging statement
                     Console.WriteLine("No menu details available");
-
                     dgvDetails.DataSource = null;
                 }
             }

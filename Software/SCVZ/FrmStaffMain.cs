@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SCVZ.Models;
+using SCVZ.Repositories;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -27,7 +29,6 @@ namespace SCVZ
             imgHome.MouseLeave += imgLogo_MouseLeave;
 
             this.enteredUsername = enteredUsername;
-
         }
 
         private void imgLogo_MouseEnter(object sender, EventArgs e)
@@ -115,6 +116,51 @@ namespace SCVZ
         {
             FrmAddOrder form4 = new FrmAddOrder(enteredUsername);
             form4.Show();
+        }
+
+        private void FrmStaffMain_Load(object sender, EventArgs e)
+        {
+            dgvPreview.DataSource = null;
+            PokaziNarudzbe();
+        }
+
+        private void PokaziNarudzbe()
+        {
+            var orders = OrderRepository.DajNarudzbe();
+            dgvPreview.DataSource = orders;
+
+            dgvPreview.Columns["IdNarudzba"].DisplayIndex = 0;
+            dgvPreview.Columns["DatumNarudzbe"].DisplayIndex = 1;
+            dgvPreview.Columns["IdMeni"].DisplayIndex = 2;
+            dgvPreview.Columns["IdZaposlenik"].DisplayIndex = 3;
+            dgvPreview.Columns["IdStudent"].DisplayIndex = 4;
+        }
+
+        private void dgvPreview_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                Narudzbe order = (Narudzbe)dgvPreview.CurrentRow.DataBoundItem;
+
+                Meni menu = MenuRepository.DajMeni(order.IdMeni);
+                Console.WriteLine($"Displaying details for Narudzbe.Meni ID: {order.IdMeni}");
+                
+
+                if (menu != null)
+                {
+                    Console.WriteLine($"Displaying details for Menu ID: {menu.IdMeni}");
+                    dgvDetails.DataSource = menu.stavkeMenija;
+                    Student student = new Student();
+                    student= StudentRepository.DajStudenta(order.IdStudent.ToString());
+                    Console.WriteLine(student.Ime + " " + student.Prezime);
+                    dgvStudent.DataSource = new List<Student>{student};   
+                }
+                else
+                {
+                    Console.WriteLine("No menu details available");
+                    dgvDetails.DataSource = null;
+                }         
+            }
         }
     }
 }

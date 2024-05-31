@@ -137,8 +137,9 @@
     <Compile Include="Models\Korisnik.cs" />
     <Compile Include="Models\Jelo.cs" />
     <Compile Include="Models\Meni.cs" />
-    <Compile Include="Models\Narudzba.cs" />
+    <Compile Include="Models\Narudzbe.cs" />
     <Compile Include="Models\Pozicije.cs" />
+    <Compile Include="Models\Recenzije.cs" />
     <Compile Include="Models\SkupNarudzbiStudenta.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Models\VrsteJela.cs" />
@@ -163,6 +164,7 @@
     <Compile Include="Repositories\MenuTypeRepository.cs" />
     <Compile Include="Repositories\OrderRepository.cs" />
     <Compile Include="Repositories\PositionsRepository.cs" />
+    <Compile Include="Repositories\RatingsRepository.cs" />
     <Compile Include="Repositories\StaffRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Repositories\StudentRepository.cs" />

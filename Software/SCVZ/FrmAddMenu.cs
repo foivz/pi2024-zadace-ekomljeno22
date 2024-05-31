@@ -89,15 +89,43 @@ namespace SCVZ
 
         private void btnAddToDatabase_Click(object sender, EventArgs e)
         {
-            Meni meni=new Meni();
-            meni.CijenaMenija=Convert.ToDecimal(txtMenuPrice.Text);
-            meni.VrijednostPoklonBodova = Convert.ToInt32(txtMenuGiftPoints.Text);
-            meni.stavkeMenija.Add(MealRepository.DajJelo(cboMeal01.SelectedValue.ToString()));
-            meni.stavkeMenija.Add(MealRepository.DajJelo(cboMeal02.SelectedValue.ToString()));
-            meni.stavkeMenija.Add(MealRepository.DajJelo(cboMeal03.SelectedValue.ToString()));
-            meni.IdVrstaMenija = Convert.ToInt32(cboMenuType.SelectedValue);
-            meni.IdMeni = Convert.ToInt32(txtMenuId.Text);
-            MenuRepository.DodajMenu(meni);
+            try
+            {
+                int hours = int.Parse(txtAveragePrepHours.Text);
+                int minutes = int.Parse(txtAveragePrepMinutes.Text);
+                int seconds = int.Parse(txtAveragePrepSeconds.Text);
+
+                string formattedHours = hours.ToString("D2");
+                string formattedMinutes = minutes.ToString("D2");
+                string formattedSeconds = seconds.ToString("D2");
+
+                string timeString = $"{formattedHours}:{formattedMinutes}:{formattedSeconds}";
+
+                Console.WriteLine($"Constructed time string: {timeString}");
+
+                TimeSpan vrijemePripreme = MenuRepository.ParseTimeSpan(timeString);
+
+                Meni meni = new Meni
+                {
+                    CijenaMenija = Convert.ToDecimal(txtMenuPrice.Text),
+                    VrijednostPoklonBodova = Convert.ToInt32(txtMenuGiftPoints.Text),
+                    IdVrstaMenija = Convert.ToInt32(cboMenuType.SelectedValue),
+                    IdMeni = Convert.ToInt32(txtMenuId.Text),
+                    VrijemePripreme = vrijemePripreme
+                };
+
+                meni.stavkeMenija.Add(MealRepository.DajJelo(cboMeal01.SelectedValue.ToString()));
+                meni.stavkeMenija.Add(MealRepository.DajJelo(cboMeal02.SelectedValue.ToString()));
+                meni.stavkeMenija.Add(MealRepository.DajJelo(cboMeal03.SelectedValue.ToString()));
+
+                MenuRepository.DodajMenu(meni);
+
+                MessageBox.Show("Menu added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while adding the menu: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

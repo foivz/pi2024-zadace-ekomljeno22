@@ -14,8 +14,8 @@ namespace SCVZ.Repositories
         public static Student DajStudenta(string IdKorisnik)
         {
             Student student = null;
-
-            string sql = "SELECT * FROM Student WHERE IdKorisnik = {IdKorisnik}";
+            IdKorisnik = 2.ToString();
+            string sql = $"SELECT s.*, k.Ime, k.Prezime, k.Lozinka FROM Student s JOIN Korisnik k ON s.IdKorisnik = k.IdKorisnik WHERE k.IdKorisnik = '{IdKorisnik}'";
             DB.OpenConnection();
 
             var reader = DB.GetDataReader(sql);
@@ -74,7 +74,7 @@ namespace SCVZ.Repositories
         {
             var studenti = new List<Student>();
 
-            string sql = "SELECT * FROM Student WHERE IdKorisnik = {IdKorisnik}";
+            string sql = $"SELECT * FROM Student";
             DB.OpenConnection();
             var reader = DB.GetDataReader(sql);
             while (reader.Read())
@@ -94,6 +94,7 @@ namespace SCVZ.Repositories
             int idStudent = int.Parse(reader["IdStudent"].ToString());
             string ime = reader["Ime"].ToString();
             string prezime = reader["Prezime"].ToString();
+            
             string lozinka = reader["Lozinka"].ToString();
             string jmbag = reader["JMBAG"].ToString();
             int brojPoklonBodova = int.Parse(reader["BrojPoklonBodova"].ToString());

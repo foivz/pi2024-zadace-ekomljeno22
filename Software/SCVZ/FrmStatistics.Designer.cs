@@ -35,18 +35,21 @@
             this.imgLogo = new System.Windows.Forms.PictureBox();
             this.pnlFooter = new System.Windows.Forms.Panel();
             this.pnlSidebar = new System.Windows.Forms.Panel();
+            this.btnFilterToday = new System.Windows.Forms.Button();
             this.btnGenerateReport = new System.Windows.Forms.Button();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.lblConversion = new System.Windows.Forms.Label();
             this.btnFilterAllTime = new System.Windows.Forms.Button();
             this.btnFilterThisMonth = new System.Windows.Forms.Button();
             this.btnFilterThisWeek = new System.Windows.Forms.Button();
-            this.btnFilterToday = new System.Windows.Forms.Button();
             this.lblSort = new System.Windows.Forms.Label();
-            this.btnSortNbrOrders = new System.Windows.Forms.Button();
+            this.btnSortOrderNbr = new System.Windows.Forms.Button();
             this.btnSortTotalRating = new System.Windows.Forms.Button();
             this.btnSortPreparationTime = new System.Windows.Forms.Button();
             this.pnlFilters = new System.Windows.Forms.Panel();
+            this.dgvRatings = new System.Windows.Forms.DataGridView();
+            this.dgvDetails = new System.Windows.Forms.DataGridView();
+            this.dgvPreview = new System.Windows.Forms.DataGridView();
             this.pnlNav.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgHome)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgBack)).BeginInit();
@@ -55,6 +58,9 @@
             this.pnlSidebar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.pnlFilters.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvRatings)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDetails)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPreview)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlNav
@@ -139,6 +145,16 @@
             this.pnlSidebar.Size = new System.Drawing.Size(395, 778);
             this.pnlSidebar.TabIndex = 18;
             // 
+            // btnFilterToday
+            // 
+            this.btnFilterToday.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFilterToday.Location = new System.Drawing.Point(70, 31);
+            this.btnFilterToday.Name = "btnFilterToday";
+            this.btnFilterToday.Size = new System.Drawing.Size(227, 67);
+            this.btnFilterToday.TabIndex = 0;
+            this.btnFilterToday.Text = "Danas";
+            this.btnFilterToday.UseVisualStyleBackColor = true;
+            // 
             // btnGenerateReport
             // 
             this.btnGenerateReport.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -204,16 +220,6 @@
             this.btnFilterThisWeek.UseVisualStyleBackColor = true;
             this.btnFilterThisWeek.Click += new System.EventHandler(this.btnFilterThisWeek_Click);
             // 
-            // btnFilterToday
-            // 
-            this.btnFilterToday.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFilterToday.Location = new System.Drawing.Point(70, 31);
-            this.btnFilterToday.Name = "btnFilterToday";
-            this.btnFilterToday.Size = new System.Drawing.Size(227, 67);
-            this.btnFilterToday.TabIndex = 0;
-            this.btnFilterToday.Text = "Danas";
-            this.btnFilterToday.UseVisualStyleBackColor = true;
-            // 
             // lblSort
             // 
             this.lblSort.AutoSize = true;
@@ -224,15 +230,16 @@
             this.lblSort.TabIndex = 0;
             this.lblSort.Text = "Sortiraj prema:";
             // 
-            // btnSortNbrOrders
+            // btnSortOrderNbr
             // 
-            this.btnSortNbrOrders.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSortNbrOrders.Location = new System.Drawing.Point(585, 15);
-            this.btnSortNbrOrders.Name = "btnSortNbrOrders";
-            this.btnSortNbrOrders.Size = new System.Drawing.Size(157, 33);
-            this.btnSortNbrOrders.TabIndex = 0;
-            this.btnSortNbrOrders.Text = "broju narudžbi";
-            this.btnSortNbrOrders.UseVisualStyleBackColor = true;
+            this.btnSortOrderNbr.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSortOrderNbr.Location = new System.Drawing.Point(585, 15);
+            this.btnSortOrderNbr.Name = "btnSortOrderNbr";
+            this.btnSortOrderNbr.Size = new System.Drawing.Size(157, 33);
+            this.btnSortOrderNbr.TabIndex = 0;
+            this.btnSortOrderNbr.Text = "broju narudžbe";
+            this.btnSortOrderNbr.UseVisualStyleBackColor = true;
+            this.btnSortOrderNbr.Click += new System.EventHandler(this.btnSortOrderNbr_Click);
             // 
             // btnSortTotalRating
             // 
@@ -256,8 +263,11 @@
             // 
             // pnlFilters
             // 
+            this.pnlFilters.Controls.Add(this.dgvRatings);
+            this.pnlFilters.Controls.Add(this.dgvDetails);
+            this.pnlFilters.Controls.Add(this.dgvPreview);
             this.pnlFilters.Controls.Add(this.btnSortTotalRating);
-            this.pnlFilters.Controls.Add(this.btnSortNbrOrders);
+            this.pnlFilters.Controls.Add(this.btnSortOrderNbr);
             this.pnlFilters.Controls.Add(this.lblSort);
             this.pnlFilters.Controls.Add(this.btnSortPreparationTime);
             this.pnlFilters.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -265,6 +275,37 @@
             this.pnlFilters.Name = "pnlFilters";
             this.pnlFilters.Size = new System.Drawing.Size(1902, 868);
             this.pnlFilters.TabIndex = 19;
+            // 
+            // dgvRatings
+            // 
+            this.dgvRatings.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvRatings.Location = new System.Drawing.Point(1480, 67);
+            this.dgvRatings.Name = "dgvRatings";
+            this.dgvRatings.RowHeadersWidth = 51;
+            this.dgvRatings.RowTemplate.Height = 24;
+            this.dgvRatings.Size = new System.Drawing.Size(419, 705);
+            this.dgvRatings.TabIndex = 7;
+            // 
+            // dgvDetails
+            // 
+            this.dgvDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDetails.Location = new System.Drawing.Point(1050, 67);
+            this.dgvDetails.Name = "dgvDetails";
+            this.dgvDetails.RowHeadersWidth = 51;
+            this.dgvDetails.RowTemplate.Height = 24;
+            this.dgvDetails.Size = new System.Drawing.Size(419, 705);
+            this.dgvDetails.TabIndex = 6;
+            // 
+            // dgvPreview
+            // 
+            this.dgvPreview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPreview.Location = new System.Drawing.Point(401, 67);
+            this.dgvPreview.Name = "dgvPreview";
+            this.dgvPreview.RowHeadersWidth = 51;
+            this.dgvPreview.RowTemplate.Height = 24;
+            this.dgvPreview.Size = new System.Drawing.Size(643, 705);
+            this.dgvPreview.TabIndex = 5;
+            this.dgvPreview.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPreview_CellClick);
             // 
             // FrmStatistics
             // 
@@ -280,6 +321,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmStatistics";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.FrmStatistics_Load);
             this.pnlNav.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.imgHome)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgBack)).EndInit();
@@ -290,6 +332,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.pnlFilters.ResumeLayout(false);
             this.pnlFilters.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvRatings)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDetails)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPreview)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -311,9 +356,12 @@
         private System.Windows.Forms.Button btnFilterAllTime;
         private System.Windows.Forms.Button btnGenerateReport;
         private System.Windows.Forms.Label lblSort;
-        private System.Windows.Forms.Button btnSortNbrOrders;
+        private System.Windows.Forms.Button btnSortOrderNbr;
         private System.Windows.Forms.Button btnSortTotalRating;
         private System.Windows.Forms.Button btnSortPreparationTime;
         private System.Windows.Forms.Panel pnlFilters;
+        private System.Windows.Forms.DataGridView dgvPreview;
+        private System.Windows.Forms.DataGridView dgvDetails;
+        private System.Windows.Forms.DataGridView dgvRatings;
     }
 }

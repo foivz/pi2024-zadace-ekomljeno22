@@ -40,13 +40,11 @@
             this.btnOrderStudent = new System.Windows.Forms.Button();
             this.lblCurrentOrder = new System.Windows.Forms.Label();
             this.pnlMenu = new System.Windows.Forms.Panel();
-            this.pnlDinner = new System.Windows.Forms.Panel();
-            this.pnlLunch = new System.Windows.Forms.Panel();
             this.pnlMenuTitle = new System.Windows.Forms.Panel();
             this.lblMenuTitle = new System.Windows.Forms.Label();
             this.pnlOrders = new System.Windows.Forms.Panel();
-            this.lblLunch = new System.Windows.Forms.Label();
-            this.lblDinner = new System.Windows.Forms.Label();
+            this.dgvPreview = new System.Windows.Forms.DataGridView();
+            this.dgvDetails = new System.Windows.Forms.DataGridView();
             this.pnlNav.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgHome)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgBack)).BeginInit();
@@ -55,9 +53,9 @@
             this.pnlSidebar.SuspendLayout();
             this.panel1.SuspendLayout();
             this.pnlMenu.SuspendLayout();
-            this.pnlDinner.SuspendLayout();
-            this.pnlLunch.SuspendLayout();
             this.pnlMenuTitle.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPreview)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDetails)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlNav
@@ -182,8 +180,8 @@
             // 
             // pnlMenu
             // 
-            this.pnlMenu.Controls.Add(this.pnlDinner);
-            this.pnlMenu.Controls.Add(this.pnlLunch);
+            this.pnlMenu.Controls.Add(this.dgvDetails);
+            this.pnlMenu.Controls.Add(this.dgvPreview);
             this.pnlMenu.Controls.Add(this.pnlMenuTitle);
             this.pnlMenu.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlMenu.Location = new System.Drawing.Point(395, 165);
@@ -191,24 +189,6 @@
             this.pnlMenu.Size = new System.Drawing.Size(1507, 778);
             this.pnlMenu.TabIndex = 11;
             this.pnlMenu.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlMenu_Paint);
-            // 
-            // pnlDinner
-            // 
-            this.pnlDinner.Controls.Add(this.lblDinner);
-            this.pnlDinner.Location = new System.Drawing.Point(26, 425);
-            this.pnlDinner.Name = "pnlDinner";
-            this.pnlDinner.Size = new System.Drawing.Size(200, 56);
-            this.pnlDinner.TabIndex = 2;
-            this.pnlDinner.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlDinner_Paint);
-            // 
-            // pnlLunch
-            // 
-            this.pnlLunch.Controls.Add(this.lblLunch);
-            this.pnlLunch.Location = new System.Drawing.Point(26, 125);
-            this.pnlLunch.Name = "pnlLunch";
-            this.pnlLunch.Size = new System.Drawing.Size(200, 56);
-            this.pnlLunch.TabIndex = 1;
-            this.pnlLunch.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlLunch_Paint);
             // 
             // pnlMenuTitle
             // 
@@ -241,25 +221,26 @@
             this.pnlOrders.TabIndex = 12;
             this.pnlOrders.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlOrders_Paint);
             // 
-            // lblLunch
+            // dgvPreview
             // 
-            this.lblLunch.AutoSize = true;
-            this.lblLunch.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLunch.Location = new System.Drawing.Point(24, 15);
-            this.lblLunch.Name = "lblLunch";
-            this.lblLunch.Size = new System.Drawing.Size(80, 29);
-            this.lblLunch.TabIndex = 0;
-            this.lblLunch.Text = "Ručak";
+            this.dgvPreview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPreview.Location = new System.Drawing.Point(6, 106);
+            this.dgvPreview.Name = "dgvPreview";
+            this.dgvPreview.RowHeadersWidth = 51;
+            this.dgvPreview.RowTemplate.Height = 24;
+            this.dgvPreview.Size = new System.Drawing.Size(777, 666);
+            this.dgvPreview.TabIndex = 1;
+            this.dgvPreview.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPreview_CellClick);
             // 
-            // lblDinner
+            // dgvDetails
             // 
-            this.lblDinner.AutoSize = true;
-            this.lblDinner.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDinner.Location = new System.Drawing.Point(24, 14);
-            this.lblDinner.Name = "lblDinner";
-            this.lblDinner.Size = new System.Drawing.Size(89, 29);
-            this.lblDinner.TabIndex = 0;
-            this.lblDinner.Text = "Večera";
+            this.dgvDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDetails.Location = new System.Drawing.Point(789, 106);
+            this.dgvDetails.Name = "dgvDetails";
+            this.dgvDetails.RowHeadersWidth = 51;
+            this.dgvDetails.RowTemplate.Height = 24;
+            this.dgvDetails.Size = new System.Drawing.Size(389, 666);
+            this.dgvDetails.TabIndex = 2;
             // 
             // FrmStudentMain
             // 
@@ -277,6 +258,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmStudentMain";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.FrmStudentMain_Load);
             this.pnlNav.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.imgHome)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgBack)).EndInit();
@@ -286,12 +268,10 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.pnlMenu.ResumeLayout(false);
-            this.pnlDinner.ResumeLayout(false);
-            this.pnlDinner.PerformLayout();
-            this.pnlLunch.ResumeLayout(false);
-            this.pnlLunch.PerformLayout();
             this.pnlMenuTitle.ResumeLayout(false);
             this.pnlMenuTitle.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPreview)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDetails)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -313,9 +293,7 @@
         private System.Windows.Forms.Button btnOrderHistory;
         private System.Windows.Forms.Panel pnlMenuTitle;
         private System.Windows.Forms.Label lblMenuTitle;
-        private System.Windows.Forms.Panel pnlDinner;
-        private System.Windows.Forms.Panel pnlLunch;
-        private System.Windows.Forms.Label lblDinner;
-        private System.Windows.Forms.Label lblLunch;
+        private System.Windows.Forms.DataGridView dgvDetails;
+        private System.Windows.Forms.DataGridView dgvPreview;
     }
 }

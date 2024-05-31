@@ -39,6 +39,9 @@
             this.cboMenuType = new System.Windows.Forms.ComboBox();
             this.txtMenuGiftPoints = new System.Windows.Forms.TextBox();
             this.txtMenuPrice = new System.Windows.Forms.TextBox();
+            this.txtAveragePrepHours = new System.Windows.Forms.TextBox();
+            this.txtAveragePrepMinutes = new System.Windows.Forms.TextBox();
+            this.txtAveragePrepSeconds = new System.Windows.Forms.TextBox();
             this.pnlNav.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -66,40 +69,40 @@
             // 
             // txtMenuId
             // 
-            this.txtMenuId.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMenuId.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMenuId.Location = new System.Drawing.Point(142, 98);
             this.txtMenuId.Name = "txtMenuId";
             this.txtMenuId.ReadOnly = true;
-            this.txtMenuId.Size = new System.Drawing.Size(227, 30);
+            this.txtMenuId.Size = new System.Drawing.Size(227, 27);
             this.txtMenuId.TabIndex = 29;
             // 
             // cboMeal01
             // 
-            this.cboMeal01.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboMeal01.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboMeal01.FormattingEnabled = true;
-            this.cboMeal01.Location = new System.Drawing.Point(142, 145);
+            this.cboMeal01.Location = new System.Drawing.Point(142, 141);
             this.cboMeal01.Name = "cboMeal01";
-            this.cboMeal01.Size = new System.Drawing.Size(227, 33);
+            this.cboMeal01.Size = new System.Drawing.Size(227, 28);
             this.cboMeal01.TabIndex = 30;
             this.cboMeal01.Text = "Prvo jelo";
             // 
             // cboMeal02
             // 
-            this.cboMeal02.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboMeal02.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboMeal02.FormattingEnabled = true;
-            this.cboMeal02.Location = new System.Drawing.Point(142, 196);
+            this.cboMeal02.Location = new System.Drawing.Point(142, 185);
             this.cboMeal02.Name = "cboMeal02";
-            this.cboMeal02.Size = new System.Drawing.Size(227, 33);
+            this.cboMeal02.Size = new System.Drawing.Size(227, 28);
             this.cboMeal02.TabIndex = 31;
             this.cboMeal02.Text = "Drugo jelo";
             // 
             // cboMeal03
             // 
-            this.cboMeal03.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboMeal03.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboMeal03.FormattingEnabled = true;
-            this.cboMeal03.Location = new System.Drawing.Point(142, 248);
+            this.cboMeal03.Location = new System.Drawing.Point(142, 229);
             this.cboMeal03.Name = "cboMeal03";
-            this.cboMeal03.Size = new System.Drawing.Size(227, 33);
+            this.cboMeal03.Size = new System.Drawing.Size(227, 28);
             this.cboMeal03.TabIndex = 32;
             this.cboMeal03.Text = "Treće jelo";
             // 
@@ -127,37 +130,67 @@
             // 
             // cboMenuType
             // 
-            this.cboMenuType.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboMenuType.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboMenuType.FormattingEnabled = true;
-            this.cboMenuType.Location = new System.Drawing.Point(142, 300);
+            this.cboMenuType.Location = new System.Drawing.Point(142, 272);
             this.cboMenuType.Name = "cboMenuType";
-            this.cboMenuType.Size = new System.Drawing.Size(227, 33);
+            this.cboMenuType.Size = new System.Drawing.Size(227, 28);
             this.cboMenuType.TabIndex = 35;
             this.cboMenuType.Text = "Vrsta menija";
             // 
             // txtMenuGiftPoints
             // 
-            this.txtMenuGiftPoints.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMenuGiftPoints.Location = new System.Drawing.Point(142, 352);
+            this.txtMenuGiftPoints.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMenuGiftPoints.Location = new System.Drawing.Point(142, 316);
             this.txtMenuGiftPoints.Name = "txtMenuGiftPoints";
-            this.txtMenuGiftPoints.Size = new System.Drawing.Size(227, 30);
+            this.txtMenuGiftPoints.Size = new System.Drawing.Size(227, 27);
             this.txtMenuGiftPoints.TabIndex = 36;
             this.txtMenuGiftPoints.Text = "Iznos poklon bodova";
             // 
             // txtMenuPrice
             // 
-            this.txtMenuPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMenuPrice.Location = new System.Drawing.Point(142, 401);
+            this.txtMenuPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMenuPrice.Location = new System.Drawing.Point(142, 359);
             this.txtMenuPrice.Name = "txtMenuPrice";
-            this.txtMenuPrice.Size = new System.Drawing.Size(227, 30);
+            this.txtMenuPrice.Size = new System.Drawing.Size(227, 27);
             this.txtMenuPrice.TabIndex = 37;
             this.txtMenuPrice.Text = "Cijena menija";
+            // 
+            // txtAveragePrepHours
+            // 
+            this.txtAveragePrepHours.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAveragePrepHours.Location = new System.Drawing.Point(142, 412);
+            this.txtAveragePrepHours.Name = "txtAveragePrepHours";
+            this.txtAveragePrepHours.Size = new System.Drawing.Size(72, 27);
+            this.txtAveragePrepHours.TabIndex = 38;
+            this.txtAveragePrepHours.Text = "Sati";
+            // 
+            // txtAveragePrepMinutes
+            // 
+            this.txtAveragePrepMinutes.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAveragePrepMinutes.Location = new System.Drawing.Point(220, 412);
+            this.txtAveragePrepMinutes.Name = "txtAveragePrepMinutes";
+            this.txtAveragePrepMinutes.Size = new System.Drawing.Size(72, 27);
+            this.txtAveragePrepMinutes.TabIndex = 39;
+            this.txtAveragePrepMinutes.Text = "Minute";
+            // 
+            // txtAveragePrepSeconds
+            // 
+            this.txtAveragePrepSeconds.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAveragePrepSeconds.Location = new System.Drawing.Point(297, 412);
+            this.txtAveragePrepSeconds.Name = "txtAveragePrepSeconds";
+            this.txtAveragePrepSeconds.Size = new System.Drawing.Size(72, 27);
+            this.txtAveragePrepSeconds.TabIndex = 40;
+            this.txtAveragePrepSeconds.Text = "Sekunde";
             // 
             // FrmAddMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(512, 553);
+            this.Controls.Add(this.txtAveragePrepSeconds);
+            this.Controls.Add(this.txtAveragePrepMinutes);
+            this.Controls.Add(this.txtAveragePrepHours);
             this.Controls.Add(this.txtMenuPrice);
             this.Controls.Add(this.txtMenuGiftPoints);
             this.Controls.Add(this.cboMenuType);
@@ -190,5 +223,8 @@
         private System.Windows.Forms.ComboBox cboMenuType;
         private System.Windows.Forms.TextBox txtMenuGiftPoints;
         private System.Windows.Forms.TextBox txtMenuPrice;
+        private System.Windows.Forms.TextBox txtAveragePrepHours;
+        private System.Windows.Forms.TextBox txtAveragePrepMinutes;
+        private System.Windows.Forms.TextBox txtAveragePrepSeconds;
     }
 }

@@ -49,37 +49,90 @@ namespace SCVZ.Repositories
             return meniji;
         }
 
+        public static Meni GetMenuForOrder(int orderId)
+        {
+            Meni menu = null;
+            string sql = $"SELECT * FROM Meni WHERE IdMeni = (SELECT IdMeni FROM Narudzbe WHERE IdNarudzba = {orderId})";
+
+            DB.OpenConnection();
+
+            var reader = DB.GetDataReader(sql);
+            if (reader.HasRows)
+            {
+                reader.Read();
+
+                menu = MenuRepository.CreateObject(reader);
+
+                reader.Close();
+            }
+            DB.CloseConnection();
+            return menu;
+        }
+
         private static Meni CreateObject(SqlDataReader reader)
         {
             int idMeni = int.Parse(reader["IdMeni"].ToString());
             decimal cijenaMenija = decimal.Parse(reader["CijenaMenija"].ToString());
             int idVrstaMenija = int.Parse(reader["IdVrstaMenija"].ToString());
             int vrijednostPoklonBodova = int.Parse(reader["VrijednostPoklonBodova"].ToString());
+            string vrijemePripremeString = reader["VrijemePripreme"].ToString();
 
-            
+            var menuRepository = new MenuRepository();
+            TimeSpan vrijemePripreme = ParseTimeSpan(vrijemePripremeString);
+
+
             string sql = $"SELECT * FROM SkupJela WHERE IdMeni={idMeni}";
-           DB.OpenConnection();
-            var stavke=DB.GetDataReader(sql);
+            DB.OpenConnection();
+            var stavke = DB.GetDataReader(sql);
 
             var menu = new Meni
             {
                 IdMeni = idMeni,
                 CijenaMenija = cijenaMenija,
                 IdVrstaMenija = idVrstaMenija,
-                VrijednostPoklonBodova = vrijednostPoklonBodova
+                VrijednostPoklonBodova = vrijednostPoklonBodova,
+                VrijemePripreme = vrijemePripreme
             };
-            while (stavke.Read()) {
+
+            while (stavke.Read())
+            {
                 Debug.WriteLine(stavke[1].ToString());
-               
                 menu.stavkeMenija.Add(MealRepository.DajJelo(stavke[1].ToString()));
             }
-            
-            foreach(var jelo in menu.stavkeMenija)
+
+            foreach (var jelo in menu.stavkeMenija)
             {
                 Debug.Write(jelo.NazivJela);
             }
+
             DB.CloseConnection();
             return menu;
+        }
+        public static TimeSpan ParseTimeSpan(string timeString)
+        {
+            try
+            {
+                string[] timeComponents = timeString.Split(':');
+
+                if (timeComponents.Length != 3)
+                {
+                    throw new FormatException("Invalid time format. Time string must be in HH:MM:SS format.");
+                }
+                int hours, minutes, seconds;
+                if (!int.TryParse(timeComponents[0], out hours) ||
+                    !int.TryParse(timeComponents[1], out minutes) ||
+                    !int.TryParse(timeComponents[2], out seconds))
+                {
+                    throw new FormatException("Invalid time format. Time string must contain numeric values.");
+                }
+
+                return new TimeSpan(hours, minutes, seconds);
+            }
+            catch (FormatException ex)
+            {
+                Console.WriteLine($"Error parsing time string: {ex.Message}");
+                throw;
+            }
         }
         public static int DajSljedeceg()
         {
@@ -112,8 +165,10 @@ namespace SCVZ.Repositories
 
         public static int DodajMenu(Meni menu)
         {
-            string sql = $"INSERT INTO Meni (CijenaMenija, IdVrstaMenija, VrijednostPoklonBodova) " +
-                         $"VALUES ({menu.CijenaMenija}, {menu.IdVrstaMenija}, {menu.VrijednostPoklonBodova}); " +
+            string timeString = menu.VrijemePripreme.ToString(@"hh\:mm\:ss");
+
+            string sql = $"INSERT INTO Meni (CijenaMenija, IdVrstaMenija, VrijednostPoklonBodova, VrijemePripreme) " +
+                         $"VALUES ({menu.CijenaMenija}, {menu.IdVrstaMenija}, {menu.VrijednostPoklonBodova}, '{timeString}'); " +
                          "SELECT CAST(SCOPE_IDENTITY() AS INT);";
 
             int newMenuId = -1;

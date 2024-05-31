@@ -1,4 +1,7 @@
-﻿using System;
+﻿using SCVZ.Models;
+using SCVZ.Repositories;
+using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
@@ -82,6 +85,53 @@ namespace SCVZ
         private void btnFilterThisWeek_Click(object sender, EventArgs e)
         {
             // Add filter this week functionality here
+        }
+
+        private void FrmStatistics_Load(object sender, EventArgs e)
+        {
+            dgvPreview.DataSource = null;
+            PokaziNarudzbe();
+        }
+        private void PokaziNarudzbe()
+        {
+            var orders = OrderRepository.DajNarudzbe();
+            dgvPreview.DataSource = orders;
+
+            dgvPreview.Columns["IdNarudzba"].DisplayIndex = 0;
+            dgvPreview.Columns["DatumNarudzbe"].DisplayIndex = 1;
+            dgvPreview.Columns["IdMeni"].DisplayIndex = 2;
+            dgvPreview.Columns["IdZaposlenik"].DisplayIndex = 3;
+            dgvPreview.Columns["IdStudent"].DisplayIndex = 4;
+
+            dgvPreview.Columns["IdZaposlenik"].Visible = false;
+            dgvPreview.Columns["IdStudent"].Visible = false;
+        }
+        private void dgvPreview_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                Narudzbe order = (Narudzbe)dgvPreview.CurrentRow.DataBoundItem;
+
+                Meni menu = MenuRepository.DajMeni(order.IdMeni);
+                Console.WriteLine($"Displaying details for Narudzbe.Meni ID: {order.IdMeni}");
+
+                if (menu != null)
+                {
+                    Console.WriteLine($"Displaying details for Menu ID: {menu.IdMeni}");
+                    dgvDetails.DataSource = menu.stavkeMenija;
+                }
+                else
+                {
+                    Console.WriteLine("No menu details available");
+                    dgvDetails.DataSource = null;
+                }
+            }
+        }
+
+        private void btnSortOrderNbr_Click(object sender, EventArgs e)
+        {
+            dgvPreview.DataSource = null;
+            PokaziNarudzbe();
         }
     }
 }

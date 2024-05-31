@@ -101,19 +101,6 @@ namespace SCVZ
             Color color = System.Drawing.ColorTranslator.FromHtml("#FCF24A");
             pnlFooter.BackColor = color;
         }
-
-        private void pnlDinner_Paint(object sender, PaintEventArgs e)
-        {
-            Color color = System.Drawing.ColorTranslator.FromHtml("#FCF24A");
-            pnlDinner.BackColor = color;
-        }
-
-        private void pnlLunch_Paint(object sender, PaintEventArgs e)
-        {
-            Color color = System.Drawing.ColorTranslator.FromHtml("#FCF24A");
-            pnlLunch.BackColor = color;
-        }
-
         private void imgHome_Click(object sender, EventArgs e)
         {
 
@@ -143,6 +130,34 @@ namespace SCVZ
         {
             Color color = System.Drawing.ColorTranslator.FromHtml("#FCF24A");
             pnlMenuTitle.BackColor = color;
+        }
+
+        private void FrmStudentMain_Load(object sender, EventArgs e)
+        {
+            dgvPreview.DataSource = null;
+            PokaziMenije();
+        }
+        private void PokaziMenije()
+        {
+            var meni = MenuRepository.DajMenije();
+            dgvPreview.DataSource = meni;
+
+            dgvPreview.Columns["IdMeni"].DisplayIndex = 0;
+            dgvPreview.Columns["CijenaMenija"].DisplayIndex = 1;
+            dgvPreview.Columns["IdVrstaMenija"].DisplayIndex = 2;
+            dgvPreview.Columns["VrijednostPoklonBodova"].DisplayIndex = 3;
+
+            foreach (DataGridViewRow row in dgvPreview.Rows)
+            {
+                int idMeni = (int)row.Cells["IdMeni"].Value;
+                Console.WriteLine($"Processing IdMeni: {idMeni}");
+            }
+        }
+
+        private void dgvPreview_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            Meni meni = (Meni)dgvPreview.CurrentRow.DataBoundItem;
+            dgvDetails.DataSource = meni.stavkeMenija;
         }
     }
 }

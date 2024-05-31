@@ -12,11 +12,14 @@ namespace SCVZ.Models
         public decimal CijenaMenija { get; set; }
         public int IdVrstaMenija { get; set; }
         public int VrijednostPoklonBodova { get; set; }
-        
-        public List<Jelo> stavkeMenija { get; set; }
+        public TimeSpan VrijemePripreme { get; set; }
 
-       public Meni() { 
+        public List<Jelo> stavkeMenija { get; set; }
+        public List<Recenzije> recenzijeMenija { get; set; }
+
+        public Meni() { 
         stavkeMenija = new List<Jelo>();
+        recenzijeMenija = new List<Recenzije>();
         }
     }
 }

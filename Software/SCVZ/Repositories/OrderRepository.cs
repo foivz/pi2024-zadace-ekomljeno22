@@ -58,13 +58,15 @@ namespace SCVZ.Repositories
             DateTime datumNarudzbe = DateTime.Parse(reader["DatumNarudzbe"].ToString());
             int idMeni = int.Parse(reader["IdMeni"].ToString());
             int idZaposlenik = int.Parse(reader["IdZaposlenik"].ToString());
+            int idStudent = int.Parse(reader["IdStudent"].ToString());
 
             Narudzbe narudzba = new Narudzbe
             {
                 IdNarudzba = idNarudzba,
                 DatumNarudzbe = datumNarudzbe,
                 IdMeni = idMeni,
-                IdZaposlenik = idZaposlenik
+                IdZaposlenik = idZaposlenik,
+                IdStudent = idStudent,
             };
 
             return narudzba;
@@ -137,26 +139,19 @@ namespace SCVZ.Repositories
         {
             string formattedDate = order.DatumNarudzbe.ToString("yyyy-MM-dd HH:mm:ss");
 
-            string insertOrderSql = $"INSERT INTO Narudzbe (DatumNarudzbe, IdMeni, IdZaposlenik) " +
-                                    $"VALUES ('{formattedDate}', '{order.IdMeni}', '{order.IdZaposlenik}');" +
-                                    "SELECT CAST(SCOPE_IDENTITY() AS INT);";
+            string sql = $"INSERT INTO Narudzbe (DatumNarudzbe, IdMeni, IdZaposlenik, IdStudent) " +
+                         $"VALUES ('{formattedDate}', {order.IdMeni}, {order.IdZaposlenik}, {studentId}); " +
+                         $"SELECT CAST(SCOPE_IDENTITY() AS INT)";
 
             int newOrderId = -1;
             try
             {
                 DB.OpenConnection();
-                object result = DB.GetScalar(insertOrderSql);
-                if (result != null && int.TryParse(result.ToString(), out newOrderId))
-                {
-                    if (newOrderId != -1 && studentId != -1)
-                    {
-                        InsertOrderStudentGroup(newOrderId, studentId);
-                    }
-                }
+                newOrderId = (int)DB.GetScalar(sql);
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"An error occurred while inserting order: {ex.Message}");
+                Console.WriteLine($"An error occurred while inserting the order: {ex.Message}");
             }
             finally
             {
@@ -165,20 +160,5 @@ namespace SCVZ.Repositories
 
             return newOrderId;
         }
-
-        private static void InsertOrderStudentGroup(int orderId, int studentId)
-        {
-            try
-            {
-                string insertAssociationSql = $"INSERT INTO SkupNarudzbiStudenta (IdNarudzba, IdStudent) " +
-                                             $"VALUES ('{orderId}', '{studentId}');";
-                DB.ExecuteCommand(insertAssociationSql);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"An error occurred while inserting order-student association: {ex.Message}");
-            }
-        }
-
     }
 }

@@ -216,8 +216,15 @@ namespace SCVZ
 
         private void dgvPreview_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            Meni meni = (Meni)dgvPreview.CurrentRow.DataBoundItem;
-            dgvDetails.DataSource = meni.stavkeMenija;
+            if (dgvPreview.CurrentRow?.DataBoundItem is Meni meni)
+            {
+                dgvDetails.DataSource = meni.stavkeMenija;
+            }
+            else
+            {
+                return;
+            }
         }
+
     }
 }
