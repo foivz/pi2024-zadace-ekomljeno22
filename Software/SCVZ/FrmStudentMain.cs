@@ -15,7 +15,8 @@ namespace SCVZ
 {
     public partial class FrmStudentMain : Form
     {
-        public FrmStudentMain()
+        private string JMBAG { get; set; }
+        public FrmStudentMain(string jMBAG)
         {
             InitializeComponent();
 
@@ -25,6 +26,8 @@ namespace SCVZ
             imgBack.MouseLeave += cursorState_MouseLeave;
             imgHome.MouseEnter += cursorState_MouseEnter;
             imgHome.MouseLeave += cursorState_MouseLeave;
+
+            JMBAG = jMBAG;
         }
 
         private void cursorState_MouseEnter(object sender, EventArgs e)
@@ -121,7 +124,7 @@ namespace SCVZ
 
         private void btnOrderHistory_Click(object sender, EventArgs e)
         {
-            FrmOrderHistory form3 = new FrmOrderHistory();
+            FrmOrderHistory form3 = new FrmOrderHistory(JMBAG);
             form3.Show();
             this.Close();
         }
@@ -134,9 +137,36 @@ namespace SCVZ
 
         private void FrmStudentMain_Load(object sender, EventArgs e)
         {
+            dgvStudentOrders.DataSource = null;
+            PokaziSadasnjeNarudzbe();
             dgvPreview.DataSource = null;
             PokaziMenije();
         }
+
+        private void PokaziSadasnjeNarudzbe()
+        {
+            var orders = OrderRepository.DajNarudzbePoJMBAG(JMBAG);
+            dgvStudentOrders.DataSource = orders;
+
+            dgvStudentOrders.Columns["IdNarudzba"].DisplayIndex = 0;
+            dgvStudentOrders.Columns["DatumNarudzbe"].DisplayIndex = 1;
+            dgvStudentOrders.Columns["IdMeni"].DisplayIndex = 2;
+            dgvStudentOrders.Columns["IdZaposlenik"].DisplayIndex = 3;
+            dgvStudentOrders.Columns["IdStudent"].DisplayIndex = 4;
+        }
+        private void dgvStudentOrders_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                Narudzbe selectedOrder = (Narudzbe)dgvStudentOrders.Rows[e.RowIndex].DataBoundItem;
+                int orderId = selectedOrder.IdNarudzba;
+
+                FrmStudentRating form4 = new FrmStudentRating(orderId, JMBAG);
+                form4.Show();
+            }
+        }
+
+
         private void PokaziMenije()
         {
             var meni = MenuRepository.DajMenije();
@@ -158,6 +188,11 @@ namespace SCVZ
         {
             Meni meni = (Meni)dgvPreview.CurrentRow.DataBoundItem;
             dgvDetails.DataSource = meni.stavkeMenija;
+        }
+
+        private void lblMenuTitle_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

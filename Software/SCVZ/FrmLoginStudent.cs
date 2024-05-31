@@ -82,8 +82,7 @@ namespace SCVZ
             {
                 if (student.CheckPassword(enteredPassword))
                 {
-
-                    FrmStudentMain form1 = new FrmStudentMain();
+                    FrmStudentMain form1 = new FrmStudentMain(enteredJMBAG);
                     form1.Show();
                     this.Close();
                     return;
@@ -91,7 +90,11 @@ namespace SCVZ
             }
 
             MessageBox.Show("Incorrect JMBAG or password. Please try again.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
 
+        private void FrmLoginStudent_Load(object sender, EventArgs e)
+        {
         }
     }
+
 }

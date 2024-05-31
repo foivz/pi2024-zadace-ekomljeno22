@@ -92,6 +92,11 @@ namespace SCVZ
             // If no match is found in the Zaposlenik table or the password is incorrect
             MessageBox.Show("Incorrect username or password. Please try again.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+
+        private void FrmLoginStaff_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 

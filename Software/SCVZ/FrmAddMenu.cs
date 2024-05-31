@@ -127,6 +127,11 @@ namespace SCVZ
                 MessageBox.Show($"An error occurred while adding the menu: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void FrmAddMenu_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 

@@ -209,6 +209,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmLoginStaff";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.FrmLoginStaff_Load);
             this.pnlNav.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.imgHome)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgBack)).EndInit();

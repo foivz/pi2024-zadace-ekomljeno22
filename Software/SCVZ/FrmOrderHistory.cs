@@ -12,7 +12,8 @@ namespace SCVZ
 {
     public partial class FrmOrderHistory : Form
     {
-        public FrmOrderHistory()
+        private string JMBAG { get; set; }
+        public FrmOrderHistory(string jMBAG)
         {
             InitializeComponent();
 
@@ -22,6 +23,8 @@ namespace SCVZ
             imgBack.MouseLeave += cursorState_MouseLeave;
             imgHome.MouseEnter += cursorState_MouseEnter;
             imgHome.MouseLeave += cursorState_MouseLeave;
+            JMBAG = jMBAG;
+
         }
         private void cursorState_MouseEnter(object sender, EventArgs e)
         {
@@ -52,14 +55,14 @@ namespace SCVZ
 
         private void imgHome_Click(object sender, EventArgs e)
         {
-            FrmStudentMain frmStudentMain = new FrmStudentMain();
+            FrmStudentMain frmStudentMain = new FrmStudentMain(JMBAG);
             frmStudentMain.Show();
             this.Close();
         }
 
         private void imgBack_Click(object sender, EventArgs e)
         {
-            FrmStudentMain frmStudentMain = new FrmStudentMain();
+            FrmStudentMain frmStudentMain = new FrmStudentMain(JMBAG);
             frmStudentMain.Show();
             this.Close();
         }

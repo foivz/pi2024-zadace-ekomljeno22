@@ -35,7 +35,54 @@ namespace SCVZ.Repositories
         {
             var narudzbe = new List<Narudzbe>();
 
-            string sql = "SELECT * FROM Narudzbe";
+            string sql = $"SELECT * FROM Narudzbe";
+            DB.OpenConnection();
+
+            var reader = DB.GetDataReader(sql);
+
+            while (reader.Read())
+            {
+                Narudzbe narudzba = CreateObject(reader);
+                narudzbe.Add(narudzba);
+            }
+
+            reader.Close();
+            DB.CloseConnection();
+
+            return narudzbe;
+        }
+
+        public static int GetMenuIdForOrder(int orderId)
+        {
+            int menuId = -1;
+
+            string sql = $"SELECT IdMeni FROM Narudzbe WHERE IdNarudzba = {orderId}";
+            try
+            {
+                DB.OpenConnection();
+                object result = DB.GetScalar(sql);
+                if (result != null && result != DBNull.Value)
+                {
+                    menuId = Convert.ToInt32(result);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred while retrieving the menu ID for order {orderId}: {ex.Message}");
+            }
+            finally
+            {
+                DB.CloseConnection();
+            }
+
+            return menuId;
+        }
+
+        public static List<Narudzbe> DajNarudzbePoJMBAG(string JMBAG)
+        {
+            var narudzbe = new List<Narudzbe>();
+
+            string sql = $"SELECT n.* FROM Narudzbe n INNER JOIN Student s ON n.IdStudent = s.IdStudent WHERE s.JMBAG = {JMBAG}";
             DB.OpenConnection();
 
             var reader = DB.GetDataReader(sql);

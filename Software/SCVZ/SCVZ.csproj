@@ -134,6 +134,12 @@
     <Compile Include="FrmLoginStudent.Designer.cs">
       <DependentUpon>FrmLoginStudent.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmStudentRating.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmStudentRating.Designer.cs">
+      <DependentUpon>FrmStudentRating.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Korisnik.cs" />
     <Compile Include="Models\Jelo.cs" />
     <Compile Include="Models\Meni.cs" />
@@ -210,6 +216,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmStatistics.resx">
       <DependentUpon>FrmStatistics.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmStudentRating.resx">
+      <DependentUpon>FrmStudentRating.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

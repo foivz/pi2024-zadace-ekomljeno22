@@ -77,9 +77,7 @@ namespace SCVZ.Repositories
             int vrijednostPoklonBodova = int.Parse(reader["VrijednostPoklonBodova"].ToString());
             string vrijemePripremeString = reader["VrijemePripreme"].ToString();
 
-            var menuRepository = new MenuRepository();
             TimeSpan vrijemePripreme = ParseTimeSpan(vrijemePripremeString);
-
 
             string sql = $"SELECT * FROM SkupJela WHERE IdMeni={idMeni}";
             DB.OpenConnection();
@@ -100,14 +98,22 @@ namespace SCVZ.Repositories
                 menu.stavkeMenija.Add(MealRepository.DajJelo(stavke[1].ToString()));
             }
 
-            foreach (var jelo in menu.stavkeMenija)
-            {
-                Debug.Write(jelo.NazivJela);
-            }
-
             DB.CloseConnection();
+
+            // Retrieve and add Recenzije
+            sql = $"SELECT r.* FROM Recenzije r JOIN SkupRecenzija sr ON r.IdRecenzija = sr.IdRecenzija WHERE sr.IdMeni = {idMeni}";
+            DB.OpenConnection();
+            var recenzijeReader = DB.GetDataReader(sql);
+            while (recenzijeReader.Read())
+            {
+                Recenzije recenzija = RatingsRepository.CreateObject(recenzijeReader);
+                menu.recenzijeMenija.Add(recenzija);
+            }
+            DB.CloseConnection();
+
             return menu;
         }
+
         public static TimeSpan ParseTimeSpan(string timeString)
         {
             try
@@ -179,13 +185,13 @@ namespace SCVZ.Repositories
                 if (result != null && int.TryParse(result.ToString(), out int id))
                 {
                     newMenuId = id;
+                    menu.IdMeni = id;
                 }
+
                 foreach (Jelo jelo in menu.stavkeMenija)
                 {
-                    string stavka = $"INSERT INTO SkupJela(IdJelo, IdMeni) VALUES({jelo.IdJelo},{menu.IdMeni}); SELECT  CAST(SCOPE_IDENTITY() AS INT);";
-                    DB.OpenConnection();
+                    string stavka = $"INSERT INTO SkupJela(IdJelo, IdMeni) VALUES({jelo.IdJelo}, {menu.IdMeni});";
                     DB.ExecuteCommand(stavka);
-                    DB.CloseConnection();
                 }
 
             }
@@ -200,5 +206,6 @@ namespace SCVZ.Repositories
 
             return newMenuId;
         }
+
     }
 }
