@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using System.Collections.Generic;
 
 namespace SCVZ
 {
@@ -92,12 +93,23 @@ namespace SCVZ
             var zaposlenici = StaffRepository.DajZaposlenike();
             dgvPreview.DataSource = zaposlenici;
 
-            dgvPreview.Columns["IdKorisnik"].DisplayIndex = 0;
-            dgvPreview.Columns["Ime"].DisplayIndex = 1;
-            dgvPreview.Columns["Prezime"].DisplayIndex = 2;
-            dgvPreview.Columns["Pozicija"].DisplayIndex = 3;
+            dgvPreview.Columns["IdKorisnik"].HeaderText = "Id";
+            dgvPreview.Columns["Ime"].HeaderText = "Ime";
+            dgvPreview.Columns["Prezime"].HeaderText = "Prezime";
+            dgvPreview.Columns["Pozicija"].HeaderText = "Pozicija";
 
-            dgvPreview.Columns["Lozinka"].Visible = true;
+            foreach (DataGridViewColumn column in dgvPreview.Columns)
+            {
+                column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            }
+
+            dgvPreview.Columns["IdKorisnik"].DisplayIndex = 2;
+            dgvPreview.Columns["Ime"].DisplayIndex = 3;
+            dgvPreview.Columns["Prezime"].DisplayIndex = 4;
+            dgvPreview.Columns["Pozicija"].DisplayIndex = 5;
+
+            dgvPreview.Columns["Lozinka"].Visible = false;
+            dgvPreview.Columns["IdKorisnik"].Visible = false;
         }
 
         private void btnAllMeals_Click(object sender, EventArgs e)
@@ -116,6 +128,16 @@ namespace SCVZ
         {
             var jela = MealRepository.DajJela();
             dgvPreview.DataSource = jela;
+
+            dgvPreview.Columns["IdJelo"].HeaderText = "Id";
+            dgvPreview.Columns["NazivJela"].HeaderText = "Jelo";
+            dgvPreview.Columns["IdVrstaJela"].HeaderText = "Vrsta jela";
+
+
+            foreach (DataGridViewColumn column in dgvPreview.Columns)
+            {
+                column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            }
 
             dgvPreview.Columns["IdJelo"].DisplayIndex = 0;
             dgvPreview.Columns["NazivJela"].DisplayIndex = 1;
@@ -216,15 +238,39 @@ namespace SCVZ
 
         private void dgvPreview_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgvPreview.CurrentRow?.DataBoundItem is Meni meni)
-            {
-                dgvDetails.DataSource = meni.stavkeMenija;
-            }
-            else
+            if (dgvPreview.CurrentRow == null)
             {
                 return;
             }
-        }
+            if (dgvPreview.DataSource is List<Meni>)
+            {
+                if (dgvPreview.CurrentRow.DataBoundItem is Meni meni)
+                {
+                    dgvDetails.DataSource = meni.stavkeMenija;
+                }
+            }
+            else if (dgvPreview.DataSource is List<Zaposlenik>)
+            {
+                if (dgvPreview.CurrentRow.DataBoundItem is Zaposlenik zaposlenik)
+                {
+                    dgvDetails.DataSource = zaposlenik.Pozicija;
+                }
+            }
+            else if (dgvPreview.DataSource is List<Jelo>)
+            {
+                if (dgvPreview.CurrentRow.DataBoundItem is Jelo jelo)
+                {
+                    VrsteJela vrstaJela = MealTypeRepository.DajVrstaJela(jelo.IdVrstaJela);
 
+                    List<VrsteJela> vrstaJelaList = new List<VrsteJela> { vrstaJela };
+
+                    dgvDetails.DataSource = vrstaJelaList;
+                }
+            }
+            else
+            {
+                dgvDetails.DataSource = null;
+            }
+        }
     }
 }

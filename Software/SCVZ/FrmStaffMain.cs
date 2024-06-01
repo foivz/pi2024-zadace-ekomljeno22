@@ -129,38 +129,93 @@ namespace SCVZ
             var orders = OrderRepository.DajNarudzbe();
             dgvPreview.DataSource = orders;
 
+            dgvPreview.Columns["IdNarudzba"].HeaderText = "Id";
+            dgvPreview.Columns["DatumNarudzbe"].HeaderText = "Datum";
+            dgvPreview.Columns["IdZaposlenik"].HeaderText = "Zaposlenik";
+            dgvPreview.Columns["IdStudent"].HeaderText = "Student";
+
+            foreach (DataGridViewColumn column in dgvPreview.Columns)
+            {
+                column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            }
+
             dgvPreview.Columns["IdNarudzba"].DisplayIndex = 0;
             dgvPreview.Columns["DatumNarudzbe"].DisplayIndex = 1;
-            dgvPreview.Columns["IdMeni"].DisplayIndex = 2;
-            dgvPreview.Columns["IdZaposlenik"].DisplayIndex = 3;
-            dgvPreview.Columns["IdStudent"].DisplayIndex = 4;
+            dgvPreview.Columns["IdZaposlenik"].DisplayIndex = 2;
+            dgvPreview.Columns["IdStudent"].DisplayIndex = 3;
         }
-
         private void dgvPreview_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            dgvDetails.DataSource = null;
+            dgvStudent.DataSource = null;
+
             if (e.RowIndex >= 0)
             {
                 Narudzbe order = (Narudzbe)dgvPreview.CurrentRow.DataBoundItem;
 
-                Meni menu = MenuRepository.DajMeni(order.IdMeni);
-                Console.WriteLine($"Displaying details for Narudzbe.Meni ID: {order.IdMeni}");
-                
-
-                if (menu != null)
+                if (order != null)
                 {
-                    Console.WriteLine($"Displaying details for Menu ID: {menu.IdMeni}");
-                    dgvDetails.DataSource = menu.stavkeMenija;
-                    Student student = new Student();
-                    student= StudentRepository.DajStudenta(order.IdStudent.ToString());
-                    Console.WriteLine(student.Ime + " " + student.Prezime);
-                    dgvStudent.DataSource = new List<Student>{student};   
+                    Console.WriteLine($"Order found: {order.IdNarudzba}, Menu ID: {order.IdMeni}, Student ID: {order.IdStudent}");
+
+                    Meni menu = MenuRepository.DajMeni(order.IdMeni);
+                    if (menu != null)
+                    {
+                        Console.WriteLine($"Menu found: {menu.IdMeni}");
+                        dgvDetails.DataSource = menu.stavkeMenija;
+
+                        // Set AutoSizeMode after setting DataSource
+                        foreach (DataGridViewColumn column in dgvDetails.Columns)
+                        {
+                            column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("No menu details available");
+                        dgvDetails.DataSource = null;
+                    }
+
+                    // Ensure that the correct student ID is being used
+                    Console.WriteLine($"Fetching student with ID: {order.IdStudent}");
+                    Student student = StudentRepository.DajStudentaZaDGV(order.IdStudent.ToString());
+                    if (student != null)
+                    {
+                        Console.WriteLine($"Student found: {student.Ime} {student.Prezime}");
+                        dgvStudent.DataSource = new List<Student> { student };
+
+                        dgvStudent.Columns["BrojPoklonBodova"].Visible = false;
+                        dgvStudent.Columns["BrojKupona"].Visible = false;
+                        dgvStudent.Columns["Lozinka"].Visible = false;
+                        dgvStudent.Columns["IdKorisnik"].Visible = false;
+
+                        // Set AutoSizeMode after setting DataSource
+                        foreach (DataGridViewColumn column in dgvStudent.Columns)
+                        {
+                            column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("No student details available");
+                        dgvStudent.DataSource = null;
+                    }
                 }
                 else
                 {
-                    Console.WriteLine("No menu details available");
-                    dgvDetails.DataSource = null;
-                }         
+                    Console.WriteLine("Order is null.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Invalid row index.");
             }
         }
+
+
+
+
+
+
+
     }
 }

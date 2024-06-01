@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SCVZ.Models;
+using SCVZ.Repositories;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -65,6 +67,75 @@ namespace SCVZ
             FrmStudentMain frmStudentMain = new FrmStudentMain(JMBAG);
             frmStudentMain.Show();
             this.Close();
+        }
+
+        private void PokaziNarudzbe()
+        {
+            var orders = OrderRepository.DajNarudzbePoJMBAG(JMBAG); // Fetch orders for the current student
+            dgvPreview.DataSource = orders;
+
+            // Configure DataGridView columns
+            dgvPreview.Columns["IdNarudzba"].HeaderText = "Id";
+            dgvPreview.Columns["DatumNarudzbe"].HeaderText = "Datum";
+            dgvPreview.Columns["IdZaposlenik"].HeaderText = "Zaposlenik";
+            dgvPreview.Columns["IdStudent"].HeaderText = "Student";
+
+            dgvPreview.Columns["IdStudent"].Visible = false;
+            dgvPreview.Columns["IdZaposlenik"].Visible = false;
+
+
+            foreach (DataGridViewColumn column in dgvPreview.Columns)
+            {
+                column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            }
+            dgvPreview.Columns["IdNarudzba"].DisplayIndex = 0;
+            dgvPreview.Columns["DatumNarudzbe"].DisplayIndex = 1;
+            dgvPreview.Columns["IdMeni"].DisplayIndex = 2;
+            dgvPreview.Columns["IdZaposlenik"].DisplayIndex = 3;
+            dgvPreview.Columns["IdStudent"].DisplayIndex = 4;
+        }
+
+
+        private void FrmOrderHistory_Load(object sender, EventArgs e)
+        {
+            dgvPreview.DataSource = null;
+            PokaziNarudzbe();
+        }
+
+        private void dgvPreview_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                Narudzbe order = (Narudzbe)dgvPreview.CurrentRow.DataBoundItem;
+
+                Meni menu = MenuRepository.DajMeni(order.IdMeni);
+                Console.WriteLine($"Displaying details for Narudzbe.Meni ID: {order.IdMeni}");
+
+
+                if (menu != null)
+                {
+                    Console.WriteLine($"Displaying details for Menu ID: {menu.IdMeni}");
+                    dgvDetails.DataSource = menu.stavkeMenija;
+                    Recenzije recenzije = new Recenzije();
+                    recenzije = RatingsRepository.DajRecenzijuZaStudenta(order.IdStudent);
+                    dgvRatings.DataSource = new List<Recenzije> { recenzije };
+
+                    foreach (DataGridViewColumn column in dgvDetails.Columns)
+                    {
+                        column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    }
+
+                    foreach (DataGridViewColumn column in dgvRatings.Columns)
+                    {
+                        column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("No menu details available");
+                    dgvDetails.DataSource = null;
+                }
+            }
         }
     }
 }

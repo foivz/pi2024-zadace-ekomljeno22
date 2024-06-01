@@ -30,7 +30,7 @@ namespace SCVZ.Repositories
             return zaposlenik;
         }
 
-            public static Zaposlenik DajZaposlenikaByUsername(string korisnickoIme)
+        public static Zaposlenik DajZaposlenikaByUsername(string korisnickoIme)
             {
                 Zaposlenik zaposlenik = null;
 
@@ -51,7 +51,7 @@ namespace SCVZ.Repositories
                 return zaposlenik;
             }
 
-            public static List<Zaposlenik> DajZaposlenike()
+        public static List<Zaposlenik> DajZaposlenike()
         {
             var zaposlenici = new List<Zaposlenik>();
 
@@ -72,6 +72,30 @@ namespace SCVZ.Repositories
             DB.CloseConnection();
 
             return zaposlenici;
+        }
+
+        public static Zaposlenik GetRandomBlagajnik()
+        {
+            Zaposlenik zaposlenik = null;
+
+            string sql = @"
+        SELECT TOP 1 *
+        FROM Zaposlenici
+        WHERE Pozicija = 'Blagajnik'
+        ORDER BY NEWID();";
+
+            DB.OpenConnection();
+            var reader = DB.GetDataReader(sql);
+
+            if (reader.HasRows)
+            {
+                reader.Read();
+                zaposlenik = CreateObject(reader);
+                reader.Close();
+            }
+
+            DB.CloseConnection();
+            return zaposlenik;
         }
 
         private static Zaposlenik CreateObject(SqlDataReader reader)

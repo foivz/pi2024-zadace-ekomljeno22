@@ -31,6 +31,45 @@ namespace SCVZ.Repositories
             return narudzba;
         }
 
+        public static List<Narudzbe> GetOrdersSortedByMenuRating()
+        {
+            var orders = new List<Narudzbe>();
+            string sql = @"SELECT N.* FROM Narudzbe N INNER JOIN Meni M ON N.IdMeni = M.IdMeni INNER JOIN (
+            SELECT SR.IdMeni, AVG(R.Ocjena) AS AvgRating
+            FROM SkupRecenzija SR
+            INNER JOIN Recenzije R ON SR.IdRecenzija = R.IdRecenzija
+            GROUP BY SR.IdMeni) AvgRatings ON M.IdMeni = AvgRatings.IdMeni ORDER BY AvgRatings.AvgRating DESC;";
+
+            DB.OpenConnection();
+            var reader = DB.GetDataReader(sql);
+            while (reader.Read())
+            {
+                Narudzbe order = CreateObject(reader);
+                orders.Add(order);
+            }
+            reader.Close();
+            DB.CloseConnection();
+            return orders;
+        }
+
+        public static List<Narudzbe> GetOrdersSortedByPreparationTime()
+        {
+            var orders = new List<Narudzbe>();
+            string sql = @"SELECT N.* FROM Narudzbe N INNER JOIN Meni M ON N.IdMeni = M.IdMeni ORDER BY M.VrijemePripreme ASC;";
+
+            DB.OpenConnection();
+            var reader = DB.GetDataReader(sql);
+            while (reader.Read())
+            {
+                Narudzbe order = CreateObject(reader);
+                orders.Add(order);
+            }
+            reader.Close();
+            DB.CloseConnection();
+            return orders;
+        }
+
+
         public static List<Narudzbe> DajNarudzbe()
         {
             var narudzbe = new List<Narudzbe>();
@@ -52,6 +91,25 @@ namespace SCVZ.Repositories
             return narudzbe;
         }
 
+        public static int GetOrderCountForMenu(int menuId)
+        {
+            int orderCount = 0;
+            string sql = $"SELECT COUNT(*) FROM Narudzbe WHERE IdMeni = {menuId}";
+
+            DB.OpenConnection();
+
+            var reader = DB.GetDataReader(sql);
+            if (reader.HasRows)
+            {
+                reader.Read();
+                orderCount = reader.GetInt32(0);
+            }
+
+            reader.Close();
+            DB.CloseConnection();
+
+            return orderCount;
+        }
         public static int GetMenuIdForOrder(int orderId)
         {
             int menuId = -1;
@@ -195,6 +253,17 @@ namespace SCVZ.Repositories
             {
                 DB.OpenConnection();
                 newOrderId = (int)DB.GetScalar(sql);
+
+                string menuSql = $"SELECT VrijednostPoklonBodova FROM Meni WHERE IdMeni = {order.IdMeni}";
+                int vrijednostPoklonBodova = (int)DB.GetScalar(menuSql);
+
+                string studentSql = $"SELECT BrojPoklonBodova FROM Student WHERE IdStudent = {studentId}";
+                int brojPoklonBodova = (int)DB.GetScalar(studentSql);
+
+                int updatedBrojPoklonBodova = brojPoklonBodova + vrijednostPoklonBodova;
+
+                string updateStudentSql = $"UPDATE Student SET BrojPoklonBodova = {updatedBrojPoklonBodova} WHERE IdStudent = {studentId}";
+                DB.ExecuteCommand(updateStudentSql);
             }
             catch (Exception ex)
             {
@@ -207,5 +276,6 @@ namespace SCVZ.Repositories
 
             return newOrderId;
         }
+
     }
 }

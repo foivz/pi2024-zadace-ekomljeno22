@@ -35,18 +35,22 @@
             this.imgLogo = new System.Windows.Forms.PictureBox();
             this.pnlFooter = new System.Windows.Forms.Panel();
             this.pnlSidebar = new System.Windows.Forms.Panel();
-            this.btnFilterToday = new System.Windows.Forms.Button();
             this.btnGenerateReport = new System.Windows.Forms.Button();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.lblConversion = new System.Windows.Forms.Label();
-            this.btnFilterAllTime = new System.Windows.Forms.Button();
-            this.btnFilterThisMonth = new System.Windows.Forms.Button();
-            this.btnFilterThisWeek = new System.Windows.Forms.Button();
             this.lblSort = new System.Windows.Forms.Label();
             this.btnSortOrderNbr = new System.Windows.Forms.Button();
             this.btnSortTotalRating = new System.Windows.Forms.Button();
             this.btnSortPreparationTime = new System.Windows.Forms.Button();
             this.pnlFilters = new System.Windows.Forms.Panel();
+            this.lblCount = new System.Windows.Forms.Label();
+            this.lblAverage = new System.Windows.Forms.Label();
+            this.btnReset = new System.Windows.Forms.Button();
+            this.txtCount = new System.Windows.Forms.TextBox();
+            this.dgvMenuType = new System.Windows.Forms.DataGridView();
+            this.dgvMealType = new System.Windows.Forms.DataGridView();
+            this.txtAvg = new System.Windows.Forms.TextBox();
+            this.dgvMenu = new System.Windows.Forms.DataGridView();
             this.dgvRatings = new System.Windows.Forms.DataGridView();
             this.dgvDetails = new System.Windows.Forms.DataGridView();
             this.dgvPreview = new System.Windows.Forms.DataGridView();
@@ -58,6 +62,9 @@
             this.pnlSidebar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.pnlFilters.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMenuType)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMealType)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMenu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRatings)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPreview)).BeginInit();
@@ -132,28 +139,14 @@
             // 
             this.pnlSidebar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.pnlSidebar.BackColor = System.Drawing.Color.White;
-            this.pnlSidebar.Controls.Add(this.btnFilterToday);
             this.pnlSidebar.Controls.Add(this.btnGenerateReport);
             this.pnlSidebar.Controls.Add(this.numericUpDown1);
             this.pnlSidebar.Controls.Add(this.lblConversion);
-            this.pnlSidebar.Controls.Add(this.btnFilterAllTime);
-            this.pnlSidebar.Controls.Add(this.btnFilterThisMonth);
-            this.pnlSidebar.Controls.Add(this.btnFilterThisWeek);
             this.pnlSidebar.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlSidebar.Location = new System.Drawing.Point(0, 165);
             this.pnlSidebar.Name = "pnlSidebar";
             this.pnlSidebar.Size = new System.Drawing.Size(395, 778);
             this.pnlSidebar.TabIndex = 18;
-            // 
-            // btnFilterToday
-            // 
-            this.btnFilterToday.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFilterToday.Location = new System.Drawing.Point(70, 31);
-            this.btnFilterToday.Name = "btnFilterToday";
-            this.btnFilterToday.Size = new System.Drawing.Size(227, 67);
-            this.btnFilterToday.TabIndex = 0;
-            this.btnFilterToday.Text = "Danas";
-            this.btnFilterToday.UseVisualStyleBackColor = true;
             // 
             // btnGenerateReport
             // 
@@ -164,6 +157,7 @@
             this.btnGenerateReport.TabIndex = 6;
             this.btnGenerateReport.Text = "Generiraj izvještaj";
             this.btnGenerateReport.UseVisualStyleBackColor = true;
+            this.btnGenerateReport.Click += new System.EventHandler(this.btnGenerateReport_Click);
             // 
             // numericUpDown1
             // 
@@ -187,38 +181,6 @@
             this.lblConversion.Size = new System.Drawing.Size(275, 20);
             this.lblConversion.TabIndex = 4;
             this.lblConversion.Text = "Konverzija poklon bodova u kupone:";
-            // 
-            // btnFilterAllTime
-            // 
-            this.btnFilterAllTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFilterAllTime.Location = new System.Drawing.Point(70, 348);
-            this.btnFilterAllTime.Name = "btnFilterAllTime";
-            this.btnFilterAllTime.Size = new System.Drawing.Size(227, 67);
-            this.btnFilterAllTime.TabIndex = 3;
-            this.btnFilterAllTime.Text = "Cijelo vrijeme";
-            this.btnFilterAllTime.UseVisualStyleBackColor = true;
-            this.btnFilterAllTime.Click += new System.EventHandler(this.btnFilterAllTime_Click);
-            // 
-            // btnFilterThisMonth
-            // 
-            this.btnFilterThisMonth.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFilterThisMonth.Location = new System.Drawing.Point(70, 244);
-            this.btnFilterThisMonth.Name = "btnFilterThisMonth";
-            this.btnFilterThisMonth.Size = new System.Drawing.Size(227, 67);
-            this.btnFilterThisMonth.TabIndex = 2;
-            this.btnFilterThisMonth.Text = "Ovaj mjesec";
-            this.btnFilterThisMonth.UseVisualStyleBackColor = true;
-            // 
-            // btnFilterThisWeek
-            // 
-            this.btnFilterThisWeek.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFilterThisWeek.Location = new System.Drawing.Point(70, 138);
-            this.btnFilterThisWeek.Name = "btnFilterThisWeek";
-            this.btnFilterThisWeek.Size = new System.Drawing.Size(227, 67);
-            this.btnFilterThisWeek.TabIndex = 1;
-            this.btnFilterThisWeek.Text = "Ovaj tjedan";
-            this.btnFilterThisWeek.UseVisualStyleBackColor = true;
-            this.btnFilterThisWeek.Click += new System.EventHandler(this.btnFilterThisWeek_Click);
             // 
             // lblSort
             // 
@@ -250,6 +212,7 @@
             this.btnSortTotalRating.TabIndex = 1;
             this.btnSortTotalRating.Text = "ukupnoj ocjeni";
             this.btnSortTotalRating.UseVisualStyleBackColor = true;
+            this.btnSortTotalRating.Click += new System.EventHandler(this.btnSortTotalRating_Click);
             // 
             // btnSortPreparationTime
             // 
@@ -260,9 +223,18 @@
             this.btnSortPreparationTime.TabIndex = 3;
             this.btnSortPreparationTime.Text = "vremenu pripreme";
             this.btnSortPreparationTime.UseVisualStyleBackColor = true;
+            this.btnSortPreparationTime.Click += new System.EventHandler(this.btnSortPreparationTime_Click);
             // 
             // pnlFilters
             // 
+            this.pnlFilters.Controls.Add(this.lblCount);
+            this.pnlFilters.Controls.Add(this.lblAverage);
+            this.pnlFilters.Controls.Add(this.btnReset);
+            this.pnlFilters.Controls.Add(this.txtCount);
+            this.pnlFilters.Controls.Add(this.dgvMenuType);
+            this.pnlFilters.Controls.Add(this.dgvMealType);
+            this.pnlFilters.Controls.Add(this.txtAvg);
+            this.pnlFilters.Controls.Add(this.dgvMenu);
             this.pnlFilters.Controls.Add(this.dgvRatings);
             this.pnlFilters.Controls.Add(this.dgvDetails);
             this.pnlFilters.Controls.Add(this.dgvPreview);
@@ -276,25 +248,106 @@
             this.pnlFilters.Size = new System.Drawing.Size(1902, 868);
             this.pnlFilters.TabIndex = 19;
             // 
+            // lblCount
+            // 
+            this.lblCount.AutoSize = true;
+            this.lblCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCount.Location = new System.Drawing.Point(1257, 657);
+            this.lblCount.Name = "lblCount";
+            this.lblCount.Size = new System.Drawing.Size(172, 20);
+            this.lblCount.TabIndex = 15;
+            this.lblCount.Text = "Broj naručenih menija";
+            // 
+            // lblAverage
+            // 
+            this.lblAverage.AutoSize = true;
+            this.lblAverage.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAverage.Location = new System.Drawing.Point(1156, 613);
+            this.lblAverage.Name = "lblAverage";
+            this.lblAverage.Size = new System.Drawing.Size(275, 20);
+            this.lblAverage.TabIndex = 14;
+            this.lblAverage.Text = "Prosječna ocjena odabranog menija";
+            // 
+            // btnReset
+            // 
+            this.btnReset.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReset.Location = new System.Drawing.Point(935, 607);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(162, 40);
+            this.btnReset.TabIndex = 13;
+            this.btnReset.Text = "Očisti";
+            this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
+            // 
+            // txtCount
+            // 
+            this.txtCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCount.Location = new System.Drawing.Point(1434, 653);
+            this.txtCount.Name = "txtCount";
+            this.txtCount.ReadOnly = true;
+            this.txtCount.Size = new System.Drawing.Size(100, 30);
+            this.txtCount.TabIndex = 12;
+            // 
+            // dgvMenuType
+            // 
+            this.dgvMenuType.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvMenuType.Location = new System.Drawing.Point(935, 205);
+            this.dgvMenuType.Name = "dgvMenuType";
+            this.dgvMenuType.RowHeadersWidth = 51;
+            this.dgvMenuType.RowTemplate.Height = 24;
+            this.dgvMenuType.Size = new System.Drawing.Size(599, 126);
+            this.dgvMenuType.TabIndex = 11;
+            // 
+            // dgvMealType
+            // 
+            this.dgvMealType.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvMealType.Location = new System.Drawing.Point(935, 475);
+            this.dgvMealType.Name = "dgvMealType";
+            this.dgvMealType.RowHeadersWidth = 51;
+            this.dgvMealType.RowTemplate.Height = 24;
+            this.dgvMealType.Size = new System.Drawing.Size(599, 126);
+            this.dgvMealType.TabIndex = 10;
+            // 
+            // txtAvg
+            // 
+            this.txtAvg.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAvg.Location = new System.Drawing.Point(1434, 607);
+            this.txtAvg.Name = "txtAvg";
+            this.txtAvg.ReadOnly = true;
+            this.txtAvg.Size = new System.Drawing.Size(100, 30);
+            this.txtAvg.TabIndex = 9;
+            this.txtAvg.TextChanged += new System.EventHandler(this.txtAvg_TextChanged);
+            // 
+            // dgvMenu
+            // 
+            this.dgvMenu.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvMenu.Location = new System.Drawing.Point(935, 67);
+            this.dgvMenu.Name = "dgvMenu";
+            this.dgvMenu.RowHeadersWidth = 51;
+            this.dgvMenu.RowTemplate.Height = 24;
+            this.dgvMenu.Size = new System.Drawing.Size(599, 132);
+            this.dgvMenu.TabIndex = 8;
+            // 
             // dgvRatings
             // 
             this.dgvRatings.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvRatings.Location = new System.Drawing.Point(1480, 67);
+            this.dgvRatings.Location = new System.Drawing.Point(1540, 67);
             this.dgvRatings.Name = "dgvRatings";
             this.dgvRatings.RowHeadersWidth = 51;
             this.dgvRatings.RowTemplate.Height = 24;
-            this.dgvRatings.Size = new System.Drawing.Size(419, 705);
+            this.dgvRatings.Size = new System.Drawing.Size(359, 705);
             this.dgvRatings.TabIndex = 7;
             // 
             // dgvDetails
             // 
             this.dgvDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvDetails.Location = new System.Drawing.Point(1050, 67);
+            this.dgvDetails.Location = new System.Drawing.Point(935, 337);
             this.dgvDetails.Name = "dgvDetails";
             this.dgvDetails.RowHeadersWidth = 51;
             this.dgvDetails.RowTemplate.Height = 24;
-            this.dgvDetails.Size = new System.Drawing.Size(419, 705);
+            this.dgvDetails.Size = new System.Drawing.Size(599, 132);
             this.dgvDetails.TabIndex = 6;
+            this.dgvDetails.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDetails_CellClick);
             // 
             // dgvPreview
             // 
@@ -303,7 +356,7 @@
             this.dgvPreview.Name = "dgvPreview";
             this.dgvPreview.RowHeadersWidth = 51;
             this.dgvPreview.RowTemplate.Height = 24;
-            this.dgvPreview.Size = new System.Drawing.Size(643, 705);
+            this.dgvPreview.Size = new System.Drawing.Size(528, 705);
             this.dgvPreview.TabIndex = 5;
             this.dgvPreview.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPreview_CellClick);
             // 
@@ -332,6 +385,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.pnlFilters.ResumeLayout(false);
             this.pnlFilters.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMenuType)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMealType)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMenu)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRatings)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetails)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPreview)).EndInit();
@@ -348,12 +404,8 @@
         private System.Windows.Forms.PictureBox imgLogo;
         private System.Windows.Forms.Panel pnlFooter;
         private System.Windows.Forms.Panel pnlSidebar;
-        private System.Windows.Forms.Button btnFilterThisMonth;
-        private System.Windows.Forms.Button btnFilterThisWeek;
-        private System.Windows.Forms.Button btnFilterToday;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.Label lblConversion;
-        private System.Windows.Forms.Button btnFilterAllTime;
         private System.Windows.Forms.Button btnGenerateReport;
         private System.Windows.Forms.Label lblSort;
         private System.Windows.Forms.Button btnSortOrderNbr;
@@ -363,5 +415,13 @@
         private System.Windows.Forms.DataGridView dgvPreview;
         private System.Windows.Forms.DataGridView dgvDetails;
         private System.Windows.Forms.DataGridView dgvRatings;
+        private System.Windows.Forms.DataGridView dgvMenu;
+        private System.Windows.Forms.TextBox txtAvg;
+        private System.Windows.Forms.DataGridView dgvMealType;
+        private System.Windows.Forms.DataGridView dgvMenuType;
+        private System.Windows.Forms.TextBox txtCount;
+        private System.Windows.Forms.Button btnReset;
+        private System.Windows.Forms.Label lblCount;
+        private System.Windows.Forms.Label lblAverage;
     }
 }

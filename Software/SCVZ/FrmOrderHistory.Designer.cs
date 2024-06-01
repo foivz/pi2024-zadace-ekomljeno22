@@ -29,16 +29,22 @@
         private void InitializeComponent()
         {
             this.pnlNav = new System.Windows.Forms.Panel();
-            this.pnlLogo = new System.Windows.Forms.Panel();
-            this.pnlFooter = new System.Windows.Forms.Panel();
             this.imgHome = new System.Windows.Forms.PictureBox();
             this.imgBack = new System.Windows.Forms.PictureBox();
+            this.pnlLogo = new System.Windows.Forms.Panel();
             this.imgLogo = new System.Windows.Forms.PictureBox();
+            this.pnlFooter = new System.Windows.Forms.Panel();
+            this.dgvPreview = new System.Windows.Forms.DataGridView();
+            this.dgvDetails = new System.Windows.Forms.DataGridView();
+            this.dgvRatings = new System.Windows.Forms.DataGridView();
             this.pnlNav.SuspendLayout();
-            this.pnlLogo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgHome)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgBack)).BeginInit();
+            this.pnlLogo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgLogo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPreview)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDetails)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvRatings)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlNav
@@ -53,29 +59,6 @@
             this.pnlNav.Size = new System.Drawing.Size(1902, 80);
             this.pnlNav.TabIndex = 12;
             this.pnlNav.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlNav_Paint);
-            // 
-            // pnlLogo
-            // 
-            this.pnlLogo.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.pnlLogo.BackColor = System.Drawing.Color.Black;
-            this.pnlLogo.Controls.Add(this.imgLogo);
-            this.pnlLogo.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlLogo.Location = new System.Drawing.Point(0, 0);
-            this.pnlLogo.Name = "pnlLogo";
-            this.pnlLogo.Size = new System.Drawing.Size(1902, 85);
-            this.pnlLogo.TabIndex = 11;
-            this.pnlLogo.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlLogo_Paint);
-            // 
-            // pnlFooter
-            // 
-            this.pnlFooter.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.pnlFooter.BackColor = System.Drawing.Color.White;
-            this.pnlFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlFooter.Location = new System.Drawing.Point(0, 943);
-            this.pnlFooter.Name = "pnlFooter";
-            this.pnlFooter.Size = new System.Drawing.Size(1902, 90);
-            this.pnlFooter.TabIndex = 10;
-            this.pnlFooter.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlFooter_Paint);
             // 
             // imgHome
             // 
@@ -97,6 +80,18 @@
             this.imgBack.TabStop = false;
             this.imgBack.Click += new System.EventHandler(this.imgBack_Click);
             // 
+            // pnlLogo
+            // 
+            this.pnlLogo.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.pnlLogo.BackColor = System.Drawing.Color.Black;
+            this.pnlLogo.Controls.Add(this.imgLogo);
+            this.pnlLogo.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlLogo.Location = new System.Drawing.Point(0, 0);
+            this.pnlLogo.Name = "pnlLogo";
+            this.pnlLogo.Size = new System.Drawing.Size(1902, 85);
+            this.pnlLogo.TabIndex = 11;
+            this.pnlLogo.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlLogo_Paint);
+            // 
             // imgLogo
             // 
             this.imgLogo.Image = global::SCVZ.Properties.Resources.scvz_logo;
@@ -106,11 +101,56 @@
             this.imgLogo.TabIndex = 0;
             this.imgLogo.TabStop = false;
             // 
+            // pnlFooter
+            // 
+            this.pnlFooter.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.pnlFooter.BackColor = System.Drawing.Color.White;
+            this.pnlFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnlFooter.Location = new System.Drawing.Point(0, 943);
+            this.pnlFooter.Name = "pnlFooter";
+            this.pnlFooter.Size = new System.Drawing.Size(1902, 90);
+            this.pnlFooter.TabIndex = 10;
+            this.pnlFooter.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlFooter_Paint);
+            // 
+            // dgvPreview
+            // 
+            this.dgvPreview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPreview.Location = new System.Drawing.Point(13, 171);
+            this.dgvPreview.Name = "dgvPreview";
+            this.dgvPreview.RowHeadersWidth = 51;
+            this.dgvPreview.RowTemplate.Height = 24;
+            this.dgvPreview.Size = new System.Drawing.Size(877, 766);
+            this.dgvPreview.TabIndex = 13;
+            this.dgvPreview.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPreview_CellClick);
+            // 
+            // dgvDetails
+            // 
+            this.dgvDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDetails.Location = new System.Drawing.Point(896, 171);
+            this.dgvDetails.Name = "dgvDetails";
+            this.dgvDetails.RowHeadersWidth = 51;
+            this.dgvDetails.RowTemplate.Height = 24;
+            this.dgvDetails.Size = new System.Drawing.Size(994, 167);
+            this.dgvDetails.TabIndex = 14;
+            // 
+            // dgvRatings
+            // 
+            this.dgvRatings.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvRatings.Location = new System.Drawing.Point(896, 344);
+            this.dgvRatings.Name = "dgvRatings";
+            this.dgvRatings.RowHeadersWidth = 51;
+            this.dgvRatings.RowTemplate.Height = 24;
+            this.dgvRatings.Size = new System.Drawing.Size(994, 593);
+            this.dgvRatings.TabIndex = 15;
+            // 
             // FrmOrderHistory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(1902, 1033);
+            this.Controls.Add(this.dgvRatings);
+            this.Controls.Add(this.dgvDetails);
+            this.Controls.Add(this.dgvPreview);
             this.Controls.Add(this.pnlNav);
             this.Controls.Add(this.pnlLogo);
             this.Controls.Add(this.pnlFooter);
@@ -118,11 +158,15 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmOrderHistory";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.FrmOrderHistory_Load);
             this.pnlNav.ResumeLayout(false);
-            this.pnlLogo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.imgHome)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgBack)).EndInit();
+            this.pnlLogo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.imgLogo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPreview)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDetails)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvRatings)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -135,5 +179,8 @@
         private System.Windows.Forms.Panel pnlLogo;
         private System.Windows.Forms.PictureBox imgLogo;
         private System.Windows.Forms.Panel pnlFooter;
+        private System.Windows.Forms.DataGridView dgvPreview;
+        private System.Windows.Forms.DataGridView dgvDetails;
+        private System.Windows.Forms.DataGridView dgvRatings;
     }
 }

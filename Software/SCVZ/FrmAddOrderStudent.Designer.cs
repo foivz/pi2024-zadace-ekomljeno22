@@ -31,15 +31,15 @@
             this.components = new System.ComponentModel.Container();
             this.pnlNav = new System.Windows.Forms.Panel();
             this.lblNewOrder = new System.Windows.Forms.Label();
-            this.txtIdMenu = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.txtOrderPrice = new System.Windows.Forms.TextBox();
-            this.txtOrderServer = new System.Windows.Forms.TextBox();
-            this.txtOrderId = new System.Windows.Forms.TextBox();
             this.btnOrder = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.txtStudentId = new System.Windows.Forms.TextBox();
+            this.txtIdMenu = new System.Windows.Forms.TextBox();
+            this.btnChooseMenu = new System.Windows.Forms.Button();
+            this.txtOrderPrice = new System.Windows.Forms.TextBox();
+            this.txtOrderServer = new System.Windows.Forms.TextBox();
+            this.txtOrderId = new System.Windows.Forms.TextBox();
             this.pnlNav.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -65,53 +65,6 @@
             this.lblNewOrder.TabIndex = 0;
             this.lblNewOrder.Text = "Nova narudžba";
             // 
-            // txtIdMenu
-            // 
-            this.txtIdMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtIdMenu.Location = new System.Drawing.Point(135, 237);
-            this.txtIdMenu.Name = "txtIdMenu";
-            this.txtIdMenu.ReadOnly = true;
-            this.txtIdMenu.Size = new System.Drawing.Size(227, 34);
-            this.txtIdMenu.TabIndex = 43;
-            // 
-            // button1
-            // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(135, 176);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(227, 30);
-            this.button1.TabIndex = 42;
-            this.button1.Text = "Odaberi Meni";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // txtOrderPrice
-            // 
-            this.txtOrderPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtOrderPrice.Location = new System.Drawing.Point(135, 301);
-            this.txtOrderPrice.Name = "txtOrderPrice";
-            this.txtOrderPrice.ReadOnly = true;
-            this.txtOrderPrice.Size = new System.Drawing.Size(227, 30);
-            this.txtOrderPrice.TabIndex = 41;
-            // 
-            // txtOrderServer
-            // 
-            this.txtOrderServer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtOrderServer.Location = new System.Drawing.Point(135, 362);
-            this.txtOrderServer.Name = "txtOrderServer";
-            this.txtOrderServer.ReadOnly = true;
-            this.txtOrderServer.Size = new System.Drawing.Size(227, 30);
-            this.txtOrderServer.TabIndex = 40;
-            // 
-            // txtOrderId
-            // 
-            this.txtOrderId.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtOrderId.Location = new System.Drawing.Point(135, 114);
-            this.txtOrderId.Name = "txtOrderId";
-            this.txtOrderId.ReadOnly = true;
-            this.txtOrderId.Size = new System.Drawing.Size(227, 30);
-            this.txtOrderId.TabIndex = 39;
-            // 
             // btnOrder
             // 
             this.btnOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -121,6 +74,7 @@
             this.btnOrder.TabIndex = 38;
             this.btnOrder.Text = "Naruči";
             this.btnOrder.UseVisualStyleBackColor = true;
+            this.btnOrder.Click += new System.EventHandler(this.btnOrder_Click);
             // 
             // btnCancel
             // 
@@ -131,6 +85,7 @@
             this.btnCancel.TabIndex = 37;
             this.btnCancel.Text = "Odustani";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // contextMenuStrip1
             // 
@@ -141,11 +96,58 @@
             // txtStudentId
             // 
             this.txtStudentId.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtStudentId.Location = new System.Drawing.Point(135, 421);
+            this.txtStudentId.Location = new System.Drawing.Point(143, 413);
             this.txtStudentId.Name = "txtStudentId";
             this.txtStudentId.ReadOnly = true;
             this.txtStudentId.Size = new System.Drawing.Size(227, 34);
-            this.txtStudentId.TabIndex = 45;
+            this.txtStudentId.TabIndex = 57;
+            // 
+            // txtIdMenu
+            // 
+            this.txtIdMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtIdMenu.Location = new System.Drawing.Point(143, 229);
+            this.txtIdMenu.Name = "txtIdMenu";
+            this.txtIdMenu.ReadOnly = true;
+            this.txtIdMenu.Size = new System.Drawing.Size(227, 34);
+            this.txtIdMenu.TabIndex = 56;
+            // 
+            // btnChooseMenu
+            // 
+            this.btnChooseMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnChooseMenu.Location = new System.Drawing.Point(143, 168);
+            this.btnChooseMenu.Name = "btnChooseMenu";
+            this.btnChooseMenu.Size = new System.Drawing.Size(227, 30);
+            this.btnChooseMenu.TabIndex = 55;
+            this.btnChooseMenu.Text = "Odaberi Meni";
+            this.btnChooseMenu.UseVisualStyleBackColor = true;
+            this.btnChooseMenu.Click += new System.EventHandler(this.btnChooseMenu_Click);
+            // 
+            // txtOrderPrice
+            // 
+            this.txtOrderPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtOrderPrice.Location = new System.Drawing.Point(143, 293);
+            this.txtOrderPrice.Name = "txtOrderPrice";
+            this.txtOrderPrice.ReadOnly = true;
+            this.txtOrderPrice.Size = new System.Drawing.Size(227, 30);
+            this.txtOrderPrice.TabIndex = 54;
+            // 
+            // txtOrderServer
+            // 
+            this.txtOrderServer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtOrderServer.Location = new System.Drawing.Point(143, 354);
+            this.txtOrderServer.Name = "txtOrderServer";
+            this.txtOrderServer.ReadOnly = true;
+            this.txtOrderServer.Size = new System.Drawing.Size(227, 30);
+            this.txtOrderServer.TabIndex = 53;
+            // 
+            // txtOrderId
+            // 
+            this.txtOrderId.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtOrderId.Location = new System.Drawing.Point(143, 106);
+            this.txtOrderId.Name = "txtOrderId";
+            this.txtOrderId.ReadOnly = true;
+            this.txtOrderId.Size = new System.Drawing.Size(227, 30);
+            this.txtOrderId.TabIndex = 52;
             // 
             // FrmAddOrderStudent
             // 
@@ -153,12 +155,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(512, 553);
             this.Controls.Add(this.txtStudentId);
-            this.Controls.Add(this.pnlNav);
             this.Controls.Add(this.txtIdMenu);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnChooseMenu);
             this.Controls.Add(this.txtOrderPrice);
             this.Controls.Add(this.txtOrderServer);
             this.Controls.Add(this.txtOrderId);
+            this.Controls.Add(this.pnlNav);
             this.Controls.Add(this.btnOrder);
             this.Controls.Add(this.btnCancel);
             this.Name = "FrmAddOrderStudent";
@@ -174,14 +176,14 @@
 
         private System.Windows.Forms.Panel pnlNav;
         private System.Windows.Forms.Label lblNewOrder;
-        private System.Windows.Forms.TextBox txtIdMenu;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox txtOrderPrice;
-        private System.Windows.Forms.TextBox txtOrderServer;
-        private System.Windows.Forms.TextBox txtOrderId;
         private System.Windows.Forms.Button btnOrder;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.TextBox txtStudentId;
+        private System.Windows.Forms.TextBox txtIdMenu;
+        private System.Windows.Forms.Button btnChooseMenu;
+        private System.Windows.Forms.TextBox txtOrderPrice;
+        private System.Windows.Forms.TextBox txtOrderServer;
+        private System.Windows.Forms.TextBox txtOrderId;
     }
 }

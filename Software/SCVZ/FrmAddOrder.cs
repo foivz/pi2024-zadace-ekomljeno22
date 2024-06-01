@@ -38,14 +38,26 @@ namespace SCVZ
         {
             try
             {
+                if (randomStudent != null)
+                {
+                    txtStudentId.Text = $"{randomStudent.Ime} {randomStudent.Prezime}";
+                }
+                else
+                {
+                    txtStudentId.Text = "No student found";
+                }
+
+                int idStudent = randomStudent.IdStudent;
+
                 Narudzbe newOrder = new Narudzbe
                 {
                     DatumNarudzbe = DateTime.Now,
                     IdMeni = int.Parse(txtIdMenu.Text),
-                    IdZaposlenik = GetEmployeeIdByUsername(enteredUsername)
+                    IdZaposlenik = GetEmployeeIdByUsername(enteredUsername),
+                    IdStudent = idStudent
                 };
 
-                int newOrderId = OrderRepository.InsertOrder(newOrder, randomStudent != null ? randomStudent.IdStudent : -1);
+                int newOrderId = OrderRepository.InsertOrder(newOrder, idStudent);
 
                 if (newOrderId != -1)
                 {
@@ -71,16 +83,12 @@ namespace SCVZ
             }
         }
 
+
+
         private int GetEmployeeIdByUsername(string username)
         {
             Zaposlenik employee = StaffRepository.DajZaposlenikaByUsername(username);
             return (employee != null) ? employee.IdZaposlenik : 0;
-        }
-
-        private int GetStudentIdByUsername(string JMBAG)
-        {
-            Student student = StudentRepository.DajStudentaByJMBAG(JMBAG);
-            return (student != null) ? student.IdStudent : 0;
         }
 
         private void PrikaziSljedecegId()

@@ -117,7 +117,7 @@ namespace SCVZ
 
         private void btnOrderStudent_Click(object sender, EventArgs e)
         {
-            FrmAddOrderStudent form2 = new FrmAddOrderStudent();
+            FrmAddOrderStudent form2 = new FrmAddOrderStudent(JMBAG);
             form2.Show();
         }
 
@@ -139,14 +139,82 @@ namespace SCVZ
         {
             dgvStudentOrders.DataSource = null;
             PokaziSadasnjeNarudzbe();
+
             dgvPreview.DataSource = null;
             PokaziMenije();
+
+            Student student = StudentRepository.DajStudentaByJMBAG(JMBAG);
+            FillStudentTable(student);
+        }
+
+        private void FillStudentTable(Student student)
+        {
+            tblStudent.Controls.Clear();
+            tblStudent.RowCount = 0;
+
+            tblStudent.AutoSize = true;
+
+            if (student != null)
+            {
+                AddRowToTable("Ime", student.Ime);
+                AddRowToTable("Prezime", student.Prezime);
+                AddRowToTable("JMBAG", student.JMBAG);
+                AddRowToTable("Poklon bodovi", student.BrojPoklonBodova.ToString());
+                AddRowToTable("Kuponi", student.BrojKupona.ToString());
+
+                tblStudent.AutoSize = true;
+                tblStudent.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
+            }
+            else
+            {
+                MessageBox.Show("Student not found!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void AddRowToTable(string label, string value)
+        {
+            tblStudent.RowCount++;
+            var lblProperty = new Label
+            {
+                Text = label,
+                Anchor = AnchorStyles.Left,
+                AutoSize = true,
+                Font = new Font("Arial", 10, FontStyle.Bold),
+                ForeColor = Color.Blue,
+                Padding = new Padding(5)
+            };
+
+            var lblValue = new Label
+            {
+                Text = value,
+                Anchor = AnchorStyles.Left,
+                AutoSize = true,
+                Font = new Font("Arial", 10, FontStyle.Regular),
+                ForeColor = Color.Black,
+                Padding = new Padding(5)
+            };
+            tblStudent.Controls.Add(lblProperty, 0, tblStudent.RowCount - 1);
+            tblStudent.Controls.Add(lblValue, 1, tblStudent.RowCount - 1);
         }
 
         private void PokaziSadasnjeNarudzbe()
         {
             var orders = OrderRepository.DajNarudzbePoJMBAG(JMBAG);
             dgvStudentOrders.DataSource = orders;
+
+            dgvStudentOrders.Columns["IdNarudzba"].HeaderText = "Id";
+            dgvStudentOrders.Columns["DatumNarudzbe"].HeaderText = "Datum";
+            dgvStudentOrders.Columns["IdMeni"].HeaderText = "IdMeni";
+            dgvStudentOrders.Columns["IdZaposlenik"].HeaderText = "Zaposlenik";
+            dgvStudentOrders.Columns["IdStudent"].HeaderText = "Student";
+
+            foreach (DataGridViewColumn column in dgvStudentOrders.Columns)
+            {
+                column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            }
+
+            dgvStudentOrders.Columns["IdZaposlenik"].Visible = false;
+            dgvStudentOrders.Columns["IdStudent"].Visible = false;
 
             dgvStudentOrders.Columns["IdNarudzba"].DisplayIndex = 0;
             dgvStudentOrders.Columns["DatumNarudzbe"].DisplayIndex = 1;
@@ -172,6 +240,16 @@ namespace SCVZ
             var meni = MenuRepository.DajMenije();
             dgvPreview.DataSource = meni;
 
+            dgvPreview.Columns["IdMeni"].HeaderText = "Id";
+            dgvPreview.Columns["CijenaMenija"].HeaderText = "Cijena";
+            dgvPreview.Columns["IdVrstaMenija"].HeaderText = "Vrsta menija";
+            dgvPreview.Columns["VrijednostPoklonBodova"].HeaderText = "Broj poklon bodova";
+
+            foreach (DataGridViewColumn column in dgvPreview.Columns)
+            {
+                column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            }
+
             dgvPreview.Columns["IdMeni"].DisplayIndex = 0;
             dgvPreview.Columns["CijenaMenija"].DisplayIndex = 1;
             dgvPreview.Columns["IdVrstaMenija"].DisplayIndex = 2;
@@ -188,9 +266,19 @@ namespace SCVZ
         {
             Meni meni = (Meni)dgvPreview.CurrentRow.DataBoundItem;
             dgvDetails.DataSource = meni.stavkeMenija;
+
+            foreach (DataGridViewColumn column in dgvDetails.Columns)
+            {
+                column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            }
         }
 
         private void lblMenuTitle_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvDetails_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

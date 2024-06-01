@@ -30,6 +30,32 @@ namespace SCVZ.Repositories
             return vrstaMenija;
         }
 
+        public static List<VrstaMenija> GetMenuTypesForMenu(int menuId)
+        {
+            List<VrstaMenija> menuTypes = new List<VrstaMenija>();
+
+            string sql = $"SELECT * FROM VrstaMenija WHERE IdVrstaMenija IN (SELECT IdVrstaMenija FROM Meni WHERE IdMeni = {menuId})";
+
+            DB.OpenConnection();
+
+            var reader = DB.GetDataReader(sql);
+            while (reader.Read())
+            {
+                VrstaMenija menuType = new VrstaMenija
+                {
+                    IdVrstaMenija = Convert.ToInt32(reader["IdVrstaMenija"]),
+                    NazivVrstaMenija = reader["NazivVrstaMenija"].ToString()
+                };
+                menuTypes.Add(menuType);
+            }
+
+            reader.Close();
+            DB.CloseConnection();
+
+            return menuTypes;
+        }
+
+
         public static List<VrstaMenija> DajVrsteMenija()
         {
             var vrsteMenijaList = new List<VrstaMenija>();

@@ -15,11 +15,13 @@ namespace SCVZ
     public partial class FrmAddOrderStudent : Form
     {
         private int nextIdOrder;
+        private string JMBAG { get; set; }
 
-        public FrmAddOrderStudent()
+        public FrmAddOrderStudent(string jMBAG)
         {
             InitializeComponent();
             PrikaziSljedecegId();
+            JMBAG = jMBAG;
         }
         private void PrikaziSljedecegId()
         {
@@ -45,6 +47,66 @@ namespace SCVZ
             Meni selectedMenu = MenuRepository.DajMeni(menuId);
             txtIdMenu.Text = menuId.ToString();
             txtOrderPrice.Text = selectedMenu.CijenaMenija.ToString();
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnOrder_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string jmbag = txtStudentId.Text;
+                Student student = StudentRepository.DajStudentaByJMBAG(jmbag);
+
+                if (student == null)
+                {
+                    MessageBox.Show("No student found with the provided JMBAG.");
+                    return;
+                }
+
+                Zaposlenik randomBlagajnik = StaffRepository.GetRandomBlagajnik();
+
+                if (randomBlagajnik == null)
+                {
+                    MessageBox.Show("No cashier found to assign the order.");
+                    return;
+                }
+
+                Narudzbe newOrder = new Narudzbe
+                {
+                    DatumNarudzbe = DateTime.Now,
+                    IdMeni = int.Parse(txtIdMenu.Text),
+                    IdZaposlenik = randomBlagajnik.IdZaposlenik,
+                    IdStudent = student.IdStudent
+                };
+
+                int newOrderId = OrderRepository.InsertOrder(newOrder, student.IdStudent);
+
+                if (newOrderId != -1)
+                {
+                    MessageBox.Show($"Order created successfully and assigned to student with JMBAG: {student.JMBAG} and cashier: {randomBlagajnik.Ime} {randomBlagajnik.Prezime}");
+                }
+                else
+                {
+                    MessageBox.Show("Failed to create the order.");
+                }
+
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while creating the order: {ex.Message}");
+            }
+        }
+
+
+
+        private void btnChooseMenu_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

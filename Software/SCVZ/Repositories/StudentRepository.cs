@@ -14,7 +14,7 @@ namespace SCVZ.Repositories
         public static Student DajStudenta(string IdKorisnik)
         {
             Student student = null;
-            IdKorisnik = 2.ToString();
+            // Remove this hardcoded value: IdKorisnik = 2.ToString();
             string sql = $"SELECT s.*, k.Ime, k.Prezime, k.Lozinka FROM Student s JOIN Korisnik k ON s.IdKorisnik = k.IdKorisnik WHERE k.IdKorisnik = '{IdKorisnik}'";
             DB.OpenConnection();
 
@@ -30,6 +30,28 @@ namespace SCVZ.Repositories
             DB.CloseConnection();
             return student;
         }
+
+        public static Student DajStudentaZaDGV(string IdStudent)
+        {
+            Student student = null;
+            string sql = $"SELECT s.*, k.Ime, k.Prezime, k.Lozinka FROM Student s JOIN Korisnik k ON s.IdKorisnik = k.IdKorisnik WHERE s.IdStudent = '{IdStudent}'";
+            DB.OpenConnection();
+
+            var reader = DB.GetDataReader(sql);
+
+            if (reader.HasRows)
+            {
+                reader.Read();
+                student = CreateObject(reader);
+                reader.Close();
+            }
+
+            DB.CloseConnection();
+            return student;
+        }
+
+
+
 
         public static Student DajStudentaByJMBAG(string jmbag)
         {
@@ -137,7 +159,7 @@ namespace SCVZ.Repositories
             var jmbags = GetAllJMBAGs();
             if (jmbags.Count == 0)
             {
-                return null; // or throw an exception if no students are found
+                return null;
             }
 
             var random = new Random();

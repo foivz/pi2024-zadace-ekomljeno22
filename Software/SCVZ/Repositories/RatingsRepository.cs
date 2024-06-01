@@ -30,6 +30,49 @@ namespace SCVZ.Repositories
             return recenzija;
         }
 
+        public static List<Recenzije> GetRatingsForMenu(int menuId)
+        {
+            List<Recenzije> ratings = new List<Recenzije>();
+
+            string sql = $"SELECT * FROM Recenzije WHERE IdRecenzija IN (SELECT IdRecenzija FROM SkupRecenzija WHERE IdMeni = {menuId})";
+
+            DB.OpenConnection();
+            var reader = DB.GetDataReader(sql);
+            while (reader.Read())
+            {
+                ratings.Add(new Recenzije
+                {
+                    IdRecenzija = Convert.ToInt32(reader["IdRecenzija"]),
+                    Ocjena = Convert.ToDecimal(reader["Ocjena"]),
+                    Komentar = reader["Komentar"].ToString()
+                });
+            }
+            DB.CloseConnection();   
+            reader.Close();
+            return ratings;
+        }
+
+        public static Recenzije DajRecenzijuZaStudenta(int idStudent)
+        {
+            Recenzije recenzija = null;
+
+            string sql = $"SELECT r.* FROM Recenzije r INNER JOIN SkupRecenzija sr ON r.IdRecenzija = sr.IdRecenzija WHERE sr.IdStudent = {idStudent}";
+            DB.OpenConnection();
+
+            var reader = DB.GetDataReader(sql);
+
+            if (reader.HasRows)
+            {
+                reader.Read();
+                recenzija = CreateObject(reader);
+                reader.Close();
+            }
+            DB.CloseConnection();
+            return recenzija;
+        }
+
+
+
         public static List<Recenzije> DajRecenzije()
         {
             var recenzije = new List<Recenzije>();

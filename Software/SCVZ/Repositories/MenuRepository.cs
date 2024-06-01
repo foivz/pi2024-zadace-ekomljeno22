@@ -100,7 +100,6 @@ namespace SCVZ.Repositories
 
             DB.CloseConnection();
 
-            // Retrieve and add Recenzije
             sql = $"SELECT r.* FROM Recenzije r JOIN SkupRecenzija sr ON r.IdRecenzija = sr.IdRecenzija WHERE sr.IdMeni = {idMeni}";
             DB.OpenConnection();
             var recenzijeReader = DB.GetDataReader(sql);

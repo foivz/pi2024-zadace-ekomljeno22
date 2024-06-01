@@ -46,6 +46,7 @@
             this.lblMenuTitle = new System.Windows.Forms.Label();
             this.pnlOrders = new System.Windows.Forms.Panel();
             this.dgvStudentOrders = new System.Windows.Forms.DataGridView();
+            this.tblStudent = new System.Windows.Forms.TableLayoutPanel();
             this.pnlNav.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgHome)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgBack)).BeginInit();
@@ -130,6 +131,7 @@
             // 
             this.pnlSidebar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.pnlSidebar.BackColor = System.Drawing.Color.White;
+            this.pnlSidebar.Controls.Add(this.tblStudent);
             this.pnlSidebar.Controls.Add(this.btnOrderHistory);
             this.pnlSidebar.Controls.Add(this.panel1);
             this.pnlSidebar.Dock = System.Windows.Forms.DockStyle.Left;
@@ -202,6 +204,7 @@
             this.dgvDetails.RowTemplate.Height = 24;
             this.dgvDetails.Size = new System.Drawing.Size(349, 666);
             this.dgvDetails.TabIndex = 2;
+            this.dgvDetails.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDetails_CellContentClick);
             // 
             // dgvPreview
             // 
@@ -257,6 +260,19 @@
             this.dgvStudentOrders.Size = new System.Drawing.Size(341, 666);
             this.dgvStudentOrders.TabIndex = 0;
             this.dgvStudentOrders.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvStudentOrders_CellClick);
+            // 
+            // tblStudent
+            // 
+            this.tblStudent.ColumnCount = 2;
+            this.tblStudent.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.1548F));
+            this.tblStudent.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.8452F));
+            this.tblStudent.Location = new System.Drawing.Point(34, 181);
+            this.tblStudent.Name = "tblStudent";
+            this.tblStudent.RowCount = 2;
+            this.tblStudent.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tblStudent.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tblStudent.Size = new System.Drawing.Size(323, 249);
+            this.tblStudent.TabIndex = 2;
             // 
             // FrmStudentMain
             // 
@@ -314,5 +330,6 @@
         private System.Windows.Forms.DataGridView dgvDetails;
         private System.Windows.Forms.DataGridView dgvPreview;
         private System.Windows.Forms.DataGridView dgvStudentOrders;
+        private System.Windows.Forms.TableLayoutPanel tblStudent;
     }
 }
