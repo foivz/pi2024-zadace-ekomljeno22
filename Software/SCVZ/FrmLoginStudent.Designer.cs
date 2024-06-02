@@ -106,9 +106,7 @@
             // 
             // pnlLogin
             // 
-            this.pnlLogin.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlLogin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.pnlLogin.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.pnlLogin.BackColor = System.Drawing.Color.Silver;
             this.pnlLogin.Controls.Add(this.imgPasswordIcon);
@@ -124,29 +122,34 @@
             // 
             // imgPasswordIcon
             // 
-            this.imgPasswordIcon.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.imgPasswordIcon.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.imgPasswordIcon.BackColor = System.Drawing.Color.Transparent;
             this.imgPasswordIcon.Image = global::SCVZ.Properties.Resources.image_5;
             this.imgPasswordIcon.Location = new System.Drawing.Point(333, 303);
             this.imgPasswordIcon.Name = "imgPasswordIcon";
-            this.imgPasswordIcon.Size = new System.Drawing.Size(71, 72);
+            this.imgPasswordIcon.Size = new System.Drawing.Size(71, 143);
             this.imgPasswordIcon.TabIndex = 5;
             this.imgPasswordIcon.TabStop = false;
             // 
             // imgUserIcon
             // 
-            this.imgUserIcon.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.imgUserIcon.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.imgUserIcon.BackColor = System.Drawing.Color.Transparent;
             this.imgUserIcon.Image = global::SCVZ.Properties.Resources.image_6;
             this.imgUserIcon.Location = new System.Drawing.Point(333, 215);
             this.imgUserIcon.Name = "imgUserIcon";
-            this.imgUserIcon.Size = new System.Drawing.Size(71, 72);
+            this.imgUserIcon.Size = new System.Drawing.Size(71, 174);
             this.imgUserIcon.TabIndex = 4;
             this.imgUserIcon.TabStop = false;
             // 
             // btnLogin
             // 
-            this.btnLogin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnLogin.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.btnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogin.ForeColor = System.Drawing.Color.Black;
             this.btnLogin.Location = new System.Drawing.Point(128, 425);
@@ -159,7 +162,7 @@
             // 
             // txtPassword
             // 
-            this.txtPassword.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtPassword.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.txtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPassword.Location = new System.Drawing.Point(56, 321);
             this.txtPassword.Margin = new System.Windows.Forms.Padding(15);
@@ -173,7 +176,7 @@
             // 
             // txtJMBAG
             // 
-            this.txtJMBAG.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtJMBAG.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.txtJMBAG.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F);
             this.txtJMBAG.Location = new System.Drawing.Point(56, 233);
             this.txtJMBAG.Margin = new System.Windows.Forms.Padding(15);
@@ -207,7 +210,7 @@
             this.Controls.Add(this.pnlFooter);
             this.Name = "FrmLoginStudent";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "LoginStudent";
+            this.Text = "FrmLoginStudent";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FrmLoginStudent_Load);
             this.pnlNav.ResumeLayout(false);

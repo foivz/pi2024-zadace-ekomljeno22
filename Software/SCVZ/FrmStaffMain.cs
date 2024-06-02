@@ -148,6 +148,7 @@ namespace SCVZ
         {
             dgvDetails.DataSource = null;
             dgvStudent.DataSource = null;
+            dgvMenu.DataSource = null;
 
             if (e.RowIndex >= 0)
             {
@@ -161,10 +162,10 @@ namespace SCVZ
                     if (menu != null)
                     {
                         Console.WriteLine($"Menu found: {menu.IdMeni}");
-                        dgvDetails.DataSource = menu.stavkeMenija;
 
-                        // Set AutoSizeMode after setting DataSource
-                        foreach (DataGridViewColumn column in dgvDetails.Columns)
+                        dgvMenu.DataSource = new List<Meni> { menu };
+
+                        foreach (DataGridViewColumn column in dgvMenu.Columns)
                         {
                             column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                         }
@@ -172,10 +173,22 @@ namespace SCVZ
                     else
                     {
                         Console.WriteLine("No menu details available");
-                        dgvDetails.DataSource = null;
                     }
 
-                    // Ensure that the correct student ID is being used
+                    if (menu != null)
+                    {
+                        dgvDetails.DataSource = menu.stavkeMenija;
+
+                        foreach (DataGridViewColumn column in dgvDetails.Columns)
+                        {
+                            column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("No stavkeMenija details available");
+                    }
+
                     Console.WriteLine($"Fetching student with ID: {order.IdStudent}");
                     Student student = StudentRepository.DajStudentaZaDGV(order.IdStudent.ToString());
                     if (student != null)
@@ -188,7 +201,6 @@ namespace SCVZ
                         dgvStudent.Columns["Lozinka"].Visible = false;
                         dgvStudent.Columns["IdKorisnik"].Visible = false;
 
-                        // Set AutoSizeMode after setting DataSource
                         foreach (DataGridViewColumn column in dgvStudent.Columns)
                         {
                             column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
@@ -197,7 +209,6 @@ namespace SCVZ
                     else
                     {
                         Console.WriteLine("No student details available");
-                        dgvStudent.DataSource = null;
                     }
                 }
                 else
@@ -210,6 +221,7 @@ namespace SCVZ
                 Console.WriteLine("Invalid row index.");
             }
         }
+
 
 
 

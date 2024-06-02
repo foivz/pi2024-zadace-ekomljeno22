@@ -129,13 +129,12 @@ namespace SCVZ
             this.Close();
         }
 
-        private void panel2_Paint(object sender, PaintEventArgs e)
+        private void FrmStudentMain_Load(object sender, EventArgs e)
         {
-            Color color = System.Drawing.ColorTranslator.FromHtml("#FCF24A");
-            pnlMenuTitle.BackColor = color;
+            InitializeForm();
         }
 
-        private void FrmStudentMain_Load(object sender, EventArgs e)
+        private void InitializeForm()
         {
             dgvStudentOrders.DataSource = null;
             PokaziSadasnjeNarudzbe();
@@ -145,6 +144,9 @@ namespace SCVZ
 
             Student student = StudentRepository.DajStudentaByJMBAG(JMBAG);
             FillStudentTable(student);
+
+            ConversionManager.ConvertPoklonBodoviToKupons(student);
+            MenuRepository.CalculateGiftPointsForStudent(student.IdStudent);
         }
 
         private void FillStudentTable(Student student)
@@ -200,39 +202,47 @@ namespace SCVZ
         private void PokaziSadasnjeNarudzbe()
         {
             var orders = OrderRepository.DajNarudzbePoJMBAG(JMBAG);
-            dgvStudentOrders.DataSource = orders;
+            var uniqueMeniIds = new HashSet<int>();
 
-            dgvStudentOrders.Columns["IdNarudzba"].HeaderText = "Id";
-            dgvStudentOrders.Columns["DatumNarudzbe"].HeaderText = "Datum";
-            dgvStudentOrders.Columns["IdMeni"].HeaderText = "IdMeni";
-            dgvStudentOrders.Columns["IdZaposlenik"].HeaderText = "Zaposlenik";
-            dgvStudentOrders.Columns["IdStudent"].HeaderText = "Student";
+            foreach (var order in orders)
+            {
+                uniqueMeniIds.Add(order.IdMeni);
+            }
+
+            var uniqueMenis = new List<Meni>();
+            foreach (var meniId in uniqueMeniIds)
+            {
+                var meni = MenuRepository.DajMeni(meniId);
+                uniqueMenis.Add(meni);
+            }
+
+            dgvStudentOrders.DataSource = uniqueMenis;
+
+            dgvStudentOrders.Columns["IdMeni"].HeaderText = "Id";
+            dgvStudentOrders.Columns["CijenaMenija"].HeaderText = "Cijena";
+            dgvStudentOrders.Columns["IdVrstaMenija"].HeaderText = "Vrsta menija";
+            dgvStudentOrders.Columns["VrijednostPoklonBodova"].HeaderText = "Broj poklon bodova";
+            dgvStudentOrders.Columns["VrijemePripreme"].HeaderText = "Vrijeme pripreme";
 
             foreach (DataGridViewColumn column in dgvStudentOrders.Columns)
             {
                 column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             }
-
-            dgvStudentOrders.Columns["IdZaposlenik"].Visible = false;
-            dgvStudentOrders.Columns["IdStudent"].Visible = false;
-
-            dgvStudentOrders.Columns["IdNarudzba"].DisplayIndex = 0;
-            dgvStudentOrders.Columns["DatumNarudzbe"].DisplayIndex = 1;
-            dgvStudentOrders.Columns["IdMeni"].DisplayIndex = 2;
-            dgvStudentOrders.Columns["IdZaposlenik"].DisplayIndex = 3;
-            dgvStudentOrders.Columns["IdStudent"].DisplayIndex = 4;
         }
+
         private void dgvStudentOrders_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
             {
-                Narudzbe selectedOrder = (Narudzbe)dgvStudentOrders.Rows[e.RowIndex].DataBoundItem;
-                int orderId = selectedOrder.IdNarudzba;
+                Meni selectedMeni = (Meni)dgvStudentOrders.Rows[e.RowIndex].DataBoundItem;
 
-                FrmStudentRating form4 = new FrmStudentRating(orderId, JMBAG);
+                int meniId = selectedMeni.IdMeni;
+
+                FrmStudentRating form4 = new FrmStudentRating(meniId, JMBAG);
                 form4.Show();
             }
         }
+
 
 
         private void PokaziMenije()
@@ -273,14 +283,14 @@ namespace SCVZ
             }
         }
 
-        private void lblMenuTitle_Click(object sender, EventArgs e)
+        private void btnRefresh_Click(object sender, EventArgs e)
         {
-
+            InitializeForm();
         }
 
-        private void dgvDetails_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void pnlSidebar_Paint(object sender, PaintEventArgs e)
         {
-
+           // pnlLogo.Dock = DockStyle.Left;
         }
     }
 }

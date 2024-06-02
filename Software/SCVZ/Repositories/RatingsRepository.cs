@@ -71,6 +71,48 @@ namespace SCVZ.Repositories
             return recenzija;
         }
 
+        public static Recenzije GetRatingForMenuItem(int menuId, int studentId)
+        {
+            Recenzije recenzija = null;
+
+            string sql = $"SELECT r.* FROM Recenzije r " +
+                         $"INNER JOIN SkupRecenzija sr ON r.IdRecenzija = sr.IdRecenzija " +
+                         $"WHERE sr.IdStudent = {studentId} AND sr.IdMeni = {menuId}";
+
+            try
+            {
+                Console.WriteLine($"Debug: SQL Query: {sql}");
+
+                DB.OpenConnection();
+                var reader = DB.GetDataReader(sql);
+
+                if (reader.HasRows)
+                {
+                    reader.Read();
+                    recenzija = CreateObject(reader);
+                }
+                else
+                {
+                    Console.WriteLine("Debug: No rows returned from the query.");
+                }
+
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred: {ex.Message}");
+            }
+            finally
+            {
+                DB.CloseConnection();
+            }
+
+            return recenzija;
+        }
+
+
+
+
 
 
         public static List<Recenzije> DajRecenzije()

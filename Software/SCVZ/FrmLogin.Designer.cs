@@ -34,21 +34,21 @@
             this.pnlLogo = new System.Windows.Forms.Panel();
             this.imgLogo = new System.Windows.Forms.PictureBox();
             this.pnlFooter = new System.Windows.Forms.Panel();
+            this.pnlStaff = new System.Windows.Forms.Panel();
+            this.lblStaff = new System.Windows.Forms.Label();
+            this.pnlStudent = new System.Windows.Forms.Panel();
+            this.lblStudent = new System.Windows.Forms.Label();
             this.pboStaff = new System.Windows.Forms.PictureBox();
             this.pboStudent = new System.Windows.Forms.PictureBox();
-            this.pnlStaff = new System.Windows.Forms.Panel();
-            this.pnlStudent = new System.Windows.Forms.Panel();
-            this.lblStaff = new System.Windows.Forms.Label();
-            this.lblStudent = new System.Windows.Forms.Label();
             this.pnlNav.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgHome)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgBack)).BeginInit();
             this.pnlLogo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgLogo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pboStaff)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pboStudent)).BeginInit();
             this.pnlStaff.SuspendLayout();
             this.pnlStudent.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pboStaff)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pboStudent)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlNav
@@ -107,36 +107,14 @@
             // 
             // pnlFooter
             // 
-            this.pnlFooter.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.pnlFooter.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.pnlFooter.BackColor = System.Drawing.Color.White;
-            this.pnlFooter.Location = new System.Drawing.Point(-299, 932);
+            this.pnlFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnlFooter.Location = new System.Drawing.Point(0, 943);
             this.pnlFooter.Name = "pnlFooter";
-            this.pnlFooter.Size = new System.Drawing.Size(2500, 90);
+            this.pnlFooter.Size = new System.Drawing.Size(1902, 90);
             this.pnlFooter.TabIndex = 4;
             this.pnlFooter.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlFooter_Paint);
-            // 
-            // pboStaff
-            // 
-            this.pboStaff.Image = global::SCVZ.Properties.Resources.staff;
-            this.pboStaff.InitialImage = global::SCVZ.Properties.Resources.staff;
-            this.pboStaff.Location = new System.Drawing.Point(0, 165);
-            this.pboStaff.Name = "pboStaff";
-            this.pboStaff.Size = new System.Drawing.Size(905, 769);
-            this.pboStaff.TabIndex = 7;
-            this.pboStaff.TabStop = false;
-            this.pboStaff.Click += new System.EventHandler(this.pboStaff_Click);
-            // 
-            // pboStudent
-            // 
-            this.pboStudent.Image = global::SCVZ.Properties.Resources.students;
-            this.pboStudent.InitialImage = global::SCVZ.Properties.Resources.students;
-            this.pboStudent.Location = new System.Drawing.Point(1204, 165);
-            this.pboStudent.Name = "pboStudent";
-            this.pboStudent.Size = new System.Drawing.Size(905, 769);
-            this.pboStudent.TabIndex = 8;
-            this.pboStudent.TabStop = false;
-            this.pboStudent.Click += new System.EventHandler(this.pboStudent_Click);
             // 
             // pnlStaff
             // 
@@ -146,15 +124,6 @@
             this.pnlStaff.Size = new System.Drawing.Size(200, 100);
             this.pnlStaff.TabIndex = 9;
             this.pnlStaff.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlStaff_Paint);
-            // 
-            // pnlStudent
-            // 
-            this.pnlStudent.Controls.Add(this.lblStudent);
-            this.pnlStudent.Location = new System.Drawing.Point(1702, 165);
-            this.pnlStudent.Name = "pnlStudent";
-            this.pnlStudent.Size = new System.Drawing.Size(200, 100);
-            this.pnlStudent.TabIndex = 10;
-            this.pnlStudent.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlStudent_Paint);
             // 
             // lblStaff
             // 
@@ -166,6 +135,16 @@
             this.lblStaff.TabIndex = 0;
             this.lblStaff.Text = "Zaposlenici";
             // 
+            // pnlStudent
+            // 
+            this.pnlStudent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlStudent.Controls.Add(this.lblStudent);
+            this.pnlStudent.Location = new System.Drawing.Point(1702, 165);
+            this.pnlStudent.Name = "pnlStudent";
+            this.pnlStudent.Size = new System.Drawing.Size(200, 100);
+            this.pnlStudent.TabIndex = 10;
+            this.pnlStudent.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlStudent_Paint);
+            // 
             // lblStudent
             // 
             this.lblStudent.AutoSize = true;
@@ -176,6 +155,33 @@
             this.lblStudent.TabIndex = 0;
             this.lblStudent.Text = "Studenti";
             // 
+            // pboStaff
+            // 
+            this.pboStaff.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.pboStaff.Image = global::SCVZ.Properties.Resources.staff;
+            this.pboStaff.InitialImage = global::SCVZ.Properties.Resources.staff;
+            this.pboStaff.Location = new System.Drawing.Point(-60, 136);
+            this.pboStaff.Name = "pboStaff";
+            this.pboStaff.Size = new System.Drawing.Size(918, 813);
+            this.pboStaff.TabIndex = 7;
+            this.pboStaff.TabStop = false;
+            this.pboStaff.Click += new System.EventHandler(this.pboStaff_Click);
+            // 
+            // pboStudent
+            // 
+            this.pboStudent.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pboStudent.Image = global::SCVZ.Properties.Resources.pexels_photo_1848731;
+            this.pboStudent.InitialImage = global::SCVZ.Properties.Resources.students;
+            this.pboStudent.Location = new System.Drawing.Point(966, -54);
+            this.pboStudent.Name = "pboStudent";
+            this.pboStudent.Size = new System.Drawing.Size(1124, 1122);
+            this.pboStudent.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pboStudent.TabIndex = 8;
+            this.pboStudent.TabStop = false;
+            this.pboStudent.Click += new System.EventHandler(this.pboStudent_Click);
+            // 
             // FrmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -184,14 +190,13 @@
             this.ClientSize = new System.Drawing.Size(1902, 1033);
             this.Controls.Add(this.pnlStudent);
             this.Controls.Add(this.pnlStaff);
-            this.Controls.Add(this.pboStudent);
-            this.Controls.Add(this.pboStaff);
             this.Controls.Add(this.pnlNav);
             this.Controls.Add(this.pnlLogo);
             this.Controls.Add(this.pnlFooter);
+            this.Controls.Add(this.pboStaff);
+            this.Controls.Add(this.pboStudent);
             this.Name = "FrmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FrmLogin";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FrmLoginZaposlenici_Load);
             this.pnlNav.ResumeLayout(false);
@@ -199,12 +204,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.imgBack)).EndInit();
             this.pnlLogo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.imgLogo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pboStaff)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pboStudent)).EndInit();
             this.pnlStaff.ResumeLayout(false);
             this.pnlStaff.PerformLayout();
             this.pnlStudent.ResumeLayout(false);
             this.pnlStudent.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pboStaff)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pboStudent)).EndInit();
             this.ResumeLayout(false);
 
         }

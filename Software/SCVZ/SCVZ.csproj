@@ -140,6 +140,8 @@
     <Compile Include="FrmStudentRating.Designer.cs">
       <DependentUpon>FrmStudentRating.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\ConversionManager.cs" />
+    <Compile Include="Models\Dekorator.cs" />
     <Compile Include="Models\Korisnik.cs" />
     <Compile Include="Models\Jelo.cs" />
     <Compile Include="Models\Meni.cs" />
@@ -164,6 +166,11 @@
     </Compile>
     <Compile Include="FrmStudentMain.Designer.cs">
       <DependentUpon>FrmStudentMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Repositories\MealRepository.cs" />
     <Compile Include="Repositories\MenuRepository.cs" />
@@ -222,14 +229,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EmbeddedResource Include="FrmStaffMain.resx">
       <DependentUpon>FrmStaffMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -279,6 +281,10 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="DLLs\DBLayer.dll" />
+    <None Include="Properties\Resources\pexels-rquiros-1848731.jpg" />
+    <None Include="Properties\Resources\pexels-fauxels-3184646.jpg" />
+    <None Include="Properties\Resources\pexels-photo-4144453.jpeg" />
+    <None Include="Properties\Resources\pexels-photo-1848731.jpeg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

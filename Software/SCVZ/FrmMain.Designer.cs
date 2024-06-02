@@ -50,12 +50,12 @@
             // 
             // pnlFooter
             // 
-            this.pnlFooter.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.pnlFooter.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.pnlFooter.BackColor = System.Drawing.Color.White;
-            this.pnlFooter.Location = new System.Drawing.Point(84, 921);
+            this.pnlFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnlFooter.Location = new System.Drawing.Point(0, 943);
             this.pnlFooter.Name = "pnlFooter";
-            this.pnlFooter.Size = new System.Drawing.Size(2500, 90);
+            this.pnlFooter.Size = new System.Drawing.Size(1902, 90);
             this.pnlFooter.TabIndex = 1;
             this.pnlFooter.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlFooter_Paint);
             // 
@@ -115,7 +115,7 @@
             // 
             // pnlButtonContainer
             // 
-            this.pnlButtonContainer.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.pnlButtonContainer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.pnlButtonContainer.Controls.Add(this.btnContact);
             this.pnlButtonContainer.Controls.Add(this.btnLogin);
             this.pnlButtonContainer.Location = new System.Drawing.Point(1287, 315);
@@ -126,6 +126,7 @@
             // 
             // btnContact
             // 
+            this.btnContact.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.btnContact.Location = new System.Drawing.Point(62, 217);
             this.btnContact.Name = "btnContact";
             this.btnContact.Size = new System.Drawing.Size(380, 73);
@@ -136,6 +137,7 @@
             // 
             // btnLogin
             // 
+            this.btnLogin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.btnLogin.Location = new System.Drawing.Point(62, 101);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(380, 73);
@@ -146,9 +148,11 @@
             // 
             // imgMain
             // 
-            this.imgMain.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.imgMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.imgMain.Image = ((System.Drawing.Image)(resources.GetObject("imgMain.Image")));
-            this.imgMain.Location = new System.Drawing.Point(-124, -39);
+            this.imgMain.Location = new System.Drawing.Point(-113, 63);
             this.imgMain.Name = "imgMain";
             this.imgMain.Size = new System.Drawing.Size(2447, 1300);
             this.imgMain.TabIndex = 0;

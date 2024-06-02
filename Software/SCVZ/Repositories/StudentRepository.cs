@@ -14,7 +14,6 @@ namespace SCVZ.Repositories
         public static Student DajStudenta(string IdKorisnik)
         {
             Student student = null;
-            // Remove this hardcoded value: IdKorisnik = 2.ToString();
             string sql = $"SELECT s.*, k.Ime, k.Prezime, k.Lozinka FROM Student s JOIN Korisnik k ON s.IdKorisnik = k.IdKorisnik WHERE k.IdKorisnik = '{IdKorisnik}'";
             DB.OpenConnection();
 
@@ -50,9 +49,6 @@ namespace SCVZ.Repositories
             return student;
         }
 
-
-
-
         public static Student DajStudentaByJMBAG(string jmbag)
         {
             Student student = null;
@@ -72,12 +68,11 @@ namespace SCVZ.Repositories
             return student;
         }
 
-        private int GetStudentIdByJMBAG(string jmbag)
+        public int GetStudentIdByJMBAG(string jmbag)
         {
             int studentId = 0;
             try
             {
-                // Fetch student details by JMBAG
                 Student student = StudentRepository.DajStudentaByJMBAG(jmbag);
                 if (student != null)
                 {
@@ -86,7 +81,6 @@ namespace SCVZ.Repositories
             }
             catch (Exception ex)
             {
-                // Handle exception, log error, etc.
                 Console.WriteLine($"An error occurred while retrieving student details: {ex.Message}");
             }
             return studentId;

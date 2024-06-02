@@ -78,11 +78,9 @@ namespace SCVZ.Repositories
         {
             Zaposlenik zaposlenik = null;
 
-            string sql = @"
-        SELECT TOP 1 *
-        FROM Zaposlenici
-        WHERE Pozicija = 'Blagajnik'
-        ORDER BY NEWID();";
+            string sql = @"SELECT TOP 1 z.IdZaposlenik, k.Ime, k.Prezime, k.Lozinka, z.KorisnickoIme, p.Pozicija FROM Zaposlenik z
+                            JOIN Korisnik k ON z.IdKorisnik = k.IdKorisnik JOIN Pozicije p ON z.IdPozicija = p.IdPozicija
+                            WHERE z.IdPozicija = '2' ORDER BY NEWID()";
 
             DB.OpenConnection();
             var reader = DB.GetDataReader(sql);
@@ -127,7 +125,5 @@ namespace SCVZ.Repositories
             int index = rand.Next(employees.Count);
             return employees[index];
         }
-
-
     }
 }

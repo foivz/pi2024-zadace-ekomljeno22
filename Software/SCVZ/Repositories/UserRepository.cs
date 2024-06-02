@@ -17,17 +17,21 @@ namespace SCVZ.Repositories
             {
                 DB.OpenConnection();
 
+                // Insert into Korisnik table
                 string korisnikSql = $"INSERT INTO Korisnik (Ime, Prezime, Lozinka) " +
                                      $"VALUES ('{zaposlenik.Ime}', '{zaposlenik.Prezime}', '{zaposlenik.Lozinka}')";
                 DB.ExecuteCommand(korisnikSql);
 
+                // Get the ID of the newly inserted record in Korisnik table
                 string getIdSql = "SELECT SCOPE_IDENTITY()";
                 int idKorisnik = Convert.ToInt32(DB.GetScalar(getIdSql));
 
+                // Get the ID of the position (Pozicija) from the database
                 int idPozicija = DajIdPozicije(zaposlenik.Pozicija);
 
-                string zaposlenikSql = $"INSERT INTO Zaposlenik (IdKorisnik, IdPozicija) " +
-                                       $"VALUES ({idKorisnik}, {idPozicija})";
+                // Insert into Zaposlenik table
+                string zaposlenikSql = $"INSERT INTO Zaposlenik (IdKorisnik, IdPozicija, KorisnickoIme) " +
+                                       $"VALUES ({idKorisnik}, {idPozicija}, '{zaposlenik.KorisnickoIme}')";
                 DB.ExecuteCommand(zaposlenikSql);
 
                 Console.WriteLine($"Staff member {zaposlenik.Ime} {zaposlenik.Prezime} added successfully with ID: {idKorisnik}");
@@ -41,6 +45,7 @@ namespace SCVZ.Repositories
                 DB.CloseConnection();
             }
         }
+
 
         private static int DajIdPozicije(string pozicija)
         {

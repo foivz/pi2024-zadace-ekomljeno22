@@ -37,6 +37,7 @@
             this.txtStaffId = new System.Windows.Forms.TextBox();
             this.txtStaffLastName = new System.Windows.Forms.TextBox();
             this.txtStaffPassword = new System.Windows.Forms.TextBox();
+            this.txtUsername = new System.Windows.Forms.TextBox();
             this.pnlNav.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -86,56 +87,66 @@
             // 
             // cboStaffPosition
             // 
-            this.cboStaffPosition.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboStaffPosition.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboStaffPosition.FormattingEnabled = true;
-            this.cboStaffPosition.Location = new System.Drawing.Point(141, 354);
+            this.cboStaffPosition.Location = new System.Drawing.Point(141, 402);
             this.cboStaffPosition.Name = "cboStaffPosition";
-            this.cboStaffPosition.Size = new System.Drawing.Size(227, 37);
+            this.cboStaffPosition.Size = new System.Drawing.Size(227, 33);
             this.cboStaffPosition.TabIndex = 35;
             this.cboStaffPosition.Text = "Pozicija";
             // 
             // txtStaffFirstName
             // 
-            this.txtStaffFirstName.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtStaffFirstName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtStaffFirstName.Location = new System.Drawing.Point(141, 198);
             this.txtStaffFirstName.Name = "txtStaffFirstName";
-            this.txtStaffFirstName.Size = new System.Drawing.Size(227, 34);
+            this.txtStaffFirstName.Size = new System.Drawing.Size(227, 30);
             this.txtStaffFirstName.TabIndex = 34;
             this.txtStaffFirstName.Text = "Ime";
             // 
             // txtStaffId
             // 
-            this.txtStaffId.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtStaffId.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtStaffId.Location = new System.Drawing.Point(141, 148);
             this.txtStaffId.Name = "txtStaffId";
             this.txtStaffId.ReadOnly = true;
-            this.txtStaffId.Size = new System.Drawing.Size(227, 34);
+            this.txtStaffId.Size = new System.Drawing.Size(227, 30);
             this.txtStaffId.TabIndex = 33;
             // 
             // txtStaffLastName
             // 
-            this.txtStaffLastName.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtStaffLastName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtStaffLastName.Location = new System.Drawing.Point(141, 249);
             this.txtStaffLastName.Name = "txtStaffLastName";
-            this.txtStaffLastName.Size = new System.Drawing.Size(227, 34);
+            this.txtStaffLastName.Size = new System.Drawing.Size(227, 30);
             this.txtStaffLastName.TabIndex = 36;
             this.txtStaffLastName.Text = "Prezime";
             // 
             // txtStaffPassword
             // 
-            this.txtStaffPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtStaffPassword.Location = new System.Drawing.Point(141, 303);
+            this.txtStaffPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtStaffPassword.Location = new System.Drawing.Point(141, 351);
             this.txtStaffPassword.Name = "txtStaffPassword";
             this.txtStaffPassword.PasswordChar = '*';
-            this.txtStaffPassword.Size = new System.Drawing.Size(227, 34);
+            this.txtStaffPassword.Size = new System.Drawing.Size(227, 30);
             this.txtStaffPassword.TabIndex = 37;
             this.txtStaffPassword.Text = "Lozinka";
+            // 
+            // txtUsername
+            // 
+            this.txtUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtUsername.Location = new System.Drawing.Point(141, 297);
+            this.txtUsername.Name = "txtUsername";
+            this.txtUsername.Size = new System.Drawing.Size(227, 30);
+            this.txtUsername.TabIndex = 38;
+            this.txtUsername.Text = "Korisničko ime";
             // 
             // FrmAddStaff
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(512, 553);
+            this.Controls.Add(this.txtUsername);
             this.Controls.Add(this.txtStaffPassword);
             this.Controls.Add(this.txtStaffLastName);
             this.Controls.Add(this.cboStaffPosition);
@@ -146,6 +157,7 @@
             this.Controls.Add(this.pnlNav);
             this.Name = "FrmAddStaff";
             this.Text = "FrmAddStaff";
+            this.Load += new System.EventHandler(this.FrmAddStaff_Load);
             this.pnlNav.ResumeLayout(false);
             this.pnlNav.PerformLayout();
             this.ResumeLayout(false);
@@ -164,5 +176,6 @@
         private System.Windows.Forms.TextBox txtStaffId;
         private System.Windows.Forms.TextBox txtStaffLastName;
         private System.Windows.Forms.TextBox txtStaffPassword;
+        private System.Windows.Forms.TextBox txtUsername;
     }
 }

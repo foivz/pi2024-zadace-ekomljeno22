@@ -1,4 +1,5 @@
-﻿using SCVZ.Models;
+﻿using DBLayer;
+using SCVZ.Models;
 using SCVZ.Repositories;
 using System;
 using System.Collections.Generic;
@@ -16,13 +17,39 @@ namespace SCVZ
     {
         private int nextIdOrder;
         private string JMBAG { get; set; }
+        private Zaposlenik randomZaposlenik;
+        Student student;
+
 
         public FrmAddOrderStudent(string jMBAG)
         {
             InitializeComponent();
             PrikaziSljedecegId();
             JMBAG = jMBAG;
+            student = StudentRepository.DajStudentaByJMBAG(JMBAG);
+
+            if (student != null)
+            {
+                txtStudentId.Text = student.JMBAG;
+            }
+            else
+            {
+                MessageBox.Show("No student found with the provided JMBAG.");
+                return;
+            }
+            randomZaposlenik = StaffRepository.GetRandomBlagajnik();
+
+            if (randomZaposlenik != null)
+            {
+                txtOrderServer.Text = $"{randomZaposlenik.KorisnickoIme}";
+            }
+            else
+            {
+                txtOrderServer.Text = "No cashier found";
+            }
         }
+
+
         private void PrikaziSljedecegId()
         {
             try
@@ -36,12 +63,6 @@ namespace SCVZ
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            FrmAddMenuToOrder form1 = new FrmAddMenuToOrder();
-            form1.Show();
-        }
-
         public void SetSelectedMenu(int menuId)
         {
             Meni selectedMenu = MenuRepository.DajMeni(menuId);
@@ -53,41 +74,64 @@ namespace SCVZ
         {
             this.Close();
         }
-
         private void btnOrder_Click(object sender, EventArgs e)
         {
             try
             {
-                string jmbag = txtStudentId.Text;
-                Student student = StudentRepository.DajStudentaByJMBAG(jmbag);
-
-                if (student == null)
+                if (student != null)
                 {
-                    MessageBox.Show("No student found with the provided JMBAG.");
+                    txtStudentId.Text = $"{student.Ime} {student.Prezime}";
+                }
+                else
+                {
+                    txtStudentId.Text = "No student found";
                     return;
                 }
 
-                Zaposlenik randomBlagajnik = StaffRepository.GetRandomBlagajnik();
-
-                if (randomBlagajnik == null)
-                {
-                    MessageBox.Show("No cashier found to assign the order.");
-                    return;
-                }
-
+                int idStudent = student.IdStudent;
                 Narudzbe newOrder = new Narudzbe
                 {
                     DatumNarudzbe = DateTime.Now,
                     IdMeni = int.Parse(txtIdMenu.Text),
-                    IdZaposlenik = randomBlagajnik.IdZaposlenik,
-                    IdStudent = student.IdStudent
+                    IdZaposlenik = randomZaposlenik.IdZaposlenik,
+                    IdStudent = idStudent,
+                    KuponCijenaMenija = 0
                 };
+                if (student.BrojKupona >= 1)
+                {
+                    DialogResult dialogResult = MessageBox.Show("Do you want to use a coupon for this order?", "Coupon Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        Meni selectedMenu = MenuRepository.DajMeni(newOrder.IdMeni);
+                        decimal discountedPrice = selectedMenu.CijenaMenija * 0.85m;
+                        newOrder.KuponCijenaMenija = (float)discountedPrice;
 
-                int newOrderId = OrderRepository.InsertOrder(newOrder, student.IdStudent);
+                        student.BrojKupona--;
+
+                        string updateSql = $"UPDATE Student SET BrojKupona = {student.BrojKupona} WHERE IdStudent = {student.IdStudent}";
+
+                        try
+                        {
+                            DB.OpenConnection();
+                            DB.ExecuteCommand(updateSql);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show($"An error occurred while updating the student table: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+                        finally
+                        {
+                            DB.CloseConnection();
+                        }
+                    }
+                }
+
+                int newOrderId = OrderRepository.InsertOrder(newOrder, idStudent);
 
                 if (newOrderId != -1)
                 {
-                    MessageBox.Show($"Order created successfully and assigned to student with JMBAG: {student.JMBAG} and cashier: {randomBlagajnik.Ime} {randomBlagajnik.Prezime}");
+                    MessageBox.Show($"Order created successfully and assigned to student with JMBAG: {student.JMBAG}");
                 }
                 else
                 {
@@ -104,9 +148,16 @@ namespace SCVZ
 
 
 
-        private void btnChooseMenu_Click(object sender, EventArgs e)
+        private void FrmAddOrderStudent_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnChooseMenu_Click(object sender, EventArgs e)
+        {
+            FrmAddMenuToOrder form2 = new FrmAddMenuToOrder();
+            form2.ParentFormStudent = this;
+            form2.Show();
         }
     }
 }

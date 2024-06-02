@@ -8,6 +8,7 @@ namespace SCVZ
     public partial class FrmAddMenuToOrder : Form
     {
         public FrmAddOrder ParentForm { get; set; }
+        public FrmAddOrderStudent ParentFormStudent { get; set; }
 
         public FrmAddMenuToOrder()
         {
@@ -55,7 +56,14 @@ namespace SCVZ
 
                 Console.WriteLine($"Selected Menu ID: {selectedIdMeni}");
 
-                ParentForm?.SetSelectedMenu(selectedIdMeni);
+                if (ParentFormStudent != null)
+                {
+                    ParentFormStudent.SetSelectedMenu(selectedIdMeni);
+                }
+                else if (ParentForm != null)
+                {
+                    ParentForm.SetSelectedMenu(selectedIdMeni);
+                }
 
                 this.Close();
             }
@@ -79,6 +87,7 @@ namespace SCVZ
             }
         }
     }
+
 }
 
 

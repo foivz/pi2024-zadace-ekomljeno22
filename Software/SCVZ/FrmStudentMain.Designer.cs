@@ -28,39 +28,135 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.pnlFooter = new System.Windows.Forms.Panel();
+            this.pnlSidebar = new System.Windows.Forms.Panel();
+            this.tblStudent = new System.Windows.Forms.TableLayoutPanel();
+            this.btnOrderHistory = new System.Windows.Forms.Button();
+            this.pnlOrders = new System.Windows.Forms.Panel();
+            this.dgvStudentOrders = new System.Windows.Forms.DataGridView();
+            this.dgvDetails = new System.Windows.Forms.DataGridView();
+            this.dgvPreview = new System.Windows.Forms.DataGridView();
             this.pnlNav = new System.Windows.Forms.Panel();
             this.imgHome = new System.Windows.Forms.PictureBox();
             this.imgBack = new System.Windows.Forms.PictureBox();
             this.pnlLogo = new System.Windows.Forms.Panel();
             this.imgLogo = new System.Windows.Forms.PictureBox();
-            this.pnlFooter = new System.Windows.Forms.Panel();
-            this.pnlSidebar = new System.Windows.Forms.Panel();
-            this.btnOrderHistory = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.btnOrderStudent = new System.Windows.Forms.Button();
-            this.lblCurrentOrder = new System.Windows.Forms.Label();
-            this.pnlMenu = new System.Windows.Forms.Panel();
-            this.dgvDetails = new System.Windows.Forms.DataGridView();
-            this.dgvPreview = new System.Windows.Forms.DataGridView();
-            this.pnlMenuTitle = new System.Windows.Forms.Panel();
-            this.lblMenuTitle = new System.Windows.Forms.Label();
-            this.pnlOrders = new System.Windows.Forms.Panel();
-            this.dgvStudentOrders = new System.Windows.Forms.DataGridView();
-            this.tblStudent = new System.Windows.Forms.TableLayoutPanel();
+            this.btnRefresh = new System.Windows.Forms.Button();
+            this.pnlSidebar.SuspendLayout();
+            this.pnlOrders.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvStudentOrders)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDetails)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPreview)).BeginInit();
             this.pnlNav.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgHome)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgBack)).BeginInit();
             this.pnlLogo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgLogo)).BeginInit();
-            this.pnlSidebar.SuspendLayout();
-            this.panel1.SuspendLayout();
-            this.pnlMenu.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDetails)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPreview)).BeginInit();
-            this.pnlMenuTitle.SuspendLayout();
-            this.pnlOrders.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvStudentOrders)).BeginInit();
             this.SuspendLayout();
+            // 
+            // pnlFooter
+            // 
+            this.pnlFooter.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.pnlFooter.BackColor = System.Drawing.Color.White;
+            this.pnlFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnlFooter.Location = new System.Drawing.Point(0, 943);
+            this.pnlFooter.Name = "pnlFooter";
+            this.pnlFooter.Size = new System.Drawing.Size(1902, 90);
+            this.pnlFooter.TabIndex = 7;
+            this.pnlFooter.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlFooter_Paint);
+            // 
+            // pnlSidebar
+            // 
+            this.pnlSidebar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.pnlSidebar.BackColor = System.Drawing.Color.White;
+            this.pnlSidebar.Controls.Add(this.btnRefresh);
+            this.pnlSidebar.Controls.Add(this.btnOrderStudent);
+            this.pnlSidebar.Controls.Add(this.tblStudent);
+            this.pnlSidebar.Controls.Add(this.btnOrderHistory);
+            this.pnlSidebar.Location = new System.Drawing.Point(0, 165);
+            this.pnlSidebar.Name = "pnlSidebar";
+            this.pnlSidebar.Size = new System.Drawing.Size(395, 778);
+            this.pnlSidebar.TabIndex = 10;
+            this.pnlSidebar.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlSidebar_Paint);
+            // 
+            // tblStudent
+            // 
+            this.tblStudent.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.tblStudent.ColumnCount = 2;
+            this.tblStudent.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.1548F));
+            this.tblStudent.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.8452F));
+            this.tblStudent.Location = new System.Drawing.Point(32, 175);
+            this.tblStudent.Name = "tblStudent";
+            this.tblStudent.RowCount = 2;
+            this.tblStudent.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tblStudent.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tblStudent.Size = new System.Drawing.Size(323, 249);
+            this.tblStudent.TabIndex = 2;
+            // 
+            // btnOrderHistory
+            // 
+            this.btnOrderHistory.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnOrderHistory.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOrderHistory.Location = new System.Drawing.Point(80, 68);
+            this.btnOrderHistory.Name = "btnOrderHistory";
+            this.btnOrderHistory.Size = new System.Drawing.Size(211, 54);
+            this.btnOrderHistory.TabIndex = 3;
+            this.btnOrderHistory.Text = "Povijest naručivanja";
+            this.btnOrderHistory.UseVisualStyleBackColor = true;
+            this.btnOrderHistory.Click += new System.EventHandler(this.btnOrderHistory_Click);
+            // 
+            // pnlOrders
+            // 
+            this.pnlOrders.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlOrders.Controls.Add(this.dgvStudentOrders);
+            this.pnlOrders.Location = new System.Drawing.Point(1539, 0);
+            this.pnlOrders.Name = "pnlOrders";
+            this.pnlOrders.Size = new System.Drawing.Size(363, 943);
+            this.pnlOrders.TabIndex = 12;
+            this.pnlOrders.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlOrders_Paint);
+            // 
+            // dgvStudentOrders
+            // 
+            this.dgvStudentOrders.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvStudentOrders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvStudentOrders.Location = new System.Drawing.Point(10, 171);
+            this.dgvStudentOrders.Name = "dgvStudentOrders";
+            this.dgvStudentOrders.RowHeadersWidth = 51;
+            this.dgvStudentOrders.RowTemplate.Height = 24;
+            this.dgvStudentOrders.Size = new System.Drawing.Size(341, 766);
+            this.dgvStudentOrders.TabIndex = 0;
+            this.dgvStudentOrders.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvStudentOrders_CellClick);
+            // 
+            // dgvDetails
+            // 
+            this.dgvDetails.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDetails.Location = new System.Drawing.Point(1184, 171);
+            this.dgvDetails.Name = "dgvDetails";
+            this.dgvDetails.RowHeadersWidth = 51;
+            this.dgvDetails.RowTemplate.Height = 24;
+            this.dgvDetails.Size = new System.Drawing.Size(340, 766);
+            this.dgvDetails.TabIndex = 14;
+            // 
+            // dgvPreview
+            // 
+            this.dgvPreview.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvPreview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPreview.Location = new System.Drawing.Point(401, 171);
+            this.dgvPreview.Name = "dgvPreview";
+            this.dgvPreview.RowHeadersWidth = 51;
+            this.dgvPreview.RowTemplate.Height = 24;
+            this.dgvPreview.Size = new System.Drawing.Size(777, 766);
+            this.dgvPreview.TabIndex = 13;
+            this.dgvPreview.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPreview_CellClick);
             // 
             // pnlNav
             // 
@@ -72,7 +168,7 @@
             this.pnlNav.Location = new System.Drawing.Point(0, 85);
             this.pnlNav.Name = "pnlNav";
             this.pnlNav.Size = new System.Drawing.Size(1902, 80);
-            this.pnlNav.TabIndex = 9;
+            this.pnlNav.TabIndex = 16;
             // 
             // imgHome
             // 
@@ -103,7 +199,7 @@
             this.pnlLogo.Location = new System.Drawing.Point(0, 0);
             this.pnlLogo.Name = "pnlLogo";
             this.pnlLogo.Size = new System.Drawing.Size(1902, 85);
-            this.pnlLogo.TabIndex = 8;
+            this.pnlLogo.TabIndex = 15;
             this.pnlLogo.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlLogo_Paint);
             // 
             // imgLogo
@@ -116,56 +212,13 @@
             this.imgLogo.TabStop = false;
             this.imgLogo.Click += new System.EventHandler(this.imgLogo_Click);
             // 
-            // pnlFooter
-            // 
-            this.pnlFooter.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.pnlFooter.BackColor = System.Drawing.Color.White;
-            this.pnlFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlFooter.Location = new System.Drawing.Point(0, 943);
-            this.pnlFooter.Name = "pnlFooter";
-            this.pnlFooter.Size = new System.Drawing.Size(1902, 90);
-            this.pnlFooter.TabIndex = 7;
-            this.pnlFooter.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlFooter_Paint);
-            // 
-            // pnlSidebar
-            // 
-            this.pnlSidebar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.pnlSidebar.BackColor = System.Drawing.Color.White;
-            this.pnlSidebar.Controls.Add(this.tblStudent);
-            this.pnlSidebar.Controls.Add(this.btnOrderHistory);
-            this.pnlSidebar.Controls.Add(this.panel1);
-            this.pnlSidebar.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnlSidebar.Location = new System.Drawing.Point(0, 165);
-            this.pnlSidebar.Name = "pnlSidebar";
-            this.pnlSidebar.Size = new System.Drawing.Size(395, 778);
-            this.pnlSidebar.TabIndex = 10;
-            // 
-            // btnOrderHistory
-            // 
-            this.btnOrderHistory.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOrderHistory.Location = new System.Drawing.Point(34, 83);
-            this.btnOrderHistory.Name = "btnOrderHistory";
-            this.btnOrderHistory.Size = new System.Drawing.Size(211, 54);
-            this.btnOrderHistory.TabIndex = 1;
-            this.btnOrderHistory.Text = "Povijest naručivanja";
-            this.btnOrderHistory.UseVisualStyleBackColor = true;
-            this.btnOrderHistory.Click += new System.EventHandler(this.btnOrderHistory_Click);
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.Gainsboro;
-            this.panel1.Controls.Add(this.btnOrderStudent);
-            this.panel1.Controls.Add(this.lblCurrentOrder);
-            this.panel1.Location = new System.Drawing.Point(34, 453);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(323, 288);
-            this.panel1.TabIndex = 0;
-            // 
             // btnOrderStudent
             // 
+            this.btnOrderStudent.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOrderStudent.BackColor = System.Drawing.Color.White;
             this.btnOrderStudent.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOrderStudent.Location = new System.Drawing.Point(152, 243);
+            this.btnOrderStudent.Location = new System.Drawing.Point(187, 445);
             this.btnOrderStudent.Name = "btnOrderStudent";
             this.btnOrderStudent.Size = new System.Drawing.Size(168, 42);
             this.btnOrderStudent.TabIndex = 1;
@@ -173,106 +226,19 @@
             this.btnOrderStudent.UseVisualStyleBackColor = false;
             this.btnOrderStudent.Click += new System.EventHandler(this.btnOrderStudent_Click);
             // 
-            // lblCurrentOrder
+            // btnRefresh
             // 
-            this.lblCurrentOrder.AutoSize = true;
-            this.lblCurrentOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCurrentOrder.Location = new System.Drawing.Point(60, 21);
-            this.lblCurrentOrder.Name = "lblCurrentOrder";
-            this.lblCurrentOrder.Size = new System.Drawing.Size(178, 25);
-            this.lblCurrentOrder.TabIndex = 0;
-            this.lblCurrentOrder.Text = "Trenutna narudžba";
-            // 
-            // pnlMenu
-            // 
-            this.pnlMenu.Controls.Add(this.dgvDetails);
-            this.pnlMenu.Controls.Add(this.dgvPreview);
-            this.pnlMenu.Controls.Add(this.pnlMenuTitle);
-            this.pnlMenu.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlMenu.Location = new System.Drawing.Point(395, 165);
-            this.pnlMenu.Name = "pnlMenu";
-            this.pnlMenu.Size = new System.Drawing.Size(1507, 778);
-            this.pnlMenu.TabIndex = 11;
-            this.pnlMenu.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlMenu_Paint);
-            // 
-            // dgvDetails
-            // 
-            this.dgvDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvDetails.Location = new System.Drawing.Point(789, 106);
-            this.dgvDetails.Name = "dgvDetails";
-            this.dgvDetails.RowHeadersWidth = 51;
-            this.dgvDetails.RowTemplate.Height = 24;
-            this.dgvDetails.Size = new System.Drawing.Size(349, 666);
-            this.dgvDetails.TabIndex = 2;
-            this.dgvDetails.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDetails_CellContentClick);
-            // 
-            // dgvPreview
-            // 
-            this.dgvPreview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPreview.Location = new System.Drawing.Point(6, 106);
-            this.dgvPreview.Name = "dgvPreview";
-            this.dgvPreview.RowHeadersWidth = 51;
-            this.dgvPreview.RowTemplate.Height = 24;
-            this.dgvPreview.Size = new System.Drawing.Size(777, 666);
-            this.dgvPreview.TabIndex = 1;
-            this.dgvPreview.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPreview_CellClick);
-            // 
-            // pnlMenuTitle
-            // 
-            this.pnlMenuTitle.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.pnlMenuTitle.BackColor = System.Drawing.Color.White;
-            this.pnlMenuTitle.Controls.Add(this.lblMenuTitle);
-            this.pnlMenuTitle.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlMenuTitle.Location = new System.Drawing.Point(0, 0);
-            this.pnlMenuTitle.Name = "pnlMenuTitle";
-            this.pnlMenuTitle.Size = new System.Drawing.Size(1507, 100);
-            this.pnlMenuTitle.TabIndex = 0;
-            this.pnlMenuTitle.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
-            // 
-            // lblMenuTitle
-            // 
-            this.lblMenuTitle.AutoSize = true;
-            this.lblMenuTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMenuTitle.Location = new System.Drawing.Point(405, 27);
-            this.lblMenuTitle.Name = "lblMenuTitle";
-            this.lblMenuTitle.Size = new System.Drawing.Size(328, 42);
-            this.lblMenuTitle.TabIndex = 0;
-            this.lblMenuTitle.Text = "Studentski jelovnik";
-            this.lblMenuTitle.Click += new System.EventHandler(this.lblMenuTitle_Click);
-            // 
-            // pnlOrders
-            // 
-            this.pnlOrders.Controls.Add(this.dgvStudentOrders);
-            this.pnlOrders.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnlOrders.Location = new System.Drawing.Point(1539, 165);
-            this.pnlOrders.Name = "pnlOrders";
-            this.pnlOrders.Size = new System.Drawing.Size(363, 778);
-            this.pnlOrders.TabIndex = 12;
-            this.pnlOrders.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlOrders_Paint);
-            // 
-            // dgvStudentOrders
-            // 
-            this.dgvStudentOrders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvStudentOrders.Location = new System.Drawing.Point(10, 106);
-            this.dgvStudentOrders.Name = "dgvStudentOrders";
-            this.dgvStudentOrders.RowHeadersWidth = 51;
-            this.dgvStudentOrders.RowTemplate.Height = 24;
-            this.dgvStudentOrders.Size = new System.Drawing.Size(341, 666);
-            this.dgvStudentOrders.TabIndex = 0;
-            this.dgvStudentOrders.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvStudentOrders_CellClick);
-            // 
-            // tblStudent
-            // 
-            this.tblStudent.ColumnCount = 2;
-            this.tblStudent.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.1548F));
-            this.tblStudent.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.8452F));
-            this.tblStudent.Location = new System.Drawing.Point(34, 181);
-            this.tblStudent.Name = "tblStudent";
-            this.tblStudent.RowCount = 2;
-            this.tblStudent.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tblStudent.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tblStudent.Size = new System.Drawing.Size(323, 249);
-            this.tblStudent.TabIndex = 2;
+            this.btnRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRefresh.BackColor = System.Drawing.Color.White;
+            this.btnRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRefresh.Location = new System.Drawing.Point(187, 509);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(168, 42);
+            this.btnRefresh.TabIndex = 2;
+            this.btnRefresh.Text = "Osvježi";
+            this.btnRefresh.UseVisualStyleBackColor = false;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // FrmStudentMain
             // 
@@ -280,56 +246,47 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(1902, 1033);
-            this.Controls.Add(this.pnlOrders);
-            this.Controls.Add(this.pnlMenu);
-            this.Controls.Add(this.pnlSidebar);
             this.Controls.Add(this.pnlNav);
             this.Controls.Add(this.pnlLogo);
+            this.Controls.Add(this.dgvDetails);
+            this.Controls.Add(this.dgvPreview);
+            this.Controls.Add(this.pnlSidebar);
             this.Controls.Add(this.pnlFooter);
+            this.Controls.Add(this.pnlOrders);
             this.Name = "FrmStudentMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmStudentMain";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FrmStudentMain_Load);
+            this.pnlSidebar.ResumeLayout(false);
+            this.pnlOrders.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvStudentOrders)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDetails)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPreview)).EndInit();
             this.pnlNav.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.imgHome)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgBack)).EndInit();
             this.pnlLogo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.imgLogo)).EndInit();
-            this.pnlSidebar.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.pnlMenu.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDetails)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPreview)).EndInit();
-            this.pnlMenuTitle.ResumeLayout(false);
-            this.pnlMenuTitle.PerformLayout();
-            this.pnlOrders.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvStudentOrders)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.PictureBox imgHome;
-        private System.Windows.Forms.PictureBox imgBack;
-        private System.Windows.Forms.Panel pnlNav;
-        private System.Windows.Forms.Panel pnlLogo;
-        private System.Windows.Forms.PictureBox imgLogo;
         private System.Windows.Forms.Panel pnlFooter;
         private System.Windows.Forms.Panel pnlSidebar;
-        private System.Windows.Forms.Panel pnlMenu;
         private System.Windows.Forms.Panel pnlOrders;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label lblCurrentOrder;
-        private System.Windows.Forms.Button btnOrderStudent;
         private System.Windows.Forms.Button btnOrderHistory;
-        private System.Windows.Forms.Panel pnlMenuTitle;
-        private System.Windows.Forms.Label lblMenuTitle;
-        private System.Windows.Forms.DataGridView dgvDetails;
-        private System.Windows.Forms.DataGridView dgvPreview;
         private System.Windows.Forms.DataGridView dgvStudentOrders;
         private System.Windows.Forms.TableLayoutPanel tblStudent;
+        private System.Windows.Forms.DataGridView dgvDetails;
+        private System.Windows.Forms.DataGridView dgvPreview;
+        private System.Windows.Forms.Panel pnlNav;
+        private System.Windows.Forms.PictureBox imgHome;
+        private System.Windows.Forms.PictureBox imgBack;
+        private System.Windows.Forms.Panel pnlLogo;
+        private System.Windows.Forms.PictureBox imgLogo;
+        private System.Windows.Forms.Button btnRefresh;
+        private System.Windows.Forms.Button btnOrderStudent;
     }
 }

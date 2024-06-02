@@ -45,13 +45,10 @@ namespace SCVZ
             this.dgvDetails = new System.Windows.Forms.DataGridView();
             this.dgvPreview = new System.Windows.Forms.DataGridView();
             this.pnlFilters = new System.Windows.Forms.Panel();
-            this.btnStaff = new System.Windows.Forms.Button();
-            this.btnAllMenus = new System.Windows.Forms.Button();
-            this.btnAllMeals = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.rboMainDish = new System.Windows.Forms.RadioButton();
-            this.rboSideDish = new System.Windows.Forms.RadioButton();
-            this.rboAppetizer = new System.Windows.Forms.RadioButton();
+            this.btnStaff = new System.Windows.Forms.Button();
+            this.btnAllMeals = new System.Windows.Forms.Button();
+            this.btnAllMenus = new System.Windows.Forms.Button();
             this.lblFilter = new System.Windows.Forms.Label();
             this.pnlNav.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgHome)).BeginInit();
@@ -160,7 +157,7 @@ namespace SCVZ
             this.btnAddMoreMeals.Name = "btnAddMoreMeals";
             this.btnAddMoreMeals.Size = new System.Drawing.Size(304, 41);
             this.btnAddMoreMeals.TabIndex = 30;
-            this.btnAddMoreMeals.Text = "Više jela";
+            this.btnAddMoreMeals.Text = "Dodaj više jela";
             this.btnAddMoreMeals.UseVisualStyleBackColor = true;
             this.btnAddMoreMeals.Click += new System.EventHandler(this.btnAddMoreMeals_Click);
             // 
@@ -172,7 +169,7 @@ namespace SCVZ
             this.btnAddStaff.Name = "btnAddStaff";
             this.btnAddStaff.Size = new System.Drawing.Size(304, 41);
             this.btnAddStaff.TabIndex = 29;
-            this.btnAddStaff.Text = "Osoblje";
+            this.btnAddStaff.Text = "Dodaj osoblje";
             this.btnAddStaff.UseVisualStyleBackColor = true;
             this.btnAddStaff.Click += new System.EventHandler(this.btnAddStaff_Click);
             // 
@@ -184,7 +181,7 @@ namespace SCVZ
             this.btnAddMenus.Name = "btnAddMenus";
             this.btnAddMenus.Size = new System.Drawing.Size(304, 41);
             this.btnAddMenus.TabIndex = 28;
-            this.btnAddMenus.Text = "Meni";
+            this.btnAddMenus.Text = "Dodaj meni";
             this.btnAddMenus.UseVisualStyleBackColor = true;
             this.btnAddMenus.Click += new System.EventHandler(this.btnAddMenus_Click);
             // 
@@ -196,7 +193,7 @@ namespace SCVZ
             this.btnAddMeal.Name = "btnAddMeal";
             this.btnAddMeal.Size = new System.Drawing.Size(304, 41);
             this.btnAddMeal.TabIndex = 27;
-            this.btnAddMeal.Text = "Jelo";
+            this.btnAddMeal.Text = "Dodaj jelo";
             this.btnAddMeal.UseVisualStyleBackColor = true;
             this.btnAddMeal.Click += new System.EventHandler(this.btnAddMeal_Click);
             // 
@@ -215,6 +212,8 @@ namespace SCVZ
             // 
             // dgvDetails
             // 
+            this.dgvDetails.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvDetails.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDetails.Location = new System.Drawing.Point(807, 6);
@@ -227,6 +226,9 @@ namespace SCVZ
             // 
             // dgvPreview
             // 
+            this.dgvPreview.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvPreview.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvPreview.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
             this.dgvPreview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -241,9 +243,6 @@ namespace SCVZ
             // 
             // pnlFilters
             // 
-            this.pnlFilters.Controls.Add(this.btnStaff);
-            this.pnlFilters.Controls.Add(this.btnAllMenus);
-            this.pnlFilters.Controls.Add(this.btnAllMeals);
             this.pnlFilters.Controls.Add(this.panel1);
             this.pnlFilters.Controls.Add(this.lblFilter);
             this.pnlFilters.Dock = System.Windows.Forms.DockStyle.Right;
@@ -254,10 +253,22 @@ namespace SCVZ
             this.pnlFilters.TabIndex = 13;
             this.pnlFilters.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlFilters_Paint);
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.btnStaff);
+            this.panel1.Controls.Add(this.btnAllMeals);
+            this.panel1.Controls.Add(this.btnAllMenus);
+            this.panel1.Location = new System.Drawing.Point(30, 140);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(281, 222);
+            this.panel1.TabIndex = 1;
+            // 
             // btnStaff
             // 
             this.btnStaff.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStaff.Location = new System.Drawing.Point(44, 470);
+            this.btnStaff.Location = new System.Drawing.Point(19, 157);
             this.btnStaff.Margin = new System.Windows.Forms.Padding(2);
             this.btnStaff.Name = "btnStaff";
             this.btnStaff.Size = new System.Drawing.Size(244, 42);
@@ -266,22 +277,10 @@ namespace SCVZ
             this.btnStaff.UseVisualStyleBackColor = true;
             this.btnStaff.Click += new System.EventHandler(this.btnStaff_Click);
             // 
-            // btnAllMenus
-            // 
-            this.btnAllMenus.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAllMenus.Location = new System.Drawing.Point(44, 402);
-            this.btnAllMenus.Margin = new System.Windows.Forms.Padding(2);
-            this.btnAllMenus.Name = "btnAllMenus";
-            this.btnAllMenus.Size = new System.Drawing.Size(244, 42);
-            this.btnAllMenus.TabIndex = 3;
-            this.btnAllMenus.Text = "Meniji";
-            this.btnAllMenus.UseVisualStyleBackColor = true;
-            this.btnAllMenus.Click += new System.EventHandler(this.btnAllMenus_Click);
-            // 
             // btnAllMeals
             // 
             this.btnAllMeals.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAllMeals.Location = new System.Drawing.Point(44, 338);
+            this.btnAllMeals.Location = new System.Drawing.Point(19, 18);
             this.btnAllMeals.Margin = new System.Windows.Forms.Padding(2);
             this.btnAllMeals.Name = "btnAllMeals";
             this.btnAllMeals.Size = new System.Drawing.Size(244, 42);
@@ -290,57 +289,17 @@ namespace SCVZ
             this.btnAllMeals.UseVisualStyleBackColor = true;
             this.btnAllMeals.Click += new System.EventHandler(this.btnAllMeals_Click);
             // 
-            // panel1
+            // btnAllMenus
             // 
-            this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Controls.Add(this.rboMainDish);
-            this.panel1.Controls.Add(this.rboSideDish);
-            this.panel1.Controls.Add(this.rboAppetizer);
-            this.panel1.Location = new System.Drawing.Point(44, 140);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(244, 169);
-            this.panel1.TabIndex = 1;
-            // 
-            // rboMainDish
-            // 
-            this.rboMainDish.AutoSize = true;
-            this.rboMainDish.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rboMainDish.Location = new System.Drawing.Point(14, 112);
-            this.rboMainDish.Margin = new System.Windows.Forms.Padding(2);
-            this.rboMainDish.Name = "rboMainDish";
-            this.rboMainDish.Size = new System.Drawing.Size(123, 24);
-            this.rboMainDish.TabIndex = 2;
-            this.rboMainDish.TabStop = true;
-            this.rboMainDish.Text = "glavnom jelu";
-            this.rboMainDish.UseVisualStyleBackColor = true;
-            // 
-            // rboSideDish
-            // 
-            this.rboSideDish.AutoSize = true;
-            this.rboSideDish.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rboSideDish.Location = new System.Drawing.Point(14, 72);
-            this.rboSideDish.Margin = new System.Windows.Forms.Padding(2);
-            this.rboSideDish.Name = "rboSideDish";
-            this.rboSideDish.Size = new System.Drawing.Size(80, 24);
-            this.rboSideDish.TabIndex = 1;
-            this.rboSideDish.TabStop = true;
-            this.rboSideDish.Text = "prilogu";
-            this.rboSideDish.UseVisualStyleBackColor = true;
-            // 
-            // rboAppetizer
-            // 
-            this.rboAppetizer.AutoSize = true;
-            this.rboAppetizer.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rboAppetizer.Location = new System.Drawing.Point(14, 32);
-            this.rboAppetizer.Margin = new System.Windows.Forms.Padding(2);
-            this.rboAppetizer.Name = "rboAppetizer";
-            this.rboAppetizer.Size = new System.Drawing.Size(89, 24);
-            this.rboAppetizer.TabIndex = 0;
-            this.rboAppetizer.TabStop = true;
-            this.rboAppetizer.Text = "predjelu";
-            this.rboAppetizer.UseVisualStyleBackColor = true;
-            this.rboAppetizer.CheckedChanged += new System.EventHandler(this.rboAppetizer_CheckedChanged);
+            this.btnAllMenus.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAllMenus.Location = new System.Drawing.Point(19, 86);
+            this.btnAllMenus.Margin = new System.Windows.Forms.Padding(2);
+            this.btnAllMenus.Name = "btnAllMenus";
+            this.btnAllMenus.Size = new System.Drawing.Size(244, 42);
+            this.btnAllMenus.TabIndex = 3;
+            this.btnAllMenus.Text = "Meniji";
+            this.btnAllMenus.UseVisualStyleBackColor = true;
+            this.btnAllMenus.Click += new System.EventHandler(this.btnAllMenus_Click);
             // 
             // lblFilter
             // 
@@ -349,9 +308,9 @@ namespace SCVZ
             this.lblFilter.Location = new System.Drawing.Point(40, 102);
             this.lblFilter.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblFilter.Name = "lblFilter";
-            this.lblFilter.Size = new System.Drawing.Size(118, 20);
+            this.lblFilter.Size = new System.Drawing.Size(65, 20);
             this.lblFilter.TabIndex = 0;
-            this.lblFilter.Text = "Filtriraj prema:";
+            this.lblFilter.Text = "Prikaži:";
             // 
             // FrmPreview
             // 
@@ -381,7 +340,6 @@ namespace SCVZ
             this.pnlFilters.ResumeLayout(false);
             this.pnlFilters.PerformLayout();
             this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -399,11 +357,8 @@ namespace SCVZ
         private System.Windows.Forms.Panel pnlFilters;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lblFilter;
-        private System.Windows.Forms.RadioButton rboSideDish;
-        private System.Windows.Forms.RadioButton rboAppetizer;
         private System.Windows.Forms.Button btnAllMenus;
         private System.Windows.Forms.Button btnAllMeals;
-        private System.Windows.Forms.RadioButton rboMainDish;
         private System.Windows.Forms.Button btnStaff;
         private System.Windows.Forms.DataGridView dgvPreview;
         private System.Windows.Forms.Button btnAddMoreMeals;

@@ -49,6 +49,88 @@ namespace SCVZ.Repositories
             return meniji;
         }
 
+        public static void CalculateGiftPointsForStudent(int studentId)
+        {
+            try
+            {
+                DB.OpenConnection();
+
+                // Fetch all orders for the student
+                string ordersSql = $"SELECT * FROM Narudzbe WHERE IdStudent = {studentId}";
+                SqlDataReader ordersReader = DB.GetDataReader(ordersSql);
+
+                int totalBrojPoklonBodova = 0;
+                int totalBrojKupona = 0;
+
+                while (ordersReader.Read())
+                {
+                    int brojPoklonBodova = (int)ordersReader["BrojPoklonBodova"];
+                    int brojKupona = (int)ordersReader["BrojKupona"];
+
+                    totalBrojPoklonBodova += brojPoklonBodova;
+                    totalBrojKupona += brojKupona;
+                }
+
+                ordersReader.Close();
+
+                Console.WriteLine($"Total BrojPoklonBodova for student {studentId}: {totalBrojPoklonBodova}");
+                Console.WriteLine($"Total BrojKupona for student {studentId}: {totalBrojKupona}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred while calculating gift points for student {studentId}: {ex.Message}");
+            }
+            finally
+            {
+                DB.CloseConnection();
+            }
+        }
+
+        public static List<Meni> GetMenusSortedByRating()
+        {
+            var menus = new List<Meni>();
+            string sql = @"SELECT M.*, AvgRatings.AvgRating
+                   FROM Meni M
+                   INNER JOIN (
+                       SELECT SR.IdMeni, AVG(R.Ocjena) AS AvgRating
+                       FROM SkupRecenzija SR
+                       INNER JOIN Recenzije R ON SR.IdRecenzija = R.IdRecenzija
+                       GROUP BY SR.IdMeni
+                   ) AvgRatings ON M.IdMeni = AvgRatings.IdMeni
+                   ORDER BY AvgRatings.AvgRating DESC;";
+
+            DB.OpenConnection();
+            var reader = DB.GetDataReader(sql);
+            while (reader.Read())
+            {
+                Meni menu = CreateObject(reader);
+                menus.Add(menu);
+            }
+            reader.Close();
+            DB.CloseConnection();
+            return menus;
+        }
+
+        public static List<Meni> GetMenusSortedByPreparationTime()
+        {
+            var menus = new List<Meni>();
+            string sql = @"SELECT M.*
+                   FROM Meni M
+                   ORDER BY M.VrijemePripreme ASC;";
+
+            DB.OpenConnection();
+            var reader = DB.GetDataReader(sql);
+            while (reader.Read())
+            {
+                Meni menu = CreateObject(reader);
+                menus.Add(menu);
+            }
+            reader.Close();
+            DB.CloseConnection();
+            return menus;
+        }
+
+
         public static Meni GetMenuForOrder(int orderId)
         {
             Meni menu = null;

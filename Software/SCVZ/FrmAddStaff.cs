@@ -62,13 +62,15 @@ namespace SCVZ
             string ime = txtStaffFirstName.Text;
             string prezime = txtStaffLastName.Text;
             string lozinka = txtStaffPassword.Text;
-            string pozicija = cboStaffPosition.Text; // Assuming pozicija is a string
+            string korisnickoIme = txtUsername.Text;
+            string pozicija = cboStaffPosition.Text;
 
             Zaposlenik zaposlenik = new Zaposlenik
             {
                 Ime = ime,
                 Prezime = prezime,
                 Lozinka = lozinka,
+                KorisnickoIme = korisnickoIme,
                 Pozicija = pozicija
             };
 
@@ -84,6 +86,10 @@ namespace SCVZ
             }
         }
 
+        private void FrmAddStaff_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 

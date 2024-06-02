@@ -71,10 +71,9 @@ namespace SCVZ
 
         private void PokaziNarudzbe()
         {
-            var orders = OrderRepository.DajNarudzbePoJMBAG(JMBAG); // Fetch orders for the current student
+            var orders = OrderRepository.DajNarudzbePoJMBAG(JMBAG);
             dgvPreview.DataSource = orders;
 
-            // Configure DataGridView columns
             dgvPreview.Columns["IdNarudzba"].HeaderText = "Id";
             dgvPreview.Columns["DatumNarudzbe"].HeaderText = "Datum";
             dgvPreview.Columns["IdZaposlenik"].HeaderText = "Zaposlenik";
@@ -95,13 +94,79 @@ namespace SCVZ
             dgvPreview.Columns["IdStudent"].DisplayIndex = 4;
         }
 
+        private void PokaziMenije()
+        {
+            var orders = OrderRepository.DajNarudzbePoJMBAG(JMBAG);
+            var uniqueMenuIds = orders.Select(order => order.IdMeni).Distinct();
 
+            var menus = new List<Meni>();
+            foreach (var menuId in uniqueMenuIds)
+            {
+                var menu = MenuRepository.DajMeni(menuId);
+                if (menu != null)
+                {
+                    menus.Add(menu);
+                }
+            }
+
+            dgvMenus.DataSource = menus;
+
+            dgvMenus.Columns["IdMeni"].HeaderText = "Id";
+            dgvMenus.Columns["CijenaMenija"].HeaderText = "Cijena";
+            dgvMenus.Columns["IdVrstaMenija"].HeaderText = "Vrsta menija";
+            dgvMenus.Columns["VrijednostPoklonBodova"].HeaderText = "Broj poklon bodova";
+            dgvMenus.Columns["VrijemePripreme"].HeaderText = "Vrijeme pripreme";
+
+            foreach (DataGridViewColumn column in dgvMenus.Columns)
+            {
+                column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            }
+        }
+        private void dgvMenus_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                try
+                {
+                    Console.WriteLine("Debug: Cell clicked.");
+
+                    int studentId = StudentRepository.DajStudentaByJMBAG(JMBAG).IdStudent;
+                    Console.WriteLine($"Debug: Retrieved student ID: {studentId}");
+
+                    int menuId = (int)dgvMenus.Rows[e.RowIndex].Cells["IdMeni"].Value;
+                    Console.WriteLine($"Debug: Retrieved menu ID: {menuId}");
+
+                    Recenzije recenzije = RatingsRepository.GetRatingForMenuItem(menuId, studentId);
+
+                    if (recenzije != null)
+                    {
+                        dgvRatings.DataSource = new List<Recenzije> { recenzije };
+                        Console.WriteLine("Debug: Rating found.");
+
+                        foreach (DataGridViewColumn column in dgvRatings.Columns)
+                        {
+                            column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                        }
+                    }
+                    else
+                    {
+                        dgvRatings.DataSource = null;
+                        Console.WriteLine("Debug: No rating found.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"An error occurred: {ex.Message}");
+                }
+            }
+        }
         private void FrmOrderHistory_Load(object sender, EventArgs e)
         {
             dgvPreview.DataSource = null;
+            dgvMenus.DataSource = null;
             PokaziNarudzbe();
+            PokaziMenije();
         }
-
         private void dgvPreview_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -111,21 +176,12 @@ namespace SCVZ
                 Meni menu = MenuRepository.DajMeni(order.IdMeni);
                 Console.WriteLine($"Displaying details for Narudzbe.Meni ID: {order.IdMeni}");
 
-
                 if (menu != null)
                 {
                     Console.WriteLine($"Displaying details for Menu ID: {menu.IdMeni}");
                     dgvDetails.DataSource = menu.stavkeMenija;
-                    Recenzije recenzije = new Recenzije();
-                    recenzije = RatingsRepository.DajRecenzijuZaStudenta(order.IdStudent);
-                    dgvRatings.DataSource = new List<Recenzije> { recenzije };
 
                     foreach (DataGridViewColumn column in dgvDetails.Columns)
-                    {
-                        column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                    }
-
-                    foreach (DataGridViewColumn column in dgvRatings.Columns)
                     {
                         column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                     }

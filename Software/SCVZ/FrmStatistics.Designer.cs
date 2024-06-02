@@ -36,8 +36,6 @@
             this.pnlFooter = new System.Windows.Forms.Panel();
             this.pnlSidebar = new System.Windows.Forms.Panel();
             this.btnGenerateReport = new System.Windows.Forms.Button();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.lblConversion = new System.Windows.Forms.Label();
             this.lblSort = new System.Windows.Forms.Label();
             this.btnSortOrderNbr = new System.Windows.Forms.Button();
             this.btnSortTotalRating = new System.Windows.Forms.Button();
@@ -59,8 +57,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.imgBack)).BeginInit();
             this.pnlLogo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgLogo)).BeginInit();
-            this.pnlSidebar.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.pnlFilters.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMenuType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMealType)).BeginInit();
@@ -139,9 +135,6 @@
             // 
             this.pnlSidebar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.pnlSidebar.BackColor = System.Drawing.Color.White;
-            this.pnlSidebar.Controls.Add(this.btnGenerateReport);
-            this.pnlSidebar.Controls.Add(this.numericUpDown1);
-            this.pnlSidebar.Controls.Add(this.lblConversion);
             this.pnlSidebar.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlSidebar.Location = new System.Drawing.Point(0, 165);
             this.pnlSidebar.Name = "pnlSidebar";
@@ -151,36 +144,13 @@
             // btnGenerateReport
             // 
             this.btnGenerateReport.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGenerateReport.Location = new System.Drawing.Point(40, 602);
+            this.btnGenerateReport.Location = new System.Drawing.Point(935, 657);
             this.btnGenerateReport.Name = "btnGenerateReport";
-            this.btnGenerateReport.Size = new System.Drawing.Size(184, 45);
+            this.btnGenerateReport.Size = new System.Drawing.Size(162, 45);
             this.btnGenerateReport.TabIndex = 6;
             this.btnGenerateReport.Text = "Generiraj izvještaj";
             this.btnGenerateReport.UseVisualStyleBackColor = true;
             this.btnGenerateReport.Click += new System.EventHandler(this.btnGenerateReport_Click);
-            // 
-            // numericUpDown1
-            // 
-            this.numericUpDown1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericUpDown1.Location = new System.Drawing.Point(40, 521);
-            this.numericUpDown1.Maximum = new decimal(new int[] {
-            500,
-            0,
-            0,
-            0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(271, 27);
-            this.numericUpDown1.TabIndex = 5;
-            // 
-            // lblConversion
-            // 
-            this.lblConversion.AutoSize = true;
-            this.lblConversion.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblConversion.Location = new System.Drawing.Point(36, 470);
-            this.lblConversion.Name = "lblConversion";
-            this.lblConversion.Size = new System.Drawing.Size(275, 20);
-            this.lblConversion.TabIndex = 4;
-            this.lblConversion.Text = "Konverzija poklon bodova u kupone:";
             // 
             // lblSort
             // 
@@ -227,6 +197,7 @@
             // 
             // pnlFilters
             // 
+            this.pnlFilters.Controls.Add(this.btnGenerateReport);
             this.pnlFilters.Controls.Add(this.lblCount);
             this.pnlFilters.Controls.Add(this.lblAverage);
             this.pnlFilters.Controls.Add(this.btnReset);
@@ -252,7 +223,7 @@
             // 
             this.lblCount.AutoSize = true;
             this.lblCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCount.Location = new System.Drawing.Point(1257, 657);
+            this.lblCount.Location = new System.Drawing.Point(1242, 657);
             this.lblCount.Name = "lblCount";
             this.lblCount.Size = new System.Drawing.Size(172, 20);
             this.lblCount.TabIndex = 15;
@@ -262,7 +233,7 @@
             // 
             this.lblAverage.AutoSize = true;
             this.lblAverage.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAverage.Location = new System.Drawing.Point(1156, 613);
+            this.lblAverage.Location = new System.Drawing.Point(1139, 613);
             this.lblAverage.Name = "lblAverage";
             this.lblAverage.Size = new System.Drawing.Size(275, 20);
             this.lblAverage.TabIndex = 14;
@@ -270,7 +241,7 @@
             // 
             // btnReset
             // 
-            this.btnReset.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReset.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReset.Location = new System.Drawing.Point(935, 607);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(162, 40);
@@ -330,6 +301,9 @@
             // 
             // dgvRatings
             // 
+            this.dgvRatings.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvRatings.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvRatings.Location = new System.Drawing.Point(1540, 67);
             this.dgvRatings.Name = "dgvRatings";
@@ -351,6 +325,8 @@
             // 
             // dgvPreview
             // 
+            this.dgvPreview.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.dgvPreview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPreview.Location = new System.Drawing.Point(401, 67);
             this.dgvPreview.Name = "dgvPreview";
@@ -380,9 +356,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.imgBack)).EndInit();
             this.pnlLogo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.imgLogo)).EndInit();
-            this.pnlSidebar.ResumeLayout(false);
-            this.pnlSidebar.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.pnlFilters.ResumeLayout(false);
             this.pnlFilters.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMenuType)).EndInit();
@@ -404,8 +377,6 @@
         private System.Windows.Forms.PictureBox imgLogo;
         private System.Windows.Forms.Panel pnlFooter;
         private System.Windows.Forms.Panel pnlSidebar;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.Label lblConversion;
         private System.Windows.Forms.Button btnGenerateReport;
         private System.Windows.Forms.Label lblSort;
         private System.Windows.Forms.Button btnSortOrderNbr;

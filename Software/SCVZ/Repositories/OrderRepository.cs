@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,45 +31,6 @@ namespace SCVZ.Repositories
             DB.CloseConnection();
             return narudzba;
         }
-
-        public static List<Narudzbe> GetOrdersSortedByMenuRating()
-        {
-            var orders = new List<Narudzbe>();
-            string sql = @"SELECT N.* FROM Narudzbe N INNER JOIN Meni M ON N.IdMeni = M.IdMeni INNER JOIN (
-            SELECT SR.IdMeni, AVG(R.Ocjena) AS AvgRating
-            FROM SkupRecenzija SR
-            INNER JOIN Recenzije R ON SR.IdRecenzija = R.IdRecenzija
-            GROUP BY SR.IdMeni) AvgRatings ON M.IdMeni = AvgRatings.IdMeni ORDER BY AvgRatings.AvgRating DESC;";
-
-            DB.OpenConnection();
-            var reader = DB.GetDataReader(sql);
-            while (reader.Read())
-            {
-                Narudzbe order = CreateObject(reader);
-                orders.Add(order);
-            }
-            reader.Close();
-            DB.CloseConnection();
-            return orders;
-        }
-
-        public static List<Narudzbe> GetOrdersSortedByPreparationTime()
-        {
-            var orders = new List<Narudzbe>();
-            string sql = @"SELECT N.* FROM Narudzbe N INNER JOIN Meni M ON N.IdMeni = M.IdMeni ORDER BY M.VrijemePripreme ASC;";
-
-            DB.OpenConnection();
-            var reader = DB.GetDataReader(sql);
-            while (reader.Read())
-            {
-                Narudzbe order = CreateObject(reader);
-                orders.Add(order);
-            }
-            reader.Close();
-            DB.CloseConnection();
-            return orders;
-        }
-
 
         public static List<Narudzbe> DajNarudzbe()
         {
@@ -165,6 +127,19 @@ namespace SCVZ.Repositories
             int idZaposlenik = int.Parse(reader["IdZaposlenik"].ToString());
             int idStudent = int.Parse(reader["IdStudent"].ToString());
 
+            float kuponCijenaMenija;
+            if (reader["KuponCijenaMenija"] != DBNull.Value)
+            {
+                if (!float.TryParse(reader["KuponCijenaMenija"].ToString(), out kuponCijenaMenija))
+                {
+                    kuponCijenaMenija = 0.0f;
+                }
+            }
+            else
+            {
+                kuponCijenaMenija = 0.0f;
+            }
+
             Narudzbe narudzba = new Narudzbe
             {
                 IdNarudzba = idNarudzba,
@@ -172,10 +147,12 @@ namespace SCVZ.Repositories
                 IdMeni = idMeni,
                 IdZaposlenik = idZaposlenik,
                 IdStudent = idStudent,
+                KuponCijenaMenija = kuponCijenaMenija
             };
 
             return narudzba;
         }
+
         public static int DajSljedeceg()
         {
             string sql = "SELECT ISNULL(MAX(IdNarudzba), 0) + 1 FROM Narudzbe";
@@ -242,28 +219,54 @@ namespace SCVZ.Repositories
         }
         public static int InsertOrder(Narudzbe order, int studentId)
         {
-            string formattedDate = order.DatumNarudzbe.ToString("yyyy-MM-dd HH:mm:ss");
-
-            string sql = $"INSERT INTO Narudzbe (DatumNarudzbe, IdMeni, IdZaposlenik, IdStudent) " +
-                         $"VALUES ('{formattedDate}', {order.IdMeni}, {order.IdZaposlenik}, {studentId}); " +
-                         $"SELECT CAST(SCOPE_IDENTITY() AS INT)";
-
             int newOrderId = -1;
             try
             {
                 DB.OpenConnection();
-                newOrderId = (int)DB.GetScalar(sql);
+                if (order.KuponCijenaMenija != 0)
+                {
+                    string updateKuponSql = $"UPDATE Narudzbe SET KuponCijenaMenija = {order.KuponCijenaMenija.ToString("F", CultureInfo.InvariantCulture)} WHERE IdNarudzba = {order.IdNarudzba}";
+                    DB.ExecuteCommand(updateKuponSql);
+                }
+
+                string formattedDate = order.DatumNarudzbe.ToString("yyyy-MM-dd HH:mm:ss");
+                string insertSql = $"INSERT INTO Narudzbe (DatumNarudzbe, IdMeni, IdZaposlenik, IdStudent, KuponCijenaMenija) " +
+                                   $"VALUES ('{formattedDate}', {order.IdMeni}, {order.IdZaposlenik}, {studentId}, {(order.KuponCijenaMenija != 0 ? order.KuponCijenaMenija.ToString("F", CultureInfo.InvariantCulture) : "NULL")}); " +
+                                   $"SELECT CAST(SCOPE_IDENTITY() AS INT)";
+                newOrderId = (int)DB.GetScalar(insertSql);
 
                 string menuSql = $"SELECT VrijednostPoklonBodova FROM Meni WHERE IdMeni = {order.IdMeni}";
                 int vrijednostPoklonBodova = (int)DB.GetScalar(menuSql);
 
-                string studentSql = $"SELECT BrojPoklonBodova FROM Student WHERE IdStudent = {studentId}";
-                int brojPoklonBodova = (int)DB.GetScalar(studentSql);
+                string studentSql = $"SELECT BrojPoklonBodova, BrojKupona FROM Student WHERE IdStudent = {studentId}";
+                SqlDataReader reader = DB.GetDataReader(studentSql);
+                if (reader.HasRows)
+                {
+                    reader.Read();
 
-                int updatedBrojPoklonBodova = brojPoklonBodova + vrijednostPoklonBodova;
+                    int brojPoklonBodovaBefore = reader.GetInt32(reader.GetOrdinal("BrojPoklonBodova"));
+                    int brojKuponaBefore = reader.GetInt32(reader.GetOrdinal("BrojKupona"));
+                    reader.Close();
+                    int totalGiftPointsBefore = brojPoklonBodovaBefore;
+                    int brojPoklonBodovaAfter = brojPoklonBodovaBefore + vrijednostPoklonBodova;
+                    int brojKuponaAfter = brojKuponaBefore;
 
-                string updateStudentSql = $"UPDATE Student SET BrojPoklonBodova = {updatedBrojPoklonBodova} WHERE IdStudent = {studentId}";
-                DB.ExecuteCommand(updateStudentSql);
+                    string updateStudentSql = $"UPDATE Student SET BrojPoklonBodova = {brojPoklonBodovaAfter}, BrojKupona = {brojKuponaAfter} WHERE IdStudent = {studentId}";
+                    DB.ExecuteCommand(updateStudentSql);
+
+                    int totalGiftPointsAfter = brojPoklonBodovaAfter;
+
+                    Console.WriteLine($"Total gift points for student {studentId} before order: {totalGiftPointsBefore}");
+                    Console.WriteLine($"Total gift points for student {studentId} after order: {totalGiftPointsAfter}");
+
+                    int interval = totalGiftPointsAfter - totalGiftPointsBefore;
+                    Console.WriteLine($"Interval between total gift points: {interval}");
+                }
+                else
+                {
+                    reader.Close();
+                    throw new Exception($"Student with ID {studentId} not found.");
+                }
             }
             catch (Exception ex)
             {
@@ -276,6 +279,10 @@ namespace SCVZ.Repositories
 
             return newOrderId;
         }
+
+
+
+
 
     }
 }

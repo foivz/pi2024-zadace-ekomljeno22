@@ -202,43 +202,40 @@ namespace SCVZ
 
         private void btnSortTotalRating_Click(object sender, EventArgs e)
         {
-            var sortedOrders = OrderRepository.GetOrdersSortedByMenuRating();
-            dgvPreview.DataSource = sortedOrders;
+            var sortedMeni = MenuRepository.GetMenusSortedByRating();
+            dgvPreview.DataSource = sortedMeni;
 
             foreach (DataGridViewColumn column in dgvPreview.Columns)
             {
                 column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             }
 
-            dgvPreview.Columns["IdNarudzba"].HeaderText = "Id";
-            dgvPreview.Columns["DatumNarudzbe"].HeaderText = "Datum";
-            dgvPreview.Columns["IdMeni"].HeaderText = "IdMeni";
-            dgvPreview.Columns["IdZaposlenik"].HeaderText = "Zaposlenik";
-            dgvPreview.Columns["IdStudent"].HeaderText = "Student";
-
-            dgvPreview.Columns["IdZaposlenik"].Visible = false;
-            dgvPreview.Columns["IdStudent"].Visible = false;
+            // Set column headers
+            dgvPreview.Columns["IdMeni"].HeaderText = "Id";
+            dgvPreview.Columns["CijenaMenija"].HeaderText = "Cijena";
+            dgvPreview.Columns["IdVrstaMenija"].HeaderText = "IdVrsta";
+            dgvPreview.Columns["VrijednostPoklonBodova"].HeaderText = "Vrijednost Bodova";
+            dgvPreview.Columns["VrijemePripreme"].HeaderText = "Vrijeme Pripreme";
         }
-
         private void btnSortPreparationTime_Click(object sender, EventArgs e)
         {
-            var sortedOrders = OrderRepository.GetOrdersSortedByPreparationTime();
-            dgvPreview.DataSource = sortedOrders;
+            var sortedMenus = MenuRepository.GetMenusSortedByPreparationTime();
+            dgvPreview.DataSource = sortedMenus;
 
             foreach (DataGridViewColumn column in dgvPreview.Columns)
             {
                 column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             }
 
-            dgvPreview.Columns["IdNarudzba"].HeaderText = "Id";
-            dgvPreview.Columns["DatumNarudzbe"].HeaderText = "Datum";
-            dgvPreview.Columns["IdMeni"].HeaderText = "IdMeni";
-            dgvPreview.Columns["IdZaposlenik"].HeaderText = "Zaposlenik";
-            dgvPreview.Columns["IdStudent"].HeaderText = "Student";
+            // Set column headers
+            dgvPreview.Columns["IdMeni"].HeaderText = "Id";
+            dgvPreview.Columns["CijenaMenija"].HeaderText = "Cijena";
+            dgvPreview.Columns["IdVrstaMenija"].HeaderText = "IdVrsta";
+            dgvPreview.Columns["VrijednostPoklonBodova"].HeaderText = "Vrijednost Bodova";
+            dgvPreview.Columns["VrijemePripreme"].HeaderText = "Vrijeme Pripreme";
 
-            dgvPreview.Columns["IdZaposlenik"].Visible = false;
-            dgvPreview.Columns["IdStudent"].Visible = false;
         }
+
 
         private void dgvDetails_CellClick(object sender, DataGridViewCellEventArgs e)
         {
