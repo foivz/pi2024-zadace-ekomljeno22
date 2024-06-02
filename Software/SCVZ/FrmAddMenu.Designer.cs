@@ -203,7 +203,6 @@
             this.Controls.Add(this.pnlNav);
             this.Name = "FrmAddMenu";
             this.Text = "FrmAddMenu";
-            this.Load += new System.EventHandler(this.FrmAddMenu_Load);
             this.pnlNav.ResumeLayout(false);
             this.pnlNav.PerformLayout();
             this.ResumeLayout(false);

@@ -49,13 +49,12 @@ namespace SCVZ.Repositories
             return meniji;
         }
 
-        public static void CalculateGiftPointsForStudent(int studentId)
+        public static void IzračunajPoklonBodove(int studentId)
         {
             try
             {
                 DB.OpenConnection();
 
-                // Fetch all orders for the student
                 string ordersSql = $"SELECT * FROM Narudzbe WHERE IdStudent = {studentId}";
                 SqlDataReader ordersReader = DB.GetDataReader(ordersSql);
 
@@ -73,12 +72,12 @@ namespace SCVZ.Repositories
 
                 ordersReader.Close();
 
-                Console.WriteLine($"Total BrojPoklonBodova for student {studentId}: {totalBrojPoklonBodova}");
-                Console.WriteLine($"Total BrojKupona for student {studentId}: {totalBrojKupona}");
+                Console.WriteLine($"Ukupni broj poklon bodova studenta: {studentId}: {totalBrojPoklonBodova}");
+                Console.WriteLine($"Ukupni broj kupona studenta: {studentId}: {totalBrojKupona}");
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"An error occurred while calculating gift points for student {studentId}: {ex.Message}");
+                Console.WriteLine($"Greška prilikom generiranja poklon bodova studenta {studentId}: {ex.Message}");
             }
             finally
             {
@@ -128,27 +127,6 @@ namespace SCVZ.Repositories
             reader.Close();
             DB.CloseConnection();
             return menus;
-        }
-
-
-        public static Meni GetMenuForOrder(int orderId)
-        {
-            Meni menu = null;
-            string sql = $"SELECT * FROM Meni WHERE IdMeni = (SELECT IdMeni FROM Narudzbe WHERE IdNarudzba = {orderId})";
-
-            DB.OpenConnection();
-
-            var reader = DB.GetDataReader(sql);
-            if (reader.HasRows)
-            {
-                reader.Read();
-
-                menu = MenuRepository.CreateObject(reader);
-
-                reader.Close();
-            }
-            DB.CloseConnection();
-            return menu;
         }
 
         private static Meni CreateObject(SqlDataReader reader)
@@ -203,21 +181,21 @@ namespace SCVZ.Repositories
 
                 if (timeComponents.Length != 3)
                 {
-                    throw new FormatException("Invalid time format. Time string must be in HH:MM:SS format.");
+                    throw new FormatException("Krivi vremenski format. Format vremena mora biti HH:MM:SS (gdje su H sati, M minute i S sekunde).");
                 }
                 int hours, minutes, seconds;
                 if (!int.TryParse(timeComponents[0], out hours) ||
                     !int.TryParse(timeComponents[1], out minutes) ||
                     !int.TryParse(timeComponents[2], out seconds))
                 {
-                    throw new FormatException("Invalid time format. Time string must contain numeric values.");
+                    throw new FormatException("Krivi vremenski format. Koristi brojke.");
                 }
 
                 return new TimeSpan(hours, minutes, seconds);
             }
             catch (FormatException ex)
             {
-                Console.WriteLine($"Error parsing time string: {ex.Message}");
+                Console.WriteLine($"Greška tokom parsiranja {ex.Message}");
                 throw;
             }
         }
@@ -235,12 +213,12 @@ namespace SCVZ.Repositories
                 if (result != null && result != DBNull.Value)
                 {
                     nextId = Convert.ToInt32(result);
-                    Console.WriteLine($"Next available ID: {nextId}");
+                    Console.WriteLine($"Sljedeći dostupni ID: {nextId}");
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"An error occurred while retrieving the next available ID: {ex.Message}");
+                Console.WriteLine($"Greška prilikom fetchanja sljedećeg ID-a: {ex.Message}");
             }
             finally
             {
@@ -278,7 +256,7 @@ namespace SCVZ.Repositories
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"An error occurred while adding the menu: {ex.Message}");
+                Console.WriteLine($"Greška: {ex.Message}");
             }
             finally
             {

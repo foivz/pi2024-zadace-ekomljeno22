@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SCVZ
 {
@@ -74,13 +75,6 @@ namespace SCVZ
             pnlLogo.BackColor = color;
         }
 
-        private void btnStatistics_Click(object sender, EventArgs e)
-        {
-            FrmStatistics form2 = new FrmStatistics(enteredUsername);
-            form2.Show();
-            this.Close();
-        }
-
         private void btnStaff_Click(object sender, EventArgs e)
         {
             dgvPreview.DataSource = null;
@@ -138,16 +132,9 @@ namespace SCVZ
             {
                 column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             }
-
             dgvPreview.Columns["IdJelo"].DisplayIndex = 0;
             dgvPreview.Columns["NazivJela"].DisplayIndex = 1;
             dgvPreview.Columns["IdVrstaJela"].DisplayIndex = 2;
-        }
-
-        private void rboAppetizer_CheckedChanged(object sender, EventArgs e)
-        {
-            string sql = "SELECT J.* FROM Jelo J INNER JOIN VrsteJela V ON J.IdVrstaJela = V.IdVrstaJela WHERE V.IdVrstaJela = 1";
-            MealRepository.FiltrirajPremaPredjelima(sql);
         }
 
         private void btnAddMeal_Click(object sender, EventArgs e)
@@ -172,38 +159,8 @@ namespace SCVZ
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     string csvFilePath = openFileDialog.FileName;
-                    UnosCSV(csvFilePath);
+                    MealRepository.UnosCSV(csvFilePath);
                 }
-            }
-        }
-
-        public static void UnosCSV(string csvFilePath)
-        {
-            try
-            {
-                using (var reader = new StreamReader(csvFilePath))
-                {
-                    while (!reader.EndOfStream)
-                    {
-                        var line = reader.ReadLine();
-                        var values = line.Split(',');
-
-                        var nazivJela = values[0];
-                        var idVrstaJela = int.Parse(values[1]);
-
-                        var jelo = new Jelo
-                        {
-                            NazivJela = nazivJela,
-                            IdVrstaJela = idVrstaJela
-                        };
-
-                        MealRepository.DodajJelo(jelo);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"An error occurred while importing CSV: {ex.Message}");
             }
         }
 
@@ -232,10 +189,42 @@ namespace SCVZ
             foreach (DataGridViewRow row in dgvPreview.Rows)
             {
                 int idMeni = (int)row.Cells["IdMeni"].Value;
-                Console.WriteLine($"Processing IdMeni: {idMeni}");
+                Console.WriteLine($"Učitavanje Menija: {idMeni}");
             }
         }
 
+        private void dgvPreview_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvPreview.SelectedRows.Count > 0)
+            {
+                DataGridViewRow selectedRow = dgvPreview.SelectedRows[0];
+
+                if (selectedRow.DataBoundItem is Jelo)
+                {
+                    DialogResult dialogResult = MessageBox.Show("Želite li ažurirati odabrano jelo?", "Ažuriranje", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        int idJelo = Convert.ToInt32(selectedRow.Cells["IdJelo"].Value);
+                        FrmAddMealUpdate frmAddMeal = new FrmAddMealUpdate(idJelo);
+                        frmAddMeal.ShowDialog();
+                    }
+                    else if (dialogResult == DialogResult.No)
+                    {
+                        return;
+                    }
+                }
+                else if (selectedRow.DataBoundItem is Zaposlenik)
+                {
+                    DialogResult deleteResult = MessageBox.Show("Želite li obrasati odabrano jelo?", "Brisanje", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    if (deleteResult == DialogResult.Yes)
+                    {
+                        var zaposlenikToDelete = (Zaposlenik)selectedRow.DataBoundItem;
+                        StaffRepository.DeleteZaposlenik(zaposlenikToDelete);
+                        PokaziZaposlenike();
+                    }
+                }
+            }
+        }
         private void dgvPreview_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (dgvPreview.CurrentRow == null)
@@ -271,6 +260,61 @@ namespace SCVZ
             {
                 dgvDetails.DataSource = null;
             }
+        }
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            string searchText = txtSearch.Text.Trim().ToLower();
+
+            if (string.IsNullOrWhiteSpace(searchText))
+            {
+                ResetDataGridViewDataSource();
+                return;
+            }
+
+            if (dgvPreview.DataSource is List<Jelo>)
+            {
+                List<Jelo> jela = (List<Jelo>)dgvPreview.DataSource;
+                List<Jelo> filteredJela = jela.Where(j => j.NazivJela.ToLower().Contains(searchText)).ToList();
+                dgvPreview.DataSource = filteredJela;
+            }
+            else if (dgvPreview.DataSource is List<Zaposlenik>)
+            {
+                List<Zaposlenik> zaposlenici = (List<Zaposlenik>)dgvPreview.DataSource;
+                List<Zaposlenik> filteredZaposlenici = zaposlenici
+                    .Where(z => z.Ime.ToLower().Contains(searchText) || z.Prezime.ToLower().Contains(searchText))
+                    .ToList();
+                dgvPreview.DataSource = filteredZaposlenici;
+            }
+            else if (dgvPreview.DataSource is List<Meni>)
+            {
+                List<Meni> meniji = (List<Meni>)dgvPreview.DataSource;
+                List<Meni> filteredMeniji = meniji.Where(m => m.stavkeMenija.Any(j => j.NazivJela.ToLower().Contains(searchText))).ToList();
+                dgvPreview.DataSource = filteredMeniji;
+            }
+        }
+        private void ResetDataGridViewDataSource()
+        {
+            if (dgvPreview.DataSource is List<Zaposlenik>)
+            {
+                PokaziZaposlenike();
+            }
+            else if (dgvPreview.DataSource is List<Jelo>)
+            {
+                PokaziJela();
+            }
+            else if (dgvPreview.DataSource is List<Meni>)
+            {
+                PokaziMenije();
+            }
+            else
+            {
+                dgvPreview.DataSource = null;
+            }
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            ResetDataGridViewDataSource();
         }
     }
 }

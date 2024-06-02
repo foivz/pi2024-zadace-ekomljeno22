@@ -212,7 +212,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmLoginStudent";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.FrmLoginStudent_Load);
             this.pnlNav.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.imgHome)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgBack)).EndInit();

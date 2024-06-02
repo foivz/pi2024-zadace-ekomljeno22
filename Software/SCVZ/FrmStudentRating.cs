@@ -44,7 +44,7 @@ namespace SCVZ
                 int rating = GetSelectedRating();
                 if (rating == 0)
                 {
-                    MessageBox.Show("Please select a rating.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Odaberite ocjenu", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -52,9 +52,9 @@ namespace SCVZ
                 Student student = StudentRepository.DajStudentaByJMBAG(JMBAG);
                 int studentId = student.IdStudent;
 
-                if (RatingsRepository.HasStudentRatedMenu(studentId, orderId))
+                if (RatingsRepository.MeniOcjenjen(studentId, orderId))
                 {
-                    MessageBox.Show("You have already rated this menu.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Već ste ocjenili ovaj Meni", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -67,23 +67,14 @@ namespace SCVZ
 
                 if (newRecenzijaId == -1)
                 {
-                    MessageBox.Show("An error occurred while adding the rating.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Greška prilikom recenziranja:", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                int menuId = OrderRepository.GetMenuIdForOrder(orderId);
-
-                string recenzijaSql = $"INSERT INTO SkupRecenzija(IdSkupRecenzija, IdRecenzija, IdMeni, IdStudent) " +
-                                      $"VALUES({newRecenzijaId}, {newRecenzijaId}, {menuId}, {studentId})";
-
-                DB.OpenConnection();
-                DB.ExecuteCommand(recenzijaSql);
-                DB.CloseConnection();
-
-                MessageBox.Show("Rating added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                RatingsRepository.DodajSkupRecenzija(orderId, newRecenzijaId, studentId);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred while adding the rating: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Greška prilikom unosa recenzije: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

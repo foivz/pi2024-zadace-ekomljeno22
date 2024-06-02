@@ -48,7 +48,6 @@ namespace SCVZ.Repositories
 
             return pozicijeList;
         }
-
         private static Pozicije CreateObject(SqlDataReader reader)
         {
             int idPozicija = int.Parse(reader["IdPozicija"].ToString());

@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace SCVZ.Repositories
 {
@@ -51,7 +52,6 @@ namespace SCVZ.Repositories
             reader.Close();
             return ratings;
         }
-
         public static Recenzije DajRecenzijuZaStudenta(int idStudent)
         {
             Recenzije recenzija = null;
@@ -71,7 +71,8 @@ namespace SCVZ.Repositories
             return recenzija;
         }
 
-        public static Recenzije GetRatingForMenuItem(int menuId, int studentId)
+
+        public static Recenzije DajRecenzijuZaMeni(int menuId, int studentId)
         {
             Recenzije recenzija = null;
 
@@ -81,7 +82,6 @@ namespace SCVZ.Repositories
 
             try
             {
-                Console.WriteLine($"Debug: SQL Query: {sql}");
 
                 DB.OpenConnection();
                 var reader = DB.GetDataReader(sql);
@@ -93,14 +93,14 @@ namespace SCVZ.Repositories
                 }
                 else
                 {
-                    Console.WriteLine("Debug: No rows returned from the query.");
+                    Console.WriteLine("Debug: Nije fetchan nijedan red.");
                 }
 
                 reader.Close();
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"An error occurred: {ex.Message}");
+                Console.WriteLine($"Greška: {ex.Message}");
             }
             finally
             {
@@ -109,60 +109,6 @@ namespace SCVZ.Repositories
 
             return recenzija;
         }
-
-
-
-
-
-
-        public static List<Recenzije> DajRecenzije()
-        {
-            var recenzije = new List<Recenzije>();
-
-            string sql = $"SELECT * FROM Recenzije;";
-            DB.OpenConnection();
-            var reader = DB.GetDataReader(sql);
-            while (reader.Read())
-            {
-                Recenzije recenzija = CreateObject(reader);
-                recenzije.Add(recenzija);
-            }
-
-            reader.Close();
-            DB.CloseConnection();
-
-            return recenzije;
-        }
-
-        public static int DajSljedecegSkup()
-        {
-            string sql = "SELECT ISNULL(MAX(IdSkupRecenzija), 0) + 1 FROM SkupRecenzija";
-
-            int nextId = -1;
-
-            try
-            {
-                DB.OpenConnection();
-
-                object result = DB.GetScalar(sql);
-                if (result != null && result != DBNull.Value)
-                {
-                    nextId = Convert.ToInt32(result);
-                    Console.WriteLine($"Next available SkupRecenzija ID: {nextId}");
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"An error occurred while retrieving the next available SkupRecenzija ID: {ex.Message}");
-            }
-            finally
-            {
-                DB.CloseConnection();
-            }
-
-            return nextId;
-        }
-
 
         public static Recenzije CreateObject(SqlDataReader reader)
         {
@@ -178,7 +124,7 @@ namespace SCVZ.Repositories
             };
         }
 
-        public static bool HasStudentRatedMenu(int studentId, int orderId)
+        public static bool MeniOcjenjen(int studentId, int orderId)
         {
             string sql = $"SELECT COUNT(*) FROM SkupRecenzija WHERE IdStudent = {studentId} AND IdMeni = (SELECT IdMeni FROM Narudzbe WHERE IdNarudzba = {orderId})";
 
@@ -190,7 +136,7 @@ namespace SCVZ.Repositories
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"An error occurred while checking if the student has rated the menu: {ex.Message}");
+                Console.WriteLine($"Greška prilikom pregleda je li student ocjenio Meni: {ex.Message}");
                 return false;
             }
             finally
@@ -198,7 +144,6 @@ namespace SCVZ.Repositories
                 DB.CloseConnection();
             }
         }
-
 
         public static int DajSljedeceg()
         {
@@ -214,41 +159,12 @@ namespace SCVZ.Repositories
                 if (result != null && result != DBNull.Value)
                 {
                     nextId = Convert.ToInt32(result);
-                    Console.WriteLine($"Next available ID: {nextId}");
+                    Console.WriteLine($"Sljedeći dostupni ID: {nextId}");
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"An error occurred while retrieving the next available ID: {ex.Message}");
-            }
-            finally
-            {
-                DB.CloseConnection();
-            }
-
-            return nextId;
-        }
-
-        public static int DajSljedecegSKup()
-        {
-            string sql = "SELECT ISNULL(MAX(IdSkupRecenzija), 0) + 1 FROM SkupRecenzija";
-
-            int nextId = -1;
-
-            try
-            {
-                DB.OpenConnection();
-
-                object result = DB.GetScalar(sql);
-                if (result != null && result != DBNull.Value)
-                {
-                    nextId = Convert.ToInt32(result);
-                    Console.WriteLine($"Next available ID: {nextId}");
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"An error occurred while retrieving the next available ID: {ex.Message}");
+                Console.WriteLine($"Greška prilikom dohvaćanja sljedećeg ID-a: {ex.Message}");
             }
             finally
             {
@@ -272,7 +188,7 @@ namespace SCVZ.Repositories
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"An error occurred while adding the recenzija: {ex.Message}");
+                Console.WriteLine($"Greška prilikom dodavanja recenzije: {ex.Message}");
                 throw;
             }
             finally
@@ -282,5 +198,20 @@ namespace SCVZ.Repositories
 
             return newRecenzijaId;
         }
+
+        public static void DodajSkupRecenzija(int orderId, int newRecenzijaId, int studentId)
+        {
+            int menuId = OrderRepository.GetMenuIdForOrder(orderId);
+
+            string recenzijaSql = $"INSERT INTO SkupRecenzija(IdSkupRecenzija, IdRecenzija, IdMeni, IdStudent) " +
+                                  $"VALUES({newRecenzijaId}, {newRecenzijaId}, {menuId}, {studentId})";
+
+            DB.OpenConnection();
+            DB.ExecuteCommand(recenzijaSql);
+            DB.CloseConnection();
+
+            MessageBox.Show("Recenzija uspješno dodana!", "Uspjeh!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
     }
 }

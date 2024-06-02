@@ -20,7 +20,6 @@ namespace SCVZ
         private Zaposlenik randomZaposlenik;
         Student student;
 
-
         public FrmAddOrderStudent(string jMBAG)
         {
             InitializeComponent();
@@ -34,7 +33,7 @@ namespace SCVZ
             }
             else
             {
-                MessageBox.Show("No student found with the provided JMBAG.");
+                MessageBox.Show("Ne postoji student sa zadanim JMBAG.");
                 return;
             }
             randomZaposlenik = StaffRepository.GetRandomBlagajnik();
@@ -45,10 +44,9 @@ namespace SCVZ
             }
             else
             {
-                txtOrderServer.Text = "No cashier found";
+                txtOrderServer.Text = "Nema blagajnika";
             }
         }
-
 
         private void PrikaziSljedecegId()
         {
@@ -59,7 +57,7 @@ namespace SCVZ
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred while retrieving the next available ID: {ex.Message}");
+                MessageBox.Show($"Greška prilikom dohvaćanja sljedećeg ID-a: {ex.Message}");
             }
         }
 
@@ -74,6 +72,7 @@ namespace SCVZ
         {
             this.Close();
         }
+
         private void btnOrder_Click(object sender, EventArgs e)
         {
             try
@@ -84,7 +83,7 @@ namespace SCVZ
                 }
                 else
                 {
-                    txtStudentId.Text = "No student found";
+                    txtStudentId.Text = "Nema studenata";
                     return;
                 }
 
@@ -99,7 +98,7 @@ namespace SCVZ
                 };
                 if (student.BrojKupona >= 1)
                 {
-                    DialogResult dialogResult = MessageBox.Show("Do you want to use a coupon for this order?", "Coupon Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    DialogResult dialogResult = MessageBox.Show("Želite li iskoristiti kupon za ovu narudžbu?", "Kupon", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.Yes)
                     {
                         Meni selectedMenu = MenuRepository.DajMeni(newOrder.IdMeni);
@@ -117,7 +116,7 @@ namespace SCVZ
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show($"An error occurred while updating the student table: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"Greška prilikom ažuriranja studenta: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return;
                         }
                         finally
@@ -131,26 +130,19 @@ namespace SCVZ
 
                 if (newOrderId != -1)
                 {
-                    MessageBox.Show($"Order created successfully and assigned to student with JMBAG: {student.JMBAG}");
+                    MessageBox.Show($"Narudžba uspješno izrađena i dana studentu s JMBAG: { student.JMBAG}");
                 }
                 else
                 {
-                    MessageBox.Show("Failed to create the order.");
+                    MessageBox.Show("Nije moguće izvršiti narudžbu");
                 }
 
                 this.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred while creating the order: {ex.Message}");
+                MessageBox.Show($"Greška prilikom generiranja narudžbe: {ex.Message}");
             }
-        }
-
-
-
-        private void FrmAddOrderStudent_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void btnChooseMenu_Click(object sender, EventArgs e)
@@ -159,5 +151,6 @@ namespace SCVZ
             form2.ParentFormStudent = this;
             form2.Show();
         }
+
     }
 }

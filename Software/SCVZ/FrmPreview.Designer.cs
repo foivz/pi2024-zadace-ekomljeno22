@@ -37,6 +37,7 @@ namespace SCVZ
             this.imgLogo = new System.Windows.Forms.PictureBox();
             this.pnlFooter = new System.Windows.Forms.Panel();
             this.pnlSidebar = new System.Windows.Forms.Panel();
+            this.txtSearch = new System.Windows.Forms.TextBox();
             this.btnAddMoreMeals = new System.Windows.Forms.Button();
             this.btnAddStaff = new System.Windows.Forms.Button();
             this.btnAddMenus = new System.Windows.Forms.Button();
@@ -50,6 +51,7 @@ namespace SCVZ
             this.btnAllMeals = new System.Windows.Forms.Button();
             this.btnAllMenus = new System.Windows.Forms.Button();
             this.lblFilter = new System.Windows.Forms.Label();
+            this.btnRefresh = new System.Windows.Forms.Button();
             this.pnlNav.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgHome)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgBack)).BeginInit();
@@ -138,6 +140,7 @@ namespace SCVZ
             // 
             this.pnlSidebar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.pnlSidebar.BackColor = System.Drawing.Color.White;
+            this.pnlSidebar.Controls.Add(this.txtSearch);
             this.pnlSidebar.Controls.Add(this.btnAddMoreMeals);
             this.pnlSidebar.Controls.Add(this.btnAddStaff);
             this.pnlSidebar.Controls.Add(this.btnAddMenus);
@@ -148,6 +151,17 @@ namespace SCVZ
             this.pnlSidebar.Name = "pnlSidebar";
             this.pnlSidebar.Size = new System.Drawing.Size(395, 777);
             this.pnlSidebar.TabIndex = 13;
+            // 
+            // txtSearch
+            // 
+            this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSearch.Location = new System.Drawing.Point(42, 528);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(304, 30);
+            this.txtSearch.TabIndex = 31;
+            this.txtSearch.Text = "Pretraži...";
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
             // btnAddMoreMeals
             // 
@@ -204,10 +218,10 @@ namespace SCVZ
             this.pnlOverview.Controls.Add(this.dgvPreview);
             this.pnlOverview.Controls.Add(this.pnlFilters);
             this.pnlOverview.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlOverview.Location = new System.Drawing.Point(395, 165);
+            this.pnlOverview.Location = new System.Drawing.Point(0, 165);
             this.pnlOverview.Margin = new System.Windows.Forms.Padding(2);
             this.pnlOverview.Name = "pnlOverview";
-            this.pnlOverview.Size = new System.Drawing.Size(1507, 777);
+            this.pnlOverview.Size = new System.Drawing.Size(1902, 777);
             this.pnlOverview.TabIndex = 14;
             // 
             // dgvDetails
@@ -216,7 +230,7 @@ namespace SCVZ
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvDetails.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvDetails.Location = new System.Drawing.Point(807, 6);
+            this.dgvDetails.Location = new System.Drawing.Point(1202, 6);
             this.dgvDetails.Margin = new System.Windows.Forms.Padding(2);
             this.dgvDetails.Name = "dgvDetails";
             this.dgvDetails.RowHeadersWidth = 51;
@@ -237,16 +251,18 @@ namespace SCVZ
             this.dgvPreview.Name = "dgvPreview";
             this.dgvPreview.RowHeadersWidth = 51;
             this.dgvPreview.RowTemplate.Height = 24;
-            this.dgvPreview.Size = new System.Drawing.Size(797, 766);
+            this.dgvPreview.Size = new System.Drawing.Size(1192, 766);
             this.dgvPreview.TabIndex = 14;
             this.dgvPreview.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPreview_CellClick);
+            this.dgvPreview.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPreview_CellDoubleClick);
             // 
             // pnlFilters
             // 
+            this.pnlFilters.Controls.Add(this.btnRefresh);
             this.pnlFilters.Controls.Add(this.panel1);
             this.pnlFilters.Controls.Add(this.lblFilter);
             this.pnlFilters.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnlFilters.Location = new System.Drawing.Point(1185, 0);
+            this.pnlFilters.Location = new System.Drawing.Point(1580, 0);
             this.pnlFilters.Margin = new System.Windows.Forms.Padding(2);
             this.pnlFilters.Name = "pnlFilters";
             this.pnlFilters.Size = new System.Drawing.Size(322, 777);
@@ -312,14 +328,26 @@ namespace SCVZ
             this.lblFilter.TabIndex = 0;
             this.lblFilter.Text = "Prikaži:";
             // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRefresh.Location = new System.Drawing.Point(49, 392);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(244, 48);
+            this.btnRefresh.TabIndex = 2;
+            this.btnRefresh.Text = "Osvježi";
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
             // FrmPreview
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(1902, 1032);
-            this.Controls.Add(this.pnlOverview);
             this.Controls.Add(this.pnlSidebar);
+            this.Controls.Add(this.pnlOverview);
             this.Controls.Add(this.pnlNav);
             this.Controls.Add(this.pnlLogo);
             this.Controls.Add(this.pnlFooter);
@@ -334,6 +362,7 @@ namespace SCVZ
             this.pnlLogo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.imgLogo)).EndInit();
             this.pnlSidebar.ResumeLayout(false);
+            this.pnlSidebar.PerformLayout();
             this.pnlOverview.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetails)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPreview)).EndInit();
@@ -366,5 +395,7 @@ namespace SCVZ
         private System.Windows.Forms.Button btnAddMenus;
         private System.Windows.Forms.Button btnAddMeal;
         private System.Windows.Forms.DataGridView dgvDetails;
+        private TextBox txtSearch;
+        private Button btnRefresh;
     }
 }

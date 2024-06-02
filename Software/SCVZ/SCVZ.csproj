@@ -56,6 +56,12 @@
     <Compile Include="FrmAddMeal.Designer.cs">
       <DependentUpon>FrmAddMeal.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmAddMealUpdate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmAddMealUpdate.Designer.cs">
+      <DependentUpon>FrmAddMealUpdate.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmAddMenu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -79,6 +85,12 @@
     </Compile>
     <Compile Include="FrmAddStaff.Designer.cs">
       <DependentUpon>FrmAddStaff.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmChangeOrderStatus.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmChangeOrderStatus.Designer.cs">
+      <DependentUpon>FrmChangeOrderStatus.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmMain.cs">
       <SubType>Form</SubType>
@@ -149,6 +161,7 @@
     <Compile Include="Models\Pozicije.cs" />
     <Compile Include="Models\Recenzije.cs" />
     <Compile Include="Models\SkupNarudzbiStudenta.cs" />
+    <Compile Include="Models\StatusNarudzbe.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Models\VrsteJela.cs" />
     <Compile Include="Models\VrstaMenija.cs" />
@@ -178,12 +191,16 @@
     <Compile Include="Repositories\OrderRepository.cs" />
     <Compile Include="Repositories\PositionsRepository.cs" />
     <Compile Include="Repositories\RatingsRepository.cs" />
+    <Compile Include="Repositories\ReportGenerator.cs" />
     <Compile Include="Repositories\StaffRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Repositories\StudentRepository.cs" />
     <Compile Include="Repositories\MealTypeRepository.cs" />
     <EmbeddedResource Include="FrmAddMeal.resx">
       <DependentUpon>FrmAddMeal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmAddMealUpdate.resx">
+      <DependentUpon>FrmAddMealUpdate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmAddMenu.resx">
       <DependentUpon>FrmAddMenu.cs</DependentUpon>
@@ -196,6 +213,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmAddStaff.resx">
       <DependentUpon>FrmAddStaff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmChangeOrderStatus.resx">
+      <DependentUpon>FrmChangeOrderStatus.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmLoginStaff.resx">
       <DependentUpon>FrmLoginStaff.cs</DependentUpon>

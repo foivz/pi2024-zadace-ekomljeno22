@@ -99,7 +99,6 @@
             this.rboUnsufficient.Text = "Nedovoljan";
             this.rboUnsufficient.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.rboUnsufficient.UseVisualStyleBackColor = true;
-
             // 
             // rboSufficient
             // 
@@ -195,6 +194,7 @@
             this.Controls.Add(this.btnAddRating);
             this.Controls.Add(this.btnCancel);
             this.Name = "FrmStudentRating";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmStudentRating";
             this.Load += new System.EventHandler(this.FrmStudentRating_Load);
             this.pnlNav.ResumeLayout(false);

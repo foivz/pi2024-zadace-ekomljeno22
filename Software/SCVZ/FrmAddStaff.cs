@@ -33,7 +33,7 @@ namespace SCVZ
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred while retrieving the next available ID: {ex.Message}");
+                MessageBox.Show($"Greška prilikom dohvaćanja sljedećeg dostupnog ID-a: {ex.Message}");
             }
         }
 
@@ -48,7 +48,7 @@ namespace SCVZ
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred while loading data: {ex.Message}");
+                MessageBox.Show($"Greška prilikom učitavanja podataka: {ex.Message}");
             }
         }
 
@@ -59,6 +59,13 @@ namespace SCVZ
 
         private void btnAddToDatabase_Click(object sender, EventArgs e)
         {
+            string passcode = txtPassCode.Text.Trim();
+            if (passcode != "12345")
+            {
+                MessageBox.Show("Netočna lozinka, zaposlenik se ne može dodati", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             string ime = txtStaffFirstName.Text;
             string prezime = txtStaffLastName.Text;
             string lozinka = txtStaffPassword.Text;
@@ -77,19 +84,15 @@ namespace SCVZ
             try
             {
                 UserRepository.DodajZaposlenika(zaposlenik);
-                MessageBox.Show("Staff added successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Zaposlenik uspješno unesen!", "Uspjeh!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Greška: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void FrmAddStaff_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }
 

@@ -70,8 +70,6 @@ namespace SCVZ.Repositories
             return vrsteJelaList;
         }
 
-
-
         private static VrsteJela CreateObject(SqlDataReader reader)
         {
             int idVrstaJela = int.Parse(reader["IdVrstaJela"].ToString());

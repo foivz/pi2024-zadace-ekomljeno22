@@ -157,7 +157,6 @@
             this.Controls.Add(this.btnCancel);
             this.Name = "FrmAddOrderStudent";
             this.Text = "FrmAddOrderStudent";
-            this.Load += new System.EventHandler(this.FrmAddOrderStudent_Load);
             this.pnlNav.ResumeLayout(false);
             this.pnlNav.PerformLayout();
             this.ResumeLayout(false);

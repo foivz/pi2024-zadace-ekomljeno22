@@ -44,11 +44,6 @@ namespace SCVZ
             pnlLogo.BackColor = color;
         }
 
-        private void pnlNav_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void pnlFooter_Paint(object sender, PaintEventArgs e)
         {
             Color color = System.Drawing.ColorTranslator.FromHtml("#FCF24A");
@@ -78,6 +73,7 @@ namespace SCVZ
             dgvPreview.Columns["DatumNarudzbe"].HeaderText = "Datum";
             dgvPreview.Columns["IdZaposlenik"].HeaderText = "Zaposlenik";
             dgvPreview.Columns["IdStudent"].HeaderText = "Student";
+            dgvPreview.Columns["IdStatusNarudzbe"].HeaderText = "Status Narudžbe";
 
             dgvPreview.Columns["IdStudent"].Visible = false;
             dgvPreview.Columns["IdZaposlenik"].Visible = false;
@@ -128,20 +124,14 @@ namespace SCVZ
             {
                 try
                 {
-                    Console.WriteLine("Debug: Cell clicked.");
-
                     int studentId = StudentRepository.DajStudentaByJMBAG(JMBAG).IdStudent;
-                    Console.WriteLine($"Debug: Retrieved student ID: {studentId}");
-
                     int menuId = (int)dgvMenus.Rows[e.RowIndex].Cells["IdMeni"].Value;
-                    Console.WriteLine($"Debug: Retrieved menu ID: {menuId}");
 
-                    Recenzije recenzije = RatingsRepository.GetRatingForMenuItem(menuId, studentId);
+                    Recenzije recenzije = RatingsRepository.DajRecenzijuZaMeni(menuId, studentId);
 
                     if (recenzije != null)
                     {
                         dgvRatings.DataSource = new List<Recenzije> { recenzije };
-                        Console.WriteLine("Debug: Rating found.");
 
                         foreach (DataGridViewColumn column in dgvRatings.Columns)
                         {
@@ -151,12 +141,11 @@ namespace SCVZ
                     else
                     {
                         dgvRatings.DataSource = null;
-                        Console.WriteLine("Debug: No rating found.");
                     }
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"An error occurred: {ex.Message}");
+                    Console.WriteLine($"Greška: {ex.Message}");
                 }
             }
         }
@@ -174,11 +163,11 @@ namespace SCVZ
                 Narudzbe order = (Narudzbe)dgvPreview.CurrentRow.DataBoundItem;
 
                 Meni menu = MenuRepository.DajMeni(order.IdMeni);
-                Console.WriteLine($"Displaying details for Narudzbe.Meni ID: {order.IdMeni}");
+                Console.WriteLine($"Pokazuju se detalji Narudzbe.Meni ID: {order.IdMeni}");
 
                 if (menu != null)
                 {
-                    Console.WriteLine($"Displaying details for Menu ID: {menu.IdMeni}");
+                    Console.WriteLine($"Pokazuju se detalji Menu ID: {menu.IdMeni}");
                     dgvDetails.DataSource = menu.stavkeMenija;
 
                     foreach (DataGridViewColumn column in dgvDetails.Columns)
@@ -188,10 +177,27 @@ namespace SCVZ
                 }
                 else
                 {
-                    Console.WriteLine("No menu details available");
+                    Console.WriteLine("Nema dostupnih menija");
                     dgvDetails.DataSource = null;
+                }
+                StatusNarudzbe status = OrderRepository.DajStatusNarudzbe(order.IdStatusNarudzbe);
+                if (status != null)
+                {
+                    Console.WriteLine($"Pokazuju se detalji StatusNarudzbe: {status.Status}");
+                    dgvStatus.DataSource = new List<StatusNarudzbe> { status };
+
+                    foreach (DataGridViewColumn column in dgvStatus.Columns)
+                    {
+                        column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Nema dostupnih statusa narudžbe");
+                    dgvStatus.DataSource = null;
                 }
             }
         }
+
     }
 }

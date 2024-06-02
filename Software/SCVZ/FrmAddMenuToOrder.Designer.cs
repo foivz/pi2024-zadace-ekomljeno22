@@ -62,6 +62,7 @@
             this.Controls.Add(this.dgvDetails);
             this.Controls.Add(this.dgvPreview);
             this.Name = "FrmAddMenuToOrder";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmAddMenuToOrder";
             this.Load += new System.EventHandler(this.FrmAddMenuToOrder_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPreview)).EndInit();

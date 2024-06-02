@@ -54,8 +54,6 @@ namespace SCVZ.Repositories
 
             return menuTypes;
         }
-
-
         public static List<VrstaMenija> DajVrsteMenija()
         {
             var vrsteMenijaList = new List<VrstaMenija>();
@@ -90,6 +88,4 @@ namespace SCVZ.Repositories
         }
 
     }
-
-
 }

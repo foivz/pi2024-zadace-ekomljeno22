@@ -38,6 +38,7 @@
             this.txtStaffLastName = new System.Windows.Forms.TextBox();
             this.txtStaffPassword = new System.Windows.Forms.TextBox();
             this.txtUsername = new System.Windows.Forms.TextBox();
+            this.txtPassCode = new System.Windows.Forms.TextBox();
             this.pnlNav.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -141,11 +142,22 @@
             this.txtUsername.TabIndex = 38;
             this.txtUsername.Text = "Korisničko ime";
             // 
+            // txtPassCode
+            // 
+            this.txtPassCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPassCode.Location = new System.Drawing.Point(141, 97);
+            this.txtPassCode.Name = "txtPassCode";
+            this.txtPassCode.PasswordChar = '*';
+            this.txtPassCode.Size = new System.Drawing.Size(227, 30);
+            this.txtPassCode.TabIndex = 39;
+            this.txtPassCode.Text = "PassCode";
+            // 
             // FrmAddStaff
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(512, 553);
+            this.Controls.Add(this.txtPassCode);
             this.Controls.Add(this.txtUsername);
             this.Controls.Add(this.txtStaffPassword);
             this.Controls.Add(this.txtStaffLastName);
@@ -156,8 +168,8 @@
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.pnlNav);
             this.Name = "FrmAddStaff";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmAddStaff";
-            this.Load += new System.EventHandler(this.FrmAddStaff_Load);
             this.pnlNav.ResumeLayout(false);
             this.pnlNav.PerformLayout();
             this.ResumeLayout(false);
@@ -177,5 +189,6 @@
         private System.Windows.Forms.TextBox txtStaffLastName;
         private System.Windows.Forms.TextBox txtStaffPassword;
         private System.Windows.Forms.TextBox txtUsername;
+        private System.Windows.Forms.TextBox txtPassCode;
     }
 }

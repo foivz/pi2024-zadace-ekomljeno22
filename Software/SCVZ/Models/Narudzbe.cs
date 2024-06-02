@@ -14,5 +14,6 @@ namespace SCVZ.Models
         public int IdZaposlenik { get; set; }
         public int IdStudent { get; set; }
         public float KuponCijenaMenija { get; set; }
+        public int IdStatusNarudzbe { get; set; } = 1;
     }
 }

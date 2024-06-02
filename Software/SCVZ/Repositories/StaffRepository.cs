@@ -11,25 +11,6 @@ namespace SCVZ.Repositories
 {
     public class StaffRepository
     {
-        public static Zaposlenik DajZaposlenika(int idZaposlenik)
-        {
-            Zaposlenik zaposlenik = null;
-
-            string sql = $"SELECT * FROM Zaposlenik WHERE IdZaposlenik = {idZaposlenik}";
-            DB.OpenConnection();
-
-            var reader = DB.GetDataReader(sql);
-
-            if (reader.HasRows)
-            {
-                reader.Read();
-                zaposlenik = CreateObject(reader);
-                reader.Close();
-            }
-            DB.CloseConnection();
-            return zaposlenik;
-        }
-
         public static Zaposlenik DajZaposlenikaByUsername(string korisnickoIme)
             {
                 Zaposlenik zaposlenik = null;
@@ -124,6 +105,26 @@ namespace SCVZ.Repositories
             Random rand = new Random();
             int index = rand.Next(employees.Count);
             return employees[index];
+        }
+        public static void DeleteZaposlenik(Zaposlenik zaposlenik)
+        {
+            string zaposlenikSql = $"DELETE FROM Zaposlenik WHERE IdZaposlenik = {zaposlenik.IdZaposlenik}";
+            string korisnikSql = $"DELETE FROM Korisnik WHERE IdKorisnik = {zaposlenik.IdKorisnik}";
+
+            try
+            {
+                DB.OpenConnection();
+
+                DB.ExecuteCommand(zaposlenikSql);
+                DB.ExecuteCommand(korisnikSql);
+
+                DB.CloseConnection();
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine($"An error occurred: {ex.Message}");
+                DB.CloseConnection();
+            }
         }
     }
 }

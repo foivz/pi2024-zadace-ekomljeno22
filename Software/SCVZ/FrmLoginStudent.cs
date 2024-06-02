@@ -89,12 +89,7 @@ namespace SCVZ
                 }
             }
 
-            MessageBox.Show("Incorrect JMBAG or password. Please try again.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-
-        private void FrmLoginStudent_Load(object sender, EventArgs e)
-        {
+            MessageBox.Show("Netočni JMBAG ili lozinka. Probajte ponovno.", "Neuspjela prijava", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
-
 }

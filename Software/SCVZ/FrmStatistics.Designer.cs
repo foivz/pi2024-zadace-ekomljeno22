@@ -287,7 +287,6 @@
             this.txtAvg.ReadOnly = true;
             this.txtAvg.Size = new System.Drawing.Size(100, 30);
             this.txtAvg.TabIndex = 9;
-            this.txtAvg.TextChanged += new System.EventHandler(this.txtAvg_TextChanged);
             // 
             // dgvMenu
             // 

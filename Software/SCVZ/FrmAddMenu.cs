@@ -25,10 +25,9 @@ namespace SCVZ
             {
                 var jeloList = MealRepository.DajJela();
 
-                // Filter meals by type for each combo box
-                var mealType1 = 1; // Example type, replace with actual meal type IDs
-                var mealType2 = 2; // Example type, replace with actual meal type IDs
-                var mealType3 = 3; // Example type, replace with actual meal type IDs
+                var mealType1 = 1;
+                var mealType2 = 2;
+                var mealType3 = 3; 
 
                 var mealsType1 = jeloList.Where(j => j.IdVrstaJela == mealType1).ToList();
                 var mealsType2 = jeloList.Where(j => j.IdVrstaJela == mealType2).ToList();
@@ -46,7 +45,6 @@ namespace SCVZ
                 cboMeal03.DisplayMember = "NazivJela";
                 cboMeal03.ValueMember = "IdJelo";
 
-                // Load menu types
                 var vrstaMenijaList = MenuTypeRepository.DajVrsteMenija();
                 cboMenuType.DataSource = vrstaMenijaList;
                 cboMenuType.DisplayMember = "NazivVrstaMenija";
@@ -54,7 +52,7 @@ namespace SCVZ
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred while loading data: {ex.Message}");
+                MessageBox.Show($"Greška prilikom učitavanja izbornika: {ex.Message}");
             }
         }
 
@@ -67,7 +65,7 @@ namespace SCVZ
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred while retrieving the next available ID: {ex.Message}");
+                MessageBox.Show($"Greška prilikom prikazivanja sljedećeg slobodnog ID-a: {ex.Message}");
             }
         }
 
@@ -101,7 +99,7 @@ namespace SCVZ
 
                 string timeString = $"{formattedHours}:{formattedMinutes}:{formattedSeconds}";
 
-                Console.WriteLine($"Constructed time string: {timeString}");
+                Console.WriteLine($"Konstruirano vrijeme: {timeString}");
 
                 TimeSpan vrijemePripreme = MenuRepository.ParseTimeSpan(timeString);
 
@@ -120,17 +118,12 @@ namespace SCVZ
 
                 MenuRepository.DodajMenu(meni);
 
-                MessageBox.Show("Menu added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Meni uspješno dodan!", "Uspjeh!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred while adding the menu: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Greška prilikom dodavanja Menija: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        private void FrmAddMenu_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

@@ -149,6 +149,7 @@ namespace SCVZ
             dgvDetails.DataSource = null;
             dgvStudent.DataSource = null;
             dgvMenu.DataSource = null;
+            dgvStatus.DataSource = null;
 
             if (e.RowIndex >= 0)
             {
@@ -156,15 +157,13 @@ namespace SCVZ
 
                 if (order != null)
                 {
-                    Console.WriteLine($"Order found: {order.IdNarudzba}, Menu ID: {order.IdMeni}, Student ID: {order.IdStudent}");
+                    Console.WriteLine($"Narudžba nađena: {order.IdNarudzba}, Menu ID: {order.IdMeni}, Student ID: {order.IdStudent}");
 
                     Meni menu = MenuRepository.DajMeni(order.IdMeni);
                     if (menu != null)
                     {
-                        Console.WriteLine($"Menu found: {menu.IdMeni}");
-
+                        Console.WriteLine($"Menu nađen: {menu.IdMeni}");
                         dgvMenu.DataSource = new List<Meni> { menu };
-
                         foreach (DataGridViewColumn column in dgvMenu.Columns)
                         {
                             column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
@@ -172,13 +171,11 @@ namespace SCVZ
                     }
                     else
                     {
-                        Console.WriteLine("No menu details available");
+                        Console.WriteLine("Podaci o Meniju nedostupni");
                     }
-
                     if (menu != null)
                     {
                         dgvDetails.DataSource = menu.stavkeMenija;
-
                         foreach (DataGridViewColumn column in dgvDetails.Columns)
                         {
                             column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
@@ -186,21 +183,13 @@ namespace SCVZ
                     }
                     else
                     {
-                        Console.WriteLine("No stavkeMenija details available");
+                        Console.WriteLine("Nema detalja o stavkeMenija");
                     }
-
-                    Console.WriteLine($"Fetching student with ID: {order.IdStudent}");
                     Student student = StudentRepository.DajStudentaZaDGV(order.IdStudent.ToString());
                     if (student != null)
                     {
-                        Console.WriteLine($"Student found: {student.Ime} {student.Prezime}");
+                        Console.WriteLine($"Student nađen: {student.Ime} {student.Prezime}");
                         dgvStudent.DataSource = new List<Student> { student };
-
-                        dgvStudent.Columns["BrojPoklonBodova"].Visible = false;
-                        dgvStudent.Columns["BrojKupona"].Visible = false;
-                        dgvStudent.Columns["Lozinka"].Visible = false;
-                        dgvStudent.Columns["IdKorisnik"].Visible = false;
-
                         foreach (DataGridViewColumn column in dgvStudent.Columns)
                         {
                             column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
@@ -208,26 +197,50 @@ namespace SCVZ
                     }
                     else
                     {
-                        Console.WriteLine("No student details available");
+                        Console.WriteLine("Nema podataka o studentu.");
+                    }
+                    StatusNarudzbe status = OrderRepository.DajStatusNarudzbe(order.IdStatusNarudzbe);
+                    if (status != null)
+                    {
+                        Console.WriteLine($"Status nađen: {status.Status}");
+                        dgvStatus.DataSource = new List<StatusNarudzbe> { status };
+                        foreach (DataGridViewColumn column in dgvStatus.Columns)
+                        {
+                            column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Nema detalja o statusu");
                     }
                 }
                 else
                 {
-                    Console.WriteLine("Order is null.");
+                    Console.WriteLine("Nema narudžbe");
                 }
             }
             else
             {
-                Console.WriteLine("Invalid row index.");
+                Console.WriteLine("Krivi indeks retka.");
             }
         }
 
+        private void dgvPreview_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                Narudzbe selectedOrder = (Narudzbe)dgvPreview.Rows[e.RowIndex].DataBoundItem;
 
-
-
-
-
-
-
+                if (selectedOrder != null)
+                {
+                    FrmChangeOrderStatus form3 = new FrmChangeOrderStatus(selectedOrder);
+                    form3.ShowDialog();
+                }
+            }
+        }
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            PokaziNarudzbe();
+        }
     }
 }

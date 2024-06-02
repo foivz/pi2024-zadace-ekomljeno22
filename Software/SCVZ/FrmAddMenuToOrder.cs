@@ -36,25 +36,25 @@ namespace SCVZ
                 foreach (DataGridViewRow row in dgvPreview.Rows)
                 {
                     int idMeni = (int)row.Cells["IdMeni"].Value;
-                    Console.WriteLine($"Processing IdMeni: {idMeni}");
+                    Console.WriteLine($"Učitavanje Menija: {idMeni}");
                 }
             }
             else
             {
-                MessageBox.Show("No menus found.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Nije pronađen ni jedan Meni.", "Informacija", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
         private void dgvPreview_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            Console.WriteLine($"Double-clicked cell at row index: {e.RowIndex}");
+            Console.WriteLine($"Dvaput kliknuta ćelija u indeksu: {e.RowIndex}");
 
             if (e.RowIndex >= 0 && e.RowIndex < dgvPreview.Rows.Count)
             {
                 DataGridViewRow selectedRow = dgvPreview.Rows[e.RowIndex];
                 int selectedIdMeni = Convert.ToInt32(selectedRow.Cells["IdMeni"].Value);
 
-                Console.WriteLine($"Selected Menu ID: {selectedIdMeni}");
+                Console.WriteLine($"Odabrani Meni ID: {selectedIdMeni}");
 
                 if (ParentFormStudent != null)
                 {
@@ -68,7 +68,6 @@ namespace SCVZ
                 this.Close();
             }
         }
-
         private void dgvPreview_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -76,12 +75,12 @@ namespace SCVZ
                 Meni meni = dgvPreview.Rows[e.RowIndex].DataBoundItem as Meni;
                 if (meni != null)
                 {
-                    Console.WriteLine($"Displaying details for Menu ID: {meni.IdMeni}");
+                    Console.WriteLine($"Prikazuju se rezultati za Meni ID: {meni.IdMeni}");
                     dgvDetails.DataSource = meni.stavkeMenija;
                 }
                 else
                 {
-                    Console.WriteLine("No menu details available");
+                    Console.WriteLine("Nema detalja Menija");
                     dgvDetails.DataSource = null;
                 }
             }
@@ -89,5 +88,3 @@ namespace SCVZ
     }
 
 }
-
-

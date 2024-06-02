@@ -8,6 +8,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace SCVZ.Repositories
 {
@@ -36,7 +37,10 @@ namespace SCVZ.Repositories
         {
             var narudzbe = new List<Narudzbe>();
 
-            string sql = $"SELECT * FROM Narudzbe";
+            string sql = "SELECT N.*, S.Status FROM Narudzbe N " +
+                         "LEFT JOIN StatusNarudzbe S ON N.IdStatusNarudzbe = S.IdStatusNarudzbe " +
+                         "ORDER BY N.IdNarudzba DESC";
+
             DB.OpenConnection();
 
             var reader = DB.GetDataReader(sql);
@@ -51,6 +55,56 @@ namespace SCVZ.Repositories
             DB.CloseConnection();
 
             return narudzbe;
+        }
+
+        public static StatusNarudzbe DajStatusNarudzbe(int idStatusNarudzbe)
+        {
+            StatusNarudzbe statusNarudzbe = null;
+
+            string sql = $"SELECT * FROM StatusNarudzbe WHERE IdStatusNarudzbe = {idStatusNarudzbe}";
+
+            DB.OpenConnection();
+
+            var reader = DB.GetDataReader(sql);
+
+            if (reader.Read())
+            {
+                statusNarudzbe = new StatusNarudzbe
+                {
+                    IdStatusNarudzbe = int.Parse(reader["IdStatusNarudzbe"].ToString()),
+                    Status = reader["Status"].ToString()
+                };
+            }
+
+            reader.Close();
+            DB.CloseConnection();
+
+            return statusNarudzbe;
+        }
+        public static List<StatusNarudzbe> DajSveStatusNarudzbe()
+        {
+            List<StatusNarudzbe> statuses = new List<StatusNarudzbe>();
+
+            string sql = "SELECT * FROM StatusNarudzbe";
+
+            DB.OpenConnection();
+
+            var reader = DB.GetDataReader(sql);
+
+            while (reader.Read())
+            {
+                StatusNarudzbe status = new StatusNarudzbe
+                {
+                    IdStatusNarudzbe = int.Parse(reader["IdStatusNarudzbe"].ToString()),
+                    Status = reader["Status"].ToString()
+                };
+                statuses.Add(status);
+            }
+
+            reader.Close();
+            DB.CloseConnection();
+
+            return statuses;
         }
 
         public static int GetOrderCountForMenu(int menuId)
@@ -88,7 +142,7 @@ namespace SCVZ.Repositories
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"An error occurred while retrieving the menu ID for order {orderId}: {ex.Message}");
+                Console.WriteLine($"Greška prilikom fetchanja {orderId}: {ex.Message}");
             }
             finally
             {
@@ -102,7 +156,11 @@ namespace SCVZ.Repositories
         {
             var narudzbe = new List<Narudzbe>();
 
-            string sql = $"SELECT n.* FROM Narudzbe n INNER JOIN Student s ON n.IdStudent = s.IdStudent WHERE s.JMBAG = {JMBAG}";
+            string sql = "SELECT n.*, s.JMBAG, st.Status FROM Narudzbe n " +
+                         "INNER JOIN Student s ON n.IdStudent = s.IdStudent " +
+                         "LEFT JOIN StatusNarudzbe st ON n.IdStatusNarudzbe = st.IdStatusNarudzbe " +
+                         $"WHERE s.JMBAG = '{JMBAG}'";
+
             DB.OpenConnection();
 
             var reader = DB.GetDataReader(sql);
@@ -147,7 +205,8 @@ namespace SCVZ.Repositories
                 IdMeni = idMeni,
                 IdZaposlenik = idZaposlenik,
                 IdStudent = idStudent,
-                KuponCijenaMenija = kuponCijenaMenija
+                KuponCijenaMenija = kuponCijenaMenija,
+                IdStatusNarudzbe = int.Parse(reader["IdStatusNarudzbe"].ToString()),
             };
 
             return narudzba;
@@ -167,12 +226,12 @@ namespace SCVZ.Repositories
                 if (result != null && result != DBNull.Value)
                 {
                     nextId = Convert.ToInt32(result);
-                    Console.WriteLine($"Next available ID: {nextId}");
+                    Console.WriteLine($"Sljedeći slobodni ID: {nextId}");
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"An error occurred while retrieving the next available ID: {ex.Message}");
+                Console.WriteLine($"Greška prilikom generiranja sljedece narudzbe: {ex.Message}");
             }
             finally
             {
@@ -208,7 +267,7 @@ namespace SCVZ.Repositories
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"An error occurred while adding the menu: {ex.Message}");
+                Console.WriteLine($"Greska prilikom dodavanja nove narudzbe {ex.Message}");
             }
             finally
             {
@@ -217,12 +276,23 @@ namespace SCVZ.Repositories
 
             return newMenuId;
         }
+
+        public static void UpdateOrderStatus(int orderId, int newStatusId)
+        {
+            string updateSql = $"UPDATE Narudzbe SET IdStatusNarudzbe = {newStatusId} WHERE IdNarudzba = {orderId}";
+
+            DB.OpenConnection();
+            DB.ExecuteCommand(updateSql);
+            DB.CloseConnection();
+        }
+
         public static int InsertOrder(Narudzbe order, int studentId)
         {
             int newOrderId = -1;
             try
             {
                 DB.OpenConnection();
+
                 if (order.KuponCijenaMenija != 0)
                 {
                     string updateKuponSql = $"UPDATE Narudzbe SET KuponCijenaMenija = {order.KuponCijenaMenija.ToString("F", CultureInfo.InvariantCulture)} WHERE IdNarudzba = {order.IdNarudzba}";
@@ -230,8 +300,9 @@ namespace SCVZ.Repositories
                 }
 
                 string formattedDate = order.DatumNarudzbe.ToString("yyyy-MM-dd HH:mm:ss");
-                string insertSql = $"INSERT INTO Narudzbe (DatumNarudzbe, IdMeni, IdZaposlenik, IdStudent, KuponCijenaMenija) " +
-                                   $"VALUES ('{formattedDate}', {order.IdMeni}, {order.IdZaposlenik}, {studentId}, {(order.KuponCijenaMenija != 0 ? order.KuponCijenaMenija.ToString("F", CultureInfo.InvariantCulture) : "NULL")}); " +
+                int idStatusNarudzbe = order.IdStatusNarudzbe != 0 ? order.IdStatusNarudzbe : 1;
+                string insertSql = $"INSERT INTO Narudzbe (DatumNarudzbe, IdMeni, IdZaposlenik, IdStudent, KuponCijenaMenija, IdStatusNarudzbe) " +
+                                   $"VALUES ('{formattedDate}', {order.IdMeni}, {order.IdZaposlenik}, {studentId}, {(order.KuponCijenaMenija != 0 ? order.KuponCijenaMenija.ToString("F", CultureInfo.InvariantCulture) : "NULL")}, {idStatusNarudzbe}); " +
                                    $"SELECT CAST(SCOPE_IDENTITY() AS INT)";
                 newOrderId = (int)DB.GetScalar(insertSql);
 
@@ -240,13 +311,14 @@ namespace SCVZ.Repositories
 
                 string studentSql = $"SELECT BrojPoklonBodova, BrojKupona FROM Student WHERE IdStudent = {studentId}";
                 SqlDataReader reader = DB.GetDataReader(studentSql);
+
                 if (reader.HasRows)
                 {
                     reader.Read();
-
                     int brojPoklonBodovaBefore = reader.GetInt32(reader.GetOrdinal("BrojPoklonBodova"));
                     int brojKuponaBefore = reader.GetInt32(reader.GetOrdinal("BrojKupona"));
                     reader.Close();
+
                     int totalGiftPointsBefore = brojPoklonBodovaBefore;
                     int brojPoklonBodovaAfter = brojPoklonBodovaBefore + vrijednostPoklonBodova;
                     int brojKuponaAfter = brojKuponaBefore;
@@ -256,21 +328,24 @@ namespace SCVZ.Repositories
 
                     int totalGiftPointsAfter = brojPoklonBodovaAfter;
 
-                    Console.WriteLine($"Total gift points for student {studentId} before order: {totalGiftPointsBefore}");
-                    Console.WriteLine($"Total gift points for student {studentId} after order: {totalGiftPointsAfter}");
+                    Console.WriteLine($"Ukupni poklon bodovi {studentId} prije narudžbe: {totalGiftPointsBefore}");
+                    Console.WriteLine($"Ukupni poklon bodovi {studentId} poslije narudžbe: {totalGiftPointsAfter}");
 
                     int interval = totalGiftPointsAfter - totalGiftPointsBefore;
-                    Console.WriteLine($"Interval between total gift points: {interval}");
+                    Console.WriteLine($"Interval između bodova: {interval}");
                 }
                 else
                 {
                     reader.Close();
-                    throw new Exception($"Student with ID {studentId} not found.");
+                    throw new Exception($"Student s ID {studentId} nije nadjen.");
                 }
+
+                MessageBox.Show("Narudžba uspješno unesena!", "Uspjeh!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"An error occurred while inserting the order: {ex.Message}");
+                MessageBox.Show($"Greška prilikom unosa narudžbe: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Console.WriteLine($"Greška prilikom unosa narudžbe {ex.Message}");
             }
             finally
             {
@@ -279,10 +354,5 @@ namespace SCVZ.Repositories
 
             return newOrderId;
         }
-
-
-
-
-
     }
 }

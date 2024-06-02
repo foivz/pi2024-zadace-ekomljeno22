@@ -146,7 +146,7 @@ namespace SCVZ
             FillStudentTable(student);
 
             ConversionManager.ConvertPoklonBodoviToKupons(student);
-            MenuRepository.CalculateGiftPointsForStudent(student.IdStudent);
+            MenuRepository.IzračunajPoklonBodove(student.IdStudent);
         }
 
         private void FillStudentTable(Student student)
@@ -243,8 +243,6 @@ namespace SCVZ
             }
         }
 
-
-
         private void PokaziMenije()
         {
             var meni = MenuRepository.DajMenije();
@@ -271,7 +269,6 @@ namespace SCVZ
                 Console.WriteLine($"Processing IdMeni: {idMeni}");
             }
         }
-
         private void dgvPreview_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             Meni meni = (Meni)dgvPreview.CurrentRow.DataBoundItem;

@@ -22,7 +22,6 @@ namespace SCVZ.Models
                 student.BrojKupona += kuponsToAward;
                 student.BrojPoklonBodova %= conversionRate;
 
-                // Update the Student table with new values
                 string updateSql = $"UPDATE Student SET BrojKupona = {student.BrojKupona}, BrojPoklonBodova = {student.BrojPoklonBodova} WHERE IdStudent = {student.IdStudent}";
 
                 try

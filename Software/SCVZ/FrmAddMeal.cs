@@ -33,7 +33,7 @@ namespace SCVZ
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred while loading data: {ex.Message}");
+                MessageBox.Show($"Greška prilikom učitavanja podataka: {ex.Message}");
             }
         }
 
@@ -47,12 +47,8 @@ namespace SCVZ
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred while retrieving the next available ID: {ex.Message}");
+                MessageBox.Show($"Greška prilikom dohvaćanja ID-a: {ex.Message}");
             }
-        }
-
-        private void textBox4_TextChanged(object sender, EventArgs e)
-        {
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -76,7 +72,7 @@ namespace SCVZ
 
                 MealRepository.DodajJelo(jelo);
 
-                MessageBox.Show("Meal added successfully!");
+                MessageBox.Show("Jelo uspješno dodano!");
 
                 Ocisti();
                 Close();
@@ -84,7 +80,7 @@ namespace SCVZ
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred while adding the meal: {ex.Message}");
+                MessageBox.Show($"Greška prilikom dodavanja jela: {ex.Message}");
             }
         }
 

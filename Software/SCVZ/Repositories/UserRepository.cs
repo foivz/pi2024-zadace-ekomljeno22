@@ -16,29 +16,24 @@ namespace SCVZ.Repositories
             try
             {
                 DB.OpenConnection();
-
-                // Insert into Korisnik table
                 string korisnikSql = $"INSERT INTO Korisnik (Ime, Prezime, Lozinka) " +
                                      $"VALUES ('{zaposlenik.Ime}', '{zaposlenik.Prezime}', '{zaposlenik.Lozinka}')";
                 DB.ExecuteCommand(korisnikSql);
 
-                // Get the ID of the newly inserted record in Korisnik table
                 string getIdSql = "SELECT SCOPE_IDENTITY()";
                 int idKorisnik = Convert.ToInt32(DB.GetScalar(getIdSql));
 
-                // Get the ID of the position (Pozicija) from the database
                 int idPozicija = DajIdPozicije(zaposlenik.Pozicija);
 
-                // Insert into Zaposlenik table
                 string zaposlenikSql = $"INSERT INTO Zaposlenik (IdKorisnik, IdPozicija, KorisnickoIme) " +
                                        $"VALUES ({idKorisnik}, {idPozicija}, '{zaposlenik.KorisnickoIme}')";
                 DB.ExecuteCommand(zaposlenikSql);
 
-                Console.WriteLine($"Staff member {zaposlenik.Ime} {zaposlenik.Prezime} added successfully with ID: {idKorisnik}");
+                Console.WriteLine($"Zaposlenik {zaposlenik.Ime} {zaposlenik.Prezime} uspješno dodan s ID: {idKorisnik}");
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"An error occurred while adding the staff member: {ex.Message}");
+                Console.WriteLine($"Greška prilikom unosa Zaposlenika: {ex.Message}");
             }
             finally
             {
@@ -46,14 +41,11 @@ namespace SCVZ.Repositories
             }
         }
 
-
         private static int DajIdPozicije(string pozicija)
         {
             string getIdPozicijaSql = $"SELECT IdPozicija FROM Pozicije WHERE Pozicija = '{pozicija}'";
             return Convert.ToInt32(DB.GetScalar(getIdPozicijaSql));
         }
-
-
 
         public static int DajSljedeceg()
         {
@@ -69,12 +61,12 @@ namespace SCVZ.Repositories
                 if (result != null && result != DBNull.Value)
                 {
                     nextId = Convert.ToInt32(result);
-                    Console.WriteLine($"Next available ID: {nextId}");
+                    Console.WriteLine($"Sljedeći dostupan ID: {nextId}");
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"An error occurred while retrieving the next available ID: {ex.Message}");
+                Console.WriteLine($"Greška prilikom dohvaćanja ID-a: {ex.Message}");
             }
             finally
             {

@@ -3,6 +3,7 @@ using SCVZ.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,6 +29,36 @@ namespace SCVZ.Repositories
             }
             DB.CloseConnection();
             return jelo;
+        }
+
+        public static void UnosCSV(string csvFilePath)
+        {
+            try
+            {
+                using (var reader = new StreamReader(csvFilePath))
+                {
+                    while (!reader.EndOfStream)
+                    {
+                        var line = reader.ReadLine();
+                        var values = line.Split(',');
+
+                        var nazivJela = values[0];
+                        var idVrstaJela = int.Parse(values[1]);
+
+                        var jelo = new Jelo
+                        {
+                            NazivJela = nazivJela,
+                            IdVrstaJela = idVrstaJela
+                        };
+
+                        MealRepository.DodajJelo(jelo);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Greška prilikom uvoza CSV-a: {ex.Message}");
+            }
         }
 
         public static List<Jelo> DajJela()
@@ -98,12 +129,12 @@ namespace SCVZ.Repositories
                 if (result != null && result != DBNull.Value)
                 {
                     nextId = Convert.ToInt32(result);
-                    Console.WriteLine($"Next available ID: {nextId}");
+                    Console.WriteLine($"Sljedeći ID: {nextId}");
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"An error occurred while retrieving the next available ID: {ex.Message}");
+                Console.WriteLine($"Greška prilikom fetchanja sljedećeg ID-a: {ex.Message}");
             }
             finally
             {
@@ -117,6 +148,13 @@ namespace SCVZ.Repositories
         {
             string sql = $"INSERT INTO Jelo (NazivJela, IdVrstaJela) " +
              $"VALUES ('{jelo.NazivJela}', '{jelo.IdVrstaJela}')";
+            DB.OpenConnection();
+            DB.ExecuteCommand(sql);
+            DB.CloseConnection();
+        }
+        public static void AzurirajJelo(Jelo jelo)
+        {
+            string sql = $"UPDATE Jelo SET NazivJela = '{jelo.NazivJela}', IdVrstaJela = {jelo.IdVrstaJela} WHERE IdJelo = {jelo.IdJelo}";
             DB.OpenConnection();
             DB.ExecuteCommand(sql);
             DB.CloseConnection();

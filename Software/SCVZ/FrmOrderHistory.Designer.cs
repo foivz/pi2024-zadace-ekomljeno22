@@ -38,6 +38,7 @@
             this.dgvDetails = new System.Windows.Forms.DataGridView();
             this.dgvMenus = new System.Windows.Forms.DataGridView();
             this.dgvRatings = new System.Windows.Forms.DataGridView();
+            this.dgvStatus = new System.Windows.Forms.DataGridView();
             this.pnlNav.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgHome)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgBack)).BeginInit();
@@ -47,6 +48,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMenus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRatings)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvStatus)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlNav
@@ -60,7 +62,6 @@
             this.pnlNav.Name = "pnlNav";
             this.pnlNav.Size = new System.Drawing.Size(1902, 80);
             this.pnlNav.TabIndex = 12;
-            this.pnlNav.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlNav_Paint);
             // 
             // imgHome
             // 
@@ -145,11 +146,11 @@
             this.dgvMenus.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvMenus.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMenus.Location = new System.Drawing.Point(896, 344);
+            this.dgvMenus.Location = new System.Drawing.Point(896, 473);
             this.dgvMenus.Name = "dgvMenus";
             this.dgvMenus.RowHeadersWidth = 51;
             this.dgvMenus.RowTemplate.Height = 24;
-            this.dgvMenus.Size = new System.Drawing.Size(994, 593);
+            this.dgvMenus.Size = new System.Drawing.Size(994, 464);
             this.dgvMenus.TabIndex = 15;
             this.dgvMenus.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMenus_CellClick);
             // 
@@ -166,11 +167,25 @@
             this.dgvRatings.Size = new System.Drawing.Size(504, 167);
             this.dgvRatings.TabIndex = 16;
             // 
+            // dgvStatus
+            // 
+            this.dgvStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvStatus.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvStatus.Location = new System.Drawing.Point(896, 344);
+            this.dgvStatus.Name = "dgvStatus";
+            this.dgvStatus.RowHeadersWidth = 51;
+            this.dgvStatus.RowTemplate.Height = 24;
+            this.dgvStatus.Size = new System.Drawing.Size(994, 123);
+            this.dgvStatus.TabIndex = 17;
+            // 
             // FrmOrderHistory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(1902, 1033);
+            this.Controls.Add(this.dgvStatus);
             this.Controls.Add(this.dgvRatings);
             this.Controls.Add(this.dgvMenus);
             this.Controls.Add(this.dgvDetails);
@@ -192,6 +207,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetails)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMenus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRatings)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvStatus)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -208,5 +224,6 @@
         private System.Windows.Forms.DataGridView dgvDetails;
         private System.Windows.Forms.DataGridView dgvMenus;
         private System.Windows.Forms.DataGridView dgvRatings;
+        private System.Windows.Forms.DataGridView dgvStatus;
     }
 }

@@ -2,6 +2,7 @@
 using SCVZ.Repositories;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -40,20 +41,10 @@ namespace SCVZ
             Cursor = Cursors.Default;
         }
 
-        private void pnlOverview_Paint(object sender, PaintEventArgs e)
-        {
-            // Add any custom painting code here if needed
-        }
-
         private void pnlLogo_Paint(object sender, PaintEventArgs e)
         {
             Color color = ColorTranslator.FromHtml("#D9D9D9");
             pnlLogo.BackColor = color;
-        }
-
-        private void pnlSidebar_Paint(object sender, PaintEventArgs e)
-        {
-            // Add any custom painting code here if needed
         }
 
         private void pnlFooter_Paint(object sender, PaintEventArgs e)
@@ -82,16 +73,6 @@ namespace SCVZ
             Process.Start(url);
         }
 
-        private void btnFilterAllTime_Click(object sender, EventArgs e)
-        {
-            // Add filter all-time functionality here
-        }
-
-        private void btnFilterThisWeek_Click(object sender, EventArgs e)
-        {
-            // Add filter this week functionality here
-        }
-
         private void FrmStatistics_Load(object sender, EventArgs e)
         {
             dgvPreview.DataSource = null;
@@ -113,7 +94,6 @@ namespace SCVZ
             dgvPreview.Columns["VrijednostPoklonBodova"].HeaderText = "Vrijednost Poklon Bodova";
             dgvPreview.Columns["VrijemePripreme"].HeaderText = "Vrijeme Pripreme";
         }
-
 
         private void dgvPreview_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -209,8 +189,6 @@ namespace SCVZ
             {
                 column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             }
-
-            // Set column headers
             dgvPreview.Columns["IdMeni"].HeaderText = "Id";
             dgvPreview.Columns["CijenaMenija"].HeaderText = "Cijena";
             dgvPreview.Columns["IdVrstaMenija"].HeaderText = "IdVrsta";
@@ -226,14 +204,11 @@ namespace SCVZ
             {
                 column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             }
-
-            // Set column headers
             dgvPreview.Columns["IdMeni"].HeaderText = "Id";
             dgvPreview.Columns["CijenaMenija"].HeaderText = "Cijena";
             dgvPreview.Columns["IdVrstaMenija"].HeaderText = "IdVrsta";
             dgvPreview.Columns["VrijednostPoklonBodova"].HeaderText = "Vrijednost Bodova";
             dgvPreview.Columns["VrijemePripreme"].HeaderText = "Vrijeme Pripreme";
-
         }
 
 
@@ -255,11 +230,6 @@ namespace SCVZ
             }
         }
 
-        private void txtAvg_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnGenerateReport_Click(object sender, EventArgs e)
         {
             using (SaveFileDialog saveFileDialog = new SaveFileDialog())
@@ -271,152 +241,11 @@ namespace SCVZ
                 if (saveFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     string filePath = saveFileDialog.FileName;
-                    GeneratePdfReport(filePath);
+
+                    ReportGenerator reportGenerator = new ReportGenerator();
+                    reportGenerator.GeneratePdfReport(filePath, dgvPreview, dgvDetails, dgvMenu, dgvRatings);
                 }
             }
-        }
-
-        private void GeneratePdfReport(string filePath)
-        {
-            int width = 850;
-            int height = 1100;
-
-            using (Bitmap bitmap = new Bitmap(width, height))
-            {
-                using (Graphics graphics = Graphics.FromImage(bitmap))
-                {
-                    graphics.Clear(Color.White);
-
-                    Font titleFont = new Font("Arial", 20, FontStyle.Bold);
-
-                    graphics.DrawString("Student Report", titleFont, Brushes.Black, new PointF(300, 30));
-                    float yOffset = 80;
-                    DrawStudentInformation(graphics, yOffset);
-
-                    if (yOffset + dgvDetails.Rows.Count * 20 + 100 > height)
-                    {
-                        graphics.DrawString("Continued on Next Page...", new Font("Arial", 12), Brushes.Black, new PointF(30, height - 30));
-                        graphics.ResetTransform();
-                        bitmap.Save(filePath, ImageFormat.Png);
-                        MessageBox.Show("PDF report generated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        return;
-                    }
-
-                    yOffset += dgvPreview.Rows.Count * 20 + 100;
-                    DrawStudentOrders(graphics, yOffset);
-
-                    yOffset += dgvDetails.Rows.Count * 20 + 100;
-                    DrawMenuItems(graphics, yOffset);
-
-                    yOffset += dgvMenu.Rows.Count * 20 + 100;
-                    DrawRatings(graphics, yOffset);
-                }
-                bitmap.Save(filePath, ImageFormat.Png);
-                MessageBox.Show("PDF report generated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-        }
-
-        private void DrawStudentInformation(Graphics graphics, float yOffset)
-        {
-            graphics.DrawString("Student Information", new Font("Arial", 15), Brushes.Black, new PointF(30, yOffset));
-            yOffset += 30;
-            yOffset = DrawDataGridView(graphics, dgvPreview, yOffset, 30);
-        }
-
-        private void DrawStudentOrders(Graphics graphics, float yOffset)
-        {
-            graphics.DrawString("Student Orders", new Font("Arial", 15), Brushes.Black, new PointF(30, yOffset));
-            yOffset += 30;
-            yOffset = DrawDataGridView(graphics, dgvDetails, yOffset, 30);
-        }
-
-        private void DrawMenuItems(Graphics graphics, float yOffset)
-        {
-            graphics.DrawString("Menu Items", new Font("Arial", 15), Brushes.Black, new PointF(30, yOffset));
-            yOffset += 30;
-            yOffset = DrawDataGridView(graphics, dgvMenu, yOffset, 30);
-        }
-
-        private void DrawRatings(Graphics graphics, float yOffset)
-        {
-            graphics.DrawString("Ratings", new Font("Arial", 15), Brushes.Black, new PointF(30, yOffset));
-            yOffset += 30;
-            yOffset = DrawDataGridView(graphics, dgvRatings, yOffset, 30);
-        }
-
-
-        private float DrawDataGridView(Graphics graphics, DataGridView dgv, float yOffset, float xOffset)
-        {
-            if (dgv == null)
-            {
-                throw new ArgumentNullException(nameof(dgv), "DataGridView cannot be null.");
-            }
-
-            Font font = new Font("Arial", 10);
-            float cellHeight = 20;
-
-            Pen gridPen = new Pen(Brushes.Black, 1);
-
-            float[] columnWidths = new float[dgv.ColumnCount];
-            for (int i = 0; i < dgv.ColumnCount; i++)
-            {
-                if (dgv.Columns[i].Visible)
-                {
-                    float maxWidth = graphics.MeasureString(dgv.Columns[i].HeaderText, font).Width;
-                    foreach (DataGridViewRow row in dgv.Rows)
-                    {
-                        if (!row.IsNewRow)
-                        {
-                            string cellValue = row.Cells[i].Value?.ToString() ?? "";
-                            float width = graphics.MeasureString(cellValue, font).Width;
-                            if (width > maxWidth)
-                            {
-                                maxWidth = width;
-                            }
-                        }
-                    }
-                    columnWidths[i] = Math.Max(maxWidth + 10, dgv.Columns[i].Width);
-                }
-            }
-            for (int i = 0; i < dgv.ColumnCount; i++)
-            {
-                if (dgv.Columns[i].Visible)
-                {
-                    float columnWidth = columnWidths[i];
-                    graphics.DrawString(dgv.Columns[i].HeaderText, font, Brushes.Black, new RectangleF(xOffset, yOffset, columnWidth, cellHeight), StringFormat.GenericDefault);
-
-                    graphics.DrawLine(gridPen, new PointF(xOffset + columnWidth, yOffset), new PointF(xOffset + columnWidth, yOffset + dgv.Rows.Count * cellHeight));
-                    xOffset += columnWidth;
-                }
-            }
-
-            yOffset += cellHeight;
-
-            for (int rowIndex = 0; rowIndex < dgv.Rows.Count; rowIndex++)
-            {
-                DataGridViewRow row = dgv.Rows[rowIndex];
-                if (!row.IsNewRow)
-                {
-                    xOffset = 30;
-                    float rowHeight = cellHeight;
-                    for (int i = 0; i < dgv.ColumnCount; i++)
-                    {
-                        if (dgv.Columns[i].Visible)
-                        {
-                            float columnWidth = columnWidths[i];
-                            string value = row.Cells[i].Value?.ToString() ?? string.Empty;
-
-                            graphics.DrawString(value, font, Brushes.Black, new RectangleF(xOffset, yOffset, columnWidth, rowHeight), StringFormat.GenericDefault);
-
-                            graphics.DrawLine(gridPen, new PointF(xOffset, yOffset + rowHeight), new PointF(xOffset + columnWidth, yOffset + rowHeight));
-
-                            xOffset += columnWidth;
-                        }
-                    }
-                    yOffset += rowHeight;
-                }
-            }
-            return yOffset;
         }
 
         private void btnReset_Click(object sender, EventArgs e)

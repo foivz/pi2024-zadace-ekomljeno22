@@ -11,25 +11,6 @@ namespace SCVZ.Repositories
 {
     public class StudentRepository
     {
-        public static Student DajStudenta(string IdKorisnik)
-        {
-            Student student = null;
-            string sql = $"SELECT s.*, k.Ime, k.Prezime, k.Lozinka FROM Student s JOIN Korisnik k ON s.IdKorisnik = k.IdKorisnik WHERE k.IdKorisnik = '{IdKorisnik}'";
-            DB.OpenConnection();
-
-            var reader = DB.GetDataReader(sql);
-
-            if (reader.HasRows)
-            {
-                reader.Read();
-                student = CreateObject(reader);
-                reader.Close();
-            }
-
-            DB.CloseConnection();
-            return student;
-        }
-
         public static Student DajStudentaZaDGV(string IdStudent)
         {
             Student student = null;
@@ -66,43 +47,6 @@ namespace SCVZ.Repositories
             }
             DB.CloseConnection();
             return student;
-        }
-
-        public int GetStudentIdByJMBAG(string jmbag)
-        {
-            int studentId = 0;
-            try
-            {
-                Student student = StudentRepository.DajStudentaByJMBAG(jmbag);
-                if (student != null)
-                {
-                    studentId = student.IdStudent;
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"An error occurred while retrieving student details: {ex.Message}");
-            }
-            return studentId;
-        }
-
-        public static List<Student> DajStudente()
-        {
-            var studenti = new List<Student>();
-
-            string sql = $"SELECT * FROM Student";
-            DB.OpenConnection();
-            var reader = DB.GetDataReader(sql);
-            while (reader.Read())
-            {
-                Student student = CreateObject(reader);
-                studenti.Add(student);
-            }
-
-            reader.Close();
-            DB.CloseConnection();
-
-            return studenti;
         }
 
         private static Student CreateObject(SqlDataReader reader)

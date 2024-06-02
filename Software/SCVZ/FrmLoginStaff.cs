@@ -70,27 +70,20 @@ namespace SCVZ
             string enteredUsername = txtUsername.Text.Trim();
             string enteredPassword = txtPassword.Text.Trim();
 
-            // Check Zaposlenik table for the entered username
             Zaposlenik staff = StaffRepository.DajZaposlenikaByUsername(enteredUsername);
 
             if (staff != null)
             {
-                // Check if the entered password matches the stored password
                 if (staff.CheckPassword(enteredPassword))
                 {
-                    // Zaposlenik login successful
                     loggedInStaff = staff;
-
-                    // Proceed to main application form
-                    FrmStaffMain form1 = new FrmStaffMain(enteredUsername); // Pass the enteredUsername
+                    FrmStaffMain form1 = new FrmStaffMain(enteredUsername);
                     form1.Show();
                     this.Close();
-                    return; // Exit the method early since login was successful
+                    return; 
                 }
             }
-
-            // If no match is found in the Zaposlenik table or the password is incorrect
-            MessageBox.Show("Incorrect username or password. Please try again.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show("Netočna lozinka ili korisničko ime. Probajte ponovno.", "Neuspjela prijava", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void FrmLoginStaff_Load(object sender, EventArgs e)
