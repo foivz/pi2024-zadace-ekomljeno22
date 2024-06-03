@@ -46,12 +46,12 @@ namespace SCVZ
             this.dgvDetails = new System.Windows.Forms.DataGridView();
             this.dgvPreview = new System.Windows.Forms.DataGridView();
             this.pnlFilters = new System.Windows.Forms.Panel();
+            this.btnRefresh = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnStaff = new System.Windows.Forms.Button();
             this.btnAllMeals = new System.Windows.Forms.Button();
             this.btnAllMenus = new System.Windows.Forms.Button();
             this.lblFilter = new System.Windows.Forms.Label();
-            this.btnRefresh = new System.Windows.Forms.Button();
             this.pnlNav.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgHome)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgBack)).BeginInit();
@@ -246,12 +246,12 @@ namespace SCVZ
             this.dgvPreview.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvPreview.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
             this.dgvPreview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPreview.Location = new System.Drawing.Point(6, 6);
+            this.dgvPreview.Location = new System.Drawing.Point(399, 6);
             this.dgvPreview.Margin = new System.Windows.Forms.Padding(2);
             this.dgvPreview.Name = "dgvPreview";
             this.dgvPreview.RowHeadersWidth = 51;
             this.dgvPreview.RowTemplate.Height = 24;
-            this.dgvPreview.Size = new System.Drawing.Size(1192, 766);
+            this.dgvPreview.Size = new System.Drawing.Size(799, 766);
             this.dgvPreview.TabIndex = 14;
             this.dgvPreview.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPreview_CellClick);
             this.dgvPreview.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPreview_CellDoubleClick);
@@ -268,6 +268,18 @@ namespace SCVZ
             this.pnlFilters.Size = new System.Drawing.Size(322, 777);
             this.pnlFilters.TabIndex = 13;
             this.pnlFilters.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlFilters_Paint);
+            // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRefresh.Location = new System.Drawing.Point(49, 434);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(244, 48);
+            this.btnRefresh.TabIndex = 2;
+            this.btnRefresh.Text = "Osvježi";
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // panel1
             // 
@@ -328,18 +340,6 @@ namespace SCVZ
             this.lblFilter.TabIndex = 0;
             this.lblFilter.Text = "Prikaži:";
             // 
-            // btnRefresh
-            // 
-            this.btnRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRefresh.Location = new System.Drawing.Point(49, 392);
-            this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(244, 48);
-            this.btnRefresh.TabIndex = 2;
-            this.btnRefresh.Text = "Osvježi";
-            this.btnRefresh.UseVisualStyleBackColor = true;
-            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
-            // 
             // FrmPreview
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -356,6 +356,7 @@ namespace SCVZ
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmPreview";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmAddMeal_FormClosed);
             this.pnlNav.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.imgHome)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgBack)).EndInit();

@@ -159,7 +159,7 @@ namespace SCVZ.Repositories
             string sql = "SELECT n.*, s.JMBAG, st.Status FROM Narudzbe n " +
                          "INNER JOIN Student s ON n.IdStudent = s.IdStudent " +
                          "LEFT JOIN StatusNarudzbe st ON n.IdStatusNarudzbe = st.IdStatusNarudzbe " +
-                         $"WHERE s.JMBAG = '{JMBAG}'";
+                         $"WHERE s.JMBAG = '{JMBAG}' ORDER BY n.IdNarudzba DESC";
 
             DB.OpenConnection();
 
@@ -179,37 +179,56 @@ namespace SCVZ.Repositories
 
         private static Narudzbe CreateObject(SqlDataReader reader)
         {
-            int idNarudzba = int.Parse(reader["IdNarudzba"].ToString());
-            DateTime datumNarudzbe = DateTime.Parse(reader["DatumNarudzbe"].ToString());
-            int idMeni = int.Parse(reader["IdMeni"].ToString());
-            int idZaposlenik = int.Parse(reader["IdZaposlenik"].ToString());
-            int idStudent = int.Parse(reader["IdStudent"].ToString());
-
-            float kuponCijenaMenija;
-            if (reader["KuponCijenaMenija"] != DBNull.Value)
+            try
             {
-                if (!float.TryParse(reader["KuponCijenaMenija"].ToString(), out kuponCijenaMenija))
+                // Log the values read from the SqlDataReader
+                Console.WriteLine("IdNarudzba: " + reader["IdNarudzba"]);
+                Console.WriteLine("DatumNarudzbe: " + reader["DatumNarudzbe"]);
+                Console.WriteLine("IdMeni: " + reader["IdMeni"]);
+                Console.WriteLine("IdZaposlenik: " + reader["IdZaposlenik"]);
+                Console.WriteLine("IdStudent: " + reader["IdStudent"]);
+                Console.WriteLine("KuponCijenaMenija: " + reader["KuponCijenaMenija"]);
+                Console.WriteLine("IdStatusNarudzbe: " + reader["IdStatusNarudzbe"]);
+
+                // Parse the values with proper null checking
+                int idNarudzba = reader["IdNarudzba"] != DBNull.Value ? int.Parse(reader["IdNarudzba"].ToString()) : 0;
+                DateTime datumNarudzbe = reader["DatumNarudzbe"] != DBNull.Value ? DateTime.Parse(reader["DatumNarudzbe"].ToString()) : DateTime.MinValue;
+                int idMeni = reader["IdMeni"] != DBNull.Value ? int.Parse(reader["IdMeni"].ToString()) : 0;
+                int idZaposlenik = reader["IdZaposlenik"] != DBNull.Value ? int.Parse(reader["IdZaposlenik"].ToString()) : 0;
+                int idStudent = reader["IdStudent"] != DBNull.Value ? int.Parse(reader["IdStudent"].ToString()) : 0;
+                int idStatusNarudzbe = reader["IdStatusNarudzbe"] != DBNull.Value ? int.Parse(reader["IdStatusNarudzbe"].ToString()) : 0;
+
+                float kuponCijenaMenija;
+                if (reader["KuponCijenaMenija"] != DBNull.Value)
+                {
+                    if (!float.TryParse(reader["KuponCijenaMenija"].ToString(), out kuponCijenaMenija))
+                    {
+                        kuponCijenaMenija = 0.0f;
+                    }
+                }
+                else
                 {
                     kuponCijenaMenija = 0.0f;
                 }
-            }
-            else
-            {
-                kuponCijenaMenija = 0.0f;
-            }
 
-            Narudzbe narudzba = new Narudzbe
-            {
-                IdNarudzba = idNarudzba,
-                DatumNarudzbe = datumNarudzbe,
-                IdMeni = idMeni,
-                IdZaposlenik = idZaposlenik,
-                IdStudent = idStudent,
-                KuponCijenaMenija = kuponCijenaMenija,
-                IdStatusNarudzbe = int.Parse(reader["IdStatusNarudzbe"].ToString()),
-            };
+                Narudzbe narudzba = new Narudzbe
+                {
+                    IdNarudzba = idNarudzba,
+                    DatumNarudzbe = datumNarudzbe,
+                    IdMeni = idMeni,
+                    IdZaposlenik = idZaposlenik,
+                    IdStudent = idStudent,
+                    KuponCijenaMenija = kuponCijenaMenija,
+                    IdStatusNarudzbe = idStatusNarudzbe
+                };
 
-            return narudzba;
+                return narudzba;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error creating Narudzbe object: " + ex.Message);
+                throw;
+            }
         }
 
         public static int DajSljedeceg()

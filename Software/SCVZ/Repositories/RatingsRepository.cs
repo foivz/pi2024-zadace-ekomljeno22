@@ -124,9 +124,9 @@ namespace SCVZ.Repositories
             };
         }
 
-        public static bool MeniOcjenjen(int studentId, int orderId)
+        public static bool MeniOcjenjen(int studentId, int meniId)
         {
-            string sql = $"SELECT COUNT(*) FROM SkupRecenzija WHERE IdStudent = {studentId} AND IdMeni = (SELECT IdMeni FROM Narudzbe WHERE IdNarudzba = {orderId})";
+            string sql = $"SELECT COUNT(*) FROM SkupRecenzija WHERE IdStudent = {studentId} AND IdMeni = {meniId}";
 
             try
             {
@@ -136,7 +136,7 @@ namespace SCVZ.Repositories
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Greška prilikom pregleda je li student ocjenio Meni: {ex.Message}");
+                Console.WriteLine($"Greška prilikom provjere je li student ocijenio Meni: {ex.Message}");
                 return false;
             }
             finally
@@ -144,6 +144,7 @@ namespace SCVZ.Repositories
                 DB.CloseConnection();
             }
         }
+
 
         public static int DajSljedeceg()
         {
@@ -199,18 +200,15 @@ namespace SCVZ.Repositories
             return newRecenzijaId;
         }
 
-        public static void DodajSkupRecenzija(int orderId, int newRecenzijaId, int studentId)
+        public static void DodajSkupRecenzija(int meniId, int newRecenzijaId, int studentId)
         {
-            int menuId = OrderRepository.GetMenuIdForOrder(orderId);
 
             string recenzijaSql = $"INSERT INTO SkupRecenzija(IdSkupRecenzija, IdRecenzija, IdMeni, IdStudent) " +
-                                  $"VALUES({newRecenzijaId}, {newRecenzijaId}, {menuId}, {studentId})";
+                                  $"VALUES({newRecenzijaId}, {newRecenzijaId}, {meniId}, {studentId})";
 
             DB.OpenConnection();
             DB.ExecuteCommand(recenzijaSql);
             DB.CloseConnection();
-
-            MessageBox.Show("Recenzija uspješno dodana!", "Uspjeh!", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
     }

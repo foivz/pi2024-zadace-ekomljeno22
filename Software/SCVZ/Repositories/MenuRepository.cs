@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Diagnostics;
+using System.Globalization;
 using DBLayer;
 using SCVZ.Models;
 
@@ -231,9 +232,10 @@ namespace SCVZ.Repositories
         public static int DodajMenu(Meni menu)
         {
             string timeString = menu.VrijemePripreme.ToString(@"hh\:mm\:ss");
+            string formattedCijenaMenija = menu.CijenaMenija.ToString(CultureInfo.InvariantCulture);
 
             string sql = $"INSERT INTO Meni (CijenaMenija, IdVrstaMenija, VrijednostPoklonBodova, VrijemePripreme) " +
-                         $"VALUES ({menu.CijenaMenija}, {menu.IdVrstaMenija}, {menu.VrijednostPoklonBodova}, '{timeString}'); " +
+                         $"VALUES ({formattedCijenaMenija}, {menu.IdVrstaMenija}, {menu.VrijednostPoklonBodova}, '{timeString}');" +
                          "SELECT CAST(SCOPE_IDENTITY() AS INT);";
 
             int newMenuId = -1;
@@ -252,7 +254,6 @@ namespace SCVZ.Repositories
                     string stavka = $"INSERT INTO SkupJela(IdJelo, IdMeni) VALUES({jelo.IdJelo}, {menu.IdMeni});";
                     DB.ExecuteCommand(stavka);
                 }
-
             }
             catch (Exception ex)
             {
@@ -265,6 +266,5 @@ namespace SCVZ.Repositories
 
             return newMenuId;
         }
-
     }
 }

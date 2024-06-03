@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Drawing.Printing;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -103,7 +104,7 @@ namespace SCVZ
 
                 if (menu != null)
                 {
-                    Console.WriteLine($"Displaying details for Menu ID: {menu.IdMeni}");
+                    Console.WriteLine($"Detalji za Meni ID: {menu.IdMeni}");
 
                     dgvMenu.DataSource = new List<Meni> { menu };
                     foreach (DataGridViewColumn column in dgvMenu.Columns)
@@ -132,7 +133,7 @@ namespace SCVZ
                     }
                     else
                     {
-                        Console.WriteLine("No menu types available for this menu");
+                        Console.WriteLine("Nema vrsta menija");
                         dgvMenuType.DataSource = null;
                     }
                     List<Recenzije> ratings = RatingsRepository.GetRatingsForMenu(menu.IdMeni);
@@ -155,20 +156,20 @@ namespace SCVZ
                     }
                     else
                     {
-                        Console.WriteLine("No ratings available for this menu");
+                        Console.WriteLine("Nema recenzija za ovaj Meni");
                         dgvRatings.DataSource = null;
-                        txtAvg.Text = "No ratings";
+                        txtAvg.Text = "0";
                     }
                     int orderCount = OrderRepository.GetOrderCountForMenu(menu.IdMeni);
                     txtCount.Text = orderCount.ToString();
                 }
                 else
                 {
-                    Console.WriteLine("No menu details available");
+                    Console.WriteLine("Nema detalja menija");
                     dgvMenu.DataSource = null;
                     dgvMenuType.DataSource = null;
                     dgvRatings.DataSource = null;
-                    txtAvg.Text = "No menu details";
+                    txtAvg.Text = "0";
                     txtCount.Text = "0";
                 }
             }
@@ -177,7 +178,28 @@ namespace SCVZ
         private void btnSortOrderNbr_Click(object sender, EventArgs e)
         {
             dgvPreview.DataSource = null;
-            PokaziMenije();
+            SortMeniByOrderCount();
+        }
+
+        private void SortMeniByOrderCount()
+        {
+            try
+            {
+                List<Meni> meniList = MenuRepository.DajMenije();
+
+                meniList.Sort((menu1, menu2) =>
+                {
+                    int orderCount1 = OrderRepository.GetOrderCountForMenu(menu1.IdMeni);
+                    int orderCount2 = OrderRepository.GetOrderCountForMenu(menu2.IdMeni);
+                    return orderCount2.CompareTo(orderCount1);
+                });
+
+                dgvPreview.DataSource = meniList;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Greška prilikom sortiranja Menija po broju narudžbi: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnSortTotalRating_Click(object sender, EventArgs e)
@@ -211,7 +233,6 @@ namespace SCVZ
             dgvPreview.Columns["VrijemePripreme"].HeaderText = "Vrijeme Pripreme";
         }
 
-
         private void dgvDetails_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -242,8 +263,15 @@ namespace SCVZ
                 {
                     string filePath = saveFileDialog.FileName;
 
+                    string avgText = txtAvg.Text;
+                    string countText = txtCount.Text;
+
+                    string directoryPath = Path.GetDirectoryName(filePath);
+                    string fileName = Path.GetFileName(filePath);
+                    DataGridViewRow selectedRow = dgvMenu.CurrentRow;
+
                     ReportGenerator reportGenerator = new ReportGenerator();
-                    reportGenerator.GeneratePdfReport(filePath, dgvPreview, dgvDetails, dgvMenu, dgvRatings);
+                    reportGenerator.GeneratePdfReport(filePath, fileName, dgvPreview, dgvDetails, dgvMenu, dgvRatings, avgText, countText, selectedRow);
                 }
             }
         }

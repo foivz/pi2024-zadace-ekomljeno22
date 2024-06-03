@@ -139,14 +139,31 @@ namespace SCVZ
 
         private void btnAddMeal_Click(object sender, EventArgs e)
         {
-            FrmAddMeal form1 = new FrmAddMeal();
-            form1.Show();
+            FrmAddMeal frmAddMeal = new FrmAddMeal();
+            frmAddMeal.FormClosed += FrmAddMeal_FormClosed;
+            frmAddMeal.Show();
         }
 
         private void btnAddMenus_Click(object sender, EventArgs e)
         {
-            FrmAddMenu form2 = new FrmAddMenu();
-            form2.Show();
+            FrmAddMenu frmAddMenu = new FrmAddMenu();
+            frmAddMenu.FormClosed += FrmAddMenu_FormClosed;
+            frmAddMenu.Show();
+        }
+
+        private void FrmAddMenu_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (dgvPreview.DataSource is List<Meni>)
+            {
+                PokaziMenije();
+            }
+        }
+        private void FrmAddMeal_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (dgvPreview.DataSource is List<Jelo>)
+            {
+                PokaziJela();
+            }
         }
 
         private void btnAddMoreMeals_Click(object sender, EventArgs e)
@@ -160,14 +177,24 @@ namespace SCVZ
                 {
                     string csvFilePath = openFileDialog.FileName;
                     MealRepository.UnosCSV(csvFilePath);
+                    PokaziJela();
                 }
             }
         }
 
         private void btnAddStaff_Click(object sender, EventArgs e)
         {
-            FrmAddStaff form3 = new FrmAddStaff();
-            form3.Show();
+            FrmAddStaff frmAddStaff = new FrmAddStaff();
+            frmAddStaff.FormClosed += FrmAddStaff_FormClosed;
+            frmAddStaff.Show();
+        }
+
+        private void FrmAddStaff_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (dgvPreview.DataSource is List<Zaposlenik>)
+            {
+                PokaziZaposlenike();
+            }
         }
 
         private void btnAllMenus_Click(object sender, EventArgs e)
@@ -207,6 +234,7 @@ namespace SCVZ
                         int idJelo = Convert.ToInt32(selectedRow.Cells["IdJelo"].Value);
                         FrmAddMealUpdate frmAddMeal = new FrmAddMealUpdate(idJelo);
                         frmAddMeal.ShowDialog();
+                        PokaziJela();
                     }
                     else if (dialogResult == DialogResult.No)
                     {
@@ -311,7 +339,6 @@ namespace SCVZ
                 dgvPreview.DataSource = null;
             }
         }
-
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             ResetDataGridViewDataSource();

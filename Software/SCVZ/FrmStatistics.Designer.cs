@@ -169,7 +169,7 @@
             this.btnSortOrderNbr.Name = "btnSortOrderNbr";
             this.btnSortOrderNbr.Size = new System.Drawing.Size(157, 33);
             this.btnSortOrderNbr.TabIndex = 0;
-            this.btnSortOrderNbr.Text = "broju narudžbe";
+            this.btnSortOrderNbr.Text = "broju narudžbi";
             this.btnSortOrderNbr.UseVisualStyleBackColor = true;
             this.btnSortOrderNbr.Click += new System.EventHandler(this.btnSortOrderNbr_Click);
             // 

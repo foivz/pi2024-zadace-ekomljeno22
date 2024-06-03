@@ -17,13 +17,13 @@ namespace SCVZ
 {
     public partial class FrmStudentRating : Form
     {
-        private int orderId;
+        private int meniId;
         private string JMBAG;
 
-        public FrmStudentRating(int orderId, string jMBAG)
+        public FrmStudentRating(int meniId, string jMBAG)
         {
             InitializeComponent();
-            this.orderId = orderId;
+            this.meniId = meniId;
             JMBAG = jMBAG;
         }
 
@@ -50,11 +50,16 @@ namespace SCVZ
 
                 string comment = txtComments.Text.Trim();
                 Student student = StudentRepository.DajStudentaByJMBAG(JMBAG);
+                if (student == null)
+                {
+                    MessageBox.Show("Student nije pronađen", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
                 int studentId = student.IdStudent;
 
-                if (RatingsRepository.MeniOcjenjen(studentId, orderId))
+                if (RatingsRepository.MeniOcjenjen(studentId, meniId))
                 {
-                    MessageBox.Show("Već ste ocjenili ovaj Meni", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Već ste ocijenili ovaj Meni", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -67,16 +72,22 @@ namespace SCVZ
 
                 if (newRecenzijaId == -1)
                 {
-                    MessageBox.Show("Greška prilikom recenziranja:", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Greška prilikom dodavanja recenzije", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                RatingsRepository.DodajSkupRecenzija(orderId, newRecenzijaId, studentId);
+                RatingsRepository.DodajSkupRecenzija(meniId, newRecenzijaId, studentId);
+                MessageBox.Show("Recenzija uspješno dodana", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Greška prilikom unosa recenzije: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            finally
+            {
+                this.Close();
+            }
         }
+
 
         private int GetSelectedRating()
         {

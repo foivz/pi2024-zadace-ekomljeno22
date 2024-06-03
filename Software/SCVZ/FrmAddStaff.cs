@@ -92,7 +92,6 @@ namespace SCVZ
                 MessageBox.Show($"Greška: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
     }
 }
 

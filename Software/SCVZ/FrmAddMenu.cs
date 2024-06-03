@@ -3,6 +3,7 @@ using SCVZ.Models;
 using SCVZ.Repositories;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -27,7 +28,7 @@ namespace SCVZ
 
                 var mealType1 = 1;
                 var mealType2 = 2;
-                var mealType3 = 3; 
+                var mealType3 = 3;
 
                 var mealsType1 = jeloList.Where(j => j.IdVrstaJela == mealType1).ToList();
                 var mealsType2 = jeloList.Where(j => j.IdVrstaJela == mealType2).ToList();
@@ -55,6 +56,7 @@ namespace SCVZ
                 MessageBox.Show($"Greška prilikom učitavanja izbornika: {ex.Message}");
             }
         }
+
 
         private void PrikaziSljedecegId()
         {
@@ -103,14 +105,22 @@ namespace SCVZ
 
                 TimeSpan vrijemePripreme = MenuRepository.ParseTimeSpan(timeString);
 
+                // Parse the menu price using InvariantCulture
+                decimal cijenaMenija;
+                if (!decimal.TryParse(txtMenuPrice.Text, NumberStyles.Number, CultureInfo.InvariantCulture, out cijenaMenija))
+                {
+                    MessageBox.Show("Pogrešan format cijene menija.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
                 Meni meni = new Meni
                 {
-                    CijenaMenija = Convert.ToDecimal(txtMenuPrice.Text),
+                    CijenaMenija = cijenaMenija,
                     VrijednostPoklonBodova = Convert.ToInt32(txtMenuGiftPoints.Text),
                     IdVrstaMenija = Convert.ToInt32(cboMenuType.SelectedValue),
                     IdMeni = Convert.ToInt32(txtMenuId.Text),
                     VrijemePripreme = vrijemePripreme
-                };
+                };           
 
                 meni.stavkeMenija.Add(MealRepository.DajJelo(cboMeal01.SelectedValue.ToString()));
                 meni.stavkeMenija.Add(MealRepository.DajJelo(cboMeal02.SelectedValue.ToString()));
@@ -118,13 +128,17 @@ namespace SCVZ
 
                 MenuRepository.DodajMenu(meni);
 
-                MessageBox.Show("Meni uspješno dodan!", "Uspjeh!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show($"Meni uspješno dodan! Cijena: {cijenaMenija.ToString("N2")}", "Uspjeh!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Greška prilikom dodavanja Menija: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            finally
+            {
+                this.Close();
+            }
         }
     }
-}
+}  
 

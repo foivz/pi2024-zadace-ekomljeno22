@@ -35,7 +35,7 @@
             this.imgLogo = new System.Windows.Forms.PictureBox();
             this.pnlFooter = new System.Windows.Forms.Panel();
             this.pnlSidebar = new System.Windows.Forms.Panel();
-            this.btnStatus = new System.Windows.Forms.Button();
+            this.btnRefresh = new System.Windows.Forms.Button();
             this.btnPreview = new System.Windows.Forms.Button();
             this.btnStatistics = new System.Windows.Forms.Button();
             this.btnNewOrder = new System.Windows.Forms.Button();
@@ -45,7 +45,6 @@
             this.dgvDetails = new System.Windows.Forms.DataGridView();
             this.dgvStudent = new System.Windows.Forms.DataGridView();
             this.dgvPreview = new System.Windows.Forms.DataGridView();
-            this.btnRefresh = new System.Windows.Forms.Button();
             this.pnlNav.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgHome)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgBack)).BeginInit();
@@ -136,7 +135,6 @@
             this.pnlSidebar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.pnlSidebar.BackColor = System.Drawing.Color.White;
             this.pnlSidebar.Controls.Add(this.btnRefresh);
-            this.pnlSidebar.Controls.Add(this.btnStatus);
             this.pnlSidebar.Controls.Add(this.btnPreview);
             this.pnlSidebar.Controls.Add(this.btnStatistics);
             this.pnlSidebar.Controls.Add(this.btnNewOrder);
@@ -147,17 +145,16 @@
             this.pnlSidebar.Size = new System.Drawing.Size(395, 777);
             this.pnlSidebar.TabIndex = 11;
             // 
-            // btnStatus
+            // btnRefresh
             // 
-            this.btnStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStatus.Location = new System.Drawing.Point(70, 582);
-            this.btnStatus.Margin = new System.Windows.Forms.Padding(2);
-            this.btnStatus.Name = "btnStatus";
-            this.btnStatus.Size = new System.Drawing.Size(228, 68);
-            this.btnStatus.TabIndex = 4;
-            this.btnStatus.Text = "Status menze";
-            this.btnStatus.UseVisualStyleBackColor = true;
+            this.btnRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRefresh.Location = new System.Drawing.Point(70, 400);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(228, 68);
+            this.btnRefresh.TabIndex = 5;
+            this.btnRefresh.Text = "Osvježi";
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // btnPreview
             // 
@@ -276,17 +273,6 @@
             this.dgvPreview.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPreview_CellClick);
             this.dgvPreview.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPreview_CellDoubleClick);
             // 
-            // btnRefresh
-            // 
-            this.btnRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRefresh.Location = new System.Drawing.Point(70, 400);
-            this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(228, 68);
-            this.btnRefresh.TabIndex = 5;
-            this.btnRefresh.Text = "Osvježi";
-            this.btnRefresh.UseVisualStyleBackColor = true;
-            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
-            // 
             // FrmStaffMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -332,7 +318,6 @@
         private System.Windows.Forms.Button btnNewOrder;
         private System.Windows.Forms.Button btnPreview;
         private System.Windows.Forms.Button btnStatistics;
-        private System.Windows.Forms.Button btnStatus;
         private System.Windows.Forms.DataGridView dgvStudent;
         private System.Windows.Forms.DataGridView dgvPreview;
         private System.Windows.Forms.DataGridView dgvDetails;
