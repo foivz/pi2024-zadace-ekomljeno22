@@ -23,15 +23,15 @@ https://github.com/foivz/pi2024-zadace-ekomljeno22/blob/master/Zadatak%20-%20SCV
 Svi resursi nalaze se u mapi _Documentation_.
 
 ## Kredencijali za Zaposlenika:
-Korisničko ime: ekomljeno22
-Lozinka: 12345
+Korisničko ime: ekomljeno22  
+Lozinka: 12345  
 
-Korisničko ime: ivo22
-Lozinka: 1
+Korisničko ime: ivo22  
+Lozinka: 1  
 
 ## Kredencijali za Studenta:
-JMBAG: 2
-Lozinka: 1
+JMBAG: 2  
+Lozinka: 1  
 
-JMBAG: 12345
-Lozinka: 333
+JMBAG: 12345  
+Lozinka: 333  
