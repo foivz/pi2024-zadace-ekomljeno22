@@ -155,17 +155,17 @@ namespace SCVZ
             // txtSearch
             // 
             this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSearch.Location = new System.Drawing.Point(42, 528);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(304, 30);
+            this.txtSearch.Size = new System.Drawing.Size(304, 28);
             this.txtSearch.TabIndex = 31;
             this.txtSearch.Text = "Pretraži...";
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
             // btnAddMoreMeals
             // 
-            this.btnAddMoreMeals.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddMoreMeals.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddMoreMeals.Location = new System.Drawing.Point(42, 298);
             this.btnAddMoreMeals.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddMoreMeals.Name = "btnAddMoreMeals";
@@ -177,7 +177,7 @@ namespace SCVZ
             // 
             // btnAddStaff
             // 
-            this.btnAddStaff.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddStaff.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddStaff.Location = new System.Drawing.Point(42, 172);
             this.btnAddStaff.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddStaff.Name = "btnAddStaff";
@@ -189,7 +189,7 @@ namespace SCVZ
             // 
             // btnAddMenus
             // 
-            this.btnAddMenus.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddMenus.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddMenus.Location = new System.Drawing.Point(42, 108);
             this.btnAddMenus.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddMenus.Name = "btnAddMenus";
@@ -201,7 +201,7 @@ namespace SCVZ
             // 
             // btnAddMeal
             // 
-            this.btnAddMeal.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddMeal.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddMeal.Location = new System.Drawing.Point(42, 45);
             this.btnAddMeal.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddMeal.Name = "btnAddMeal";

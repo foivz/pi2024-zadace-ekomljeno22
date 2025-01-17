@@ -116,12 +116,6 @@
     <Compile Include="FrmAddOrder.Designer.cs">
       <DependentUpon>FrmAddOrder.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmOrderHistory.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FrmOrderHistory.Designer.cs">
-      <DependentUpon>FrmOrderHistory.cs</DependentUpon>
-    </Compile>
     <Compile Include="FrmPreview.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -234,9 +228,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmAddOrder.resx">
       <DependentUpon>FrmAddOrder.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FrmOrderHistory.resx">
-      <DependentUpon>FrmOrderHistory.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmPreview.resx">
       <DependentUpon>FrmPreview.cs</DependentUpon>

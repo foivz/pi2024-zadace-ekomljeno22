@@ -160,16 +160,16 @@
             this.lblAuthorName.AutoSize = true;
             this.lblAuthorName.Location = new System.Drawing.Point(12, 416);
             this.lblAuthorName.Name = "lblAuthorName";
-            this.lblAuthorName.Size = new System.Drawing.Size(215, 15);
+            this.lblAuthorName.Size = new System.Drawing.Size(248, 16);
             this.lblAuthorName.TabIndex = 1;
-            this.lblAuthorName.Text = "Ennio David Komljenović, FOI IPS2-21";
+            this.lblAuthorName.Text = "Ennio David Komljenović, FOI IPS3-S-G1";
             // 
             // lblAuthorProblems
             // 
             this.lblAuthorProblems.AutoSize = true;
             this.lblAuthorProblems.Location = new System.Drawing.Point(12, 446);
             this.lblAuthorProblems.Name = "lblAuthorProblems";
-            this.lblAuthorProblems.Size = new System.Drawing.Size(354, 15);
+            this.lblAuthorProblems.Size = new System.Drawing.Size(382, 16);
             this.lblAuthorProblems.TabIndex = 9;
             this.lblAuthorProblems.Text = "Probleme s aplikacijom prijaviti na: ekomljeno22@student.foi.hr";
             // 
@@ -178,7 +178,7 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(12, 278);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(281, 15);
+            this.label5.Size = new System.Drawing.Size(300, 16);
             this.label5.TabIndex = 1;
             this.label5.Text = "Ulica kralja Petra Krešimira IV. 42, 42000 Varaždin";
             // 

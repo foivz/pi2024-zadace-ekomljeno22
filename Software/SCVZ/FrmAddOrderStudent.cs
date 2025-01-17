@@ -53,7 +53,6 @@ namespace SCVZ
             try
             {
                 nextIdOrder = OrderRepository.DajSljedeceg();
-                txtOrderId.Text = nextIdOrder.ToString();
             }
             catch (Exception ex)
             {
@@ -64,7 +63,6 @@ namespace SCVZ
         public void SetSelectedMenu(int menuId)
         {
             Meni selectedMenu = MenuRepository.DajMeni(menuId);
-            txtIdMenu.Text = menuId.ToString();
             txtOrderPrice.Text = selectedMenu.CijenaMenija.ToString();
         }
 
@@ -91,7 +89,6 @@ namespace SCVZ
                 Narudzbe newOrder = new Narudzbe
                 {
                     DatumNarudzbe = DateTime.Now,
-                    IdMeni = int.Parse(txtIdMenu.Text),
                     IdZaposlenik = randomZaposlenik.IdZaposlenik,
                     IdStudent = idStudent,
                     KuponCijenaMenija = 0

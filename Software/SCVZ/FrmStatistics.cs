@@ -105,36 +105,23 @@ namespace SCVZ
                 if (menu != null)
                 {
                     Console.WriteLine($"Detalji za Meni ID: {menu.IdMeni}");
+                    tboMeniId.Text = menu.IdMeni.ToString();
+                    tboCijena.Text = menu.CijenaMenija.ToString();
+                    tboBrojPoklonBodova.Text = menu.VrijednostPoklonBodova.ToString();
+                    tboVrijemePripreme.Text = menu.VrijemePripreme.ToString();
 
-                    dgvMenu.DataSource = new List<Meni> { menu };
-                    foreach (DataGridViewColumn column in dgvMenu.Columns)
-                    {
-                        column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                    }
-                    dgvMenu.Columns["IdMeni"].HeaderText = "Id";
-                    dgvMenu.Columns["CijenaMenija"].HeaderText = "Cijena";
-                    dgvMenu.Columns["IdVrstaMenija"].HeaderText = "Vrsta menija";
-                    dgvMenu.Columns["VrijednostPoklonBodova"].HeaderText = "Poklon bodovi";
-                    dgvMenu.Columns["VrijemePripreme"].HeaderText = "Vrijeme pripreme";
 
-                    dgvDetails.DataSource = menu.stavkeMenija;
-                    foreach (DataGridViewColumn column in dgvDetails.Columns)
-                    {
-                        column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                    }
+                    lboJela.DataSource = menu.stavkeMenija;
+                    lboJela.DisplayMember = "NazivJela";
+
                     List<VrstaMenija> menuTypes = MenuTypeRepository.GetMenuTypesForMenu(menu.IdMeni);
                     if (menuTypes != null && menuTypes.Count > 0)
                     {
-                        dgvMenuType.DataSource = menuTypes;
-                        foreach (DataGridViewColumn column in dgvMenuType.Columns)
-                        {
-                            column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                        }
+                        tboVrstaMenija.Text = string.Join(", ", menuTypes.Select(mt => mt.NazivVrstaMenija));
                     }
                     else
                     {
                         Console.WriteLine("Nema vrsta menija");
-                        dgvMenuType.DataSource = null;
                     }
                     List<Recenzije> ratings = RatingsRepository.GetRatingsForMenu(menu.IdMeni);
                     if (ratings != null && ratings.Count > 0)
@@ -166,8 +153,6 @@ namespace SCVZ
                 else
                 {
                     Console.WriteLine("Nema detalja menija");
-                    dgvMenu.DataSource = null;
-                    dgvMenuType.DataSource = null;
                     dgvRatings.DataSource = null;
                     txtAvg.Text = "0";
                     txtCount.Text = "0";
@@ -179,7 +164,19 @@ namespace SCVZ
         {
             dgvPreview.DataSource = null;
             SortMeniByOrderCount();
+
+            foreach (DataGridViewColumn column in dgvPreview.Columns)
+            {
+                column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            }
+
+            dgvPreview.Columns["IdMeni"].HeaderText = "Id";
+            dgvPreview.Columns["CijenaMenija"].HeaderText = "Cijena";
+            dgvPreview.Columns["IdVrstaMenija"].HeaderText = "IdVrsta";
+            dgvPreview.Columns["VrijednostPoklonBodova"].HeaderText = "Vrijednost Bodova";
+            dgvPreview.Columns["VrijemePripreme"].HeaderText = "Vrijeme Pripreme";
         }
+
 
         private void SortMeniByOrderCount()
         {
@@ -233,24 +230,6 @@ namespace SCVZ
             dgvPreview.Columns["VrijemePripreme"].HeaderText = "Vrijeme Pripreme";
         }
 
-        private void dgvDetails_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0)
-            {
-                Jelo selectedJelo = (Jelo)dgvDetails.Rows[e.RowIndex].DataBoundItem;
-
-                if (selectedJelo != null)
-                {
-                    dgvMealType.DataSource = MealTypeRepository.GetVrsteJelaForJelo(selectedJelo.IdVrstaJela);
-
-                    foreach (DataGridViewColumn column in dgvMealType.Columns)
-                    {
-                        column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                    }
-                }
-            }
-        }
-
         private void btnGenerateReport_Click(object sender, EventArgs e)
         {
             using (SaveFileDialog saveFileDialog = new SaveFileDialog())
@@ -268,21 +247,25 @@ namespace SCVZ
 
                     string directoryPath = Path.GetDirectoryName(filePath);
                     string fileName = Path.GetFileName(filePath);
-                    DataGridViewRow selectedRow = dgvMenu.CurrentRow;
 
                     ReportGenerator reportGenerator = new ReportGenerator();
-                    reportGenerator.GeneratePdfReport(filePath, fileName, dgvPreview, dgvDetails, dgvMenu, dgvRatings, avgText, countText, selectedRow);
                 }
             }
         }
 
         private void btnReset_Click(object sender, EventArgs e)
         {
-            dgvDetails.DataSource = null;
-            dgvMealType.DataSource = null;
-            dgvMenu.DataSource = null;
-            dgvMenuType.DataSource = null;
             dgvRatings.DataSource = null;
+        }
+
+        private void txtAvg_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtCount_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -9,6 +9,11 @@ namespace SCVZ.Models
     public class StatusNarudzbe
     {
         public int IdStatusNarudzbe { get; set; }
-        public string Status {  get; set; }
+        public string Status { get; set; }
+
+        public override string ToString()
+        {
+            return Status;
+        }
     }
 }

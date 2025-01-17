@@ -17,6 +17,9 @@ namespace SCVZ
     public partial class FrmStaffMain : Form
     {
         private string enteredUsername;
+        private Timer periodicTimer;
+        private int currentOrderCount;
+
         public FrmStaffMain(string enteredUsername)
         {
             InitializeComponent();
@@ -29,7 +32,49 @@ namespace SCVZ
             imgHome.MouseLeave += imgLogo_MouseLeave;
 
             this.enteredUsername = enteredUsername;
+
+            periodicTimer = new Timer
+            {
+                Interval = 5000
+            };
+            periodicTimer.Tick += PeriodicTimer_Tick;
         }
+
+        private void PeriodicTimer_Tick(object sender, EventArgs e)
+        {
+            Console.WriteLine($"Periodic method executed at {DateTime.Now}");
+
+            RefreshOrdersPeriodically();
+        }
+
+        private void RefreshOrdersPeriodically()
+        {
+            try
+            {
+                int newOrderCount = OrderRepository.GetOrderCount();
+                if (newOrderCount != currentOrderCount)
+                {
+                    currentOrderCount = newOrderCount;
+                    var newOrders = OrderRepository.DajNarudzbe();
+                    dgvPreview.DataSource = null;
+                    dgvPreview.DataSource = newOrders;
+                    PokaziNarudzbe();
+
+                    Console.WriteLine($"Orders refreshed. New count: {currentOrderCount}");
+                }
+                else
+                {
+                    Console.WriteLine("No changes in the number of orders.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error refreshing orders: {ex.Message}");
+            }
+        }
+
+
+
 
         private void imgLogo_MouseEnter(object sender, EventArgs e)
         {
@@ -88,6 +133,15 @@ namespace SCVZ
             this.Close();
         }
 
+        private void FrmStaffMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (periodicTimer != null)
+            {
+                periodicTimer.Stop();
+                periodicTimer.Dispose();
+            }
+        }
+
         private void imgHome_Click(object sender, EventArgs e)
         {
         }
@@ -121,39 +175,66 @@ namespace SCVZ
         private void FrmStaffMain_Load(object sender, EventArgs e)
         {
             dgvPreview.DataSource = null;
-            PokaziNarudzbe();
+            LoadUser();
+            RefreshOrdersPeriodically();
+            periodicTimer.Start();
+        }
+
+        private void LoadUser()
+        {
+            var staff = StaffRepository.DajZaposlenikaByUsername(enteredUsername);
+            tboUsername.Text = staff.KorisnickoIme;
+            tboPosition.Text = staff.Pozicija;
         }
 
         private void PokaziNarudzbe()
         {
-            var orders = OrderRepository.DajNarudzbe();
-            dgvPreview.DataSource = orders;
+            dgvPreview.AutoGenerateColumns = false;
 
-            dgvPreview.Columns["IdNarudzba"].HeaderText = "Id";
-            dgvPreview.Columns["DatumNarudzbe"].HeaderText = "Datum";
-            dgvPreview.Columns["IdZaposlenik"].HeaderText = "Zaposlenik";
-            dgvPreview.Columns["IdStudent"].HeaderText = "Student";
+            dgvPreview.Columns.Clear();
 
-            foreach (DataGridViewColumn column in dgvPreview.Columns)
+            dgvPreview.Columns.Add(new DataGridViewTextBoxColumn
             {
-                column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            }
+                Name = "IdNarudzba",
+                HeaderText = "Id",
+                DataPropertyName = "IdNarudzba",
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+            });
 
-            dgvPreview.Columns["IdNarudzba"].DisplayIndex = 0;
-            dgvPreview.Columns["DatumNarudzbe"].DisplayIndex = 1;
-            dgvPreview.Columns["IdZaposlenik"].DisplayIndex = 2;
-            dgvPreview.Columns["IdStudent"].DisplayIndex = 3;
+            dgvPreview.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "DatumNarudzbe",
+                HeaderText = "Datum",
+                DataPropertyName = "DatumNarudzbe",
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+            });
+
+            dgvPreview.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "IdZaposlenik",
+                HeaderText = "Zaposlenik",
+                DataPropertyName = "IdZaposlenik",
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+            });
+
+            dgvPreview.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "IdStudent",
+                HeaderText = "Student",
+                DataPropertyName = "IdStudent",
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+            });
         }
+
         private void dgvPreview_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            dgvDetails.DataSource = null;
-            dgvStudent.DataSource = null;
-            dgvMenu.DataSource = null;
-            dgvStatus.DataSource = null;
 
             if (e.RowIndex >= 0)
             {
                 Narudzbe order = (Narudzbe)dgvPreview.CurrentRow.DataBoundItem;
+                tboIdNarudzbe.Text = order.IdNarudzba.ToString();
+                tboUkupniIznos.Text = order.KuponCijenaMenija.ToString();
+                tboDatumNarudzbe.Text = order.DatumNarudzbe.ToString();
 
                 if (order != null)
                 {
@@ -162,12 +243,11 @@ namespace SCVZ
                     Meni menu = MenuRepository.DajMeni(order.IdMeni);
                     if (menu != null)
                     {
-                        Console.WriteLine($"Menu nađen: {menu.IdMeni}");
-                        dgvMenu.DataSource = new List<Meni> { menu };
-                        foreach (DataGridViewColumn column in dgvMenu.Columns)
-                        {
-                            column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                        }
+                        Console.WriteLine($"Meni nađen: {menu.IdMeni}");
+                        tboCijenaMenija.Text = menu.CijenaMenija.ToString();
+                        tboVrstaMenija.Text = menu.IdVrstaMenija.ToString();
+                        tboVrijemePripreme.Text = menu.VrijemePripreme.ToString();
+                        tboVrijednostPoklonBodova.Text = menu.VrijednostPoklonBodova.ToString();
                     }
                     else
                     {
@@ -175,11 +255,8 @@ namespace SCVZ
                     }
                     if (menu != null)
                     {
-                        dgvDetails.DataSource = menu.stavkeMenija;
-                        foreach (DataGridViewColumn column in dgvDetails.Columns)
-                        {
-                            column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                        }
+                        lboJela.DataSource = menu.stavkeMenija;
+                        lboJela.DisplayMember = "NazivJela";
                     }
                     else
                     {
@@ -189,11 +266,9 @@ namespace SCVZ
                     if (student != null)
                     {
                         Console.WriteLine($"Student nađen: {student.Ime} {student.Prezime}");
-                        dgvStudent.DataSource = new List<Student> { student };
-                        foreach (DataGridViewColumn column in dgvStudent.Columns)
-                        {
-                            column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                        }
+                        tboJMBAG.Text = student.JMBAG;
+                        tboBrojKupona.Text = student.BrojKupona.ToString();
+                        tboBrojPoklonBodova.Text = student.BrojPoklonBodova.ToString();
                     }
                     else
                     {
@@ -203,11 +278,8 @@ namespace SCVZ
                     if (status != null)
                     {
                         Console.WriteLine($"Status nađen: {status.Status}");
-                        dgvStatus.DataSource = new List<StatusNarudzbe> { status };
-                        foreach (DataGridViewColumn column in dgvStatus.Columns)
-                        {
-                            column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                        }
+                        tboStatusNarudzbe.Text = status.ToString();
+
                     }
                     else
                     {
@@ -237,10 +309,6 @@ namespace SCVZ
                     form3.ShowDialog();
                 }
             }
-        }
-        private void btnRefresh_Click(object sender, EventArgs e)
-        {
-            PokaziNarudzbe();
         }
     }
 }

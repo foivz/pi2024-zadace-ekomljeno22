@@ -161,7 +161,7 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.pboStaff.Image = global::SCVZ.Properties.Resources.staff;
             this.pboStaff.InitialImage = global::SCVZ.Properties.Resources.staff;
-            this.pboStaff.Location = new System.Drawing.Point(-60, 136);
+            this.pboStaff.Location = new System.Drawing.Point(-83, 136);
             this.pboStaff.Name = "pboStaff";
             this.pboStaff.Size = new System.Drawing.Size(918, 813);
             this.pboStaff.TabIndex = 7;
@@ -174,7 +174,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pboStudent.Image = global::SCVZ.Properties.Resources.pexels_photo_1848731;
             this.pboStudent.InitialImage = global::SCVZ.Properties.Resources.students;
-            this.pboStudent.Location = new System.Drawing.Point(966, -54);
+            this.pboStudent.Location = new System.Drawing.Point(994, -54);
             this.pboStudent.Name = "pboStudent";
             this.pboStudent.Size = new System.Drawing.Size(1124, 1122);
             this.pboStudent.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;

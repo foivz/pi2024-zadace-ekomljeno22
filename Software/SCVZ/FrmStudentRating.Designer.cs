@@ -37,10 +37,10 @@
             this.rboGood = new System.Windows.Forms.RadioButton();
             this.rboVeryGood = new System.Windows.Forms.RadioButton();
             this.rboExcellent = new System.Windows.Forms.RadioButton();
-            this.lblQuestion = new System.Windows.Forms.Label();
-            this.lblQuestion02 = new System.Windows.Forms.Label();
             this.txtComments = new System.Windows.Forms.TextBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.pnlNav.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlNav
@@ -68,7 +68,7 @@
             // btnAddRating
             // 
             this.btnAddRating.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddRating.Location = new System.Drawing.Point(356, 504);
+            this.btnAddRating.Location = new System.Drawing.Point(356, 444);
             this.btnAddRating.Name = "btnAddRating";
             this.btnAddRating.Size = new System.Drawing.Size(144, 43);
             this.btnAddRating.TabIndex = 37;
@@ -79,7 +79,7 @@
             // btnCancel
             // 
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancel.Location = new System.Drawing.Point(12, 503);
+            this.btnCancel.Location = new System.Drawing.Point(12, 443);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(144, 43);
             this.btnCancel.TabIndex = 36;
@@ -91,7 +91,7 @@
             // 
             this.rboUnsufficient.AutoSize = true;
             this.rboUnsufficient.CheckAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.rboUnsufficient.Location = new System.Drawing.Point(63, 213);
+            this.rboUnsufficient.Location = new System.Drawing.Point(9, 60);
             this.rboUnsufficient.Name = "rboUnsufficient";
             this.rboUnsufficient.Size = new System.Drawing.Size(81, 36);
             this.rboUnsufficient.TabIndex = 38;
@@ -104,7 +104,7 @@
             // 
             this.rboSufficient.AutoSize = true;
             this.rboSufficient.CheckAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.rboSufficient.Location = new System.Drawing.Point(150, 213);
+            this.rboSufficient.Location = new System.Drawing.Point(96, 60);
             this.rboSufficient.Name = "rboSufficient";
             this.rboSufficient.Size = new System.Drawing.Size(65, 36);
             this.rboSufficient.TabIndex = 40;
@@ -116,7 +116,7 @@
             // 
             this.rboGood.AutoSize = true;
             this.rboGood.CheckAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.rboGood.Location = new System.Drawing.Point(233, 213);
+            this.rboGood.Location = new System.Drawing.Point(179, 60);
             this.rboGood.Name = "rboGood";
             this.rboGood.Size = new System.Drawing.Size(49, 36);
             this.rboGood.TabIndex = 41;
@@ -128,7 +128,7 @@
             // 
             this.rboVeryGood.AutoSize = true;
             this.rboVeryGood.CheckAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.rboVeryGood.Location = new System.Drawing.Point(297, 213);
+            this.rboVeryGood.Location = new System.Drawing.Point(243, 60);
             this.rboVeryGood.Name = "rboVeryGood";
             this.rboVeryGood.Size = new System.Drawing.Size(74, 36);
             this.rboVeryGood.TabIndex = 42;
@@ -140,7 +140,7 @@
             // 
             this.rboExcellent.AutoSize = true;
             this.rboExcellent.CheckAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.rboExcellent.Location = new System.Drawing.Point(377, 213);
+            this.rboExcellent.Location = new System.Drawing.Point(323, 60);
             this.rboExcellent.Name = "rboExcellent";
             this.rboExcellent.Size = new System.Drawing.Size(57, 36);
             this.rboExcellent.TabIndex = 43;
@@ -148,48 +148,37 @@
             this.rboExcellent.Text = "Odličan";
             this.rboExcellent.UseVisualStyleBackColor = true;
             // 
-            // lblQuestion
-            // 
-            this.lblQuestion.AutoSize = true;
-            this.lblQuestion.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblQuestion.Location = new System.Drawing.Point(47, 106);
-            this.lblQuestion.Name = "lblQuestion";
-            this.lblQuestion.Size = new System.Drawing.Size(246, 20);
-            this.lblQuestion.TabIndex = 44;
-            this.lblQuestion.Text = "Kako Vam se svidio ovaj obrok?";
-            // 
-            // lblQuestion02
-            // 
-            this.lblQuestion02.AutoSize = true;
-            this.lblQuestion02.Location = new System.Drawing.Point(48, 172);
-            this.lblQuestion02.Name = "lblQuestion02";
-            this.lblQuestion02.Size = new System.Drawing.Size(89, 16);
-            this.lblQuestion02.TabIndex = 45;
-            this.lblQuestion02.Text = "Obrok je bio...";
-            // 
             // txtComments
             // 
-            this.txtComments.Location = new System.Drawing.Point(51, 300);
+            this.txtComments.Location = new System.Drawing.Point(51, 272);
             this.txtComments.Multiline = true;
             this.txtComments.Name = "txtComments";
             this.txtComments.Size = new System.Drawing.Size(393, 154);
             this.txtComments.TabIndex = 46;
             this.txtComments.Text = "Dodatni komentari...";
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.rboVeryGood);
+            this.groupBox1.Controls.Add(this.rboUnsufficient);
+            this.groupBox1.Controls.Add(this.rboSufficient);
+            this.groupBox1.Controls.Add(this.rboGood);
+            this.groupBox1.Controls.Add(this.rboExcellent);
+            this.groupBox1.Location = new System.Drawing.Point(51, 99);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(393, 150);
+            this.groupBox1.TabIndex = 47;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Obrok je bio...";
+            // 
             // FrmStudentRating
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(512, 553);
+            this.ClientSize = new System.Drawing.Size(512, 495);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.txtComments);
-            this.Controls.Add(this.lblQuestion02);
-            this.Controls.Add(this.lblQuestion);
-            this.Controls.Add(this.rboExcellent);
-            this.Controls.Add(this.rboVeryGood);
-            this.Controls.Add(this.rboGood);
-            this.Controls.Add(this.rboSufficient);
-            this.Controls.Add(this.rboUnsufficient);
             this.Controls.Add(this.pnlNav);
             this.Controls.Add(this.btnAddRating);
             this.Controls.Add(this.btnCancel);
@@ -199,6 +188,8 @@
             this.Load += new System.EventHandler(this.FrmStudentRating_Load);
             this.pnlNav.ResumeLayout(false);
             this.pnlNav.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -215,8 +206,7 @@
         private System.Windows.Forms.RadioButton rboGood;
         private System.Windows.Forms.RadioButton rboVeryGood;
         private System.Windows.Forms.RadioButton rboExcellent;
-        private System.Windows.Forms.Label lblQuestion;
-        private System.Windows.Forms.Label lblQuestion02;
         private System.Windows.Forms.TextBox txtComments;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }

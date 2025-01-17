@@ -2,12 +2,13 @@
 using System.Windows.Forms;
 using SCVZ.Models;
 using SCVZ.Repositories;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace SCVZ
 {
     public partial class FrmAddMenuToOrder : Form
     {
-        public FrmAddOrder ParentForm { get; set; }
+        public new FrmAddOrder ParentForm { get; set; }
         public FrmAddOrderStudent ParentFormStudent { get; set; }
 
         public FrmAddMenuToOrder()
@@ -76,15 +77,19 @@ namespace SCVZ
                 if (meni != null)
                 {
                     Console.WriteLine($"Prikazuju se rezultati za Meni ID: {meni.IdMeni}");
-                    dgvDetails.DataSource = meni.stavkeMenija;
+                    lboJela.DataSource = meni.stavkeMenija;
+                    lboJela.DisplayMember = "NazivJela";
                 }
                 else
                 {
                     Console.WriteLine("Nema detalja Menija");
-                    dgvDetails.DataSource = null;
                 }
             }
         }
-    }
 
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+    }
 }

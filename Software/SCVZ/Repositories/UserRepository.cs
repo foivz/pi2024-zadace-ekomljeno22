@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace SCVZ.Repositories
 {
@@ -16,6 +17,7 @@ namespace SCVZ.Repositories
             try
             {
                 DB.OpenConnection();
+
                 string korisnikSql = $"INSERT INTO Korisnik (Ime, Prezime, Lozinka) " +
                                      $"VALUES ('{zaposlenik.Ime}', '{zaposlenik.Prezime}', '{zaposlenik.Lozinka}')";
                 DB.ExecuteCommand(korisnikSql);
@@ -31,6 +33,19 @@ namespace SCVZ.Repositories
 
                 Console.WriteLine($"Zaposlenik {zaposlenik.Ime} {zaposlenik.Prezime} uspješno dodan s ID: {idKorisnik}");
             }
+            catch (SqlException ex)
+            {
+                if (ex.Message.Contains("Zaposlenik s tim imenom i prezimenom već postoji"))
+                {
+                    MessageBox.Show($"Zaposlenik s tim imenom i prezimenom već postoji");
+                    Console.WriteLine($"Greška: {ex.Message}");
+                    return;
+                }
+                else
+                {
+                    Console.WriteLine($"SQL Greška prilikom unosa Zaposlenika: {ex.Message}");
+                }
+            }
             catch (Exception ex)
             {
                 Console.WriteLine($"Greška prilikom unosa Zaposlenika: {ex.Message}");
@@ -40,6 +55,7 @@ namespace SCVZ.Repositories
                 DB.CloseConnection();
             }
         }
+
 
         private static int DajIdPozicije(string pozicija)
         {

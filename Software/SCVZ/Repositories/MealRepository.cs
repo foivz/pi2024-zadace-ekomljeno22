@@ -147,11 +147,27 @@ namespace SCVZ.Repositories
         public static void DodajJelo(Jelo jelo)
         {
             string sql = $"INSERT INTO Jelo (NazivJela, IdVrstaJela) " +
-             $"VALUES ('{jelo.NazivJela}', '{jelo.IdVrstaJela}')";
-            DB.OpenConnection();
-            DB.ExecuteCommand(sql);
-            DB.CloseConnection();
+                         $"VALUES ('{jelo.NazivJela}', '{jelo.IdVrstaJela}')";
+
+            try
+            {
+                DB.OpenConnection();
+                DB.ExecuteCommand(sql);
+                DB.CloseConnection();
+            }
+            catch (SqlException ex)
+            {
+                if (ex.Number == 2627)
+                {
+                    Console.WriteLine("Error: Jelo s tim imenom već postoji.");
+                }
+                else
+                {
+                    Console.WriteLine($"Error: {ex.Message}");
+                }
+            }
         }
+
         public static void AzurirajJelo(Jelo jelo)
         {
             string sql = $"UPDATE Jelo SET NazivJela = '{jelo.NazivJela}', IdVrstaJela = {jelo.IdVrstaJela} WHERE IdJelo = {jelo.IdJelo}";

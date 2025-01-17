@@ -33,6 +33,29 @@ namespace SCVZ.Repositories
             return narudzba;
         }
 
+        public static int GetOrderCount()
+        {
+            int count = 0;
+
+            string sql = "SELECT COUNT(*) FROM Narudzbe";
+
+            DB.OpenConnection();
+
+            var reader = DB.GetDataReader(sql);
+
+            if (reader.Read())
+            {
+                count = reader.GetInt32(0);
+            }
+
+            reader.Close();
+            DB.CloseConnection();
+
+            return count;
+        }
+
+
+
         public static List<Narudzbe> DajNarudzbe()
         {
             var narudzbe = new List<Narudzbe>();
@@ -181,16 +204,6 @@ namespace SCVZ.Repositories
         {
             try
             {
-                // Log the values read from the SqlDataReader
-                Console.WriteLine("IdNarudzba: " + reader["IdNarudzba"]);
-                Console.WriteLine("DatumNarudzbe: " + reader["DatumNarudzbe"]);
-                Console.WriteLine("IdMeni: " + reader["IdMeni"]);
-                Console.WriteLine("IdZaposlenik: " + reader["IdZaposlenik"]);
-                Console.WriteLine("IdStudent: " + reader["IdStudent"]);
-                Console.WriteLine("KuponCijenaMenija: " + reader["KuponCijenaMenija"]);
-                Console.WriteLine("IdStatusNarudzbe: " + reader["IdStatusNarudzbe"]);
-
-                // Parse the values with proper null checking
                 int idNarudzba = reader["IdNarudzba"] != DBNull.Value ? int.Parse(reader["IdNarudzba"].ToString()) : 0;
                 DateTime datumNarudzbe = reader["DatumNarudzbe"] != DBNull.Value ? DateTime.Parse(reader["DatumNarudzbe"].ToString()) : DateTime.MinValue;
                 int idMeni = reader["IdMeni"] != DBNull.Value ? int.Parse(reader["IdMeni"].ToString()) : 0;

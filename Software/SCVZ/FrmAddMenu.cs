@@ -63,7 +63,6 @@ namespace SCVZ
             try
             {
                 nextIdMeni = MenuRepository.DajSljedeceg();
-                txtMenuId.Text = nextIdMeni.ToString();
             }
             catch (Exception ex)
             {
@@ -118,7 +117,6 @@ namespace SCVZ
                     CijenaMenija = cijenaMenija,
                     VrijednostPoklonBodova = Convert.ToInt32(txtMenuGiftPoints.Text),
                     IdVrstaMenija = Convert.ToInt32(cboMenuType.SelectedValue),
-                    IdMeni = Convert.ToInt32(txtMenuId.Text),
                     VrijemePripreme = vrijemePripreme
                 };           
 

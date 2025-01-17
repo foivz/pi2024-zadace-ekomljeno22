@@ -33,6 +33,7 @@
             this.btnChange = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.cboStatus = new System.Windows.Forms.ComboBox();
+            this.lblStatus = new System.Windows.Forms.Label();
             this.pnlNav.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -84,10 +85,20 @@
             // 
             this.cboStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboStatus.FormattingEnabled = true;
-            this.cboStatus.Location = new System.Drawing.Point(168, 129);
+            this.cboStatus.Location = new System.Drawing.Point(201, 129);
             this.cboStatus.Name = "cboStatus";
             this.cboStatus.Size = new System.Drawing.Size(178, 28);
             this.cboStatus.TabIndex = 24;
+            // 
+            // lblStatus
+            // 
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStatus.Location = new System.Drawing.Point(117, 132);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(66, 22);
+            this.lblStatus.TabIndex = 25;
+            this.lblStatus.Text = "Status:";
             // 
             // FrmChangeOrderStatus
             // 
@@ -95,6 +106,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(512, 259);
+            this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.cboStatus);
             this.Controls.Add(this.pnlNav);
             this.Controls.Add(this.btnChange);
@@ -106,6 +118,7 @@
             this.pnlNav.ResumeLayout(false);
             this.pnlNav.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -116,5 +129,6 @@
         private System.Windows.Forms.Button btnChange;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.ComboBox cboStatus;
+        private System.Windows.Forms.Label lblStatus;
     }
 }

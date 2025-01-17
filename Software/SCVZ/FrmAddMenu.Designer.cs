@@ -30,7 +30,6 @@
         {
             this.pnlNav = new System.Windows.Forms.Panel();
             this.lblAddMenu = new System.Windows.Forms.Label();
-            this.txtMenuId = new System.Windows.Forms.TextBox();
             this.cboMeal01 = new System.Windows.Forms.ComboBox();
             this.cboMeal02 = new System.Windows.Forms.ComboBox();
             this.cboMeal03 = new System.Windows.Forms.ComboBox();
@@ -67,20 +66,11 @@
             this.lblAddMenu.TabIndex = 0;
             this.lblAddMenu.Text = "Meni";
             // 
-            // txtMenuId
-            // 
-            this.txtMenuId.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMenuId.Location = new System.Drawing.Point(142, 98);
-            this.txtMenuId.Name = "txtMenuId";
-            this.txtMenuId.ReadOnly = true;
-            this.txtMenuId.Size = new System.Drawing.Size(227, 27);
-            this.txtMenuId.TabIndex = 29;
-            // 
             // cboMeal01
             // 
             this.cboMeal01.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboMeal01.FormattingEnabled = true;
-            this.cboMeal01.Location = new System.Drawing.Point(142, 141);
+            this.cboMeal01.Location = new System.Drawing.Point(142, 105);
             this.cboMeal01.Name = "cboMeal01";
             this.cboMeal01.Size = new System.Drawing.Size(227, 28);
             this.cboMeal01.TabIndex = 30;
@@ -90,7 +80,7 @@
             // 
             this.cboMeal02.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboMeal02.FormattingEnabled = true;
-            this.cboMeal02.Location = new System.Drawing.Point(142, 185);
+            this.cboMeal02.Location = new System.Drawing.Point(142, 149);
             this.cboMeal02.Name = "cboMeal02";
             this.cboMeal02.Size = new System.Drawing.Size(227, 28);
             this.cboMeal02.TabIndex = 31;
@@ -100,7 +90,7 @@
             // 
             this.cboMeal03.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboMeal03.FormattingEnabled = true;
-            this.cboMeal03.Location = new System.Drawing.Point(142, 229);
+            this.cboMeal03.Location = new System.Drawing.Point(142, 193);
             this.cboMeal03.Name = "cboMeal03";
             this.cboMeal03.Size = new System.Drawing.Size(227, 28);
             this.cboMeal03.TabIndex = 32;
@@ -109,7 +99,7 @@
             // btnAddToDatabase
             // 
             this.btnAddToDatabase.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddToDatabase.Location = new System.Drawing.Point(356, 499);
+            this.btnAddToDatabase.Location = new System.Drawing.Point(356, 430);
             this.btnAddToDatabase.Name = "btnAddToDatabase";
             this.btnAddToDatabase.Size = new System.Drawing.Size(144, 43);
             this.btnAddToDatabase.TabIndex = 34;
@@ -120,7 +110,7 @@
             // btnCancel
             // 
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancel.Location = new System.Drawing.Point(12, 498);
+            this.btnCancel.Location = new System.Drawing.Point(12, 429);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(144, 43);
             this.btnCancel.TabIndex = 33;
@@ -132,7 +122,7 @@
             // 
             this.cboMenuType.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboMenuType.FormattingEnabled = true;
-            this.cboMenuType.Location = new System.Drawing.Point(142, 272);
+            this.cboMenuType.Location = new System.Drawing.Point(142, 236);
             this.cboMenuType.Name = "cboMenuType";
             this.cboMenuType.Size = new System.Drawing.Size(227, 28);
             this.cboMenuType.TabIndex = 35;
@@ -141,7 +131,7 @@
             // txtMenuGiftPoints
             // 
             this.txtMenuGiftPoints.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMenuGiftPoints.Location = new System.Drawing.Point(142, 316);
+            this.txtMenuGiftPoints.Location = new System.Drawing.Point(142, 280);
             this.txtMenuGiftPoints.Name = "txtMenuGiftPoints";
             this.txtMenuGiftPoints.Size = new System.Drawing.Size(227, 27);
             this.txtMenuGiftPoints.TabIndex = 36;
@@ -150,7 +140,7 @@
             // txtMenuPrice
             // 
             this.txtMenuPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMenuPrice.Location = new System.Drawing.Point(142, 359);
+            this.txtMenuPrice.Location = new System.Drawing.Point(142, 323);
             this.txtMenuPrice.Name = "txtMenuPrice";
             this.txtMenuPrice.Size = new System.Drawing.Size(227, 27);
             this.txtMenuPrice.TabIndex = 37;
@@ -159,7 +149,7 @@
             // txtAveragePrepHours
             // 
             this.txtAveragePrepHours.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAveragePrepHours.Location = new System.Drawing.Point(142, 412);
+            this.txtAveragePrepHours.Location = new System.Drawing.Point(142, 376);
             this.txtAveragePrepHours.Name = "txtAveragePrepHours";
             this.txtAveragePrepHours.Size = new System.Drawing.Size(72, 27);
             this.txtAveragePrepHours.TabIndex = 38;
@@ -168,7 +158,7 @@
             // txtAveragePrepMinutes
             // 
             this.txtAveragePrepMinutes.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAveragePrepMinutes.Location = new System.Drawing.Point(220, 412);
+            this.txtAveragePrepMinutes.Location = new System.Drawing.Point(220, 376);
             this.txtAveragePrepMinutes.Name = "txtAveragePrepMinutes";
             this.txtAveragePrepMinutes.Size = new System.Drawing.Size(72, 27);
             this.txtAveragePrepMinutes.TabIndex = 39;
@@ -177,7 +167,7 @@
             // txtAveragePrepSeconds
             // 
             this.txtAveragePrepSeconds.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAveragePrepSeconds.Location = new System.Drawing.Point(297, 412);
+            this.txtAveragePrepSeconds.Location = new System.Drawing.Point(297, 376);
             this.txtAveragePrepSeconds.Name = "txtAveragePrepSeconds";
             this.txtAveragePrepSeconds.Size = new System.Drawing.Size(72, 27);
             this.txtAveragePrepSeconds.TabIndex = 40;
@@ -187,7 +177,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(512, 553);
+            this.ClientSize = new System.Drawing.Size(512, 482);
             this.Controls.Add(this.txtAveragePrepSeconds);
             this.Controls.Add(this.txtAveragePrepMinutes);
             this.Controls.Add(this.txtAveragePrepHours);
@@ -199,7 +189,6 @@
             this.Controls.Add(this.cboMeal03);
             this.Controls.Add(this.cboMeal02);
             this.Controls.Add(this.cboMeal01);
-            this.Controls.Add(this.txtMenuId);
             this.Controls.Add(this.pnlNav);
             this.Name = "FrmAddMenu";
             this.Text = "FrmAddMenu";
@@ -214,7 +203,6 @@
 
         private System.Windows.Forms.Panel pnlNav;
         private System.Windows.Forms.Label lblAddMenu;
-        private System.Windows.Forms.TextBox txtMenuId;
         private System.Windows.Forms.ComboBox cboMeal01;
         private System.Windows.Forms.ComboBox cboMeal02;
         private System.Windows.Forms.ComboBox cboMeal03;

@@ -10,12 +10,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace SCVZ
 {
     public partial class FrmStudentMain : Form
     {
         private string JMBAG { get; set; }
+        private List<Narudzbe> allOrders;
+
         public FrmStudentMain(string jMBAG)
         {
             InitializeComponent();
@@ -87,18 +90,6 @@ namespace SCVZ
             pnlLogo.BackColor = color;
         }
 
-        private void pnlOrders_Paint(object sender, PaintEventArgs e)
-        {
-            Color color = System.Drawing.ColorTranslator.FromHtml("#AFAFAF");
-            pnlOrders.BackColor = color;
-        }
-
-        private void pnlMenu_Paint(object sender, PaintEventArgs e)
-        {
-            Color color = System.Drawing.ColorTranslator.FromHtml("#C5C5C5");
-            pnlOrders.BackColor = color;
-        }
-
         private void pnlTitle_Paint(object sender, PaintEventArgs e)
         {
             Color color = System.Drawing.ColorTranslator.FromHtml("#FCF24A");
@@ -119,14 +110,6 @@ namespace SCVZ
         {
             FrmAddOrderStudent form2 = new FrmAddOrderStudent(JMBAG);
             form2.Show();
-        }
-
-
-        private void btnOrderHistory_Click(object sender, EventArgs e)
-        {
-            FrmOrderHistory form3 = new FrmOrderHistory(JMBAG);
-            form3.Show();
-            this.Close();
         }
 
         private void FrmStudentMain_Load(object sender, EventArgs e)
@@ -151,21 +134,13 @@ namespace SCVZ
 
         private void FillStudentTable(Student student)
         {
-            tblStudent.Controls.Clear();
-            tblStudent.RowCount = 0;
-
-            tblStudent.AutoSize = true;
-
             if (student != null)
             {
-                AddRowToTable("Ime", student.Ime);
-                AddRowToTable("Prezime", student.Prezime);
-                AddRowToTable("JMBAG", student.JMBAG);
-                AddRowToTable("Poklon bodovi", student.BrojPoklonBodova.ToString());
-                AddRowToTable("Kuponi", student.BrojKupona.ToString());
-
-                tblStudent.AutoSize = true;
-                tblStudent.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
+                tboIme.Text = student.Ime;
+                tboPrezime.Text = student.Prezime;
+                tboJMBAG.Text = student.JMBAG;
+                tboPoklonBodovi.Text = student.BrojPoklonBodova.ToString();
+                tboKuponi.Text = student.BrojKupona.ToString();
             }
             else
             {
@@ -173,38 +148,12 @@ namespace SCVZ
             }
         }
 
-        private void AddRowToTable(string label, string value)
-        {
-            tblStudent.RowCount++;
-            var lblProperty = new Label
-            {
-                Text = label,
-                Anchor = AnchorStyles.Left,
-                AutoSize = true,
-                Font = new Font("Arial", 10, FontStyle.Bold),
-                ForeColor = Color.Blue,
-                Padding = new Padding(5)
-            };
-
-            var lblValue = new Label
-            {
-                Text = value,
-                Anchor = AnchorStyles.Left,
-                AutoSize = true,
-                Font = new Font("Arial", 10, FontStyle.Regular),
-                ForeColor = Color.Black,
-                Padding = new Padding(5)
-            };
-            tblStudent.Controls.Add(lblProperty, 0, tblStudent.RowCount - 1);
-            tblStudent.Controls.Add(lblValue, 1, tblStudent.RowCount - 1);
-        }
-
         private void PokaziSadasnjeNarudzbe()
         {
-            var orders = OrderRepository.DajNarudzbePoJMBAG(JMBAG);
-            var uniqueMeniIds = new HashSet<int>();
+            allOrders = OrderRepository.DajNarudzbePoJMBAG(JMBAG); // Fetch all orders for the student
 
-            foreach (var order in orders)
+            var uniqueMeniIds = new HashSet<int>();
+            foreach (var order in allOrders)
             {
                 uniqueMeniIds.Add(order.IdMeni);
             }
@@ -230,6 +179,7 @@ namespace SCVZ
             }
         }
 
+
         private void dgvStudentOrders_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -245,23 +195,26 @@ namespace SCVZ
 
         private void PokaziMenije()
         {
-            var meni = MenuRepository.DajMenije();
-            dgvPreview.DataSource = meni;
+            var orders = OrderRepository.DajNarudzbePoJMBAG(JMBAG);
+            dgvPreview.DataSource = orders;
 
-            dgvPreview.Columns["IdMeni"].HeaderText = "Id";
-            dgvPreview.Columns["CijenaMenija"].HeaderText = "Cijena";
-            dgvPreview.Columns["IdVrstaMenija"].HeaderText = "Vrsta menija";
-            dgvPreview.Columns["VrijednostPoklonBodova"].HeaderText = "Broj poklon bodova";
+            dgvPreview.Columns["IdNarudzba"].HeaderText = "Id";
+            dgvPreview.Columns["IdMeni"].Visible = false;
+            dgvPreview.Columns["IdZaposlenik"].Visible = false;
+            dgvPreview.Columns["IdStudent"].Visible = false;
+            dgvPreview.Columns["IdStatusNarudzbe"].Visible = false;
+            dgvPreview.Columns["KuponCijenaMenija"].Visible = false;
+
+
+            dgvPreview.Columns["DatumNarudzbe"].HeaderText = "Datum narudžbe";
 
             foreach (DataGridViewColumn column in dgvPreview.Columns)
             {
                 column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             }
 
-            dgvPreview.Columns["IdMeni"].DisplayIndex = 0;
-            dgvPreview.Columns["CijenaMenija"].DisplayIndex = 1;
-            dgvPreview.Columns["IdVrstaMenija"].DisplayIndex = 2;
-            dgvPreview.Columns["VrijednostPoklonBodova"].DisplayIndex = 3;
+            dgvPreview.Columns["IdNarudzba"].DisplayIndex = 0;
+            dgvPreview.Columns["DatumNarudzbe"].DisplayIndex = 1;
 
             foreach (DataGridViewRow row in dgvPreview.Rows)
             {
@@ -271,14 +224,29 @@ namespace SCVZ
         }
         private void dgvPreview_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            Meni meni = (Meni)dgvPreview.CurrentRow.DataBoundItem;
-            dgvDetails.DataSource = meni.stavkeMenija;
-
-            foreach (DataGridViewColumn column in dgvDetails.Columns)
+            if (e.RowIndex >= 0)
             {
-                column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                Narudzbe selectedNarudzba = (Narudzbe)dgvPreview.Rows[e.RowIndex].DataBoundItem;
+                Meni meni = MenuRepository.DajMeni(selectedNarudzba.IdMeni);
+
+                if (selectedNarudzba != null)
+                {
+                    tboDatumNarudzbe.Text = selectedNarudzba.DatumNarudzbe.ToString("yyyy-MM-dd HH:mm:ss");
+                    tboUkupniIznos.Text = selectedNarudzba.KuponCijenaMenija.ToString("F2");
+                    tboIdNarudzbe.Text = selectedNarudzba.IdNarudzba.ToString();
+
+                    lboJela.DataSource = meni.stavkeMenija;
+                    lboJela.DisplayMember = "NazivJela";
+                }
+                else
+                {
+                    tboDatumNarudzbe.Text = "No order found for this menu.";
+                    tboUkupniIznos.Text = string.Empty;
+                    tboIdNarudzbe.Text = string.Empty;
+                }
             }
         }
+
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {

@@ -18,8 +18,8 @@ namespace SCVZ.Models
         public List<Recenzije> recenzijeMenija { get; set; }
 
         public Meni() { 
-        stavkeMenija = new List<Jelo>();
-        recenzijeMenija = new List<Recenzije>();
+            stavkeMenija = new List<Jelo>();
+            recenzijeMenija = new List<Recenzije>();
         }
     }
 }

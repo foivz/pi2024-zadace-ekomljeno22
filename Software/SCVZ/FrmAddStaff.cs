@@ -29,7 +29,6 @@ namespace SCVZ
             {
                 int newId = UserRepository.DajSljedeceg();
 
-                txtStaffId.Text = newId.ToString();
             }
             catch (Exception ex)
             {

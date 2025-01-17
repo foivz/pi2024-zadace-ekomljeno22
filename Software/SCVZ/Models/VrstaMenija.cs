@@ -10,5 +10,10 @@ namespace SCVZ.Models
     {
         public int IdVrstaMenija {  get; set; }
         public string NazivVrstaMenija { get; set; }
+        public override string ToString()
+        {
+            return NazivVrstaMenija;
+        }
+
     }
 }

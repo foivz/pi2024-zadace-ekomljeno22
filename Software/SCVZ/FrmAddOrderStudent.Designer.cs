@@ -33,11 +33,12 @@
             this.btnOrder = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.txtStudentId = new System.Windows.Forms.TextBox();
-            this.txtIdMenu = new System.Windows.Forms.TextBox();
             this.btnChooseMenu = new System.Windows.Forms.Button();
             this.txtOrderPrice = new System.Windows.Forms.TextBox();
             this.txtOrderServer = new System.Windows.Forms.TextBox();
-            this.txtOrderId = new System.Windows.Forms.TextBox();
+            this.lblPrice = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.pnlNav.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -66,7 +67,7 @@
             // btnOrder
             // 
             this.btnOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOrder.Location = new System.Drawing.Point(333, 491);
+            this.btnOrder.Location = new System.Drawing.Point(347, 314);
             this.btnOrder.Name = "btnOrder";
             this.btnOrder.Size = new System.Drawing.Size(153, 41);
             this.btnOrder.TabIndex = 38;
@@ -77,7 +78,7 @@
             // btnCancel
             // 
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancel.Location = new System.Drawing.Point(12, 491);
+            this.btnCancel.Location = new System.Drawing.Point(12, 314);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(153, 41);
             this.btnCancel.TabIndex = 37;
@@ -88,27 +89,18 @@
             // txtStudentId
             // 
             this.txtStudentId.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtStudentId.Location = new System.Drawing.Point(143, 354);
+            this.txtStudentId.Location = new System.Drawing.Point(186, 261);
             this.txtStudentId.Name = "txtStudentId";
             this.txtStudentId.ReadOnly = true;
-            this.txtStudentId.Size = new System.Drawing.Size(227, 27);
+            this.txtStudentId.Size = new System.Drawing.Size(197, 27);
             this.txtStudentId.TabIndex = 57;
-            // 
-            // txtIdMenu
-            // 
-            this.txtIdMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtIdMenu.Location = new System.Drawing.Point(143, 202);
-            this.txtIdMenu.Name = "txtIdMenu";
-            this.txtIdMenu.ReadOnly = true;
-            this.txtIdMenu.Size = new System.Drawing.Size(227, 27);
-            this.txtIdMenu.TabIndex = 56;
             // 
             // btnChooseMenu
             // 
             this.btnChooseMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnChooseMenu.Location = new System.Drawing.Point(143, 152);
+            this.btnChooseMenu.Location = new System.Drawing.Point(186, 114);
             this.btnChooseMenu.Name = "btnChooseMenu";
-            this.btnChooseMenu.Size = new System.Drawing.Size(227, 27);
+            this.btnChooseMenu.Size = new System.Drawing.Size(197, 27);
             this.btnChooseMenu.TabIndex = 55;
             this.btnChooseMenu.Text = "Odaberi Meni";
             this.btnChooseMenu.UseVisualStyleBackColor = true;
@@ -117,41 +109,63 @@
             // txtOrderPrice
             // 
             this.txtOrderPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtOrderPrice.Location = new System.Drawing.Point(143, 252);
+            this.txtOrderPrice.Location = new System.Drawing.Point(186, 159);
             this.txtOrderPrice.Name = "txtOrderPrice";
             this.txtOrderPrice.ReadOnly = true;
-            this.txtOrderPrice.Size = new System.Drawing.Size(227, 27);
+            this.txtOrderPrice.Size = new System.Drawing.Size(197, 27);
             this.txtOrderPrice.TabIndex = 54;
             // 
             // txtOrderServer
             // 
             this.txtOrderServer.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtOrderServer.Location = new System.Drawing.Point(143, 303);
+            this.txtOrderServer.Location = new System.Drawing.Point(186, 210);
             this.txtOrderServer.Name = "txtOrderServer";
             this.txtOrderServer.ReadOnly = true;
-            this.txtOrderServer.Size = new System.Drawing.Size(227, 27);
+            this.txtOrderServer.Size = new System.Drawing.Size(197, 27);
             this.txtOrderServer.TabIndex = 53;
             // 
-            // txtOrderId
+            // lblPrice
             // 
-            this.txtOrderId.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtOrderId.Location = new System.Drawing.Point(143, 106);
-            this.txtOrderId.Name = "txtOrderId";
-            this.txtOrderId.ReadOnly = true;
-            this.txtOrderId.Size = new System.Drawing.Size(227, 27);
-            this.txtOrderId.TabIndex = 52;
+            this.lblPrice.AutoSize = true;
+            this.lblPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPrice.Location = new System.Drawing.Point(104, 160);
+            this.lblPrice.Name = "lblPrice";
+            this.lblPrice.Size = new System.Drawing.Size(66, 22);
+            this.lblPrice.TabIndex = 58;
+            this.lblPrice.Text = "Cijena:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(75, 215);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(95, 22);
+            this.label1.TabIndex = 59;
+            this.label1.Text = "Poslužitelj:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(94, 262);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(76, 22);
+            this.label2.TabIndex = 60;
+            this.label2.Text = "JMBAG:";
             // 
             // FrmAddOrderStudent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(512, 553);
+            this.ClientSize = new System.Drawing.Size(512, 362);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblPrice);
             this.Controls.Add(this.txtStudentId);
-            this.Controls.Add(this.txtIdMenu);
             this.Controls.Add(this.btnChooseMenu);
             this.Controls.Add(this.txtOrderPrice);
             this.Controls.Add(this.txtOrderServer);
-            this.Controls.Add(this.txtOrderId);
             this.Controls.Add(this.pnlNav);
             this.Controls.Add(this.btnOrder);
             this.Controls.Add(this.btnCancel);
@@ -171,10 +185,11 @@
         private System.Windows.Forms.Button btnOrder;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.TextBox txtStudentId;
-        private System.Windows.Forms.TextBox txtIdMenu;
         private System.Windows.Forms.Button btnChooseMenu;
         private System.Windows.Forms.TextBox txtOrderPrice;
         private System.Windows.Forms.TextBox txtOrderServer;
-        private System.Windows.Forms.TextBox txtOrderId;
+        private System.Windows.Forms.Label lblPrice;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }

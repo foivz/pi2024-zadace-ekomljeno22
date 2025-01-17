@@ -35,6 +35,7 @@
             this.txtMealId = new System.Windows.Forms.TextBox();
             this.btnAddToDatabase = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.lblMealId = new System.Windows.Forms.Label();
             this.pnlNav.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -62,27 +63,27 @@
             // 
             // cboMealType
             // 
-            this.cboMealType.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboMealType.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboMealType.FormattingEnabled = true;
-            this.cboMealType.Location = new System.Drawing.Point(136, 278);
+            this.cboMealType.Location = new System.Drawing.Point(182, 205);
             this.cboMealType.Name = "cboMealType";
-            this.cboMealType.Size = new System.Drawing.Size(227, 37);
+            this.cboMealType.Size = new System.Drawing.Size(227, 30);
             this.cboMealType.TabIndex = 32;
             this.cboMealType.Text = "Vrsta jela";
             // 
             // txtMealName
             // 
-            this.txtMealName.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMealName.Location = new System.Drawing.Point(136, 228);
+            this.txtMealName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMealName.Location = new System.Drawing.Point(182, 155);
             this.txtMealName.Name = "txtMealName";
-            this.txtMealName.Size = new System.Drawing.Size(227, 34);
+            this.txtMealName.Size = new System.Drawing.Size(227, 28);
             this.txtMealName.TabIndex = 31;
             this.txtMealName.Text = "Naziv jela";
             // 
             // txtMealId
             // 
             this.txtMealId.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMealId.Location = new System.Drawing.Point(136, 178);
+            this.txtMealId.Location = new System.Drawing.Point(182, 105);
             this.txtMealId.Name = "txtMealId";
             this.txtMealId.ReadOnly = true;
             this.txtMealId.Size = new System.Drawing.Size(227, 34);
@@ -91,7 +92,7 @@
             // btnAddToDatabase
             // 
             this.btnAddToDatabase.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddToDatabase.Location = new System.Drawing.Point(356, 498);
+            this.btnAddToDatabase.Location = new System.Drawing.Point(356, 277);
             this.btnAddToDatabase.Name = "btnAddToDatabase";
             this.btnAddToDatabase.Size = new System.Drawing.Size(144, 43);
             this.btnAddToDatabase.TabIndex = 34;
@@ -102,7 +103,7 @@
             // btnCancel
             // 
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancel.Location = new System.Drawing.Point(12, 497);
+            this.btnCancel.Location = new System.Drawing.Point(12, 276);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(144, 43);
             this.btnCancel.TabIndex = 33;
@@ -110,12 +111,23 @@
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // lblMealId
+            // 
+            this.lblMealId.AutoSize = true;
+            this.lblMealId.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMealId.Location = new System.Drawing.Point(86, 113);
+            this.lblMealId.Name = "lblMealId";
+            this.lblMealId.Size = new System.Drawing.Size(80, 22);
+            this.lblMealId.TabIndex = 35;
+            this.lblMealId.Text = "Broj jela:";
+            // 
             // FrmAddMealUpdate
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(512, 553);
+            this.ClientSize = new System.Drawing.Size(512, 330);
+            this.Controls.Add(this.lblMealId);
             this.Controls.Add(this.btnAddToDatabase);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.pnlNav);
@@ -142,5 +154,6 @@
         private System.Windows.Forms.TextBox txtMealId;
         private System.Windows.Forms.Button btnAddToDatabase;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Label lblMealId;
     }
 }
